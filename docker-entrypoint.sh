@@ -1,8 +1,8 @@
-#!/bin/sh
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
 echo "============================================================"
-echo " [Reorder Dev Environment] Starting container entrypoint..."
+echo " [Reorder Dev Environment] Starting container bootstrap..."
 echo "============================================================"
 
 # Extract PostgreSQL connection parameters
@@ -18,7 +18,7 @@ done
 echo "[docker-entrypoint] PostgreSQL is ready and healthy."
 
 # Wait for Redis if configured
-if [ -n "$REDIS_URL" ]; then
+if [ -n "${REDIS_URL:-}" ]; then
   echo "[docker-entrypoint] Redis configured at ${REDIS_URL}."
 fi
 
@@ -46,7 +46,7 @@ echo "[docker-entrypoint] Ensuring admin user ${ADMIN_EMAIL} is provisioned..."
 npx medusa user -e "$ADMIN_EMAIL" -p "$ADMIN_PASSWORD" 2>&1 || echo "[docker-entrypoint] Admin user already exists or provisioning skipped."
 
 # Seed data if enabled
-if [ "$SEED_DATABASE" = "true" ]; then
+if [ "${SEED_DATABASE:-false}" = "true" ]; then
   echo "[docker-entrypoint] Seeding subscriptions and domain test data..."
   npx medusa exec ./scripts/seed-subscriptions-test-data.ts || echo "[docker-entrypoint] Seeding completed or skipped."
 fi
