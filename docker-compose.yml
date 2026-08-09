@@ -49,7 +49,7 @@ services:
       - "${MEDUSA_PORT:-9005}:9000"
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-reorder
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-reorder?sslmode=disable
       REDIS_URL: redis://redis:6379
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
