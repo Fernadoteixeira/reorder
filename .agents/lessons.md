@@ -17,4 +17,13 @@ It should be reviewed at the start of a session and updated after fixing any bug
 
 ## General Lessons
 
-* (No lessons recorded yet. Will be updated as issues arise.)
+### Package Installation with Yarn 4 on Windows
+
+- **Lesson**: When installing dependencies using Yarn Berry (v4) with `nodeLinker: node-modules`, built-in TypeScript compatibility patches can trigger hunk conflicts on certain platforms.
+- **Rule**: Use `corepack yarn install --mode=skip-build` to bypass conflicting lifecycle patches and ensure clean linking into `node_modules`.
+
+### Customer Authentication in Store Integration Tests
+
+- **Lesson**: Customer-authenticated store routes (`/store/customers/me/subscriptions/*`) require JWT tokens signed with `actor_type: "customer"` and `auth_identity_id` linked to the customer entity.
+- **Rule**: Always use the shared `createCustomerAuthHeaders(container, customerId)` fixture helper to generate standard bearer authentication for customer storefront integration testing.
+

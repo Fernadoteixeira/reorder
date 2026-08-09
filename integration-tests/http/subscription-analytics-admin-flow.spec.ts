@@ -1,5 +1,6 @@
 import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
 import path from "path"
+import type { MedusaContainer } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import { CANCELLATION_MODULE } from "../../src/modules/cancellation"
 import { RenewalCycleStatus } from "../../src/modules/renewal/types"
@@ -210,7 +211,7 @@ medusaIntegrationTestRunner({
 
 jest.setTimeout(60 * 1000)
 
-async function seedAnalyticsAdminFlowScenario(container: any) {
+async function seedAnalyticsAdminFlowScenario(container: MedusaContainer) {
   const query = container.resolve<any>(ContainerRegistrationKeys.QUERY)
   const originalGraph = query.graph.bind(query)
   const primaryProductId = `prod_analytics_flow_primary_${Date.now()}`

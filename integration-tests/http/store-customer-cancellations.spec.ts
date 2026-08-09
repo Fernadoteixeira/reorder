@@ -37,7 +37,7 @@ medusaIntegrationTestRunner({
           `/store/customers/me/subscriptions/${subscription.id}/cancellation`,
           {
             reason: "Too expensive",
-            reason_category: CancellationReasonCategory.TOO_EXPENSIVE,
+            reason_category: CancellationReasonCategory.PRICE,
             notes: "Found cheaper alternative",
           },
           { headers }
@@ -53,7 +53,7 @@ medusaIntegrationTestRunner({
         )
         expect(response.data.cancellation_case.reason).toEqual("Too expensive")
         expect(response.data.cancellation_case.reason_category).toEqual(
-          CancellationReasonCategory.TOO_EXPENSIVE
+          CancellationReasonCategory.PRICE
         )
       })
 
@@ -116,5 +116,8 @@ medusaIntegrationTestRunner({
         })
       })
     })
-  })
+  },
 })
+
+jest.setTimeout(60 * 1000)
+

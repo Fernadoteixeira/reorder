@@ -250,5 +250,8 @@ medusaIntegrationTestRunner({
         expect(response.data.subscription).toBeDefined()
       })
     })
-  })
+  },
 })
+
+jest.setTimeout(60 * 1000)
+

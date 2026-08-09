@@ -154,13 +154,22 @@ type OrderModuleService = {
   createOrders(data: Record<string, unknown>): Promise<{ id: string }>
 }
 
-type PgConnection = {
-  (tableName: string): {
-    select(...columns: string[]): {
-      whereRaw(sql: string, bindings?: unknown[]): Promise<Array<{ id: string }>>
-    }
-  }
+type PgConnectionQueryBuilder = {
+  select(...columns: string[]): PgConnectionQueryBuilder
+  where(field: string, value: unknown): PgConnectionQueryBuilder
+  whereIn(field: string, values: unknown[]): PgConnectionQueryBuilder
+  whereNull(field: string): PgConnectionQueryBuilder
+  whereRaw(sql: string, bindings?: unknown[]): PgConnectionQueryBuilder
+  limit(count: number): PgConnectionQueryBuilder
+  then<TResult1 = Array<Record<string, any>>>(
+    onfulfilled?: (value: Array<Record<string, any>>) => TResult1 | PromiseLike<TResult1>
+  ): Promise<TResult1>
 }
+
+type PgConnection = {
+  (tableName: string): PgConnectionQueryBuilder
+}
+
 
 const FIXED_TIME = new Date("2026-04-15T10:00:00.000Z")
 
