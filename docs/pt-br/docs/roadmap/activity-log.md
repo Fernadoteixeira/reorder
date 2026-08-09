@@ -1,84 +1,84 @@
-# Roteiro do registro de atividades
+# Roteiro do Registro de Atividades
 
-Este documento descreve o roteiro de acompanhamento para a área `Activity Log` após a implementação atual da v1.
+Este documento descreve o roteiro de ações futuras para a área `Activity Log` após a implementação atual da v1.
 
-É intencionalmente mais curto do que o roteiro principal do projeto e concentra-se apenas nas melhorias dos próximos passos para esta área.
+Ele é intencionalmente mais conciso do que o roteiro principal do projeto e se concentra apenas nas melhorias a serem implementadas em seguida nessa área.
 
-## Status atual
+## Situação atual
 
-`Activity Log` v1 é implementado e inclui:
-- armazenamento `subscription_log` somente para acréscimos
-- emissão de eventos apoiados por fluxo de trabalho
-- API de leitura do administrador
+A versão `Activity Log` v1 está implementada e inclui:
+- armazenamento `subscription_log` somente para adição de dados
+- emissão de eventos baseada em fluxo de trabalho
+- API de leitura para administradores
 - lista global de administradores
-- detalhamento do evento
-- cronograma por assinatura
-- cobertura de testes de back-end e integração
+- detalhamento de eventos
+- linha do tempo por assinatura
+- cobertura de testes de back-end e de integração
 
 ## Modelo operacional atual
 
 O modelo operacional atual é intencionalmente conservador:
-- modelo de leitura instantânea
+- modelo de leitura com prioridade no snapshot
 - sem limpeza automática de retenção
 - sem ferramentas de exportação
-- sem recursos de filtragem personalizados
+- sem recursos de filtragem personalizada
 
-Este é um limite v1 deliberado, não um descuido.
+Trata-se de uma delimitação deliberada da versão 1, e não de um descuido.
 
 ## Próximas melhorias lógicas
 
-### 1. Retenção e Arquivamento
+### 1. Retenção e arquivamento
 
-Potencial trabalho futuro:
-- trabalho de arquivamento explícito
+Possíveis trabalhos futuros:
+- tarefa de arquivamento explícita
 - política de eliminação explícita
 - configuração de retenção visível ao operador
 
-Isto só deve ser implementado quando:
-- o crescimento do armazenamento torna-se operacionalmente significativo
-- a conformidade ou a política do cliente exigem isso
+Isso só deve ser implementado quando:
+- o aumento do armazenamento se tornar significativo do ponto de vista operacional;
+- houver exigência de conformidade ou de política do cliente
 
 ### 2. Exportar
 
-Potencial trabalho futuro:
-- Exportação CSV para visualizações de log filtradas
-- exportação de um cronograma de assinatura
+Possíveis trabalhos futuros:
+- Exportação em CSV para visualizações de logs filtradas
+- Exportação da linha do tempo de uma assinatura
 
 Isso seria útil para:
-- operações de apoio
-- revisão de incidentes
+- operações de suporte
+- análise de incidentes
 - fluxos de trabalho de sucesso do cliente
 
-### 3. Links cruzados mais ricos
+### 3. Interligações mais abrangentes
 
-Potencial trabalho futuro:
-- links diretos dos detalhes do evento para:
-  - detalhes de renovação
+Possíveis trabalhos futuros:
+- links diretos da página de detalhes do evento para as seguintes páginas relacionadas:
+  - detalhes da renovação
   - detalhes do caso de cobrança
   - detalhes do caso de cancelamento
 
-Isso deve permanecer leve e não transformar o modelo de leitura em um enriquecimento pesado de tempo de execução.
+Isso deve permanecer leve e não deve transformar o modelo de leitura em um enriquecimento pesado em tempo de execução.
 
 ### 4. Filtros e predefinições salvos
 
-Potencial trabalho futuro:
-- predefinições de operador persistentes
-- visualizações filtradas em nível de equipe
+Possíveis trabalhos futuros:
+- predefinições persistentes de operadores
+- visualizações filtradas por equipe
 
-Isto é útil somente depois que a lista base for comprovadamente estável operacionalmente.
+Isso só é útil depois que a lista básica for comprovadamente estável do ponto de vista operacional.
 
-### 5. Revisão Operacional
+### 5. Análise operacional
 
-Potencial trabalho futuro:
-- revisitar os índices se o volume de consultas aumentar
-- revisitar o comportamento de pesquisa se a pesquisa atual que prioriza o instantâneo se tornar muito limitada
-- adicionar painéis explícitos ou alertas assim que as linhas de base operacionais forem conhecidas
+Possíveis trabalhos futuros:
+- reavaliar os índices caso o volume de consultas aumente
+- reavaliar o comportamento da pesquisa caso a pesquisa atual, que prioriza os snapshots, se torne muito limitada
+- adicionar painéis ou alertas explícitos assim que as linhas de base operacionais forem conhecidas
 
-## Não metas para a próxima iteração
+## O que não deve ser objetivo na próxima iteração
 
-A próxima iteração ainda deve evitar:
-- transformando `Activity Log` em telemetria geral
+A próxima versão ainda deve evitar:
+- transformar `Activity Log` em telemetria geral
 - armazenar instantâneos agregados completos
-- incorporação de estado de link profundo de cada domínio em cada resposta de leitura
+- incorporar o estado com links profundos de cada domínio em cada resposta de leitura
 
-A área deve primeiro manter uma trilha de auditoria empresarial.
+Essa área deve servir, antes de tudo, como um registro de auditoria comercial.

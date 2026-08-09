@@ -35,7 +35,7 @@ A principal decisão arquitetônica é:
 - `Activity Log` é a trilha de auditoria canônica, do tipo “somente acréscimo”, para eventos de negócios voltados para operadores relacionados a uma assinatura.
 - `Activity Log` não é a fonte de verdade para o estado do domínio de propriedade dos módulos existentes.
 
-Isso significa que o registro é uma visão de auditoria entre domínios, e não um substituto para os agregados existentes.
+Isso significa que o log é uma visão de auditoria entre domínios, e não um substituto para os agregados existentes.
 
 ## Limites de propriedade
 
@@ -51,7 +51,7 @@ O modelo atual de propriedade do plug-in permanece inalterado.
 - frequências de cobrança permitidas
 - regras da oferta e resolução efetiva da política
 
-`Renewals` continua sendo a fonte de referência para:
+`Renewals` continuam sendo a fonte de referência para:
 - o estado de execução do ciclo de renovação
 - o histórico de tentativas de renovação
 - as decisões de aprovação e os resultados da execução
@@ -60,7 +60,7 @@ O modelo atual de propriedade do plug-in permanece inalterado.
 - status da cobrança de pagamentos
 - cronograma de novas tentativas
 - histórico de tentativas de cobrança
-- resultados de cobranças bem-sucedidas e malsucedidas
+- resultados de cobranças recuperadas e não recuperadas
 
 O `Cancellation & Retention` continua sendo a fonte de referência para:
 - estado do processo de cancelamento
@@ -101,7 +101,7 @@ Esses registros operacionais continuam sendo uma questão à parte.
 - alteração de plano agendada ou aplicada
 - endereço de entrega atualizado
 - próxima entrega ignorada
-- tentativa de renovação, bem-sucedida, malsucedida
+- tentativa de renovação, renovação bem-sucedida, renovação com falha
 - processo de cobrança iniciado, repetido, recuperado, não recuperado
 - processo de cancelamento iniciado
 - oferta de retenção aplicada
@@ -153,7 +153,7 @@ O contrato de eventos lógicos é:
 
 `subscription_id`
 - obrigatório
-- o registro é centrado no ciclo de vida de uma assinatura
+- o registro é centrado em um ciclo de vida de assinatura
 
 `customer_id`
 - opcional, mas armazenado de forma persistente quando conhecido
@@ -273,7 +273,7 @@ O `Activity Log` deve utilizar uma taxonomia estável e explícita, agrupada por
 
 O modelo de armazenamento implementado é `subscription_log`.
 
-Ele pertence ao módulo específico `activity-log` e, do ponto de vista comercial, permanece apenas para gravação.
+Ele pertence ao módulo dedicado `activity-log` e, do ponto de vista comercial, permanece apenas para gravação.
 
 O registro é mantido:
 - campos de identidade principal e de filtro
@@ -444,7 +444,7 @@ O proprietário de tempo de execução desse modelo é o módulo personalizado d
 O módulo expõe:
 - `ACTIVITY_LOG_MODULE = "activityLog"`
 - o modelo de dados `subscription_log`
-- o serviço do módulo utilizado posteriormente pelos fluxos de trabalho e pelos auxiliares de leitura do Admin
+- o serviço do módulo utilizado posteriormente por fluxos de trabalho e auxiliares de leitura do Admin
 
 ## Semântica de apenas adição
 
@@ -531,7 +531,7 @@ Por exemplo:
 
 Se o registro de administração se baseasse apenas no enriquecimento atual, os eventos históricos poderiam se tornar enganosos.
 
-Pequenos instantâneos resolvem esse problema sem precisar copiar todo o agregado da assinatura.
+Pequenos instantâneos resolvem esse problema sem copiar todo o agregado da assinatura.
 
 ### Por que não armazenar instantâneos completos das entidades?
 
@@ -647,7 +647,7 @@ A paginação deve seguir o padrão de administração do plugin:
 - `offset`
 - `count`
 
-A lista global deve ser lida diretamente de `subscription_log` e não deve exigir o enriquecimento dinâmico vinculado para exibir linhas úteis.
+A lista global deve ser lida diretamente de `subscription_log` e não deve exigir enriquecimento dinâmico vinculado para exibir linhas úteis.
 
 ## Detalhes do registro
 
@@ -749,7 +749,7 @@ Fundamentação:
 
 ## Módulo e estratégia de migração
 
-O `subscription_log` deve estar em um módulo personalizado dedicado chamado `activity-log`.
+`subscription_log` deve estar em um módulo personalizado dedicado chamado `activity-log`.
 
 O padrão de execução deve estar de acordo com as convenções atuais dos plug-ins:
 - modelo de dados dedicado
@@ -890,5 +890,5 @@ O limite acordado para `Activity Log` é:
 - o registro de eventos entre domínios deve ocorrer por meio da orquestração de fluxos de trabalho, em conformidade com os padrões do Medusa
 - os registros de eventos devem permanecer compactos, estáveis e legíveis pelo operador;
 - alterações na configuração do `Plans & Offers` estão fora do escopo dos eventos independentes do `Activity Log` v1;
-- o `subscription_log` deve ser um modelo dedicado de apenas acréscimo, com campos de filtro escalares e cargas JSON compactas;
+- o `subscription_log` deve ser um modelo dedicado de apenas acréscimo, com campos de filtro escalares e cargas úteis JSON compactas;
 - o `subscription_log` deve armazenar pequenos instantâneos da tela de administração diretamente no registro

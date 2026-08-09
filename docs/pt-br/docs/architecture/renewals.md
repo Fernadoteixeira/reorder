@@ -1,56 +1,56 @@
-# Arquitetura de Renovações
+# Arquitetura de renovações
 
-Este documento descreve a arquitetura atual da área `Renewals` no plugin `Reorder`.
+Este documento descreve a arquitetura atual da área `Renewals` no plug-in `Reorder`.
 
-Ele se concentra no sistema implementado e não nas suposições iniciais do projeto.
+Ele se concentra no sistema implementado, e não nos pressupostos iniciais do projeto.
 
-## Meta
+## Objetivo
 
-A área `Renewals` fornece a camada de execução e revisão operacional para cobrança recorrente de assinaturas.
+A área `Renewals` fornece a camada de execução e análise operacional para o faturamento de assinaturas recorrentes.
 
-A implementação atual suporta:
-- acompanhar ciclos de renovação e tentativas de renovação
-- processamento agendado através de um trabalho Medusa
-- execução manual de força do Admin
-- aprovação e rejeição de alterações de assinatura pendentes antes da renovação
-- Fila de administração e visualizações detalhadas para operações de renovação
+A implementação atual oferece suporte a:
+- acompanhamento dos ciclos de renovação e das tentativas de renovação
+- processamento programado por meio de uma tarefa do Medusa
+- execução manual forçada pelo administrador
+- aprovação e rejeição de alterações pendentes na assinatura antes da renovação
+- visualizações da fila e dos detalhes do administrador para operações de renovação
 - integração com `Subscriptions` e `Plans & Offers`
 - integração com `Dunning` para falhas de renovação qualificadas para pagamento
 - fortalecimento operacional por meio de bloqueio de fluxo de trabalho, IDs de correlação, logs estruturados e métricas de resumo do agendador
 
-## Visão Geral da Arquitetura
+## Visão geral da arquitetura
 
-A implementação é dividida em quatro camadas principais:
+A implementação está dividida em quatro camadas principais:
 
 1. módulo de domínio
-2. fluxos de trabalho e trabalho agendado
+2. fluxos de trabalho e tarefas agendadas
 3. API de administração
-4. IU de administração
+4. interface de usuário de administração
 
-Cada camada tem uma responsabilidade clara:
+Cada camada tem uma responsabilidade bem definida:
 
 - o módulo de domínio possui `renewal_cycle` e `renewal_attempt`
-- fluxos de trabalho possuem execução, aprovação, rejeição e mutações forçadas
-- o trabalho agendado descobre ciclos de vencimento e aciona o fluxo de trabalho de execução compartilhado
-- a API admin expõe rotas de leitura e mutação para usuários operacionais
-- a UI administrativa renderiza as visualizações de fila e detalhes e chama os endpoints administrativos
+- os fluxos de trabalho possuem mutações de execução, aprovação, rejeição e execução forçada
+- a tarefa agendada identifica os ciclos de vencimento e aciona o fluxo de trabalho de execução compartilhada
+- a API de administração expõe rotas de leitura e mutação para usuários operacionais
+- a interface de usuário de administração exibe as visualizações da fila e dos detalhes e chama os endpoints de administração
 
-## 1. Módulo de Domínio
+## 1. Módulo de domínio
 
-O módulo customizado `renewal` é o proprietário do domínio de execução de renovação.
+O módulo personalizado `renewal` é o proprietário do domínio de execução da renovação.
 
 Ele contém:
 - tipos de domínio
 - o modelo de dados `renewal_cycle`
 - o modelo de dados `renewal_attempt`
 - o serviço do módulo
-- utilitários de modelo de leitura para leituras de fila de administração, detalhes e agendador
+- utilitários de leitura do modelo para leituras da fila de administração, detalhes e agendador
 
-Principais opções de design:
-- um ciclo de renovação representa uma unidade concreta de renovação devida para uma assinatura
+Principais escolhas de projeto:
+- um ciclo de renovação representa uma unidade concreta a ser renovada para uma assinatura
 - o histórico de tentativas é armazenado separadamente do agregado do ciclo
-- o ciclo armazena diretamente o estado operacional e os campos de resumo de execução selecionados
-- a assinatura continua sendo a fonte do estado ativo da assinatura, enquanto o ciclo continua sendo a fonte do histórico de execução
+- o ciclo armazena diretamente o estado operacional e os campos selecionados do resumo de execução
+- a assinatura continua sendo a fonte do estado ativo de assinatura, enquanto o ciclo continua sendo a fonte do histórico de execução
 
 ## 2. Modelo de dados
 
@@ -58,9 +58,9 @@ O modelo `renewal_cycle` armazena:
 - campos de identidade e agendamento
 - status de execução
 - estado de aprovação
-- referência de pedido gerada
+- referência da ordem gerada
 - resumo do último erro
-- instantâneo de alteração pendente aplicado
+- instantâneo da alteração pendente aplicada
 - contador de tentativas e metadados
 
 Os campos principais `renewal_cycle` incluem:
@@ -96,131 +96,131 @@ O modelo `renewal_attempt` armazena:
 ### Estratégia de indexação
 
 As migrações atuais e a configuração do modelo otimizam a fila de renovação para:
-- pesquisa por `subscription_id`
+- consulta por `subscription_id`
 - filtragem por `status`
 - filtragem e ordenação por `scheduled_for`
-- Filtragem administrativa e classificação por campos operacionais
-- tentativa de pesquisa de histórico por `renewal_cycle_id`
+- filtragem e ordenação pelo administrador com base em campos operacionais
+- consulta ao histórico de tentativas por `renewal_cycle_id`
 
-## 3. Semântica de Execução
+## 3. Semântica de execução
 
-`Renewals` usa a assinatura como fonte do estado operacional atual e, opcionalmente, aplica `pending_update_data` aprovado durante a execução.
+`Renewals` utilize a assinatura como fonte do estado operacional atual e, opcionalmente, aplique o `pending_update_data` aprovado durante a execução.
 
 A implementação atual segue estas regras:
-- apenas assinaturas qualificadas podem ser renovadas
-- as alterações pendentes só são consideradas quando entrarem em vigor para a data do ciclo
-- a aprovação é aplicada quando o ciclo exige
-- `Plans & Offers` são resolvidos novamente em tempo de execução antes que as alterações pendentes sejam aplicadas
-- a execução bem-sucedida atualiza a cadência ativa da assinatura e limpa a aplicação `pending_update_data`
-- o ciclo registra se as alterações pendentes foram realmente aplicadas
+- somente assinaturas elegíveis podem ser renovadas
+- alterações pendentes só são consideradas quando entram em vigor na data do ciclo
+- a aprovação é exigida quando o ciclo assim o requer
+- `Plans & Offers` são resolvidos novamente no momento da execução, antes que as alterações pendentes sejam aplicadas
+- a execução bem-sucedida atualiza a cadência ativa da assinatura e limpa os `pending_update_data` aplicados
+- o ciclo registra se as alterações pendentes foram efetivamente aplicadas
 
 Isso significa:
-- `Subscriptions` possui estado de assinatura ativa
-- `Plans & Offers` possui validação da política atual
-- `Renewals` próprio estado de execução e histórico de resultados
+- `Subscriptions` estado da própria assinatura ativa
+- `Plans & Offers` validação da própria política atual
+- `Renewals` estado de execução e histórico de resultados da própria assinatura
 
 A área `Cancellation & Retention` implementada não altera a propriedade de `Renewals`.
 
-Limite atual com `Cancellation & Retention`:
-- `Renewals` não possui estado do processo de cancelamento
-- `Cancellation & Retention` não possui histórico de execução do ciclo de renovação
-- a elegibilidade do ciclo futuro é derivada do estado do ciclo de vida `Subscription`, e não da transferência da propriedade do ciclo para o módulo de cancelamento
+Limites atuais com `Cancellation & Retention`:
+- `Renewals` não possui o estado do processo de cancelamento
+- `Cancellation & Retention` não possui o histórico de execução do ciclo de renovação
+- a elegibilidade para ciclos futuros é derivada do estado do ciclo de vida de `Subscription`, em vez de transferir a responsabilidade pelo ciclo para o módulo de cancelamento
 
 Em termos de tempo de execução:
 - os ciclos futuros devem respeitar `Subscription.status`
 - os ciclos futuros devem respeitar `cancel_effective_at`
 - os ciclos futuros devem respeitar `next_renewal_at`
-- `pause` e `cancel` afetam a elegibilidade, não a propriedade dos registros `renewal_cycle`
+- `pause` e `cancel` afetam a elegibilidade, e não a propriedade dos registros `renewal_cycle`
 
-## 4. Leia o caminho
+## 4. Caminho de leitura
 
-O caminho de leitura é otimizado para a fila de renovação do administrador e detalhes do ciclo.
+O caminho de leitura está otimizado para a fila de renovação do Admin e os detalhes do ciclo.
 
-Componentes principais:
-- manipuladores de rota administrativa em `src/api/admin/renewals`
+Principais componentes:
+- manipuladores de rotas de administração em `src/api/admin/renewals`
 - auxiliares de normalização em `src/api/admin/renewals/utils.ts`
-- ajudantes de consulta em `src/modules/renewal/utils/admin-query.ts`
+- auxiliares de consulta em `src/modules/renewal/utils/admin-query.ts`
 - auxiliar de consulta específico do agendador em `src/modules/renewal/utils/scheduler-query.ts`
 
 ### Fluxo da fila
 
 Para a visualização da fila:
-1. a UI Admin envia parâmetros de consulta para `GET /admin/renewals`
-2. A rota valida e normaliza a entrada da consulta
-3. `listAdminRenewals(...)` aplica filtros, classificação, paginação e resolução de resumo vinculado
-4. A camada de consulta lê os ciclos de renovação e as últimas tentativas
-5. a resposta é mapeada para Admin DTOs usados pela fila DataTable
+1. a interface de usuário administrativa envia parâmetros de consulta para `GET /admin/renewals`
+2. a rota valida e normaliza os dados inseridos na consulta
+3. `listAdminRenewals(...)` aplica filtros, ordenação, paginação e resolução de resumos vinculados
+4. a camada de consulta lê os ciclos de renovação e as tentativas mais recentes
+5. a resposta é mapeada para os DTOs administrativos usados pela DataTable da fila
 
 O modelo de leitura Admin distingue entre:
 - `scheduled_for` como a data do ciclo operacional de propriedade de `renewal_cycle`
-- `effective_scheduled_for` como a data de entrega projetada mostrada quando a assinatura vinculada tem `skip_next_cycle = true`
+- `effective_scheduled_for` como a data de entrega prevista exibida quando a assinatura vinculada tem `skip_next_cycle = true`
 
 Os recursos de fila suportados incluem:
 - paginação
-- pesquisar
+- pesquisa
 - filtragem
 - classificação
-- resolução resumida da última tentativa
+- resolução do resumo da tentativa mais recente
 
-### Fluxo detalhado
+### Fluxo de detalhes
 
 Para a visualização detalhada:
-1. a IU do administrador solicita `GET /admin/renewals/:id`
-2. A rota resolve o ciclo por meio do auxiliar de consulta detalhada
-3. assinatura vinculada e resumos de pedidos gerados são resolvidos
-4. O histórico de tentativas e o resumo de alterações pendentes são mapeados no DTO detalhado
+1. a interface de usuário de administração solicita `GET /admin/renewals/:id`
+2. a rota resolve o ciclo por meio do auxiliar de consulta de detalhes
+3. os resumos de assinaturas vinculadas e de pedidos gerados são resolvidos
+4. o histórico de tentativas e o resumo de alterações pendentes são mapeados para o DTO de detalhes
 
-A carga detalhada representa:
+A carga útil detalhada representa:
 - o agregado do ciclo
-- resumo de aprovação
-- resumo de assinatura vinculado
-- resumo do pedido vinculado
+- resumo de aprovações
+- resumo de assinaturas vinculadas
+- resumo de pedidos vinculados
 - alterações pendentes
 - histórico de tentativas
 - metadados
 
-Isso mantém intacta a fonte da verdade do ciclo operacional, ao mesmo tempo que permite que a UI do administrador mostre a data de entrega projetada após o salto.
+Isso mantém intacta a fonte de verdade do ciclo operacional, ao mesmo tempo em que permite que a interface de usuário de administração exiba a data de entrega prevista após o salto.
 
 ### Fluxo de leitura do agendador
 
-O trabalho agendado usa uma consulta do agendador dedicada em vez do modelo de leitura Admin.
+A tarefa agendada utiliza uma consulta dedicada do agendador, em vez do modelo de leitura do Admin.
 
-Ele seleciona os ciclos devidos por:
+Ele seleciona os ciclos vencidos com base em:
 - `status in [scheduled, failed]`
 - `scheduled_for <= now`
-- estado elegível para aprovação quando a aprovação é necessária
+- estado elegível para aprovação, quando a aprovação for necessária
 
-Isso mantém a descoberta do agendador leve e separada das preocupações de exibição do administrador.
+Isso mantém a descoberta do agendador leve e separada das questões relacionadas à exibição do Admin.
 
-Como `Cancellation & Retention` pode materializar os estados `paused` e `cancelled` de volta para `Subscription`, o comportamento do escalonador deve tratar esses campos do ciclo de vida como a porta operacional.
+Como `Cancellation & Retention` pode fazer com que os estados `paused` e `cancelled` voltem a ser `Subscription`, o comportamento do agendador deve tratar esses campos do ciclo de vida como o critério de decisão operacional.
 
 Implicações atuais:
-- `paused` assinaturas normalmente não são elegíveis para execução de renovação
-- `cancelled` assinaturas não são elegíveis para execução de renovação
-- os ciclos devidos após o cancelamento efetivo não devem ser executados
-- os registros de ciclo ainda podem existir historicamente mesmo quando não são mais elegíveis
+- As assinaturas `paused` normalmente não são elegíveis para execução de renovação
+- As assinaturas `cancelled` não são elegíveis para execução de renovação
+- Os ciclos devidos após o cancelamento efetivo não devem ser executados
+- Os registros de ciclo podem ainda existir historicamente, mesmo quando não são mais elegíveis
 
-## 5. Escrever caminho
+## 5. Caminho de gravação
 
-Todas as operações de renovação que alteram o estado são roteadas por meio de fluxos de trabalho.
+Todas as operações de renovação que envolvem mudança de estado são encaminhadas por meio de fluxos de trabalho.
 
-Mutações implementadas:
+Alterações implementadas:
 - ciclo de renovação do processo
-- ciclo de renovação de força
+- forçar o ciclo de renovação
 - aprovar alterações de renovação
 - rejeitar alterações de renovação
 
-Padrão de caminho de gravação:
-1. o agendador ou rota Admin envia uma entrada de fluxo de trabalho
-2. o fluxo de trabalho valida o ciclo atual e o estado da assinatura
-3. o fluxo de trabalho aplica lógica de execução ou decisão
-4. a rota retorna a carga atualizada de detalhes de renovação para mutações de administrador
+Padrão do fluxo de trabalho:
+1. O agendador ou a rota “Admin” envia uma entrada para o fluxo de trabalho
+2. O fluxo de trabalho valida o ciclo atual e o estado da assinatura
+3. O fluxo de trabalho aplica a lógica de execução ou decisão
+4. A rota retorna a carga útil com os detalhes atualizados da renovação para as mutações do “Admin”
 
 Isso mantém a lógica de negócios fora das rotas e centraliza as regras de mutação nos fluxos de trabalho.
 
 ## 6. Fluxos de trabalho
 
-A atual camada de mutação de renovação é construída em torno de:
+A camada de mutação de renovação atual é construída em torno de:
 - `process-renewal-cycle`
 - `force-renewal-cycle`
 - `approve-renewal-changes`
@@ -228,104 +228,104 @@ A atual camada de mutação de renovação é construída em torno de:
 
 ### Fluxo de trabalho de execução principal
 
-`process-renewal-cycle` é o fluxo de trabalho de execução compartilhado usado por:
-- o trabalho do agendador
-- manual `force renewal`
+`process-renewal-cycle` é o fluxo de trabalho de execução compartilhado utilizado por:
+- a tarefa do agendador
+- o `force renewal` manual
 
 É responsável por:
-- validação de simultaneidade e estado
-- validando a elegibilidade da assinatura
-- validação de requisitos de aprovação
-- revalidação da política `Plans & Offers` para alterações pendentes
-- criando a tentativa de renovação
-- atualizando o status do ciclo
-- criar o pedido de renovação quando aplicável
-- começando em `Dunning` quando ocorrem falhas de renovação qualificadas para pagamento após a criação do pedido
-- atualização da cadência e dos instantâneos da assinatura
-- registrar sucesso ou fracasso
+- validar a simultaneidade e o estado
+- validar a elegibilidade da assinatura
+- validar os requisitos de aprovação
+- revalidar a política `Plans & Offers` para alterações pendentes
+- criar a tentativa de renovação
+- atualizar o status do ciclo
+- criar o pedido de renovação, quando aplicável
+- iniciar o `Dunning` quando ocorrerem falhas na renovação com qualificação de pagamento após a criação do pedido
+- atualizar a cadência da assinatura e os instantâneos
+- registrar o sucesso ou a falha
 
-Detalhe da implementação atual:
-- o fluxo de trabalho adquire um bloqueio de fluxo de trabalho Medusa com chave `renewal:${renewal_cycle_id}`
-- as configurações de bloqueio atuais são `timeout = 10` segundos e `ttl = 120` segundos
-- este bloqueio compartilhado protege a execução do agendador e a execução manual forçada
+Detalhes da implementação atual:
+- o fluxo de trabalho adquire um bloqueio de fluxo de trabalho Medusa com a chave `renewal:${renewal_cycle_id}`
+- as configurações atuais do bloqueio são `timeout = 10` segundos e `ttl = 120` segundos
+- esse bloqueio compartilhado protege tanto a execução pelo agendador quanto a execução manual forçada
 
 ### Fluxos de trabalho de aprovação
 
-`approve-renewal-changes` e `reject-renewal-changes` são o limite de mutação para decisões de aprovação.
+`approve-renewal-changes` e `reject-renewal-changes` são os limites de mutação para as decisões de aprovação.
 
 Eles são responsáveis por:
-- validar que a aprovação é necessária
-- bloqueando decisões duplicadas
-- armazenar quem decidiu, quando e por quê
-- atualizando o estado de aprovação do ciclo
+- verificar se é necessária uma aprovação
+- impedir decisões duplicadas
+- registrar quem decidiu, quando e por quê
+- atualizar o status do ciclo de aprovação
 
-### Forçar fluxo de trabalho
+### Fluxo de trabalho do Force
 
 `force-renewal-cycle` é a mutação operacional voltada para o administrador.
 
 É responsável por:
-- validar que o ciclo pode ser forçado manualmente
-- fazer cumprir os requisitos de aprovação antes da execução forçada
-- delegar a execução real ao fluxo de trabalho de renovação principal compartilhado
-- anexar um ID de correlação de operação manual usado pelo registro operacional estruturado
+- validar se o ciclo pode ser forçado manualmente
+- garantir o cumprimento dos requisitos de aprovação antes da execução forçada
+- delegar a execução propriamente dita ao fluxo de trabalho compartilhado de renovação do núcleo
+- anexar um ID de correlação da operação manual utilizado pelo registro operacional estruturado
 
-## 7. Processamento Agendado
+## 7. Processamento programado
 
-`Renewals` são processados ​​pelo trabalho agendado:
+`Renewals` são processados pela tarefa agendada:
 
 - `src/jobs/process-renewal-cycles.ts`
 
-O trabalho:
-- funciona a cada cinco minutos
-- descobre ciclos devidos em lotes
+A tarefa:
+- é executada a cada cinco minutos
+- identifica os ciclos vencidos em lotes
 - executa o fluxo de trabalho de renovação compartilhado para cada ciclo
-- registra resultados por ciclo
-- emite um resumo estruturado da execução com contadores e duração
+- registra os resultados de cada ciclo
+- gera um resumo estruturado da execução com contadores e duração
 
-O agendador não implementa um fluxo de negócios separado. Ele reutiliza a mesma lógica de execução básica da força manual.
+O agendador não implementa um fluxo de negócios separado. Ele reutiliza a mesma lógica de execução central da execução manual.
 
-## 8. Simultaneidade e fortalecimento operacional
+## 8. Concorrência e fortalecimento operacional
 
-O fluxo de trabalho de execução de renovação já usa o bloqueio de fluxo de trabalho Medusa em torno do caminho crítico de execução.
+O fluxo de trabalho de execução da renovação já utiliza o bloqueio de fluxo de trabalho do Medusa ao longo do caminho crítico de execução.
 
-O endurecimento atual inclui:
+As medidas de fortalecimento atuais incluem:
 - chave de bloqueio baseada em `renewal_cycle_id`
-- anti-duplicação através de validação de estado
-- registro operacional estruturado
-- IDs de correlação gerados para agendadores e fluxos de força manuais
-- registro de resultados por ciclo e por trabalho
-- contadores de resumo para:
-  - contagem de sucesso
+- proteção contra duplicação por meio da validação de estado
+- registro estruturado de operações
+- IDs de correlação gerados para fluxos do agendador e fluxos forçados manualmente
+- registro de resultados por ciclo e por tarefa
+- contadores resumidos para:
+  - contagem de sucessos
   - contagem de falhas
-  - contagem bloqueada
+  - contagem de bloqueios
   - duração do processamento
 
-A classificação de log orientada a alertas atualmente distingue entre:
-- já processando
+A classificação de logs orientada a alertas distingue atualmente entre:
+- já em processamento
 - execução duplicada
 - assinatura não elegível
 - aprovação bloqueada
 - política de oferta bloqueada
 - falha na criação do pedido
-- falha inesperada no tempo de execução
+- falha inesperada em tempo de execução
 
 Nota de implementação operacional:
-- a observabilidade da renovação estruturada reside em `src/modules/renewal/utils/observability.ts`
-- o trabalho do agendador registra resumos por execução e por ciclo
-- a etapa central de execução e o fluxo de força manual emitem eventos operacionais com reconhecimento de correlação
+- a observabilidade da renovação estruturada está localizada em `src/modules/renewal/utils/observability.ts`
+- o agendador registra resumos por execução e por ciclo dos trabalhos
+- a etapa de execução principal e o fluxo forçado manualmente emitem eventos operacionais com reconhecimento de correlação
 
 ## 8.1 Limite com cancelamento e retenção
 
-`Cancellation & Retention` agora participa do limite de tempo de execução do comércio recorrente, mas faz isso por meio dos efeitos do ciclo de vida da assinatura, em vez de assumir a propriedade da renovação.
+O `Cancellation & Retention` agora faz parte do ciclo de execução do comércio recorrente, mas isso ocorre por meio de efeitos no ciclo de vida da assinatura, e não assumindo a responsabilidade pela renovação.
 
-Divisão de tempo de execução atual:
-- `RenewalCycle` continua sendo a fonte da verdade para agendamento de renovação e histórico de execução
-- `CancellationCase` continua sendo a fonte da verdade para decisões de tratamento de rotatividade
+Divisão atual do tempo de execução:
+- `RenewalCycle` continua sendo a fonte de referência para o agendamento de renovações e o histórico de execução
+- `CancellationCase` continua sendo a fonte de referência para as decisões relacionadas ao cancelamento de assinaturas
 - os campos do ciclo de vida da assinatura são o ponto de integração entre esses domínios
 
 ## 9. Arquitetura da API de administração
 
-A API Admin expõe rotas personalizadas dedicadas ao monitoramento de renovação e ações operacionais.
+A API de Administração disponibiliza rotas personalizadas dedicadas ao monitoramento de renovações e a ações operacionais.
 
 Rotas de leitura implementadas:
 - `GET /admin/renewals`
@@ -336,15 +336,15 @@ Rotas de mutação implementadas:
 - `POST /admin/renewals/:id/approve-changes`
 - `POST /admin/renewals/:id/reject-changes`
 
-A camada API usa:
-- Validadores Zod
-- solicitações de administrador autenticadas
-- ajudantes de consulta para leituras
+A camada de API utiliza:
+- validadores Zod
+- solicitações administrativas autenticadas
+- auxiliares de consulta para leituras
 - fluxos de trabalho para mutações
 
-## 10. Arquitetura da UI do administrador
+## 10. Arquitetura da interface de usuário administrativa
 
-A UI Admin é implementada como rotas Medusa Admin personalizadas aninhadas em `Subscriptions`.
+A interface de usuário administrativa está implementada como rotas personalizadas do Medusa Admin aninhadas sob `Subscriptions`.
 
 Telas atuais:
 - página da fila de renovações
@@ -352,15 +352,15 @@ Telas atuais:
 
 ### Página da fila
 
-A página da fila é construída com Medusa `DataTable`.
+A página da fila foi criada com o Medusa `DataTable`.
 
-Suporta:
+Oferece suporte a:
 - paginação
-- pesquisar
+- pesquisa
 - filtros
-- classificação
-- navegação de linha para detalhes
-- intervalo de datas agendado padrão na montagem
+- ordenação
+- navegação por linha para detalhes
+- intervalo de datas programado por padrão ao carregar a página
 
 Arquivo de rota implementado:
 - `src/admin/routes/subscriptions/renewals/page.tsx`
@@ -369,51 +369,51 @@ Arquivo de rota implementado:
 
 A página de detalhes contém:
 - visão geral do ciclo
-- resumo de aprovação
+- resumo de aprovações
 - resumo da assinatura
-- resumo do pedido gerado
+- resumo dos pedidos gerados
 - alterações pendentes
 - histórico de tentativas
 - metadados técnicos
-- menu de ação com `force`, `approve` e `reject`
+- menu de ações com `force`, `approve` e `reject`
 
-Os fluxos de decisão usam gavetas e confirmam prompts no estilo Medusa padrão.
+Os fluxos de decisão utilizam “Drawers” e solicitações de confirmação no estilo padrão do Medusa.
 
 Arquivo de rota implementado:
 - `src/admin/routes/subscriptions/renewals/[id]/page.tsx`
 
-## 11. Estratégia de invalidação de consulta
+## 11. Estratégia de invalidação de consultas
 
-A UI Admin usa invalidação explícita para listas de renovação e consultas detalhadas.
+A interface de usuário administrativa utiliza invalidação explícita para consultas à lista de renovações e aos detalhes.
 
-Após uma mutação bem-sucedida:
-- a consulta da lista de renovações é invalidada
-- a consulta de detalhes da renovação é invalidada
+Após uma alteração bem-sucedida:
+- a consulta à lista de renovações é invalidada
+- a consulta aos detalhes da renovação é invalidada
 
-Isso mantém o estado da fila e o estado detalhado sincronizados após as ações do operador.
+Isso mantém o estado da fila e o estado dos detalhes sincronizados após as ações do operador.
 
-Detalhe de implementação:
-- as consultas de exibição de lista e detalhes são centralizadas em `src/admin/routes/subscriptions/renewals/data-loading.ts`
+Detalhes da implementação:
+- as consultas de exibição de lista e detalhes estão centralizadas em `src/admin/routes/subscriptions/renewals/data-loading.ts`
 - a invalidação é compartilhada por meio de `invalidateAdminRenewalsQueries(...)`
-- as gavetas de aprovação usam o estado do formulário local e dados detalhados já carregados, em vez de uma consulta de exibição remota separada
+- as abas de aprovação utilizam o estado local do formulário e os dados de detalhes já carregados, em vez de uma consulta de exibição remota separada
 
 ## 12. Tratamento de erros e carregamento
 
-A UI `Renewals` segue o tratamento de estado no estilo Medusa:
-- a fila usa carregamento de DataTable e estados vazios
-- a página de detalhes mostra carregamento explícito e estados de erro
-- gavetas de decisão mostram carregamento local e estados de erro em linha
-- ações arriscadas exigem confirmação do operador
+A interface do usuário `Renewals` segue o gerenciamento de estados no estilo Medusa:
+- a fila utiliza os estados de carregamento e vazio do DataTable
+- a página de detalhes exibe estados explícitos de carregamento e erro
+- as abas de decisão exibem estados locais de carregamento e de erro embutidos
+- ações de risco exigem a confirmação do operador
 
-Isso mantém os dados de exibição separados do estado do formulário somente gaveta e corresponde aos padrões Admin UX existentes usados ​​em outras partes do plug-in.
+Isso mantém os dados de exibição separados do estado do formulário exclusivo da gaveta e está de acordo com os padrões de experiência do usuário (UX) do Admin já utilizados em outras partes do plug-in.
 
-## 13. Estratégia de teste
+## 13. Estratégia de testes
 
-`Renewals` são protegidos por:
+`Renewals` são protegidos por meio de:
 - testes de integração de módulos
-- Testes de integração HTTP para auxiliares de consulta, fluxos de trabalho e rotas
-- um teste de integração de fluxo administrativo
-- um teste de integração de nível de fumaça contra `Subscriptions` e `Plans & Offers`
+- testes de integração HTTP para auxiliares de consulta, fluxos de trabalho e rotas
+- um teste de integração do fluxo de administração
+- um teste de integração de nível básico em relação a `Subscriptions` e `Plans & Offers`
 
 Arquivos de teste implementados:
 - `src/modules/renewal/__tests__/service.spec.ts`
@@ -423,7 +423,7 @@ Arquivos de teste implementados:
 - `integration-tests/http/renewals-smoke.spec.ts`
 
 Documentos relacionados:
-- [API de renovações de administrador](../api/admin-renewals.md)
-- [IU de renovações de administrador](../admin/renewals.md)
-- [Teste de renovações](../testing/renewals.md)
+- [API de renovações do administrador](../api/admin-renewals.md)
+- [Interface do usuário de renovações do administrador](../admin/renewals.md)
+- [Testes de renovações](../testing/renewals.md)
 - [Especificações de renovações](../specs/renewals/admin-spec.md)

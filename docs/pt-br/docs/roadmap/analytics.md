@@ -1,23 +1,23 @@
-# Roteiro analítico
+# Roteiro de análise
 
-Este documento descreve o roteiro de acompanhamento para a área `Analytics` após a implementação atual do MVP.
+Este documento descreve o roteiro de ações futuras para a área `Analytics` após a implementação atual do MVP.
 
-Ele se concentra em:
-- limites atuais do MVP
-- capacidades conscientemente adiadas
-- próximas melhorias lógicas para relatórios e operações
+O documento se concentra em:
+- os limites atuais do MVP
+- os recursos adiados de forma consciente
+- as próximas melhorias lógicas para relatórios e operações
 
-## Status atual
+## Situação atual
 
-`Analytics` MVP é implementado e inclui:
-- instantâneos diários de `subscription_metrics_daily`
-- fluxo de trabalho de reconstrução compartilhado
-- trabalho de reconstrução agendado
-- gatilhos de reconstrução incremental para fluxos de trabalho de domínio selecionados
-- API de leitura administrativa para KPI, tendências, exportação e reconstrução manual
-- Página Admin Analytics com filtros, cartões KPI, tendências e exportação
-- cobertura de teste de módulo, fluxo de trabalho, rota e fluxo administrativo
-- verificações de qualidade de dados, controle de versão de métricas e observabilidade estruturada
+O `Analytics` MVP foi implementado e inclui:
+- instantâneos diários do `subscription_metrics_daily`
+- fluxo de trabalho compartilhado de reconstrução
+- tarefa agendada de reconstrução
+- gatilhos de reconstrução incremental para fluxos de trabalho de domínios selecionados
+- API de leitura administrativa para KPIs, tendências, exportação e reconstrução manual
+- página de análise administrativa com filtros, cartões de KPIs, tendências e exportação
+- cobertura de testes para módulos, fluxos de trabalho, rotas e fluxos administrativos
+- verificações de qualidade de dados, controle de versões de métricas e observabilidade estruturada
 
 ## Limites atuais do MVP
 
@@ -54,7 +54,7 @@ Limitação atual:
 - as exportações são síncronas e retornadas diretamente do endpoint de exportação do Admin
 
 Possíveis trabalhos futuros:
-- exportação assíncrona com suporte de fluxo de trabalho
+- exportação assíncrona integrada ao fluxo de trabalho
 - processamento em segundo plano para intervalos extensos
 - histórico de exportações para download
 - status da exportação visível para o operador
@@ -108,33 +108,33 @@ Limitação atual:
   - frequência
   - agrupamento por categorias
 
-Potencial trabalho futuro:
+Possíveis trabalhos futuros:
 - segmentação por coortes de clientes
 - segmentação por plano ou oferta
-- segmentação por resultado de cobrança ou rotatividade
-- widgets detalhados de nível superior por produto, cadência ou categoria de motivo
+- segmentação por resultado de cobrança ou cancelamento de assinatura
+- widgets de detalhamento de nível superior por produto, periodicidade ou categoria de motivo
 
-Isto deve ser implementado somente após a confirmação de que o modelo de instantâneo e os índices permanecem eficientes para as dimensões expandidas.
+Isso só deve ser implementado após se confirmar que o modelo de snapshot e os índices continuam eficientes para as dimensões ampliadas.
 
 ## 6. Melhorias operacionais futuras
 
-Potencial trabalho futuro:
-- integração de alertas mais forte em registros analíticos estruturados
-- painéis explícitos para latência de reconstrução e resultados de verificação de qualidade
-- limites de anomalia configuráveis
-- ferramentas de preenchimento instantâneo com progresso visível ao operador
+Possíveis trabalhos futuros:
+- integração mais robusta de alertas com base em logs de análise estruturados
+- painéis específicos para latência de reconstrução e resultados de verificações de qualidade
+- limites de anomalias configuráveis
+- ferramentas de preenchimento retroativo de instantâneos com progresso visível para o operador
 
-Estas melhorias devem basear-se no atual modelo de observabilidade estruturada, em vez de substituí-lo.
+Essas melhorias devem se basear no atual modelo estruturado de observabilidade, em vez de substituí-lo.
 
-## Não metas para a próxima iteração
+## O que não deve ser objetivo na próxima iteração
 
 A próxima iteração ainda deve evitar:
-- transformar a análise em uma segunda fonte de verdade para o estado do ciclo de vida
-- mixagem de módulos cruzados pesados ao vivo junta-se novamente ao caminho de leitura do administrador
-- introdução de comportamento cambial oculto sem aprovação comercial explícita
-- complicar demais a detecção de anomalias antes que a linha de base operacional atual seja compreendida
+- transformar a análise de dados em uma segunda fonte de verdade para o estado do ciclo de vida
+- reintroduzir junções pesadas entre módulos em tempo real no caminho de leitura do Admin
+- introduzir comportamentos ocultos de FX sem aprovação explícita da área de negócios
+- complicar excessivamente a detecção de anomalias antes que a linha de base operacional atual seja compreendida
 
-A área deverá permanecer:
-- orientado para leitura
-- instantâneo primeiro
-- explícito sobre a semântica de negócios
+A área deve permanecer:
+- orientada para a leitura
+- com prioridade para instantâneos
+- explícita quanto à semântica de negócios

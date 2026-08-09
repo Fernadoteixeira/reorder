@@ -1,104 +1,104 @@
-# Reordenar roteiro
+# Roteiro de reordenação
 
-`Reorder` é um plugin Medusa.js focado em operações comerciais recorrentes gerenciadas pelo Admin.
+O `Reorder` é um plug-in do Medusa.js voltado para operações comerciais recorrentes gerenciadas pelo Painel de Administração.
 
-Este roteiro é o plano de implementação pública do projeto. Ele é destinado a usuários e contribuidores de código aberto que desejam entender o que já está disponível, o que será construído a seguir e como o plugin deverá evoluir.
+Este roteiro é o plano de implementação público do projeto. Ele se destina a usuários e colaboradores do código aberto que desejam entender o que já está disponível, o que será desenvolvido em seguida e como se espera que o plug-in evolua.
 
 Este documento descreve a direção do produto, não uma promessa de datas de entrega.
 
-## Status atual
+## Situação atual
 
-As primeiras sete áreas principais do plugin, `Subscriptions`, `Plans & Offers`, `Renewals`, `Dunning`, `Cancellation & Retention`, `Activity Log` e `Analytics`, estão completas e testadas.
+As primeiras sete áreas principais do plug-in, `Subscriptions`, `Plans & Offers`, `Renewals`, `Dunning`, `Cancellation & Retention`, `Activity Log` e `Analytics`, estão concluídas e testadas.
 
 Implementado hoje:
-- modelo de domínio de assinatura e armazenamento
-- rotas de API de administração para ações de lista, detalhes e assinatura
-- UI de administração para lista de assinaturas e fluxos detalhados
-- pausar, retomar e cancelar ações
-- mudança de plano de cronograma
-- editar endereço de entrega
-- filtragem, classificação, paginação e manipulação de estado da interface do usuário
-- testes de integração de back-end e cobertura de integração de fluxo administrativo
-- planejar, oferecer modelo de domínio e armazenamento
-- rotas de API de administração para lista de ofertas de planos, detalhes, criação, atualização e alternância
-- Admin UI para gerenciamento de planos e ofertas
-- resolução de configuração eficaz com semântica `variant > product`
-- testes de integração de back-end e cobertura de integração de fluxo administrativo para `Plans & Offers`
-- integração do nível de fumaça entre `Plans & Offers` e `Subscriptions`
+- modelo de domínio e armazenamento de assinaturas
+- rotas da API de administração para ações de lista, detalhes e assinaturas
+- interface de usuário de administração para fluxos de lista e detalhes de assinaturas
+- ações de pausar, retomar e cancelar
+- agendamento de alteração de plano
+- edição de endereço de entrega
+- filtragem, classificação, paginação e gerenciamento do estado da interface de usuário
+- testes de integração do back-end e cobertura de integração dos fluxos de administração
+- modelo de domínio e armazenamento de ofertas de planos
+- rotas da API de administração para lista, detalhes, criação, atualização e alternância de ofertas de planos
+- interface de usuário de administração para gerenciamento de planos e ofertas
+- resolução eficaz de configuração com semântica `variant > product`
+- testes de integração de back-end e cobertura de integração dos fluxos de administração para `Plans & Offers`
+- integração de nível básico entre `Plans & Offers` e `Subscriptions`
 - modelo de domínio e armazenamento do ciclo de renovação
-- rotas de API administrativas para fila de renovação, detalhe, força, aprovação e rejeição de fluxos
-- UI de administração para fila de renovações e fluxos detalhados
-- ações de aprovação, rejeição e execução forçada no Admin
-- testes de integração de back-end e cobertura de integração de fluxo administrativo para `Renewals`
-- integração do nível de fumaça entre `Renewals`, `Subscriptions` e `Plans & Offers`
-- fortalecimento da produção para agendador de renovação e fluxos de execução manual
-- modelo de domínio e armazenamento de caso de cobrança
-- rotas de API de administração para lista de cobrança, detalhes, tentar novamente agora, marcar como recuperado, marcar como não recuperado e substituir a programação de novas tentativas
-- UI de administração para fila de cobrança e fluxos detalhados aninhados em `Subscriptions`
-- execução de novas tentativas de cobrança manual e apoiada por agendador
-- testes de integração de back-end e cobertura de integração de fluxo administrativo para `Dunning`
-- integração do nível de fumaça entre `Dunning`, `Renewals` e `Subscriptions`
-- fortalecimento da produção para agendador de cobrança e fluxos de novas tentativas manuais
-- modelo de domínio e armazenamento de instantâneo diário analítico
-- rotas de API administrativas para KPI analítico, tendências, exportação e fluxos de reconstrução
-- UI de administração para a página de relatórios analíticos aninhada em `Subscriptions`
-- testes de integração de back-end e cobertura de integração de fluxo administrativo para `Analytics`
-- Ganchos de invalidação de cache entre módulos para que os relatórios permaneçam alinhados após mutações no ciclo de vida da assinatura
+- rotas da API de administração para fila de renovações, detalhes, forçar, aprovar e rejeitar fluxos
+- interface de usuário de administração para fila de renovações e fluxos de detalhes
+- ações de aprovação, rejeição e execução forçada na administração
+- testes de integração de back-end e cobertura de integração de fluxos de administração para `Renewals`
+- integração de nível básico entre `Renewals`, `Subscriptions` e `Plans & Offers`
+- preparação para produção do agendador de renovações e dos fluxos de execução manual
+- modelo de domínio e armazenamento de casos de cobrança
+- rotas da API de administração para lista de cobranças, detalhes, repetição imediata, marcação como recuperado, marcação como não recuperado e substituição da programação de repetição
+- interface de usuário de administração para a fila de cobranças e fluxos de detalhes aninhados sob `Subscriptions`
+- execução de repetições de cobrança, tanto por meio do agendador quanto manualmente
+- testes de integração de back-end e cobertura de integração de fluxos de administração para `Dunning`
+- integração de nível básico entre `Dunning`, `Renewals` e `Subscriptions`
+- fortalecimento da produção para o agendador de cobranças e fluxos de repetição manual
+- modelo de domínio e armazenamento do snapshot diário de análises
+- rotas da API de administração para fluxos de KPIs de análises, tendências, exportação e reconstrução
+- Interface de usuário administrativa para a página de relatórios analíticos aninhada em `Subscriptions`
+- Testes de integração de back-end e cobertura de integração do fluxo administrativo para `Analytics`
+- Ganchos de invalidação de cache entre módulos para que os relatórios permaneçam alinhados após alterações no ciclo de vida da assinatura
 
-Planejado a seguir:
-- página de análise dedicada e visualizações de relatórios para `Cancellation & Retention`
+Próximos passos planejados:
+- página dedicada à análise e visualizações de relatórios para `Cancellation & Retention`
 
-## Áreas de Produtos
+## Áreas de produtos
 
 ### 1. Assinaturas
 
 Status: `Completed`
 
-Esta área fornece a base operacional para o comércio recorrente no Admin. Inclui:
-- uma visualização de lista de assinaturas com filtragem, classificação, paginação e ações de linha
-- uma visualização de detalhes da assinatura
-- ações operacionais como pausar, retomar e cancelar
-- visualização e agendamento de alterações de plano pendentes
+Esta área fornece a base operacional para o comércio recorrente no Painel de Administração. Ela inclui:
+- uma visualização da lista de assinaturas com filtragem, classificação, paginação e ações nas linhas
+- uma visualização dos detalhes da assinatura
+- ações operacionais, como pausar, retomar e cancelar
+- visualização prévia e agendamento de alterações pendentes no plano
 - edição do endereço de entrega
-- suporte a rotas, fluxos de trabalho e testes de API
+- rotas de API, fluxos de trabalho e testes de suporte
 
-Esta área é considerada a base estável atual do plugin.
+Essa área é considerada a base estável atual do plug-in.
 
 ### 2. Planos e ofertas
 
 Status: `Completed`
 
-Esta área define quais produtos e variantes podem ser vendidos como assinaturas e sob quais termos.
+Esta seção define quais produtos e variantes podem ser vendidos como assinaturas e em que condições.
 
 Escopo implementado:
-- configuração de assinatura em nível de produto e variante
+- configuração de assinaturas no nível do produto e da variante
 - frequências de cobrança permitidas
-- configuração de desconto em nível de oferta
-- regras de oferta adicionais, como configurações de teste e empilhamento
-- resolução de configuração efetiva com prioridade `variant > product`
-- UI de gerenciamento administrativo para planos e ofertas
-- mutações apoiadas por fluxo de trabalho e validação para combinações suportadas
-- testes de integração de back-end e cobertura de fluxo administrativo
-- integração com validação de mudança de plano `Subscriptions`
+- configuração de descontos no nível da oferta
+- regras adicionais de oferta, como configurações de período de teste e acumulação de descontos
+- resolução eficaz da configuração com prioridade `variant > product`
+- interface de usuário de gerenciamento administrativo para planos e ofertas
+- alterações e validações baseadas em fluxo de trabalho para combinações suportadas
+- testes de integração de back-end e cobertura do fluxo administrativo
+- integração com a validação de mudança de plano `Subscriptions`
 
-Esta área fornece a camada de configuração comercial usada por assinaturas e trabalhos futuros de vitrine.
+Essa área fornece a camada de configuração comercial utilizada pelas assinaturas e pelos futuros trabalhos relacionados à loja virtual.
 
 ### 3. Renovações
 
 Status: `Completed`
 
-Esta área abrange a execução recorrente de renovações e operações de renovação no Admin.
+Esta área abrange a execução de renovações recorrentes e as operações de renovação no Admin.
 
 Escopo implementado:
 - acompanhamento do ciclo de renovação
-- execução de renovação programada e manual
-- fluxo de aprovação para alterações de assinatura pendentes antes da renovação
-- Fila de administração e visualizações detalhadas para operações de renovação
-- aprovar, rejeitar e forçar ações no Admin
-- testes de integração de back-end para sucesso, falha, nova tentativa, aprovação, idempotência e comportamento de rota
-- cobertura de integração de fluxo administrativo
-- integração de nível de fumaça com `Subscriptions` e `Plans & Offers`
-- fortalecimento da produção por meio de bloqueio de fluxo de trabalho, IDs de correlação, registro estruturado e métricas de resumo do agendador
+- execução de renovações programadas e manuais
+- fluxo de aprovação para alterações pendentes na assinatura antes da renovação
+- Filas de administração e visualizações detalhadas para operações de renovação
+- Ações de aprovação, rejeição e forçamento no painel de administração
+- Testes de integração de back-end para sucesso, falha, repetição, aprovação, idempotência e comportamento de rota
+- Cobertura de integração do fluxo de administração
+- Integração de nível básico com `Subscriptions` e `Plans & Offers`
+- Fortalecimento da produção por meio de bloqueio de fluxo de trabalho, IDs de correlação, registro estruturado e métricas de resumo do agendador
 
 Esta área fornece a camada de execução operacional para assinaturas ativas.
 
@@ -106,163 +106,163 @@ Esta área fornece a camada de execução operacional para assinaturas ativas.
 
 Status: `Completed`
 
-Esta área gerencia pagamentos de renovação com falha e fluxos de novas tentativas.
+Esta área gerencia pagamentos de renovação com falha e os fluxos de novas tentativas.
 
 Escopo implementado:
 - acompanhamento de casos de cobrança
-- tentar novamente o agendamento e tentar novamente a execução
-- ações de recuperação manual no Admin
-- fila de administração e visualizações detalhadas aninhadas em `Subscriptions`
-- tentar novamente agora, marcar como recuperado, marcar como não recuperado e tentar novamente ações de substituição de agendamento
-- testes de integração de back-end para comportamento de fluxo de trabalho, rota e fluxo administrativo
-- integração de nível de fumaça com `Renewals` e `Subscriptions`
+- agendamento e execução de novas tentativas
+- ações manuais de recuperação no Admin
+- visualizações da fila de administração e dos detalhes aninhadas sob `Subscriptions`
+- ações “retentar agora”, “marcar como recuperado”, “marcar como não recuperado” e “substituir programação de retentativas”
+- testes de integração de back-end para o comportamento do fluxo de trabalho, da rota e do fluxo administrativo
+- integração de nível básico com `Renewals` e `Subscriptions`
 - fortalecimento da produção por meio de bloqueios, IDs de correlação, registro estruturado e métricas de resumo do agendador
 
-Esta área reduz a rotatividade causada por falhas de pagamento e fornece um fluxo de trabalho dedicado de recuperação de pagamentos para renovações com falha.
+Essa área reduz a rotatividade causada por falhas de pagamento e oferece um fluxo de trabalho específico para a recuperação de pagamentos em casos de renovações com falha.
 
 ### 5. Cancelamento e retenção
 
 Status: `Completed`
 
-Esta área se concentra no gerenciamento de rotatividade e fluxos de trabalho de retenção.
+Esta área se concentra no gerenciamento da rotatividade e nos fluxos de trabalho de retenção.
 
 Escopo implementado:
-- modelo de domínio e armazenamento de caso de cancelamento
-- modelo de domínio de evento de oferta de retenção e armazenamento
-- limites da fonte da verdade com `Subscriptions`, `Renewals` e `Dunning`
-- motivo de rotatividade estruturado e tratamento de categoria de motivo
-- fluxo de trabalho de recomendação de cancelamento inteligente
+- modelo de domínio e armazenamento de casos de cancelamento
+- modelo de domínio e armazenamento de eventos de ofertas de retenção
+- limites da fonte de verdade com `Subscriptions`, `Renewals` e `Dunning`
+- tratamento estruturado de motivos de cancelamento e categorias de motivos
+- fluxo de trabalho inteligente de recomendação de cancelamento
 - fluxos de oferta de retenção para `pause`, `discount` e `bonus`
-- fluxo de trabalho de cancelamento final com semântica do motivo necessário
-- rotas de API de administração para lista de cancelamento, detalhes, recomendação, aplicação de oferta, finalização e atualizações de motivo
-- Interface do administrador para fila de cancelamento e detalhes do caso em `Subscriptions`
-- testes de integração de back-end, cobertura de integração de fluxo administrativo e cobertura de fumaça entre módulos
-- fortalecimento operacional por meio de trilha de auditoria, registro estruturado, métricas de resumo do agendador e registros de alerta de pico de rotatividade
+- fluxo de trabalho de cancelamento final com semântica de motivo obrigatória
+- rotas da API de administração para lista de cancelamentos, detalhes, recomendações, solicitação de oferta, finalização e atualizações de motivos
+- interface de usuário de administração para fila de cancelamentos e detalhes do caso em `Subscriptions`
+- testes de integração de back-end, cobertura de integração do fluxo de administração e cobertura de testes de fumaça entre módulos
+- fortalecimento operacional por meio de trilha de auditoria, registro estruturado, métricas de resumo do agendador e registros com alertas para picos de cancelamento
 
 Escopo diferido:
-- página de análise dedicada e visualizações de relatórios para KPIs de rotatividade
+- página dedicada à análise e visualizações de relatórios para KPIs de rotatividade
 
-Esta área agora oferece suporte a decisões deliberadas de desligamento e retenção por meio de operações administrativas apoiadas por fluxo de trabalho.
+Essa área agora oferece suporte a decisões deliberadas de desligamento e retenção por meio de operações administrativas apoiadas por fluxos de trabalho.
 
 ### 6. Registro de atividades
 
 Status: `Completed`
 
-Esta área fornece uma trilha de auditoria comercial entre domínios para operações de assinatura.
+Esta área fornece um histórico de auditoria empresarial que abrange várias áreas para as operações de assinatura.
 
 Escopo implementado:
-- modelo de domínio e armazenamento `subscription_log` somente para acréscimo
-- criação de eventos com suporte de fluxo de trabalho em `Subscriptions`, `Renewals`, `Dunning` e `Cancellation & Retention`
-- normalização centralizada, redação e semântica de gravação idempotente
-- rotas de API de administração para:
+- modelo de domínio e armazenamento `subscription_log` somente para adição de dados
+- criação de eventos baseada em fluxo de trabalho em `Subscriptions`, `Renewals`, `Dunning` e `Cancellation & Retention`
+- normalização centralizada, supressão de dados e semântica de gravação idempotente
+- rotas da API de administração para:
   - lista global
-  - detalhe do evento
-  - cronograma por assinatura
-- UI de administração para:
-  - página de registro de atividades global
-  - gaveta de detalhes do evento
-  - cronograma de detalhes da assinatura
+  - detalhes do evento
+  - linha do tempo por assinatura
+- Interface de usuário de administração para:
+  - página global de registro de atividades
+  - painel de detalhes do evento
+  - linha do tempo de detalhes da assinatura
 - testes de back-end para normalização, semântica de gravação e cargas úteis de eventos emitidos
-- API de administração e cobertura de integração de fluxo de administração
+- cobertura de integração da API de administração e do fluxo de administração
 - documentação operacional para retenção, monitoramento e limites de extensão futura
 
-Escopo diferido:
-- trabalhos de arquivamento ou retenção
+Escopo adiado:
+- tarefas de arquivamento ou retenção
 - ferramentas de exportação
-- filtros salvos e links cruzados mais ricos
+- filtros salvos e links cruzados mais abrangentes
 
-Esta área agora fornece a trilha de auditoria voltada para o operador para eventos do ciclo de vida da assinatura sem retirar a propriedade dos módulos de domínio subjacentes.
+Essa área agora fornece a trilha de auditoria voltada para o operador relativa aos eventos do ciclo de vida da assinatura, sem retirar a responsabilidade dos módulos de domínio subjacentes.
 
-### 7. Análise
+### 7. Análise de dados
 
 Status: `Completed`
 
-Esta área fornece KPI orientados a relatórios e visualizações de tendências para operações de comércio recorrente no Admin.
+Esta área oferece visualizações de KPIs e tendências voltadas para relatórios para operações de comércio recorrente na seção Admin.
 
 Escopo implementado:
-- modelo de instantâneo analítico derivado para fatos diários de comércio recorrente
-- Rotas da API Admin para:
-  - Resumo de KPI
+- modelo de instantâneo de análise derivado para fatos diários de comércio recorrente
+- rotas da API de administração para:
+  - resumo de KPIs
   - tendências
-  - exportar
-  - reconstruir
-- UI de administração para:
+  - exportação
+  - reconstrução
+- interface de usuário de administração para:
   - página de análise aninhada em `Subscriptions`
-  - cartões KPI orientados por filtros
+  - cartões de KPIs orientados por filtros
   - visualização de tendências
-  - exportação CSV e JSON sob demanda
-- testes de back-end para fórmulas, semântica de bucket, filtros, comportamento de reconstrução e contratos de rota
-- cobertura de integração de fluxo administrativo para cenários de relatórios analíticos
+  - exportação sob demanda em CSV e JSON
+- testes de back-end para fórmulas, semântica de buckets, filtros, comportamento de reconstrução e contratos de rota
+- cobertura de integração do fluxo de administração para cenários de relatórios analíticos
 - integração de invalidação de cache com `Subscriptions`, `Renewals`, `Dunning` e `Cancellation & Retention`
 
-Escopo diferido:
-- página de análise dedicada específica para cancelamento e visualizações de relatórios para detalhamento de operações de rotatividade
-- relatórios de período de comparação
+Escopo adiado:
+- página de análises específica para cancelamentos e visualizações de relatórios para detalhamento das operações de rotatividade
+- relatórios comparativos entre períodos
 - visualizações salvas
 - enfileiramento de exportação assíncrona
 
-Esta área agora fornece a principal superfície de relatórios para revisão de KPI de comércio recorrente sem retirar a propriedade dos módulos de domínio de origem.
+Essa área agora serve como a principal interface de relatórios para a análise de KPIs do comércio recorrente, sem retirar a responsabilidade dos módulos do domínio de origem.
 
-## Princípios do Roteiro
+## Princípios do roteiro
 
-O roteiro segue alguns princípios em nível de projeto:
+O roteiro segue alguns princípios no âmbito do projeto:
 
-- Construa o domínio primeiro.
-  As regras de negócios residem nos módulos e fluxos de trabalho do Medusa antes de serem expostas na interface do administrador.
-- Mantenha o comportamento do administrador alinhado aos padrões da Medusa.
-  Tabelas, páginas de detalhes, gavetas, ações e carregamento de dados devem seguir as convenções da Medusa.
-- Prefira modelos de leitura estáveis ​​e fluxos de mutação explícitos.
-  As visualizações de lista e detalhes devem ser apoiadas por contratos de consulta claros e mutações orientadas pelo fluxo de trabalho.
-- Teste no limite de integração.
-  Cada área deve ser validada através de testes de integração oficiais apoiados pela Medusa.
-- Envie em fatias verticais.
-  Cada área principal deve ser concluída no modelo de domínio, API, UI de administração e testes antes que a próxima seja considerada concluída.
+- Priorize o domínio.
+  As regras de negócios são definidas nos módulos e fluxos de trabalho do Medusa antes de serem expostas na interface de usuário administrativa.
+- Mantenha o comportamento da interface administrativa alinhado aos padrões do Medusa.
+  Tabelas, páginas de detalhes, menus deslizantes, ações e carregamento de dados devem seguir as convenções do Medusa.
+- Dê preferência a modelos de leitura estáveis e fluxos de mutação explícitos.
+  As visualizações de lista e de detalhes devem ser respaldadas por contratos de consulta claros e mutações orientadas por fluxos de trabalho.
+- Realize testes no limite de integração.
+  Cada área deve ser validada por meio de testes de integração oficiais suportados pelo Medusa.
+- Entregue em fatias verticais.
+  Cada área principal deve estar completa em termos de modelo de domínio, API, interface de usuário administrativa e testes antes que a próxima seja considerada concluída.
 
-## O que significa "Pronto"
+## O que significa “Concluído”
 
-Uma área é considerada completa quando inclui:
+Uma área é considerada concluída quando inclui:
 - um modelo de domínio estável
-- migrações e índices quando necessário
-- rotas de API voltadas para o administrador
-- UI de administração para os fluxos de trabalho pretendidos
+- migrações e índices, quando necessário
+- rotas de API voltadas para a administração
+- interface de usuário administrativa para os fluxos de trabalho previstos
 - validação e tratamento de erros de domínio
-- testes de integração cobrindo os caminhos críticos
+- testes de integração que abrangem os caminhos críticos
 - documentação atualizada
 
-## Notas de contribuição
+## Notas sobre as contribuições
 
 Se você quiser contribuir:
 
-- tratar os documentos em `architecture/`, `api/`, `admin/` e `testing/` como a fonte da verdade para o comportamento implementado
-- tratar `specs/` como contexto histórico de design, não como documentação final
-- alinhar a nova interface de administração com os padrões estabelecidos do painel da Medusa
-- preferir fatias pequenas e completas a mudanças amplas parcialmente implementadas
+- considerar os documentos em `architecture/`, `api/`, `admin/` e `testing/` como a fonte de referência para o comportamento implementado
+- considerar `specs/` como um contexto histórico de projeto, e não como documentação definitiva
+- alinhar a nova interface de usuário administrativa aos padrões estabelecidos do painel do Medusa
+- dar preferência a pequenas partes completas em vez de mudanças amplas e parcialmente implementadas
 
-## Documentos Relacionados
+## Documentos relacionados
 
-- [Visão geral dos documentos](../README.md)
+- [Visão geral da documentação](../README.md)
 - [Arquitetura de assinaturas](../architecture/subscriptions.md)
-- [API de assinaturas de administrador](../api/admin-subscriptions.md)
-- [IU de assinaturas de administrador](../admin/subscriptions.md)
-- [Teste de assinaturas](../testing/subscriptions.md)
-- [Arquitetura de Planos e Ofertas](../architecture/plan-offers.md)
-- [API de planos e ofertas de administração](../api/admin-plan-offers.md)
-- [IU de planos e ofertas de administração](../admin/plan-offers.md)
-- [Teste de planos e ofertas](../testing/plan-offers.md)
-- [Arquitetura de cancelamento](../architecture/cancellation.md)
-- [API de cancelamentos de administrador](../api/admin-cancellations.md)
-- [IU de cancelamentos do administrador](../admin/cancellations.md)
-- [Teste de cancelamentos](../testing/cancellations.md)
-- [Arquitetura de Dunning](../architecture/dunning.md)
-- [API de cobrança de administrador](../api/admin-dunning.md)
-- [UI de cobrança do administrador](../admin/dunning.md)
-- [Teste de cobrança](../testing/dunning.md)
-- [Arquitetura de log de atividades](../architecture/activity-log.md)
-- [API de registro de atividades do administrador](../api/admin-activity-log.md)
-- [IU do registro de atividades do administrador](../admin/activity-log.md)
-- [Teste de registro de atividades](../testing/activity-log.md)
+- [API de administração de assinaturas](../api/admin-subscriptions.md)
+- [Interface de usuário de administração de assinaturas](../admin/subscriptions.md)
+- [Testes de assinaturas](../testing/subscriptions.md)
+- [Arquitetura de planos e ofertas](../architecture/plan-offers.md)
+- [API de planos e ofertas para administradores](../api/admin-plan-offers.md)
+- [Interface do usuário de planos e ofertas para administradores](../admin/plan-offers.md)
+- [Testes de planos e ofertas](../testing/plan-offers.md)
+- [Arquitetura de cancelamentos](../architecture/cancellation.md)
+- [API de cancelamentos de administração](../api/admin-cancellations.md)
+- [Interface de usuário de cancelamentos de administração](../admin/cancellations.md)
+- [Testes de cancelamentos](../testing/cancellations.md)
+- [Arquitetura de cobrança de atrasados](../architecture/dunning.md)
+- [API de cobrança de inadimplência para administradores](../api/admin-dunning.md)
+- [Interface de usuário de cobrança de inadimplência para administradores](../admin/dunning.md)
+- [Testes de cobrança de inadimplência](../testing/dunning.md)
+- [Arquitetura do registro de atividades](../architecture/activity-log.md)
+- [API de registro de atividades de administração](../api/admin-activity-log.md)
+- [Interface de usuário do registro de atividades de administração](../admin/activity-log.md)
+- [Testes do registro de atividades](../testing/activity-log.md)
 - [Roteiro do registro de atividades](./activity-log.md)
-- [Arquitetura analítica](../architecture/analytics.md)
-- [API Admin Analytics](../api/admin-analytics.md)
-- [IU do administrador do Analytics](../admin/analytics.md)
-- [Teste analítico](../testing/analytics.md)
+- [Arquitetura de análise](../architecture/analytics.md)
+- [API de análise administrativa](../api/admin-analytics.md)
+- [Interface de usuário de análise administrativa](../admin/analytics.md)
+- [Testes de análise](../testing/analytics.md)

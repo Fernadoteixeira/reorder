@@ -1,191 +1,191 @@
-# Arquitetura analítica
+# Arquitetura de análise
 
-Este documento descreve a arquitetura de tempo de execução atual da área `Analytics` no plugin `Reorder`.
+Este documento descreve a arquitetura de tempo de execução atual da área `Analytics` no plug-in `Reorder`.
 
-É a fonte da verdade em tempo de execução para:
-- regras de propriedade e fonte da verdade
-- limites do modelo de leitura analítica
-- relações com módulos de comércio recorrente existentes
+É a fonte de verdade em tempo de execução para:
+- regras de propriedade e de fonte de verdade
+- limites do modelo de leitura de análises
+- relações com módulos existentes de comércio recorrente
 - instantâneo diário e semântica de agregação
 
-## Meta
+## Objetivo
 
-A área `Analytics` fornece relatórios voltados para o operador e visualizações de KPI para comércio recorrente no Admin.
+A área `Analytics` oferece relatórios e visualizações de KPIs voltados para os operadores, relativos ao comércio recorrente, no Admin.
 
 Seu objetivo é:
-- expor valores de KPI estáveis, como `MRR`, `churn_rate`, `ltv` e `active_subscriptions_count`
-- expor tendências baseadas no tempo para revisão operacional e de negócios
-- expor uma tendência diária de assinaturas criadas para revisão do operador
-- suporte para filtragem, agrupamento e exportação no Admin
-- fornece uma camada analítica orientada para leitura rápida sem alterar a propriedade do domínio no plugin
+- disponibilizar valores estáveis de KPIs, como `MRR`, `churn_rate`, `ltv` e `active_subscriptions_count`
+- exibir tendências temporais para análise operacional e de negócios
+- exibir uma tendência diária de assinaturas criadas para análise da operadora
+- oferecer suporte à filtragem, agrupamento e exportação no Admin
+- fornecer uma camada de análise rápida orientada para leitura, sem alterar a propriedade do domínio no plug-in
 
-Seu objetivo não é substituir os módulos de origem que já possuem estado de assinatura, renovação, cancelamento ou auditoria.
+Seu objetivo não é substituir os módulos de origem que já possuem um status de assinatura, renovação, cancelamento ou auditoria.
 
-## Papel arquitetônico
+## Função de arquitetura
 
-`Analytics` é uma camada de relatório derivada e orientada para leitura.
+`Analytics` é uma camada de relatórios derivada e voltada para a leitura.
 
-Ele agrega e pré-calcula dados de relatórios dos domínios de comércio recorrente implementados no plugin.
+Ele agrega e pré-calcula os dados de relatórios dos domínios de comércio recorrente implementados no plug-in.
 
 A principal decisão arquitetônica é:
 
-- `Analytics` não é a fonte da verdade para o estado empresarial.
-- `Analytics` é a fonte da verdade apenas para seus próprios modelos de leitura derivados, instantâneos diários e resultados agregados de KPI.
+- `Analytics` não é a fonte de verdade para o estado dos negócios.
+- `Analytics` é a fonte de verdade apenas para seus próprios modelos de leitura derivados, instantâneos diários e resultados agregados de KPIs.
 
-Isso significa que a área possui os resultados dos relatórios, mas não possui o ciclo de vida subjacente ou o estado do processo do qual esses resultados são derivados.
+Isso significa que a área é responsável pelos resultados dos relatórios, mas não pelo ciclo de vida ou pelo estado do processo subjacente dos quais esses resultados são derivados.
 
 ## Limites de propriedade
 
-O modelo de propriedade atual do plugin permanece inalterado.
+O modelo atual de propriedade do plug-in permanece inalterado.
 
-`Subscriptions` continua sendo a fonte da verdade para:
+`Subscriptions` continua sendo a fonte de referência para:
 - estado do ciclo de vida da assinatura
-- status de assinatura ativo versus inativo
-- campos de cadência e frequência de faturamento
+- status da assinatura (ativa ou inativa)
+- campos de cadência e frequência de cobrança
 - `next_renewal_at`
 - `cancel_effective_at`
-- instantâneos de produto, cliente, preço e remessa persistiram na assinatura
-- a base operacional usada para contagem de assinaturas ativas e cálculos de valor de assinatura orientados ao MRR
+- instantâneos de produto, cliente, preços e frete armazenados na assinatura
+- a base operacional utilizada para a contagem de assinaturas ativas e cálculos do valor das assinaturas com foco na MRR
 
-`Plans & Offers` continua sendo a fonte da verdade para:
-- política de oferta de assinatura
+`Plans & Offers` continua sendo a fonte de referência para:
+- política de ofertas de assinatura
 - frequências permitidas
 - regras de desconto
-- regras de validação de oferta efetiva
+- regras de validação de ofertas válidas
 
-`Plans & Offers` não são a fonte da verdade para relatar totais.
-Eles podem fornecer classificação ou contexto explicativo, mas não possuem resultados de KPI.
+`Plans & Offers` não são a fonte de referência para os totais dos relatórios.
+Eles podem fornecer classificação ou contexto explicativo, mas não são responsáveis pelos resultados dos KPIs.
 
-`Renewals` continua sendo a fonte da verdade para:
-- histórico de execução de renovação
+`Renewals` continua sendo a fonte de referência para:
+- histórico de execução de renovações
 - histórico de tentativas de renovação
-- resultados de aprovação
-- resultados de execução de sucesso e falha
+- resultados das aprovações
+- resultados de execução (sucesso e falha)
 
-`Renewals` pode contribuir com fatos usados ​​pela análise, mas continua sendo o proprietário do histórico de execução.
+A `Renewals` pode fornecer dados utilizados pela análise, mas continua sendo a proprietária do histórico de execução.
 
-`Dunning` continua sendo a fonte da verdade para:
-- estado de recuperação de pagamento
-- agendamento de nova tentativa
-- tentar novamente o histórico de tentativas
+`Dunning` continua sendo a fonte de referência para:
+- status da recuperação do pagamento
+- programação de novas tentativas
+- histórico de tentativas de recuperação
 - resultados recuperados e não recuperados
 
-`Dunning` pode posteriormente oferecer suporte a relatórios orientados para recuperação, mas não possui saídas de KPI de assinatura principal no MVP.
+O `Dunning` poderá, no futuro, oferecer suporte a relatórios voltados para a recuperação, mas não é responsável pelos principais resultados de KPIs de assinatura no MVP.
 
-`Cancellation & Retention` continua sendo a fonte da verdade para:
-- estado do processo de cancelamento
-- motivo de rotatividade e categoria normalizada
-- estado de recomendação de retenção
+`Cancellation & Retention` continua sendo a fonte de referência para:
+- status do processo de cancelamento
+- motivo da baixa e categoria normalizada
+- status da recomendação de retenção
 - histórico de ofertas de retenção
 - resultados finais de cancelamento e retenção
 
-Esta área é a principal fonte de informações de relatórios orientados à rotatividade.
+Essa área é a principal fonte de dados para relatórios voltados para a rotatividade.
 
-`Activity Log` continua sendo a fonte da verdade para:
-- eventos de auditoria de negócios somente anexados em torno de operações de assinatura
+`Activity Log` continua sendo a fonte de referência para:
+- eventos de auditoria empresarial do tipo “somente acréscimo” relacionados a operações de assinatura
 
 No entanto:
-- `Activity Log` não é a fonte primária para cálculos de KPI
-- `Activity Log` é uma camada de auditoria e investigação, não a tabela de fatos analíticos canônicos para relatórios de negócios
+- `Activity Log` não é a fonte principal para os cálculos de KPIs
+- `Activity Log` é uma camada de auditoria e investigação, e não a tabela de fatos analítica canônica para relatórios de negócios
 
-## Regras da Fonte da Verdade
+## Regras da “Fonte da Verdade”
 
-A área `Analytics` segue estas regras de fonte da verdade:
+A área `Analytics` segue estas regras de “fonte de verdade”:
 
-- As entradas do KPI devem ser lidas no módulo de domínio que possui o fato comercial.
-- Os intervalos de tendências derivados e os agregados diários devem ser persistidos até `Analytics`.
-- `Analytics` não deve redefinir a propriedade empresarial que pertence a outro módulo.
-- `Analytics` não deve usar `Activity Log` como fonte primária para cálculos de KPI principais quando o fato já existe em um módulo proprietário.
-- `Analytics` pode usar dados de auditoria apenas como alternativa, auxílio de auditoria ou auxílio de validação, e não como fonte de relatório padrão.
+- Os dados de entrada dos KPIs devem ser lidos do módulo de domínio responsável pelo fato de negócios.
+- Os intervalos de tendência derivados e os agregados diários devem ser armazenados por `Analytics`.
+- `Analytics` não deve redefinir a propriedade de negócios que pertença a outro módulo.
+- `Analytics` não deve usar `Activity Log` como fonte primária para cálculos de KPIs essenciais quando o fato já existir em um módulo proprietário.
+- `Analytics` pode usar dados de auditoria apenas como recurso alternativo, auxílio à auditoria ou auxílio à validação, e não como fonte padrão de relatórios.
 
-### Mapeamento de fonte primária
+### Mapeamento de fontes primárias
 
-Para MVP, o mapeamento de origem primária é:
+Para o MVP, o mapeamento da fonte primária é:
 
 - `active_subscriptions_count`
   - fonte primária: `Subscriptions`
 - `MRR`
   - fonte primária: `Subscriptions`
-  - com base em assinaturas ativas e seus preços persistentes e instantâneos de cadência
+  - com base nas assinaturas ativas e em seus registros persistentes de preços e periodicidade
 - `churn_rate`
   - fonte primária: `Cancellation & Retention`
-  - o denominador pode depender da base de assinatura ativa derivada de `Subscriptions`
+  - o denominador pode depender da base de assinaturas ativas derivada de `Subscriptions`
 - `LTV`
   - fonte primária: derivada de `Analytics`
-  - construído a partir de fatos de origem pertencentes a `Subscriptions`, `Renewals` e possivelmente `Cancellation & Retention`, dependendo da definição comercial final
+  - construída a partir de dados de origem pertencentes a `Subscriptions`, `Renewals` e, possivelmente, `Cancellation & Retention`, dependendo da definição comercial final
 - `created_subscriptions_count`
   - fonte primária: `Subscriptions`
-  - baseado em `subscription.created_at` agrupado por dia UTC
+  - com base em `subscription.created_at` agrupado por dia UTC
 
-## Definições de negócios e semântica de cálculo
+## Definições de negócios e semântica de cálculos
 
-A área `Analytics` usa definições de negócios explícitas de MVP em vez de lógica de relatório inferida.
+A área `Analytics` utiliza definições comerciais explícitas do MVP, em vez de uma lógica de relatórios inferida.
 
-Isso mantém a camada de relatórios estável e torna visíveis as compensações de implementação posteriores.
+Isso mantém a camada de relatórios estável e torna visíveis as escolhas de compromisso na implementação posterior.
 
-### Semântica de assinatura ativa
+### Semântica da assinatura ativa
 
-Para fins analíticos, `active` significa:
+Para fins de análise, `active` significa:
 - `subscription.status = active`
 
-Isso significa:
-- `paused` assinaturas não fazem parte da base recorrente ativa
-- `past_due` assinaturas não fazem parte da base recorrente ativa
-- `cancelled` assinaturas não fazem parte da base recorrente ativa
+Isso significa que:
+- As assinaturas `paused` não fazem parte da base de assinaturas recorrentes ativas
+- As assinaturas `past_due` não fazem parte da base de assinaturas recorrentes ativas
+- As assinaturas `cancelled` não fazem parte da base de assinaturas recorrentes ativas
 
-`active_subscriptions_count` é, portanto, a contagem de assinaturas cujo estado atual do ciclo de vida é exatamente `active`.
+`active_subscriptions_count` é, portanto, o número de assinaturas cujo estado atual no ciclo de vida é exatamente `active`.
 
-### Semântica MRR
+### Semântica do MRR
 
-Para MVP, `MRR` significa:
+Para o MVP, `MRR` significa:
 - o valor recorrente normalizado mensalmente das assinaturas ativas
 
-No entanto, o plug-in atual ainda não mantém um instantâneo monetário recorrente completo diretamente no agregado da assinatura.
+No entanto, o plugin atual ainda não armazena um registro completo e recorrente dos valores monetários diretamente no agregado da assinatura.
 
-Estado atual do tempo de execução:
-- `Subscriptions` própria cadência e estado do ciclo de vida
+Estado atual de execução:
+- `Subscriptions` possui cadência e estado de ciclo de vida próprios
 - `subscription.pricing_snapshot` armazena o contexto do desconto, não o valor total da cobrança recorrente
-- fluxos de execução de renovação podem resolver `order.total`
-- fluxos de execução de renovação podem resolver `cart.currency_code`
+- os fluxos de execução de renovação podem resolver `order.total`
+- os fluxos de execução de renovação podem resolver `cart.currency_code`
 
-Por causa disso, a entrada monetária recorrente canônica para `MRR` no MVP deve vir de:
-- instantâneos monetários derivados de propriedade de análises criados a partir de fatos de renovação e pedidos
+Por isso, a entrada monetária recorrente canônica para `MRR` no MVP deve provir de:
+- instantâneos monetários derivados, de responsabilidade da equipe de análise, construídos a partir de dados de renovações e pedidos
 
-Isso significa:
-- `Subscriptions` permanece o proprietário da semântica de base ativa e cadência
-- `Analytics` possui o modelo de leitura monetária recorrente derivado usado para relatórios
+Isso significa que:
+- `Subscriptions` continua sendo o responsável pela semântica de base ativa e de cadência
+- `Analytics` é responsável pelo modelo de leitura monetária recorrente derivado, utilizado para a elaboração de relatórios
 
-Se não existir nenhum snapshot monetário válido para uma assinatura, essa assinatura não contribuirá para `MRR`.
+Se não houver um instantâneo monetário válido para uma assinatura, essa assinatura não contribui para `MRR`.
 
 ### Semântica da taxa de rotatividade
 
-Para MVP, `churn_rate` significa:
-- assinaturas canceladas no período do relatório divididas pela base de assinaturas ativas para o mesmo período
+Para o MVP, `churn_rate` significa:
+- assinaturas canceladas no período do relatório divididas pela base de assinaturas ativas no mesmo período
 
 Numerador:
-- assinaturas cujo resultado final de cancelamento é `canceled`
-- atribuição de bucket usa `finalized_at`
-- se `finalized_at` estiver faltando, o substituto poderá usar `cancellation_effective_at`
+- assinaturas cujo resultado final do cancelamento seja `canceled`
+- a atribuição ao bucket utiliza `finalized_at`
+- se `finalized_at` estiver ausente, o mecanismo de fallback poderá utilizar `cancellation_effective_at`
 
 Denominador:
-- base média diária de assinaturas ativas para o mesmo período do relatório
-- derivado de instantâneos analíticos diários provenientes de `Subscriptions`
+- média diária da base de assinantes ativos para o mesmo período de relatório
+- calculada a partir de instantâneos analíticos diários provenientes de `Subscriptions`
 
-Isso significa:
-- `retained` não é rotatividade
-- `paused` não é rotatividade
-- apenas os resultados finais cancelados contribuem para a rotatividade
+Isso significa que:
+- `retained` não é considerado churn
+- `paused` não é considerado churn
+- apenas os resultados finais cancelados contribuem para o churn
 
-### Semântica LTV
+### Semântica do LTV
 
-Para MVP, `LTV` significa:
+Para o MVP, `LTV` significa:
 - `MRR / churn_rate`
 
 Onde:
-- `churn_rate` é tratado como uma proporção no cálculo, não como uma sequência de porcentagem formatada
+- `churn_rate` é tratado como uma razão no cálculo, e não como uma string formatada como porcentagem
 
 Se:
-- `MRR` não está disponível
+- `MRR` não estiver disponível
 - ou `churn_rate <= 0`
 
 então:
@@ -274,100 +274,100 @@ Essas leituras devem provir dos módulos responsáveis pelos fatos subjacentes.
 
 ### Instantâneos diários
 
-Instantâneos diários são usados para:
-- Renderização de tendências de KPI no Admin
-- consultas históricas de intervalos em intervalos de datas maiores
-- comportamento de exportação estável
-- leituras repetidas mais rápidas em filtros e agrupamentos
+Os snapshots diários são utilizados para:
+- Visualização de tendências de KPIs no Admin
+- Consultas históricas por intervalos de data mais amplos
+- Comportamento estável na exportação
+- Leituras repetidas mais rápidas com filtros e agrupamentos
 
-Os instantâneos diários são estados derivados.
+Os instantâneos diários representam um estado derivado.
 
-Eles não substituem os módulos proprietários.
-Eles existem para fornecer:
-- latência de consulta previsível
-- comportamento estável de séries temporais
+Eles não substituem os módulos originais.
+Eles existem para oferecer:
+- latência previsível nas consultas
+- comportamento estável das séries temporais
 - APIs de relatórios administrativos mais simples
 
-## Camada de dados e propriedade do módulo
+## Camada de dados e propriedade dos módulos
 
-A área `Analytics` deve ser implementada como um módulo personalizado dedicado no plugin.
+A área `Analytics` deve ser implementada como um módulo personalizado dedicado no plug-in.
 
-Estrutura do módulo recomendada:
+Estrutura recomendada para o módulo:
 - `src/modules/analytics/models/*`
 - `src/modules/analytics/service.ts`
 - `src/modules/analytics/index.ts`
 
-O módulo segue o mesmo padrão Medusa usado pelas áreas de plugins existentes:
-- o modelo de dados de domínio reside no módulo
-- o serviço do módulo possui acesso CRUD às tabelas de propriedade da análise
-- fluxos de trabalho e trabalhos preenchem dados analíticos derivados
-- Rotas da API Admin lidas a partir de instantâneos e agregados de propriedade da análise
+O módulo segue o mesmo padrão Medusa utilizado pelas áreas de plug-ins existentes:
+- o modelo de dados do domínio está no módulo
+- o serviço do módulo detém o acesso CRUD às tabelas pertencentes à análise
+- os fluxos de trabalho e as tarefas preenchem os dados de análise derivados
+- as rotas da API de administração leem os instantâneos pertencentes à análise e os agregados
 
 ### Limite de propriedade
 
-O módulo `analytics` possui:
-- instantâneos analíticos diários
-- fatos derivados orientados para relatórios
-- saídas agregadas com otimização de leitura expostas ao administrador
+O módulo `analytics` contém:
+- instantâneos diários de análise
+- fatos derivados voltados para relatórios
+- resultados agregados otimizados para leitura, disponibilizados ao Admin
 
-O módulo `analytics` não possui:
-- estado do ciclo de vida da assinatura
-- estado de execução da renovação
-- estado do processo de cancelamento
-- propriedade do evento de auditoria
+O módulo `analytics` não é responsável por:
+- o estado do ciclo de vida da assinatura;
+- o estado da execução da renovação;
+- o estado do processo de cancelamento;
+- a responsabilidade pelos eventos de auditoria
 
-Isto significa que o módulo é um domínio de relatório, não um domínio operacional.
+Isso significa que o módulo é um domínio de relatórios, e não um domínio operacional.
 
 ## Modelo de dados MVP recomendado
 
-Para MVP, o modelo primário recomendado é:
+Para o MVP, o modelo principal recomendado é:
 - `subscription_metrics_daily`
 
-Este modelo deve ser a tabela de instantâneos analíticos canônicos usada por consultas de KPI, consultas de tendências e exportações.
+Esse modelo deve ser a tabela de instantâneo analítico padrão utilizada por consultas de KPIs, consultas de tendências e exportações.
 
 ### Por que um modelo de instantâneo diário
 
-O plugin atual já separa:
-- módulos de origem que possuem fatos de negócios
-- leia caminhos otimizados para Admin
-- agendador e lógica de fluxo de trabalho que deriva saídas operacionais
+O plug-in atual já separa:
+- módulos de origem que contêm fatos de negócios
+- caminhos de leitura otimizados para o Admin
+- lógica de agendamento e fluxo de trabalho que gera resultados operacionais
 
-O mesmo princípio deve ser aplicado aqui.
+O mesmo princípio deveria se aplicar neste caso.
 
-Uma tabela de instantâneos analíticos diários fornece:
-- desempenho estável para leituras de administrador
+Uma tabela de resumo analítico diário oferece:
+- desempenho estável para leituras do administrador
 - semântica de reconstrução explícita
-- baixo acoplamento com formas de consulta do módulo de origem
-- flexibilidade suficiente para agregar por data, status, produto e cadência sem reler o gráfico operacional completo para cada solicitação
+- baixo acoplamento às formas de consulta do módulo de origem
+- flexibilidade suficiente para agregar por data, status, produto e cadência sem precisar reler o gráfico operacional completo a cada solicitação
 
-### Por que não uma visão materializada como modelo MVP primário
+### Por que não usar uma visualização materializada como modelo MVP principal?
 
-Para o MVP, a camada analítica não deve usar uma visão materializada do banco de dados como sua principal fonte de verdade.
+Para o MVP, a camada de análise não deve utilizar uma visão materializada do banco de dados como sua principal fonte de verdade.
 
-Razões:
+Motivos:
 - maior complexidade operacional
-- a semântica de atualização introduz acoplamento evitável ao comportamento específico do banco de dados
-- reconstrução e preenchimento tornam-se menos explícitos
-- a arquitetura existente do plug-in favorece modelos de dados de propriedade da Medusa, além de fluxos de trabalho/trabalhos, em vez de primitivos de relatórios específicos do banco de dados
+- a semântica de atualização introduz um acoplamento desnecessário ao comportamento específico do banco de dados
+- a reconstrução e o preenchimento retroativo tornam-se menos explícitos
+- a arquitetura atual do plug-in privilegia modelos de dados próprios do Medusa, além de fluxos de trabalho/tarefas, em detrimento de primitivas de geração de relatórios específicas do banco de dados
 
-Visualizações materializadas podem ser introduzidas posteriormente se o desempenho assim o exigir.
+As visualizações materializadas poderão ser implementadas posteriormente, caso o desempenho assim o exija.
 
-Para MVP:
-- as tabelas de instantâneos de propriedade da análise devem ser a principal camada de relatório persistente
-- a agregação no tempo de consulta deve acontecer em auxiliares ou serviços de leitura analítica
+Para o MVP:
+- as tabelas de instantâneos de propriedade da análise devem ser a principal camada de relatórios persistentes
+- a agregação no momento da consulta deve ocorrer nos auxiliares de leitura ou serviços de análise
 
-## `subscription_metrics_daily` Semântica de instantâneo
+## `subscription_metrics_daily` Semântica de instantâneos
 
-`subscription_metrics_daily` deve ser um instantâneo de fatos analíticos por assinatura e por dia.
+`subscription_metrics_daily` deve ser um instantâneo de dados analíticos por assinatura e por dia.
 
 A granularidade recomendada é:
 - uma linha por `subscription_id`
 - por `metric_date`
 
-Este modelo é preferível às linhas de produto/dia já agregadas porque preserva detalhes suficientes para:
+Esse modelo é preferível às linhas de produto/dia já agregadas, pois preserva detalhes suficientes para:
 - filtragem por dimensões de assinatura
-- reconstruções e aterros confiáveis
-- expansão futura de dimensões sem redesenhar toda a camada de relatórios
+- reconstruções e preenchimentos retrospectivos confiáveis
+- expansão futura das dimensões sem a necessidade de reprojetar toda a camada de relatórios
 
 ### Campos recomendados
 
@@ -388,101 +388,101 @@ Os campos MVP recomendados são:
 - `churned_subscriptions_count`
 - `churn_reason_category`
 - `source_snapshot`
--`metadata`
+- `metadata`
 
 ### Funções de campo
 
 `metric_date`
-- o dia da análise representado pela linha
+- o dia de análise representado pela linha
 - normalizado para `UTC`
 
 `subscription_id`
 - a assinatura para a qual o instantâneo foi calculado
-- persistiu para apoiar a reconstrução idempotente e posterior reconciliação
+- armazenado de forma persistente para permitir a reconstrução idempotente e a reconciliação posterior
 
 `customer_id`
-- dimensão de relatório opcional
+- dimensão opcional de relatório
 
 `product_id`, `variant_id`
-- dimensões de relatórios usadas por filtros e segmentação futura
+- dimensões de relatório utilizadas por filtros e futuras segmentações
 
 `status`
 - o estado do ciclo de vida da assinatura para o dia representado
 
 `frequency_interval`, `frequency_value`
-- dimensões de cadência usadas pelos filtros de relatórios
+- dimensões de cadência utilizadas pelos filtros de relatórios
 
 `currency_code`
-- relatar o contexto da moeda para métricas baseadas em dinheiro
-- anulável quando a receita não é computável
+- contexto da moeda de relatório para métricas monetárias
+- pode ser nulo quando a receita não for calculável
 
 `is_active`
-- marcador booleano derivado da semântica analítica ativa
-- `true` somente quando o instantâneo deve contribuir para cálculos de base ativa
+- marcador booleano derivado da semântica “analytics-active”
+- `true` somente quando o instantâneo deve contribuir para os cálculos da base ativa
 
 `active_subscriptions_count`
 - `1` quando a linha contribui para a contagem de assinaturas ativas
 - `0` caso contrário
 
 `mrr_amount`
-- a contribuição de receita recorrente normalizada mensalmente da assinatura para aquele dia
-- anulável quando não existe nenhum instantâneo monetário válido
+- a contribuição da receita recorrente, normalizada mensalmente, da assinatura para aquele dia
+- pode ser nulo quando não houver um registro monetário válido
 
 `churned_subscriptions_count`
-- `1` somente no dia em que a assinatura contribui para o numerador de churn
-- `0` caso contrário
+- `1` apenas no dia em que a assinatura contribui para o numerador da taxa de cancelamento
+- `0` nos demais casos
 
 `churn_reason_category`
-- preenchido somente quando a linha contribui para relatórios orientados a rotatividade
+- preenchido apenas quando a linha contribui para relatórios voltados para a rotatividade
 
 `source_snapshot`
-- JSON compacto que descreve a base de origem do relatório usada para calcular a linha
-- pode incluir referências estáveis como:
+- JSON compacto que descreve a base de origem dos relatórios utilizada para calcular a linha
+- pode incluir referências estáveis, tais como:
   - identificadores de renovação
   - identificadores de cancelamento
-  - dicas de fontes monetárias resolvidas
+  - dicas de origem monetária resolvidas
 
 `metadata`
-- metadados técnicos extensíveis de propriedade de análises
+- metadados técnicos extensíveis de propriedade da área de análise
 
-## Métricas derivadas versus fatos persistentes
+## Métricas derivadas x Fatos persistentes
 
-A camada analítica deve persistir relatando fatos, e não cada KPI final como um campo armazenado.
+A camada de análise deve armazenar os fatos dos relatórios, e não todos os KPIs finais como campos armazenados.
 
-Os fatos persistentes do MVP devem incluir:
-- contribuição de base ativa
-- contribuição de receita normalizada mensalmente
-- contribuição de rotatividade
+Os dados sobre o MVP que devem ser mantidos incluem:
+- contribuição da base ativa
+- contribuição para a receita normalizada mensalmente
+- contribuição para a rotatividade
 
-Métricas derivadas como `LTV` devem ser calculadas na camada de leitura analítica.
+Métricas derivadas, como `LTV`, devem ser calculadas na camada de leitura de análises.
 
-### `LTV` Tratamento
+### Tratamento de `LTV`
 
-`LTV` não deve persistir como um campo diário canônico no MVP.
+`LTV` não deve ser armazenado como um campo diário canônico no MVP.
 
 Em vez disso:
-- `LTV` é derivado em tempo de leitura de fatos de relatórios persistentes
-- a camada de leitura calcula a partir da semântica atual `MRR` e `churn_rate`
+- `LTV` é derivado no momento da leitura a partir de fatos de relatório armazenados
+- a camada de leitura o calcula a partir das semânticas atuais de `MRR` e `churn_rate`
 
-Isso mantém o modelo de snapshot mais simples e evita bloquear o plugin muito cedo em uma interpretação persistente de `LTV`.
+Isso mantém o modelo de instantâneo mais simples e evita que o plug-in fique preso prematuramente a uma única interpretação persistente de `LTV`.
 
 ## Exclusividade e semântica de reconstrução
 
-O modelo de instantâneo diário deve suportar reconstruções idempotentes.
+O modelo de snapshot diário deve permitir reconstruções idempotentes.
 
 Exclusividade lógica recomendada:
 - `metric_date`
 - `subscription_id`
 
 Isso permite:
-- recálculo seguro em nível de dia
-- reconstruções de alcance
-- substituição de instantâneo estilo upsert
-- reconciliação mais fácil com domínios de origem
+- recálculo seguro no nível diário
+- reconstrução de intervalos
+- substituição de instantâneos no estilo “upsert”
+- reconciliação mais fácil com os domínios de origem
 
 ## Estratégia de indexação
 
-O modelo de instantâneo deve ser indexado para futuros filtros analíticos de administração e consultas de tendências.
+O modelo de instantâneo deve ser indexado para os futuros filtros de análise do Admin e consultas de tendências.
 
 Índices de campo único recomendados:
 - `metric_date`
@@ -500,206 +500,206 @@ O modelo de instantâneo deve ser indexado para futuros filtros analíticos de a
 - `metric_date, currency_code`
 - `metric_date, churn_reason_category`
 
-Esses índices estão alinhados com os filtros MVP planejados:
+Esses índices estão alinhados com os filtros previstos para o MVP:
 - intervalo de datas
-- estado
+- status
 - produto
 - frequência
 - agrupamento por dia, semana ou mês
 
-## Leia a estratégia do modelo
+## Estratégia do Modelo de Leitura
 
-O caminho de leitura da análise administrativa deve usar `subscription_metrics_daily` como fonte de relatórios.
+A rota de leitura de análises do Admin deve usar `subscription_metrics_daily` como fonte de relatório.
 
-Isso significa:
-- As consultas de KPI agregam fatos instantâneos persistentes em todo o intervalo de datas selecionado
-- consultas de tendência agrupam fatos instantâneos persistentes em intervalos `day`, `week` e `month`
-- consultas de exportação nivelam a mesma fonte de relatórios em linhas prontas para exportação
+Isso significa que:
+- As consultas de KPI agregam fatos de instantâneos persistentes ao longo do intervalo de datas selecionado
+- As consultas de tendência agrupam fatos de instantâneos persistentes nos buckets `day`, `week` e `month`
+- As consultas de exportação transformam a mesma fonte de relatório em linhas prontas para exportação
 
 Exceção implementada:
-- a tendência de assinaturas criadas é lida diretamente de `subscription.created_at`
-- é renderizado como um intervalo de dias UTC por ponto
-- não é proveniente de `subscription_metrics_daily`
+- a tendência das assinaturas criadas é lida diretamente de `subscription.created_at`
+- ela é representada como um intervalo de um dia UTC por ponto
+- ela não é obtida de `subscription_metrics_daily`
 
 O caminho de leitura do Admin não deve:
-- análise de computação ao vivo a partir de módulos de origem em todas as solicitações
-- use `Activity Log` como sua principal fonte de fatos
-- depende de auxiliares de consulta operacional de módulos não relacionados para desempenho do painel
+- calcular análises em tempo real a partir dos módulos de origem a cada solicitação
+- usar `Activity Log` como sua principal fonte de dados factuais
+- depender de auxiliares de consulta operacionais de módulos não relacionados para o desempenho do painel
 
-## Relacionamento com módulos de origem
+## Relação com os módulos de origem
 
 O fluxo de dados recomendado é:
 
-1. Os módulos de origem possuem os fatos brutos
-2. O pipeline analítico lê esses fatos
-3. módulo analítico grava `subscription_metrics_daily`
-4. Auxiliares de leitura administrativa agregam instantâneos em KPI, tendências e cargas úteis de exportação
+1. Os módulos de origem mantêm os dados brutos
+2. O pipeline de análise lê esses dados
+3. O módulo de análise grava `subscription_metrics_daily`
+4. Os auxiliares de leitura do Admin agregam instantâneos em KPIs, tendências e cargas de exportação
 
 ## Pipeline de reconstrução implementado
 
-O pipeline de análise implementado usa um fluxo de trabalho de reconstrução compartilhado:
+O pipeline de análise implementado utiliza um fluxo de trabalho de reconstrução compartilhado:
 - `rebuildAnalyticsDailySnapshotsWorkflow`
 
-Este fluxo de trabalho é o único local que reconstrói instantâneos analíticos diários.
+Esse fluxo de trabalho é o único local onde os instantâneos analíticos diários são gerados novamente.
 
 É reutilizado por:
-- o trabalho de análise agendado
-- acompanhamento incremental executado após fluxos de trabalho de domínio selecionados
+- a tarefa de análise agendada
+- execuções incrementais de acompanhamento após fluxos de trabalho de domínios selecionados
 - a rota de reconstrução manual do administrador
 
-### Tipos de gatilho
+### Tipos de gatilhos
 
 O fluxo de trabalho aceita:
 - `scheduled`
 - `incremental`
 - `manual`
 
-Esse tipo de gatilho persiste nos metadados do instantâneo e é incluído nos logs estruturados.
+Esse tipo de gatilho é armazenado nos metadados do snapshot e incluído nos registros estruturados.
 
-### Semântica de intervalo e dia
+### Semântica de intervalo e de dia
 
 A entrada de reconstrução é normalizada para:
 - `date_from`
 - `date_to`
-- uma lista de `UTC` dias normalizados
+- uma lista de dias `UTC` normalizados
 
-O fluxo de trabalho então processa o intervalo:
+Em seguida, o fluxo de trabalho processa o intervalo:
 - dia a dia
-- lote por lote dentro de cada dia
+- lote a lote dentro de cada dia
 
-### Semântica de substituição completa
+### Semântica da substituição total
 
-Por um dia:
-- as `subscription_metrics_daily` linhas existentes para aquele dia são lidas
-- as linhas desse dia são excluídas
-- linhas recém-computadas são inseridas
+Para um determinado dia:
+- as linhas existentes de `subscription_metrics_daily` para esse dia são lidas
+- as linhas para esse dia são excluídas
+- as linhas recém-calculadas são inseridas
 
 Se a inserção falhar após a exclusão:
 - o fluxo de trabalho tenta restaurar as linhas excluídas
 
-Isso fornece ao pipeline:
-- repetições idempotentes
-- semântica explícita de reconstrução em nível de dia
-- comportamento previsível de substituição de instantâneo
+Isso proporciona ao pipeline:
+- reexecuções idempotentes
+- semântica explícita de reconstrução no nível diário
+- comportamento previsível na substituição de instantâneos
 
 ## Atualizações incrementais
 
-O caminho incremental do MVP implementado reutiliza o mesmo fluxo de trabalho de reconstrução compartilhado para pequenos intervalos `UTC`.
+A abordagem incremental do MVP implementada reutiliza o mesmo fluxo de trabalho compartilhado de recompilação para pequenos intervalos de `UTC`.
 
-Os pontos de gatilho atuais são:
-- currículo de assinatura
+Os pontos de acionamento atuais são:
+- retomada da assinatura
 - finalização do cancelamento
 - processamento de renovação que pode afetar o instantâneo da receita
 
-Reconstruções incrementais intencionalmente:
-- não calcule valores de KPI in-line dentro de fluxos de trabalho de domínio
-- acionar apenas a reconstrução do instantâneo de análise compartilhada
+Recompilações incrementais intencionais:
+- não calculam valores de KPI diretamente nos fluxos de trabalho do domínio
+- acionam apenas a recompilação do instantâneo de análise compartilhada
 
-## Trabalho agendado
+## Tarefa agendada
 
-O trabalho agendado implementado é:
+A tarefa agendada executada é:
 - `process-analytics-daily-snapshots`
 
 Seu comportamento é:
-- funciona diariamente
-- reconstrói `today` mais uma pequena janela de lookback
-- usa um bloqueio de trabalho global
-- emite logs de resumo estruturados
+- é executado diariamente
+- reconstrói o `today` mais uma pequena janela de retrocesso
+- utiliza um bloqueio global de tarefa
+- gera logs de resumo estruturados
 
-A janela de lookback existe para fornecer um mecanismo barato de autocorreção para alterações recentes de dados.
+A janela de retrospectiva existe para oferecer um mecanismo de autocorreção de baixo custo para alterações recentes nos dados.
 
 ## Bloqueio
 
-O pipeline implementado usa dois níveis de bloqueio:
+O pipeline implementado utiliza dois níveis de bloqueio:
 
-- bloqueio em nível de trabalho
+- bloqueio no nível da tarefa
   - impede a execução paralela de tarefas agendadas
-- bloqueio de intervalo/nível de dia
-  - protege a execução da reconstrução para o mesmo intervalo e no mesmo dia individual
+- bloqueio no nível do intervalo/dia
+  - protege a execução da reconstrução para o mesmo intervalo e o mesmo dia específico
 
 Os dias bloqueados são tratados como:
-- trabalho operacionalmente bloqueado
-- não tão fatal corrupção de domínio
+- trabalho bloqueado operacionalmente
+- não como corrupção fatal do domínio
 
-Eles aparecem no fluxo de trabalho e nos resumos de trabalho para novas tentativas posteriores.
+Elas são exibidas nos resumos de fluxo de trabalho e de tarefas para que possam ser repetidas posteriormente.
 
-## Verificações de qualidade de dados
+## Verificações de qualidade dos dados
 
-O pipeline de reconstrução inclui verificações de qualidade de dados em tempo de execução após a geração do instantâneo.
+O pipeline de reconstrução inclui verificações de qualidade dos dados em tempo de execução após a geração do snapshot.
 
-As verificações atuais do MVP cobrem:
-- `MRR` picos e quedas além dos limites configurados
-- `churn_rate` picos além dos limites configurados
-- dias de instantâneo vazio
-- dias de snapshot incompletos
+As verificações atuais do MVP abrangem:
+- `MRR` picos e quedas que ultrapassam os limites configurados
+- `churn_rate` picos que ultrapassam os limites configurados
+- dias sem snapshot
+- dias com snapshot incompleto
 
 Resultados de qualidade:
-- não falhe sozinhos em uma reconstrução bem-sucedida
-- são emitidos como logs `analytics.quality` estruturados
-- são resumidos em logs de reconstrução por meio de contadores de avisos e erros
+- não impedem, por si só, que uma recompilação seja bem-sucedida
+- são gerados como registros estruturados `analytics.quality`
+- são resumidos nos registros de recompilação por meio de contadores de avisos e erros
 
-## Versionamento de métricas
+## Controle de versão das métricas
 
-O tempo de execução de análise usa uma constante canônica de definição de métricas:
+O ambiente de execução de análises utiliza uma constante canônica de definição de métricas:
 - `ANALYTICS_METRICS_VERSION`
 
 Versão atual:
 - `analytics-v1`
 
-Esta versão está anexada a:
+Esta versão está associada a:
 - instantâneo `metadata`
-- Respostas KPI
-- respostas de tendência
-- exportar respostas
-- reconstruir e logs de qualidade
+- respostas de KPIs
+- respostas de tendências
+- respostas de exportação
+- logs de reconstrução e qualidade
 
-A versão deverá ser alterada quando os mesmos dados de origem puderem produzir resultados analíticos diferentes devido a uma alteração em:
-- Fórmulas de KPI
-- semântica de estado ativo
-- semântica do balde
-- semântica da moeda
+A versão deve ser atualizada quando os mesmos dados de origem puderem gerar resultados analíticos diferentes devido a uma alteração em:
+- fórmulas de KPI;
+- semântica de estado ativo;
+- semântica de intervalos;
+- semântica de moeda
 
-Refatoradores puros sem alterações de saída não devem prejudicar a versão.
+Reestruturações puras, sem alterações na saída, não devem aumentar o número da versão.
 
 ## Modelo de leitura implementado
 
-O modelo de leitura administrativa implementado reside em auxiliares de consulta analítica e lê principalmente de:
+O modelo de leitura “Admin” implementado está presente nos auxiliares de consulta de análise e faz a leitura principalmente a partir de:
 - `subscription_metrics_daily`
 - `subscription.created_at` apenas para a tendência de assinaturas criadas
 
-Ele não recalcula valores de KPI de módulos operacionais ativos em cada solicitação.
+Ele não recalcula os valores dos KPIs a partir dos módulos operacionais em tempo real a cada solicitação.
 
 Superfícies de leitura implementadas:
-- Resumo de KPI
-- série de tendências
-- exportar linhas
+- Resumo de KPIs
+- Séries de tendências
+- Exportação de linhas
 
 Exceção de tendência implementada:
 - `created_subscriptions_count`
-  - agrupado de `subscription.created_at`
-  - sempre retornado como intervalos UTC diários
-  - preenche com zero os dias faltantes dentro do intervalo selecionado
+  - agrupada a partir de `subscription.created_at`
+  - sempre retornada como intervalos diários em UTC
+  - preenche com zeros os dias ausentes dentro do intervalo selecionado
 
-### Semântica de KPI na camada de leitura implementada
+### Semântica dos KPIs na camada de leitura implementada
 
-A camada de leitura calcula atualmente:
+Atualmente, a camada de leitura calcula:
 - `MRR`
-  - do último bucket da janela atual
+  - a partir do último bucket na janela atual
 - `active_subscriptions_count`
-  - do último bucket da janela atual
+  - a partir do último bucket na janela atual
 - `churn_rate`
-  - do numerador de rotatividade total dividido pela média diária da base ativa na janela
+  - a partir do numerador da rotatividade total dividido pela média da base ativa diária ao longo da janela
 - `LTV`
-  - de `MRR / churn_rate`
+  - a partir de `MRR / churn_rate`
 
-`MRR` e `LTV` podem resolver para `null` quando:
-- o conjunto de resultados é moeda mista
-- não existe base de receita válida
+`MRR` e `LTV` podem ser substituídos por `null` quando:
+- o conjunto de resultados for composto por moedas diferentes
+- não houver uma base de receita válida
 - `churn_rate <= 0` para `LTV`
 
-## Observabilidade e desempenho
+## Observabilidade e Desempenho
 
-O tempo de execução de análise emite logs estruturados para:
+O ambiente de execução de análise gera registros estruturados para:
 - `analytics.rebuild`
 - `analytics.job`
 - `analytics.quality`
@@ -707,46 +707,46 @@ O tempo de execução de análise emite logs estruturados para:
 - `analytics.read.trends`
 - `analytics.read.export`
 
-A carga útil de observabilidade atual inclui:
+A carga útil atual de observabilidade inclui:
 - `metrics_version`
 - `duration_ms`
 - resumo do intervalo de datas
-- resumo do dia processado e da linha processada, quando aplicável
-- contagens de dias bloqueados e com falha, quando aplicável
+- resumo de dias processados e linhas processadas, quando aplicável
+- contagem de dias bloqueados e com falhas, quando aplicável
 - `alertable`
 
 Os limites atuais de execução lenta do MVP são:
-- reconstruir: `> 5000 ms`
-- trabalho agendado: `> 5000 ms`
-- leia caminhos: `> 1000 ms`
+- reconstrução: `> 5000 ms`
+- tarefa agendada: `> 5000 ms`
+- caminhos de leitura: `> 1000 ms`
 
-Esses limites afetam a gravidade do log e a classificação `alertable`, mas não alteram o comportamento funcional da API.
-4. Rotas analíticas de administração lidas na camada de instantâneo analítico
+Esses limites afetam a gravidade dos registros e a classificação `alertable`, mas não alteram o comportamento funcional da API.
+4. As rotas de análise administrativa são lidas a partir da camada de instantâneos de análise
 
 Isso preserva:
-- propriedade da fonte
-- Isolamento do módulo Medusa
-- comportamento de relatório previsível
+- a propriedade do código-fonte
+- o isolamento dos módulos do Medusa
+- o comportamento previsível da geração de relatórios
 
 ## Pipeline de atualização de métricas
 
-A área `Analytics` deve usar um pipeline de recomputação compartilhado para geração diária de instantâneos.
+A área `Analytics` deve utilizar um pipeline compartilhado de recálculo para a geração de instantâneos diários.
 
 A principal decisão arquitetônica é:
-- um fluxo de trabalho compartilhado possui semântica de recomputação
-- execução agendada, atualizações incrementais e recriações de todos os delegados para o mesmo fluxo de trabalho
+- um único fluxo de trabalho compartilhado é responsável pela semântica de recálculo;
+- a execução programada, as atualizações incrementais e as reconstruções são todas delegadas a esse mesmo fluxo de trabalho
 
-Isto mantém a camada de relatório consistente e evita implementações divergentes da mesma lógica de cálculo.
+Isso mantém a consistência da camada de relatórios e evita implementações divergentes da mesma lógica de cálculo.
 
-## Fluxo de trabalho de reconstrução compartilhado
+## Fluxo de trabalho compartilhado de reconstrução
 
-O ponto de entrada central de recomputação deve ser um fluxo de trabalho responsável pela reconstrução de instantâneos diários de análise para um intervalo de datas.
+O ponto de entrada central para o recálculo deve ser um fluxo de trabalho responsável por reconstruir os instantâneos diários de análise para um intervalo de datas.
 
-Função de fluxo de trabalho recomendada:
+Função recomendada no fluxo de trabalho:
 - normalizar e validar o intervalo de datas solicitado
 - iterar dia a dia
 - reconstruir fatos analíticos para cada dia
-- persistir linhas de instantâneo diário idempotentes
+- armazenar linhas de instantâneos diários idempotentes
 - retornar um resumo estruturado do trabalho realizado
 
 Entrada lógica recomendada:
@@ -769,156 +769,156 @@ Saída lógica recomendada:
 
 ## Unidade de recálculo
 
-A unidade primária de recálculo deve ser:
+A unidade principal de recálculo deve ser:
 - um intervalo de datas
 
-Dentro do fluxo de trabalho:
-- o intervalo é normalizado para limites de `UTC` dias
-- o processamento acontece dia após dia
+No fluxo de trabalho:
+- o intervalo é normalizado de acordo com os limites de `UTC` dias
+- o processamento ocorre dia a dia
 - para cada dia, as linhas do instantâneo são reconstruídas em lotes
 
-Isto é preferível a:
-- calcular valores de KPI isolados diretamente
-- recalcular todo o conjunto de dados analíticos em uma única passagem grande
+Essa abordagem é preferível em relação a:
+- calcular diretamente valores isolados de KPIs;
+- recalcular todo o conjunto de dados analíticos em uma única passagem de grande porte
 
-O dia é a unidade atômica natural para o modelo de relatório MVP.
+O dia é a unidade atômica natural do modelo de relatório do MVP.
 
-## Trabalho agendado diariamente
+## Tarefa agendada diariamente
 
-A área de análise deve expor um trabalho agendado diariamente que aciona o fluxo de trabalho de reconstrução compartilhado.
+A área de análise deve disponibilizar uma tarefa agendada diariamente que acione o fluxo de trabalho de reconstrução compartilhada.
 
-Responsabilidades de trabalho recomendadas:
+Responsabilidades recomendadas para a função:
 - adquirir um bloqueio no nível do agendador
-- determinar a janela de recomputação diária
-- execute o fluxo de trabalho de reconstrução
-- emitir logs operacionais e métricas resumidas
+- determinar a janela de recálculo diária
+- executar o fluxo de trabalho de reconstrução
+- gerar logs operacionais e métricas resumidas
 
 O modelo de execução diária recomendado é:
 - recalcular `today`
-- recalcular uma pequena janela de retrospectiva para os últimos dias
+- recalcular uma janela de análise retrospectiva curta para os últimos dias
 
-Por que a janela lookback é recomendada:
-- alterações recentes de renovação, cancelamento ou recuperação podem afetar instantâneos diários anteriores
-- uma janela curta e contínua de recomputação ajuda a corrigir inconsistências recentes
-- isso reduz a dependência do comportamento incremental perfeito orientado a eventos
+Por que a janela de retrospectiva é recomendada:
+- alterações recentes relacionadas a renovações, cancelamentos ou recuperações podem afetar os instantâneos diários anteriores
+- uma janela curta de recálculo contínuo ajuda a corrigir automaticamente inconsistências recentes
+- isso reduz a dependência de um comportamento incremental perfeito orientado por eventos
 
 ## Atualizações incrementais
 
-O pipeline analítico do MVP pode suportar atualizações incrementais, mas não deve introduzir um segundo caminho de computação.
+O pipeline de análise do MVP pode suportar atualizações incrementais, mas elas não devem introduzir um segundo caminho de computação.
 
 As atualizações incrementais devem:
-- acionar o mesmo fluxo de trabalho de reconstrução compartilhado
-- segmentar um pequeno intervalo de datas
-- permanecer opcional e aditivo em relação ao trabalho agendado
+- acionar o mesmo fluxo de trabalho compartilhado de recompilação
+- abranger um intervalo de datas reduzido
+- permanecer opcionais e complementares à tarefa programada
 
-Pontos de gatilho incrementais recomendados:
-- currículo de assinatura
+Pontos de acionamento incrementais recomendados:
+- retomada da assinatura
 - finalização do cancelamento
-- execução de renovação que afeta a base de análise monetária
+- execução da renovação que afeta a base de análise financeira
 
-O caminho incremental não deve:
-- calcular KPIs inline em rotas de API
+A abordagem incremental não deve:
+- calcular KPIs diretamente nas rotas da API
 - ignorar fluxos de trabalho
-- realizar atualizações parciais ad-hoc nas linhas de análise
+- realizar atualizações parciais ad hoc nas linhas de análise
 
-Em vez disso, fluxos de trabalho de negócios bem-sucedidos podem acionar uma pequena janela de reconstrução por meio do fluxo de trabalho de recomputação analítica compartilhada.
+Em vez disso, os fluxos de trabalho empresariais bem-sucedidos podem acionar um breve período de reconstrução por meio do fluxo de trabalho de recálculo de análises compartilhadas.
 
-## Semântica de Idempotência
+## Semântica da idempotência
 
 O pipeline deve ser idempotente no nível do dia.
 
 A regra recomendada é:
-- cada dia é reconstruído como um substituto completo do relatório daquele dia
+- cada dia é reconstruído como um relatório completo que substitui o relatório daquele dia
 
-Isso significa:
+Isso significa que:
 - executar novamente no mesmo dia produz o mesmo estado final do snapshot
-- o fluxo de trabalho substitui o resultado do instantâneo anterior do dia
-- linhas duplicadas não são anexadas em tentativas ou reconstruções
+- o fluxo de trabalho substitui o resultado do snapshot anterior para aquele dia
+- linhas duplicadas não são acrescentadas nas tentativas repetidas ou nas reconstruções
 
-Este modelo é preferível à correção parcial de linhas porque simplifica:
-- correção
-- reconstruir a semântica
-- tente novamente a segurança
+Esse modelo é preferível à correção parcial de linhas, pois simplifica:
+- a correção
+- a semântica de reconstrução
+- a segurança de repetição de tentativas
 
 ## Estratégia de bloqueio
 
-O pipeline analítico deve usar bloqueio em dois níveis.
+O pipeline de análise deve utilizar bloqueios em dois níveis.
 
-### Bloqueio em nível de trabalho
+### Bloqueio no nível da tarefa
 
-Um bloqueio no nível do agendador evita execuções simultâneas de tarefas completas.
-
-Finalidade recomendada:
-- impedir que duas instâncias de trabalho executem o trabalho de análise diário ao mesmo tempo
-- tornar o comportamento do escalonador operacionalmente previsível
-
-### Bloqueio de nível diurno
-
-Um bloqueio por dia evita o recálculo simultâneo do mesmo dia de relatório.
+Um bloqueio no nível do agendador impede a execução simultânea de tarefas completas.
 
 Finalidade recomendada:
-- evita a sobreposição entre a recomputação acionada pelo agendador e as reconstruções manuais
-- evitar a sobreposição entre a recomputação acionada pelo agendador e atualizações incrementais orientadas por eventos
-- mantenha a semântica de substituição diária segura
+- impedir que duas instâncias de worker executem a tarefa de análise diária ao mesmo tempo
+- tornar o comportamento do agendador previsível do ponto de vista operacional
 
-Destinos de bloqueio lógico recomendados:
-- bloqueio de trabalho
+### Bloqueio por dia
+
+Um bloqueio diário impede o recálculo simultâneo do mesmo dia de relatório.
+
+Finalidade recomendada:
+- evitar sobreposição entre a recálculo acionado pelo agendador e as reconstruções manuais
+- evitar sobreposição entre a recálculo acionado pelo agendador e as atualizações incrementais acionadas por eventos
+- garantir a segurança da semântica de substituição diária
+
+Alvos recomendados para bloqueios lógicos:
+- bloqueio de tarefa
 - um bloqueio por `metric_date`
 
-Isso está alinhado com os padrões de bloqueio existentes do plugin em `Dunning`, `Cancellation` e `Renewals`.
+Isso está alinhado com os padrões de bloqueio existentes do plug-in em `Dunning`, `Cancellation` e `Renewals`.
 
 ## Estratégia de processamento em lote
 
 Para cada dia:
 - as assinaturas qualificadas devem ser listadas em lotes
-- cada lote deve ser transformado em linhas de instantâneo analítico
-- as linhas devem ser persistidas de forma incremental por lote
+- cada lote deve ser transformado em linhas do instantâneo de análise
+- as linhas devem ser armazenadas de forma incremental por lote
 
 Isso evita:
-- carregando toda a população de assinaturas na memória
-- criar uma transação superdimensionada para o dia inteiro
+- carregar todo o conjunto de assinantes na memória
+- criar uma transação excessivamente grande para o dia inteiro
 
-O tamanho do lote é uma preocupação de ajuste operacional e deve permanecer configurável no momento da implementação.
+O tamanho do lote é uma questão de ajuste operacional e deve permanecer configurável no momento da implementação.
 
-## Preencher e reconstruir semântica
+## Semântica de preenchimento e reconstrução
 
-A reconstrução manual e o preenchimento histórico devem usar exatamente o mesmo fluxo de trabalho de recomputação que o agendador.
+A reconstrução manual e o preenchimento retroativo dos dados históricos devem seguir exatamente o mesmo fluxo de trabalho de recálculo que o agendador.
 
 Isso significa:
-- nenhuma implementação de reconstrução separada
-- nenhum caminho especial de preenchimento único
-- a recomputação histórica é apenas uma execução em um intervalo de datas mais amplo do mesmo fluxo de trabalho
+- não há uma implementação separada para a reconstrução;
+- não há um caminho especial de preenchimento retroativo pontual;
+- o recálculo histórico consiste apenas na execução do mesmo fluxo de trabalho com um intervalo de datas mais amplo
 
 O modelo de reconstrução recomendado é:
-- operador ou gatilho interno solicita um intervalo de datas
-- o fluxo de trabalho compartilhado recalcula cada dia no intervalo
-- cada dia afetado é substituído atomicamente do ponto de vista analítico
+- o operador ou um gatilho interno solicita um intervalo de datas
+- o fluxo de trabalho compartilhado recalcula cada dia do intervalo
+- cada dia afetado é substituído de forma atômica do ponto de vista analítico
 
 Isso garante que:
-- as reconstruções permanecem consistentes com a execução diária
-- a complexidade da implementação permanece baixa
-- correções históricas não requerem lógica de casos especiais
+- as reconstruções permaneçam consistentes com a execução diária
+- a complexidade da implementação permaneça baixa
+- as correções históricas não exijam lógica para casos especiais
 
-## Tratamento de falhas
+## Tratamento de erros
 
 O tratamento de falhas deve respeitar os limites de relatórios diários.
 
 Semântica recomendada:
-- se a reconstrução de um dia falhar, esse dia será marcado como com falha no resumo do fluxo de trabalho
-- os dias com falha devem ser seguros para tentar novamente
-- os dias bem-sucedidos permanecem válidos e não devem ser revertidos por falhas de dias não relacionados
+- se um dia não for reconstruído, ele será marcado como com falha no resumo do fluxo de trabalho
+- os dias com falha devem poder ser repetidos com segurança
+- os dias bem-sucedidos permanecem válidos e não devem ser revertidos por falhas em dias não relacionados
 
-Dentro de um dia, a implementação deve ter como objetivo a semântica de substituição atômica do ponto de vista do relatório.
+Em um dia, a implementação deve ter como objetivo a semântica de substituição atômica do ponto de vista da geração de relatórios.
 
-Isso significa:
-- o sistema deve evitar deixar um dia em um estado de relatório meio reconstruído
-- a próxima tentativa deverá ser capaz de reconstruir o dia de forma determinística
+Isso significa que:
+- o sistema deve evitar deixar um dia em um estado de relatório parcialmente reconstruído
+- a próxima tentativa deve ser capaz de reconstruir o dia de forma determinística
 
-## Observabilidade e registro operacional
+## Observabilidade e registro de logs operacionais
 
-O pipeline de análise deve seguir o mesmo padrão operacional usado pelas áreas existentes apoiadas pelo agendador.
+O pipeline de análise deve seguir o mesmo padrão operacional utilizado pelas áreas existentes que contam com o agendador.
 
-Ciclo de vida de log recomendado:
+Ciclo de vida recomendado para os logs:
 - `started`
 - `completed`
 - `blocked`
@@ -938,118 +938,118 @@ Isso deve tornar o pipeline de análise operacionalmente comparável a:
 - `Dunning`
 - `Cancellation & Retention`
 
-## Limite do pipeline MVP
+## Limites do Pipeline do MVP
 
-Para MVP, o pipeline analítico deve incluir:
-- um fluxo de trabalho de reconstrução compartilhado
-- um trabalho agendado diariamente com uma curta janela de lookback
+Para o MVP, o pipeline de análise deve incluir:
+- um fluxo de trabalho compartilhado de reconstrução
+- uma tarefa agendada diariamente com uma janela de análise retrospectiva curta
 - bloqueio no nível do agendador
-- bloqueio em nível de dia
-- semântica de substituição idempotente de dia inteiro
-- gatilhos incrementais opcionais para eventos de negócios importantes
+- bloqueio no nível do dia
+- semântica idempotente de substituição de um dia inteiro
+- gatilhos incrementais opcionais para eventos-chave de negócios
 
-Para MVP, o pipeline analítico não deve incluir:
-- um segundo caminho de computação incremental independente
-- cálculo direto de KPI em manipuladores de API
-- correção parcial de linhas de análise diária como modelo de atualização principal
-- um mecanismo de preenchimento separado, distinto do fluxo de trabalho de reconstrução compartilhado
+Para o MVP, o pipeline de análise não deve incluir:
+- um segundo caminho de cálculo incremental independente;
+- cálculo direto de KPIs nos manipuladores de API;
+- correção parcial das linhas de análise diárias como modelo principal de atualização;
+- um mecanismo de preenchimento retroativo separado, distinto do fluxo de trabalho compartilhado de reconstrução
 
-## Limite de relatórios com módulos existentes
+## Limites de relatório com módulos existentes
 
 ### Relação com `Subscriptions`
 
-`Subscriptions` fornecem a linha de base operacional para relatórios.
+`Subscriptions` fornecem a base operacional para a elaboração de relatórios.
 
-`Analytics` pode derivar:
+O `Analytics` pode derivar:
 - contagens ativas
 - contagens distribuídas por status
-- Totais de assinaturas orientados a MRR
+- totais de assinaturas orientados por MRR
 - segmentação baseada em frequência
 
-`Analytics` não deve se tornar proprietário de campos de ciclo de vida como:
+`Analytics` não deve se tornar o proprietário de campos de ciclo de vida, tais como:
 - `status`
 - `next_renewal_at`
 - `cancel_effective_at`
 
 ### Relação com `Renewals`
 
-`Renewals` fornece fatos do histórico de execução.
+`Renewals` fornece informações sobre o histórico de execução.
 
-`Analytics` pode derivar:
-- tendências de sucesso e fracasso de renovação
+O `Analytics` pode fornecer:
+- tendências de sucesso e fracasso nas renovações
 - tendências de volume de execução
-- métricas de suporte adjacentes à receita ou adjacentes à retenção, se necessário posteriormente
+- métricas de apoio relacionadas à receita ou à retenção, caso sejam necessárias posteriormente
 
-`Analytics` não deve se tornar proprietário de:
+`Analytics` não deve se tornar o proprietário de:
 - estado do ciclo de renovação
-- estado de tentativa
-- estado de aprovação
+- estado da tentativa
+- estado da aprovação
 
 ### Relação com `Cancellation & Retention`
 
-`Cancellation & Retention` fornece fatos orientados à rotatividade.
+`Cancellation & Retention` fornecer dados relacionados à rotatividade.
 
-`Analytics` pode derivar:
+O `Analytics` pode fornecer:
 - taxa de rotatividade
 - tendências de cancelamento
 - principais categorias de motivos
-- proporções de resultados retidos versus cancelados
+- índices de retenção versus cancelamento
 
-`Analytics` não deve se tornar proprietário de:
+`Analytics` não deve se tornar o responsável por:
 - status do caso de cancelamento
-- estado de decisão de oferta
+- estado da decisão sobre a oferta
 - estado final do processo de cancelamento
 
 ### Relação com `Activity Log`
 
-`Activity Log` fornece visibilidade de auditoria, não propriedade de KPI.
+O `Activity Log` oferece visibilidade de auditoria, não responsabilidade pelos KPIs.
 
-`Analytics` pode usar `Activity Log` para:
+`Analytics` pode utilizar `Activity Log` para:
 - investigação
 - apoio à reconciliação
-- validação futura orientada por auditoria
+- validação futura motivada por auditoria
 
 `Analytics` não deve usar `Activity Log` como fonte padrão para:
 - `MRR`
 - contagem de assinaturas ativas
-- cálculo de rotatividade
+- cálculo da rotatividade
 
-## Decisão de limite do MVP
+## Decisão sobre os critérios de seleção do MVP
 
-Para MVP, a área `Analytics` deve seguir este limite:
+Para o MVP, a área `Analytics` deve respeitar este limite:
 
-- `Subscriptions` são a fonte primária para cálculos de base ativa e MRR.
-- `Cancellation & Retention` são a fonte primária para entradas de rotatividade e categorização de rotatividade.
-- `Renewals` são uma fonte de apoio para fatos históricos de execução quando necessário.
-- `Activity Log` é excluído como fonte primária de KPI.
-- `Analytics` possui instantâneos diários, grupos de tendências e resultados agregados voltados para o administrador.
+- `Subscriptions` são a fonte principal para os cálculos da base ativa e da MRR.
+- `Cancellation & Retention` são a fonte principal para os dados de rotatividade e a categorização da rotatividade.
+- `Renewals` são uma fonte complementar para dados históricos de execução, quando necessário.
+- `Activity Log` está excluído como fonte principal de KPIs.
+- `Analytics` é responsável por instantâneos diários, faixas de tendências e resultados agregados destinados à administração.
 
-Isso dá ao plugin:
-- limites claros de propriedade
-- características de desempenho estáveis
-- compatibilidade com os princípios de isolamento do módulo Medusa
-- um modelo de relatórios que permanece alinhado com a arquitetura de domínio já implementada
+Isso proporciona ao plug-in:
+- limites claros de responsabilidade;
+- características de desempenho estáveis;
+- compatibilidade com os princípios de isolamento de módulos do Medusa;
+- um modelo de geração de relatórios que se mantém alinhado com a arquitetura de domínios já implementada
 
-## O que `Analytics` não deve possuir
+## O que o `Analytics` não deve possuir
 
 A área `Analytics` não deve:
-- tornar-se o proprietário canônico do estado do ciclo de vida da assinatura
-- tornar-se o proprietário canônico dos resultados do ciclo de renovação
-- tornar-se o proprietário canônico do estado do processo de cancelamento
-- substitua `Activity Log` como camada de auditoria
-- armazenar cópias completas duplicadas de agregados de domínio como modelo padrão
-- transferir a lógica de mutação de negócios dos fluxos de trabalho para o código de relatório
+- tornar-se a proprietária canônica do estado do ciclo de vida da assinatura
+- tornar-se a proprietária canônica dos resultados do ciclo de renovação
+- tornar-se a proprietária canônica do estado do processo de cancelamento
+- substituir `Activity Log` como camada de auditoria
+- armazenar cópias completas e duplicadas dos agregados de domínio como seu modelo padrão
+- transferir a lógica de mutação de negócios dos fluxos de trabalho para o código de relatórios
 
-## Regras de limite da Medusa
+## Regras de Limite do Medusa
 
-Esta decisão segue as regras de arquitetura modular da Medusa:
+Essa decisão segue as regras de arquitetura modular do Medusa:
 
-- os módulos de origem mantêm a propriedade de seu próprio estado comercial
-- a coordenação entre módulos acontece por meio de fluxos de trabalho e composição de leitura controlada
-- os relatórios administrativos são implementados por meio de modelos de leitura e rotas de API, e não pela transferência de propriedade entre módulos
+- os módulos de origem mantêm a propriedade de seu próprio estado operacional
+- a coordenação entre módulos ocorre por meio de fluxos de trabalho e composição controlada de leitura
+- a geração de relatórios administrativos é implementada por meio de modelos de leitura e rotas de API, e não pela transferência de propriedade entre módulos
 
 Para `Analytics`, isso significa:
-- os fatos de origem vêm da propriedade de módulos
-- a criação de instantâneos é uma preocupação de relatórios, não uma transferência de propriedade empresarial
-- As rotas de análise administrativa devem ler instantâneos e agregados de análise sempre que possível
-- a reconstrução e a recomputação devem ser seguras para o fluxo de trabalho e operacionalmente isoladas de mutações de domínio
+- os fatos de origem provêm dos módulos proprietários
+- a criação de instantâneos é uma questão de relatórios, não uma transferência de propriedade comercial
+- as rotas de análise administrativa devem ler a partir de instantâneos de análise e agregados, sempre que possível
+- a reconstrução e o recálculo devem ser seguros para o fluxo de trabalho e operacionalmente isolados das alterações no domínio

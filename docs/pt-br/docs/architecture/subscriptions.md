@@ -1,70 +1,70 @@
 # Arquitetura de assinaturas
 
-Este documento descreve a arquitetura atual da área `Subscriptions` no plugin `Reorder`.
+Este documento descreve a arquitetura atual da área `Subscriptions` no plug-in `Reorder`.
 
-Ele se concentra no sistema implementado e não nas suposições iniciais do projeto.
+Ele se concentra no sistema implementado, e não nos pressupostos iniciais do projeto.
 
-## Meta
+## Objetivo
 
-A área `Subscriptions` fornece aos usuários administradores uma visão operacional sobre assinaturas recorrentes.
+A área `Subscriptions` oferece aos usuários com permissão de administrador uma visão operacional das assinaturas recorrentes.
 
-A implementação atual suporta:
-- listando assinaturas
-- visualizar detalhes da assinatura
-- mostrando o contexto da assinatura nos detalhes padrão do pedido da Medusa
-- mostrando o contexto do desconto de assinatura nos detalhes padrão do pedido da Medusa
-- pausando assinaturas
-- retomando assinaturas
-- cancelamento de assinaturas
-- agendamento de mudanças no plano
-- editando o endereço de entrega
-- pular a próxima entrega
-- criação de assinaturas a partir de carrinhos de loja
-- API da Loja voltada para o cliente para ações de contas de assinatura
+A implementação atual oferece suporte a:
+- listagem de assinaturas;
+- visualização dos detalhes da assinatura;
+- exibição das informações da assinatura nos detalhes padrão do pedido do Medusa;
+- exibição das informações sobre o desconto da assinatura nos detalhes padrão do pedido do Medusa;
+- suspensão de assinaturas;
+- retomada de assinaturas;
+- cancelamento de assinaturas;
+- agendamento de alterações no plano;
+- edição do endereço de entrega;
+- pular a próxima entrega;
+- criação de assinaturas a partir dos carrinhos da loja;
+- API da loja voltada para o cliente para ações relacionadas à conta de assinatura
 
-## Visão Geral da Arquitetura
+## Visão geral da arquitetura
 
-A implementação é dividida em cinco camadas principais:
+A implementação está dividida em cinco camadas principais:
 
 1. módulo de domínio
 2. fluxos de trabalho
 3. API de administração
-4. armazenar API
-5. IU de administração
+4. API da loja
+5. interface de usuário de administração
 
-Cada camada tem uma responsabilidade clara:
+Cada camada tem uma responsabilidade bem definida:
 
-- o módulo de domínio possui o modelo de dados de assinatura e persistência
-- fluxos de trabalho possuem mutações de negócios
-- API admin expõe endpoints de leitura e gravação para o painel
-- a API da loja expõe endpoints de leitura e gravação seguros para a conta do cliente e PDP
-- UI administrativa renderiza visualizações de lista e detalhes e chama os endpoints administrativos
+- o módulo de domínio é responsável pelo modelo de dados de assinatura e pela persistência
+- os fluxos de trabalho são responsáveis pelas alterações de negócios
+- a API de administração expõe pontos de extremidade de leitura e gravação para o painel de controle
+- a API da loja expõe pontos de extremidade de leitura e gravação seguros para a loja virtual, relativos à conta do cliente e à página de perfil do produto (PDP)
+- a interface de usuário de administração exibe visualizações de lista e de detalhes e aciona os pontos de extremidade de administração
 
-## 1. Módulo de Domínio
+## 1. Módulo de domínio
 
 O módulo personalizado `subscription` é o proprietário do domínio de assinatura recorrente.
 
-Ele contém:
+Contém:
 - tipos de domínio
 - modelo de dados
 - serviço
 - exportação de módulo
 
-Escolha principal do design:
-- a entidade de assinatura armazena o estado operacional exigido pelo Admin e os fluxos de renovação futuros diretamente em seu próprio modelo
-- Os modelos de leitura administrativa usam enriquecimento em tempo real de registros vinculados de clientes e produtos, quando disponíveis
-- os instantâneos persistentes permanecem na assinatura como substituto operacional e contexto histórico
+Escolha-chave de projeto:
+- a entidade de assinatura armazena o estado operacional exigido pelos fluxos do Admin e de renovações futuras diretamente em seu próprio modelo
+- os modelos de leitura do Admin utilizam o enriquecimento em tempo real a partir de registros vinculados de clientes e produtos, quando disponíveis
+- os instantâneos persistidos permanecem na assinatura como plano de contingência operacional e contexto histórico
 
-Isso mantém o modelo operacional estável enquanto permite que o administrador mostre dados atuais de clientes e produtos vinculados.
+Isso mantém o modelo operacional estável, ao mesmo tempo em que permite que o Admin exiba os dados atuais dos clientes e produtos vinculados.
 
 ## 2. Modelo de dados
 
 O modelo `subscription` armazena:
 - campos de identidade e ciclo de vida
 - campos de cadência
-- campos de agendamento
-- sinalizadores operacionais
-- instantâneos usados pelo administrador e renovações futuras
+- campos de programação
+- indicadores operacionais
+- instantâneos utilizados pelo Admin e renovações futuras
 
 Os campos escalares principais incluem:
 - `id`
@@ -83,9 +83,9 @@ Os campos escalares principais incluem:
 - `cancel_effective_at`
 - `skip_next_cycle`
 - `is_trial`
--`trial_ends_at`
+- `trial_ends_at`
 
-Os campos JSON de instantâneo incluem:
+Os campos JSON do Snapshot incluem:
 - `customer_snapshot`
 - `product_snapshot`
 - `pricing_snapshot`
@@ -93,53 +93,53 @@ Os campos JSON de instantâneo incluem:
 - `pending_update_data`
 - `metadata`
 
-Por que os instantâneos são usados:
-- o administrador deve exibir uma imagem estável da assinatura, mesmo que o cliente ou produto vinculado mude posteriormente
-- a lógica de renovação futura precisa de dados operacionais locais para a assinatura
-- os modelos atuais de leitura de administrador usam substituto de instantâneo quando os registros vinculados estão ausentes ou não resolvidos
+Por que os instantâneos são utilizados:
+- o Admin deve exibir uma visão estável da assinatura, mesmo que o cliente ou produto vinculado seja alterado posteriormente
+- a lógica de renovação futura necessita de dados operacionais específicos da assinatura
+- os modelos de leitura atuais do Admin utilizam o recurso de fallback de instantâneo quando os registros vinculados estão ausentes ou não foram resolvidos
 
-## 3. Leia o caminho
+## 3. Caminho de leitura
 
-O caminho de leitura é otimizado para lista de administradores e visualizações detalhadas.
+O caminho de leitura está otimizado para as visualizações de lista e detalhes do Admin.
 
-Componentes principais:
-- manipuladores de rota administrativa em `src/api/admin/subscriptions`
+Principais componentes:
+- manipuladores de rotas de administração em `src/api/admin/subscriptions`
 - auxiliares de normalização em `src/api/admin/subscriptions/utils.ts`
-- ajudantes de consulta em `src/modules/subscription/utils/admin-query.ts`
+- auxiliares de consulta em `src/modules/subscription/utils/admin-query.ts`
 
-### Fluxo de lista
+### Fluxo da lista
 
-Para a visualização de lista:
-1. a UI Admin envia parâmetros de consulta para `GET /admin/subscriptions`
-2. A rota administrativa valida e normaliza a entrada da consulta
+Para a visualização em lista:
+1. a interface de usuário do administrador envia parâmetros de consulta para `GET /admin/subscriptions`
+2. a rota de administração valida e normaliza a entrada da consulta
 3. `listAdminSubscriptions(...)` cria filtros e regras de classificação
-4. A camada de consulta lê assinaturas por meio de `query.graph(...)`
-5. Os dados de exibição de clientes e produtos ao vivo são enriquecidos por meio de leituras em tempo de consulta com retorno de instantâneo
-6. Os registros são mapeados para Admin DTOs usados pelo DataTable
+4. a camada de consulta lê as assinaturas por meio de `query.graph(...)`
+5. os dados exibidos em tempo real sobre clientes e produtos são enriquecidos por meio de leituras no momento da consulta, com recurso de snapshot como fallback
+6. os registros são mapeados para DTOs de administração usados pela DataTable
 
 Os recursos suportados incluem:
 - paginação
-- pesquisar
+- pesquisa
 - filtragem
-- classificação
+- ordenação
 
 Parte da classificação é realizada no banco de dados, enquanto alguns campos derivados são classificados na memória.
 
-### Fluxo detalhado
+### Fluxo de detalhes
 
 Para a visualização detalhada:
-1. a IU do administrador solicita `GET /admin/subscriptions/:id`
-2. A rota resolve a assinatura por meio do auxiliar de consulta
-3. o resultado é mapeado para um DTO detalhado
-4. a página de detalhes do administrador exibe o estado atual da assinatura e a visualização da alteração do plano pendente
+1. a interface de usuário administrativa solicita `GET /admin/subscriptions/:id`
+2. a rota resolve a assinatura por meio do auxiliar de consulta
+3. o resultado é mapeado para um DTO de detalhes
+4. a página de detalhes da interface de usuário administrativa exibe o estado atual da assinatura e uma prévia da alteração de plano pendente
 
-Os modelos de leitura agora expõem ambos:
-- `next_renewal_at` como âncora técnica de faturamento usada pelo processamento de renovação
-- `effective_next_renewal_at` como a próxima entrega projetada mostrada em Admin e Storefront quando `skip_next_cycle` está ativado
+Os modelos “Read” agora expõem ambos:
+- `next_renewal_at` como a referência técnica de cobrança utilizada pelo processamento de renovação
+- `effective_next_renewal_at` como a próxima entrega prevista, exibida no Painel de Administração e na Loja Virtual quando `skip_next_cycle` está habilitado
 
-## 4. Escrever caminho
+## 4. Caminho de gravação
 
-Todas as operações de alteração de estado são roteadas por meio de fluxos de trabalho.
+Todas as operações que alteram o estado são encaminhadas por meio de fluxos de trabalho.
 
 Mutações implementadas:
 - `pause`
@@ -151,38 +151,38 @@ Mutações implementadas:
 - `create-subscription-from-cart`
 
 Padrão de caminho de gravação:
-1. a UI Admin envia uma mutação para uma rota administrativa personalizada
-2. a rota valida a carga útil da solicitação
-3. a rota chama um fluxo de trabalho
-4. o fluxo de trabalho realiza validação de negócios e atualiza a assinatura
-5. A rota retorna a carga útil atualizada dos detalhes da assinatura
+1. A interface de usuário administrativa envia uma mutação para uma rota administrativa personalizada
+2. A rota valida a carga útil da solicitação
+3. A rota chama um fluxo de trabalho
+4. O fluxo de trabalho realiza a validação de negócios e atualiza a assinatura
+5. A rota retorna a carga útil com os detalhes atualizados da assinatura
 
 Isso mantém a lógica de negócios fora dos manipuladores HTTP.
 
 ### Fluxo de compra na loja
 
-O fluxo de criação da loja usa:
+O fluxo de criação da loja utiliza:
 - `POST /store/carts/:id/sync-subscription-pricing`
 - `POST /store/carts/:id/subscribe`
 - `create-subscription-from-cart`
 
-O fluxo valida os metadados da assinatura no item de linha, sincroniza o preço do carrinho para a cadência selecionada, bloqueia o uso misto do carrinho, completa o carrinho em uma Medusa padrão `order`, verifica a idempotência por meio do link `subscription-order`, cria o `subscription`, registra um evento de log de atividades `subscription.created` para assinaturas recém-criadas com o cliente da loja como ator, vincula-o a `customer`, `cart` e `order` e cria o primeiro `renewal_cycle` futuro.
+O fluxo valida os metadados da assinatura no item de linha, sincroniza os preços do carrinho para a cadência selecionada, bloqueia o uso misto do carrinho, finaliza o carrinho em um Medusa padrão `order`, verifica a idempotência por meio do link `subscription-order`, cria o `subscription`, registra um evento de log de atividade `subscription.created` para assinaturas recém-criadas com o cliente da loja virtual como ator, vincula-o a `customer`, `cart` e `order` e cria o primeiro próximo `renewal_cycle`.
 
-A sincronização de preços é feita por um fluxo de trabalho dedicado:
-- carregar itens de linha de assinatura do carrinho
-- resolver a configuração `Plans & Offers` efetiva para a cadência selecionada
-- aplicar ou remover o ajuste manual do item de linha
-- atualize os itens do carrinho, impostos e cobrança de pagamentos antes que a finalização da compra continue
+A sincronização de preços é realizada por meio de um fluxo de trabalho dedicado:
+- carregar os itens de assinatura do carrinho
+- determinar a configuração efetiva de `Plans & Offers` para a cadência selecionada
+- aplicar ou remover o ajuste manual do item de assinatura
+- atualizar os itens do carrinho, os impostos e a cobrança do pagamento antes de prosseguir com a finalização da compra
 
-Semântica de ajuste atual:
-- identidade de ajuste usa `provider_id = "subscription_discount"`
+Semântica atual dos ajustes:
+- a identidade do ajuste usa `provider_id = "subscription_discount"`
 - a descrição do ajuste é `Subscription discount`
-- o valor do ajuste é armazenado incluindo impostos
-- os ajustes no carrinho evitam intencionalmente `code`, portanto os fluxos promocionais da Medusa não os tratam como códigos promocionais
+- o valor do ajuste é armazenado com impostos incluídos
+- os ajustes no carrinho evitam intencionalmente `code`, para que os fluxos de promoção do Medusa não os tratem como códigos promocionais
 
-### Armazenar fluxo da conta do cliente
+### Fluxo da conta do cliente da loja
 
-O fluxo atual da conta da loja usa:
+O fluxo atual da conta da loja utiliza:
 - `GET /store/customers/me/subscriptions`
 - `GET /store/customers/me/subscriptions/:id`
 - `POST /store/customers/me/subscriptions/:id/pause`
@@ -194,37 +194,37 @@ O fluxo atual da conta da loja usa:
 - `POST /store/customers/me/subscriptions/:id/retry-payment`
 - `POST /store/customers/me/subscriptions/:id/cancellation`
 
-Estas rotas:
-- exigir autenticação do cliente
-- validar a propriedade em relação ao cliente autenticado
-- reutilizar fluxos de trabalho existentes sempre que possível
-- devolver DTOs seguros para vitrines em vez de contratos detalhados de administração
-- expor campos de modelo de leitura projetados, como `effective_next_renewal_at`
-- expor `scheduled_plan_change` quando já existir uma atualização de plano pendente
+Essas rotas:
+- exigem autenticação do cliente
+- validam a propriedade em relação ao cliente autenticado
+- reutilizam fluxos de trabalho existentes sempre que possível
+- retornam DTOs seguros para a interface do usuário, em vez de contratos de detalhes administrativos
+- expõem campos projetados do modelo de leitura, como `effective_next_renewal_at`
+- expõem `scheduled_plan_change` quando já existe uma atualização de plano pendente
 
-### Armazenar fluxo de oferta PDP
+### Fluxo de ofertas da PDP da loja
 
-O fluxo de oferta PDP atual usa:
+O fluxo de ofertas atual do PDP utiliza:
 - `GET /store/products/:id/subscription-offer`
 
-A rota resolve a configuração `Plans & Offers` efetiva com precedência `variant > product` e retorna dados de oferta seguros para loja para preços de PDP e seleção de cadência.
+A rota resolve a configuração efetiva `Plans & Offers` com precedência `variant > product` e retorna dados de oferta compatíveis com a loja virtual para definição de preços na página de detalhes do produto (PDP) e seleção da cadência.
 
 ## 5. Fluxos de trabalho
 
-Os fluxos de trabalho são o limite de mutação da área `Subscriptions`.
+Os fluxos de trabalho constituem o limite de mutação da área `Subscriptions`.
 
 Eles são responsáveis por:
-- validação de transições legais de estado
-- atualização dos campos do ciclo de vida da assinatura
-- atualização de dados de alterações de plano pendentes
-- atualização dos dados do endereço de entrega
-- retornando um resultado de assinatura consistente para a camada API
+- validar as transições de status legais
+- atualizar os campos do ciclo de vida da assinatura
+- atualizar os dados de alterações pendentes no plano
+- atualizar os dados do endereço de entrega
+- retornar um resultado consistente da assinatura para a camada de API
 
-A camada de rota permanece fina e focada na orquestração.
+A camada de rota continua sendo enxuta e voltada para a orquestração.
 
 ## 6. Arquitetura da API de administração
 
-A API Admin expõe rotas personalizadas dedicadas às páginas `Subscriptions`.
+A API de administração disponibiliza rotas personalizadas dedicadas às páginas `Subscriptions`.
 
 Rotas de leitura implementadas:
 - `GET /admin/subscriptions`
@@ -237,19 +237,19 @@ Rotas de mutação implementadas:
 - `POST /admin/subscriptions/:id/schedule-plan-change`
 - `POST /admin/subscriptions/:id/update-shipping-address`
 
-A camada API usa:
-- Validadores Zod
-- solicitações de administrador autenticadas
-- ajudantes de consulta para leituras
+A camada de API utiliza:
+- validadores Zod
+- solicitações administrativas autenticadas
+- auxiliares de consulta para leituras
 - fluxos de trabalho para gravações
 
-## 7. Arquitetura de API da loja
+## 7. Arquitetura da API da loja
 
-A API Store expõe rotas personalizadas de vitrine dedicadas a:
-- checkout de assinatura
-- lista e detalhes de assinatura da conta do cliente
-- ações de assinatura de conta de cliente
-- Resolução de oferta de assinatura PDP
+A API da Loja disponibiliza rotas personalizadas da vitrine dedicadas a:
+- finalização da compra de assinaturas;
+- lista e detalhes das assinaturas da conta do cliente;
+- ações relacionadas às assinaturas da conta do cliente;
+- resolução de ofertas de assinatura na página de produto (PDP).
 
 Rotas de leitura implementadas:
 - `GET /store/customers/me/subscriptions`
@@ -268,128 +268,128 @@ Rotas de mutação implementadas:
 - `POST /store/customers/me/subscriptions/:id/retry-payment`
 - `POST /store/customers/me/subscriptions/:id/cancellation`
 
-A camada da API Store usa:
-- middleware de autenticação do cliente
-- mapeamento DTO específico da loja
-- mutações apoiadas por fluxo de trabalho
+A camada da API da loja utiliza:
+- middleware de autenticação de clientes
+- mapeamento de DTOs específico para a loja virtual
+- mutações baseadas em fluxo de trabalho
 - verificações de propriedade antes da execução da mutação
 
-## 8. Arquitetura da UI do administrador
+## 8. Arquitetura da interface de usuário administrativa
 
-A UI Admin é implementada como rotas Medusa Admin personalizadas.
+A interface de usuário administrativa foi implementada como rotas personalizadas do Medusa Admin.
 
 Telas atuais:
 - página da lista de assinaturas
 - página de detalhes da assinatura
 
-Ele também estende a página Medusa `Order detail` integrada com um widget que resolve o link `subscription_order` e renderiza o status da assinatura mais um link para a assinatura vinculada.
+Além disso, ele amplia a página integrada do Medusa `Order detail` com um widget que resolve o link `subscription_order` e exibe o status da assinatura, além de um link para a assinatura em questão.
 
-### Página da lista
+### Página de lista
 
-A página da lista é construída com Medusa `DataTable`.
+A página da lista foi criada com o Medusa `DataTable`.
 
-Suporta:
+Oferece suporte a:
 - paginação
-- pesquisar
+- pesquisa
 - filtros
-- classificação
-- ações de linha
-- navegação de linha para detalhes
+- ordenação
+- ações nas linhas
+- navegação das linhas para detalhes
 
 O carregamento de dados segue o padrão Medusa:
-- a consulta de exibição sempre carrega na montagem
-- consultas modais e de gaveta são separadas da consulta de exibição principal
+- a consulta de exibição é sempre carregada no momento da montagem
+- as consultas modais e de gaveta são separadas da consulta principal de exibição
 
 ### Página de detalhes
 
 A página de detalhes contém:
 - visão geral da assinatura
-- informações sobre clientes e produtos
+- informações sobre o cliente e o produto
 - endereço de entrega
-- visualização de alteração de plano pendente
-- menu de ação no canto superior direito
+- pré-visualização da alteração de plano pendente
+- menu de ações no canto superior direito
 
-Ele também fornece dois fluxos de edição por meio de gavetas:
-- mudança de plano de cronograma
-- editar endereço de entrega
+Ele também oferece dois fluxos de edição por meio dos Drawers:
+- alteração do plano de programação
+- edição do endereço de entrega
 
-Isso corresponde ao padrão Medusa de usar gavetas para editar dados existentes.
+Isso segue o padrão do Medusa de usar Drawers para editar dados existentes.
 
-## 9. Estratégia de invalidação de consulta
+## 9. Estratégia de invalidação de consultas
 
-A UI Admin usa invalidação de consulta explícita após mutações.
+A interface de usuário administrativa utiliza a invalidação explícita de consultas após mutações.
 
-Após uma mutação bem-sucedida:
-- a consulta da lista de assinaturas é invalidada
-- a consulta de detalhes da assinatura é invalidada
+Após uma alteração bem-sucedida:
+- a consulta à lista de assinaturas é invalidada
+- a consulta aos detalhes da assinatura é invalidada
 
 Isso garante que:
-- a página de detalhes permanece atualizada após as edições
-- a lista reflete o status mais recente após a navegação de volta
+- a página de detalhes permaneça atualizada após as edições
+- a lista reflita o status mais recente após voltar à página anterior
 
 ## 10. Tratamento de erros e carregamento
 
-A UI `Subscriptions` segue o tratamento de estado no estilo Medusa:
-- páginas de lista usam carregamento de DataTable e estados vazios
-- páginas de detalhes mostram carregamento explícito e estados de erro
-- gavetas mostram carregamento local e estados de erro para dados somente modais
+A interface do usuário `Subscriptions` segue o gerenciamento de estados no estilo Medusa:
+- as páginas de lista utilizam os estados de carregamento e vazio do DataTable
+- as páginas de detalhes exibem estados explícitos de carregamento e erro
+- as gavetas exibem estados locais de carregamento e erro para dados exclusivos de modais
 
-Isso evita o acoplamento do estado de exibição principal ao carregamento de dados somente da gaveta.
+Isso evita vincular o estado da tela principal ao carregamento de dados exclusivo da gaveta.
 
-## 11. Estratégia de teste
+## 11. Estratégia de testes
 
-A área é coberta por:
-- testes de módulo/serviço
-- testes de fluxo de trabalho e integração de consultas
-- testes de integração HTTP administrativos
-- teste de integração de fluxo administrativo baseado em cenário
+A área é abrangida por:
+- testes de módulos/serviços
+- testes de integração de fluxos de trabalho e consultas
+- testes de integração HTTP de administração
+- teste de integração do fluxo de administração baseado em cenários
 
-Nota importante:
-- não há camada E2E do navegador no plugin atual
-- o principal fluxo de negócios ponta a ponta é verificado através de testes de integração apoiados pela Medusa
+Observação importante:
+- não há camada E2E do navegador no plug-in atual
+- o principal fluxo de negócios de ponta a ponta é verificado por meio de testes de integração compatíveis com o Medusa
 
-## 11. Limites de responsabilidade
+## 11. Limites da responsabilidade
 
-`Subscriptions` atualmente possui:
+Atualmente, o `Subscriptions` é responsável por:
 - a entidade de assinatura
-- Gerenciamento operacional administrativo de assinaturas
-- alterações de plano pendentes
-- atualizações de endereço de entrega
-- materialização do ciclo de vida para `active`, `paused`, `past_due` e `cancelled`
-- campos de ciclo de vida como `paused_at`, `cancelled_at`, `cancel_effective_at` e `next_renewal_at`
+- a gestão operacional administrativa das assinaturas
+- alterações pendentes no plano
+- atualizações do endereço de entrega
+- a materialização do ciclo de vida para `active`, `paused`, `past_due` e `cancelled`
+- campos do ciclo de vida, como `paused_at`, `cancelled_at`, `cancel_effective_at` e `next_renewal_at`
 
 Ainda não possui:
-- regras de definição de oferta e configuração de assinatura
-- execução de renovação
-- recuperação de pagamentos e cobrança
-- estado do processo de cancelamento e retenção
-- estado de recomendação de retenção
+- regras de definição de ofertas e configuração de assinaturas
+- execução de renovações
+- cobrança de pagamentos e notificação de inadimplência
+- status do processo de cancelamento e retenção
+- status da recomendação de retenção
 - histórico de ofertas de retenção
-- fluxo de trabalho de classificação do motivo da rotatividade
+- fluxo de trabalho de classificação dos motivos de cancelamento
 
-Essas preocupações são intencionalmente deixadas para áreas posteriores:
+Essas questões foram deixadas de propósito para seções posteriores:
 - `Plans & Offers`
 - `Renewals`
 - `Dunning`
 
-A área `Cancellation & Retention` implementada agora adiciona uma camada de processo separada no topo do ciclo de vida da assinatura.
+A área `Cancellation & Retention` implementada agora adiciona uma camada de processo separada ao ciclo de vida da assinatura.
 
-Limite atual com `Cancellation & Retention`:
-- `Subscription` continua sendo a fonte da verdade para o estado do ciclo de vida
-- `CancellationCase` continua sendo a fonte da verdade para o estado do processo de cancelamento e retenção
-- `RetentionOfferEvent` continua sendo a fonte da verdade para o histórico concreto de oferta de retenção
+Limites atuais com `Cancellation & Retention`:
+- `Subscription` continua sendo a fonte de referência para o estado do ciclo de vida
+- `CancellationCase` continua sendo a fonte de referência para o estado do processo de cancelamento e retenção
+- `RetentionOfferEvent` continua sendo a fonte de referência para o histórico concreto das ofertas de retenção
 
-Isso significa:
+Isso significa que:
 - `paused` e `cancelled` podem ser materializados por fluxos de trabalho de cancelamento
-- mas esses fluxos de trabalho se materializam em `Subscription`, eles não o substituem como proprietário do ciclo de vida
-- cancelamento final define `cancel_effective_at`
-- cancelamento final limpa `next_renewal_at`
+- porém, esses fluxos de trabalho se materializam em `Subscription`, mas não o substituem como responsável pelo ciclo de vida
+- o cancelamento final define `cancel_effective_at`
+- o cancelamento final limpa `next_renewal_at`
 - os resultados retidos não definem `cancel_effective_at`
 
-## 12. Por que esta estrutura
+## 12. Por que essa estrutura?
 
-Esta arquitetura mantém o sistema prático:
+Essa arquitetura mantém o sistema prático:
 - as leituras são otimizadas para operações administrativas
 - as gravações são centralizadas nos fluxos de trabalho
-- O estado da UI é claramente separado da lógica do domínio
-- a lógica futura de renovação e cobrança pode ser baseada no mesmo núcleo de assinatura sem reescrever a camada Admin
+- o estado da interface do usuário é claramente separado da lógica de domínio
+- a lógica futura de renovação e cobrança poderá ser desenvolvida com base no mesmo núcleo de assinaturas, sem a necessidade de reescrever a camada administrativa
