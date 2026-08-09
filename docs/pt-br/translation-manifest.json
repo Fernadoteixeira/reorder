@@ -32,7 +32,7 @@
         "input_chars": 27,
         "output_chars": 32,
         "method": "Fallback",
-        "latency_ms": 394,
+        "latency_ms": 359,
         "attempts": 1,
         "fallback_used": true
       },
@@ -41,7 +41,7 @@
         "input_chars": 86,
         "output_chars": 103,
         "method": "Fallback",
-        "latency_ms": 959,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -50,7 +50,7 @@
         "input_chars": 10,
         "output_chars": 9,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 325,
         "attempts": 1,
         "fallback_used": true
       },
@@ -59,7 +59,7 @@
         "input_chars": 1196,
         "output_chars": 1394,
         "method": "Fallback",
-        "latency_ms": 1536,
+        "latency_ms": 344,
         "attempts": 1,
         "fallback_used": true
       },
@@ -68,7 +68,7 @@
         "input_chars": 444,
         "output_chars": 521,
         "method": "Fallback",
-        "latency_ms": 1584,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -77,7 +77,7 @@
         "input_chars": 13,
         "output_chars": 20,
         "method": "Fallback",
-        "latency_ms": 338,
+        "latency_ms": 336,
         "attempts": 1,
         "fallback_used": true
       },
@@ -86,7 +86,7 @@
         "input_chars": 334,
         "output_chars": 445,
         "method": "Fallback",
-        "latency_ms": 833,
+        "latency_ms": 336,
         "attempts": 1,
         "fallback_used": true
       },
@@ -95,7 +95,7 @@
         "input_chars": 9,
         "output_chars": 8,
         "method": "Fallback",
-        "latency_ms": 325,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -104,7 +104,7 @@
         "input_chars": 497,
         "output_chars": 609,
         "method": "Fallback",
-        "latency_ms": 910,
+        "latency_ms": 340,
         "attempts": 1,
         "fallback_used": true
       },
@@ -113,7 +113,7 @@
         "input_chars": 23,
         "output_chars": 26,
         "method": "Fallback",
-        "latency_ms": 341,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -122,7 +122,7 @@
         "input_chars": 63,
         "output_chars": 72,
         "method": "Fallback",
-        "latency_ms": 338,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -140,7 +140,7 @@
         "input_chars": 15,
         "output_chars": 22,
         "method": "Fallback",
-        "latency_ms": 326,
+        "latency_ms": 339,
         "attempts": 1,
         "fallback_used": true
       },
@@ -149,7 +149,7 @@
         "input_chars": 66,
         "output_chars": 80,
         "method": "Fallback",
-        "latency_ms": 428,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -158,7 +158,7 @@
         "input_chars": 1169,
         "output_chars": 1258,
         "method": "Fallback",
-        "latency_ms": 1001,
+        "latency_ms": 336,
         "attempts": 1,
         "fallback_used": true
       },
@@ -167,7 +167,7 @@
         "input_chars": 1025,
         "output_chars": 1200,
         "method": "Fallback",
-        "latency_ms": 1020,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -176,7 +176,7 @@
         "input_chars": 18,
         "output_chars": 23,
         "method": "Fallback",
-        "latency_ms": 337,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -185,7 +185,7 @@
         "input_chars": 17,
         "output_chars": 19,
         "method": "Fallback",
-        "latency_ms": 325,
+        "latency_ms": 328,
         "attempts": 1,
         "fallback_used": true
       },
@@ -194,7 +194,7 @@
         "input_chars": 404,
         "output_chars": 466,
         "method": "Fallback",
-        "latency_ms": 651,
+        "latency_ms": 322,
         "attempts": 1,
         "fallback_used": true
       },
@@ -203,7 +203,7 @@
         "input_chars": 22,
         "output_chars": 24,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 328,
         "attempts": 1,
         "fallback_used": true
       },
@@ -212,7 +212,7 @@
         "input_chars": 695,
         "output_chars": 851,
         "method": "Fallback",
-        "latency_ms": 1096,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -221,7 +221,7 @@
         "input_chars": 22,
         "output_chars": 25,
         "method": "Fallback",
-        "latency_ms": 335,
+        "latency_ms": 327,
         "attempts": 1,
         "fallback_used": true
       },
@@ -230,7 +230,7 @@
         "input_chars": 450,
         "output_chars": 526,
         "method": "Fallback",
-        "latency_ms": 603,
+        "latency_ms": 386,
         "attempts": 1,
         "fallback_used": true
       },
@@ -239,7 +239,7 @@
         "input_chars": 16,
         "output_chars": 26,
         "method": "Fallback",
-        "latency_ms": 337,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -248,7 +248,7 @@
         "input_chars": 341,
         "output_chars": 411,
         "method": "Fallback",
-        "latency_ms": 522,
+        "latency_ms": 339,
         "attempts": 1,
         "fallback_used": true
       },
@@ -257,7 +257,7 @@
         "input_chars": 23,
         "output_chars": 27,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -266,7 +266,7 @@
         "input_chars": 307,
         "output_chars": 377,
         "method": "Fallback",
-        "latency_ms": 1019,
+        "latency_ms": 397,
         "attempts": 1,
         "fallback_used": true
       },
@@ -275,7 +275,7 @@
         "input_chars": 17,
         "output_chars": 18,
         "method": "Fallback",
-        "latency_ms": 324,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       },
@@ -284,12 +284,12 @@
         "input_chars": 425,
         "output_chars": 530,
         "method": "Fallback",
-        "latency_ms": 587,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       }
     ],
-    "translated_at": "2026-08-09T06:51:17Z",
+    "translated_at": "2026-08-09T06:52:01Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   ".agents/lessons.md": {
@@ -325,7 +325,7 @@
         "input_chars": 18,
         "output_chars": 21,
         "method": "Fallback",
-        "latency_ms": 332,
+        "latency_ms": 381,
         "attempts": 1,
         "fallback_used": true
       },
@@ -334,7 +334,7 @@
         "input_chars": 236,
         "output_chars": 263,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 337,
         "attempts": 1,
         "fallback_used": true
       },
@@ -352,7 +352,7 @@
         "input_chars": 35,
         "output_chars": 41,
         "method": "Fallback",
-        "latency_ms": 340,
+        "latency_ms": 328,
         "attempts": 1,
         "fallback_used": true
       },
@@ -361,7 +361,7 @@
         "input_chars": 459,
         "output_chars": 574,
         "method": "Fallback",
-        "latency_ms": 331,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -370,7 +370,7 @@
         "input_chars": 34,
         "output_chars": 37,
         "method": "Fallback",
-        "latency_ms": 329,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -379,7 +379,7 @@
         "input_chars": 388,
         "output_chars": 428,
         "method": "Fallback",
-        "latency_ms": 1087,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -388,7 +388,7 @@
         "input_chars": 19,
         "output_chars": 18,
         "method": "Fallback",
-        "latency_ms": 329,
+        "latency_ms": 340,
         "attempts": 1,
         "fallback_used": true
       },
@@ -397,7 +397,7 @@
         "input_chars": 48,
         "output_chars": 48,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -406,7 +406,7 @@
         "input_chars": 334,
         "output_chars": 367,
         "method": "Fallback",
-        "latency_ms": 1011,
+        "latency_ms": 518,
         "attempts": 1,
         "fallback_used": true
       },
@@ -415,7 +415,7 @@
         "input_chars": 55,
         "output_chars": 63,
         "method": "Fallback",
-        "latency_ms": 338,
+        "latency_ms": 366,
         "attempts": 1,
         "fallback_used": true
       },
@@ -424,12 +424,12 @@
         "input_chars": 389,
         "output_chars": 416,
         "method": "Fallback",
-        "latency_ms": 1037,
+        "latency_ms": 340,
         "attempts": 1,
         "fallback_used": true
       }
     ],
-    "translated_at": "2026-08-09T06:51:23Z",
+    "translated_at": "2026-08-09T06:52:06Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   ".agents/skills/create-spec/SKILL.md": {
@@ -474,7 +474,7 @@
         "input_chars": 49,
         "output_chars": 78,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 323,
         "attempts": 1,
         "fallback_used": true
       },
@@ -483,7 +483,7 @@
         "input_chars": 185,
         "output_chars": 201,
         "method": "Fallback",
-        "latency_ms": 329,
+        "latency_ms": 328,
         "attempts": 1,
         "fallback_used": true
       },
@@ -492,7 +492,7 @@
         "input_chars": 35,
         "output_chars": 36,
         "method": "Fallback",
-        "latency_ms": 327,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -501,7 +501,7 @@
         "input_chars": 252,
         "output_chars": 310,
         "method": "Fallback",
-        "latency_ms": 331,
+        "latency_ms": 340,
         "attempts": 1,
         "fallback_used": true
       },
@@ -510,7 +510,7 @@
         "input_chars": 12,
         "output_chars": 20,
         "method": "Fallback",
-        "latency_ms": 332,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -519,7 +519,7 @@
         "input_chars": 256,
         "output_chars": 274,
         "method": "Fallback",
-        "latency_ms": 888,
+        "latency_ms": 327,
         "attempts": 1,
         "fallback_used": true
       },
@@ -528,7 +528,7 @@
         "input_chars": 415,
         "output_chars": 475,
         "method": "Fallback",
-        "latency_ms": 995,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -537,7 +537,7 @@
         "input_chars": 232,
         "output_chars": 257,
         "method": "Fallback",
-        "latency_ms": 331,
+        "latency_ms": 409,
         "attempts": 1,
         "fallback_used": true
       },
@@ -546,7 +546,7 @@
         "input_chars": 215,
         "output_chars": 265,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 340,
         "attempts": 1,
         "fallback_used": true
       },
@@ -564,7 +564,7 @@
         "input_chars": 54,
         "output_chars": 59,
         "method": "Fallback",
-        "latency_ms": 324,
+        "latency_ms": 327,
         "attempts": 1,
         "fallback_used": true
       },
@@ -578,7 +578,7 @@
         "fallback_used": false
       }
     ],
-    "translated_at": "2026-08-09T06:51:29Z",
+    "translated_at": "2026-08-09T06:52:10Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   ".agents/skills/local-dev/SKILL.md": {
@@ -623,7 +623,7 @@
         "input_chars": 38,
         "output_chars": 44,
         "method": "Fallback",
-        "latency_ms": 330,
+        "latency_ms": 327,
         "attempts": 1,
         "fallback_used": true
       },
@@ -632,7 +632,7 @@
         "input_chars": 129,
         "output_chars": 147,
         "method": "Fallback",
-        "latency_ms": 643,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -641,7 +641,7 @@
         "input_chars": 17,
         "output_chars": 18,
         "method": "Fallback",
-        "latency_ms": 330,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -650,7 +650,7 @@
         "input_chars": 100,
         "output_chars": 113,
         "method": "Fallback",
-        "latency_ms": 1173,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       },
@@ -668,7 +668,7 @@
         "input_chars": 96,
         "output_chars": 109,
         "method": "Fallback",
-        "latency_ms": 892,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       },
@@ -677,7 +677,7 @@
         "input_chars": 28,
         "output_chars": 39,
         "method": "Fallback",
-        "latency_ms": 342,
+        "latency_ms": 325,
         "attempts": 1,
         "fallback_used": true
       },
@@ -686,7 +686,7 @@
         "input_chars": 119,
         "output_chars": 142,
         "method": "Fallback",
-        "latency_ms": 864,
+        "latency_ms": 334,
         "attempts": 1,
         "fallback_used": true
       },
@@ -695,7 +695,7 @@
         "input_chars": 37,
         "output_chars": 38,
         "method": "Fallback",
-        "latency_ms": 872,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       },
@@ -731,7 +731,7 @@
         "input_chars": 87,
         "output_chars": 86,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 338,
         "attempts": 1,
         "fallback_used": true
       },
@@ -749,7 +749,7 @@
         "input_chars": 152,
         "output_chars": 175,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -758,7 +758,7 @@
         "input_chars": 26,
         "output_chars": 29,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -767,12 +767,12 @@
         "input_chars": 157,
         "output_chars": 179,
         "method": "Fallback",
-        "latency_ms": 611,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       }
     ],
-    "translated_at": "2026-08-09T06:51:34Z",
+    "translated_at": "2026-08-09T06:52:15Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   ".agents/skills/run-tests/SKILL.md": {
@@ -817,7 +817,7 @@
         "input_chars": 35,
         "output_chars": 38,
         "method": "Fallback",
-        "latency_ms": 337,
+        "latency_ms": 324,
         "attempts": 1,
         "fallback_used": true
       },
@@ -826,7 +826,7 @@
         "input_chars": 98,
         "output_chars": 120,
         "method": "Fallback",
-        "latency_ms": 663,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -835,7 +835,7 @@
         "input_chars": 22,
         "output_chars": 27,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -844,7 +844,7 @@
         "input_chars": 754,
         "output_chars": 908,
         "method": "Fallback",
-        "latency_ms": 873,
+        "latency_ms": 349,
         "attempts": 1,
         "fallback_used": true
       },
@@ -853,7 +853,7 @@
         "input_chars": 30,
         "output_chars": 37,
         "method": "Fallback",
-        "latency_ms": 340,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -862,7 +862,7 @@
         "input_chars": 74,
         "output_chars": 67,
         "method": "Fallback",
-        "latency_ms": 1645,
+        "latency_ms": 327,
         "attempts": 1,
         "fallback_used": true
       },
@@ -871,7 +871,7 @@
         "input_chars": 30,
         "output_chars": 38,
         "method": "Fallback",
-        "latency_ms": 332,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -889,7 +889,7 @@
         "input_chars": 33,
         "output_chars": 45,
         "method": "Fallback",
-        "latency_ms": 331,
+        "latency_ms": 325,
         "attempts": 1,
         "fallback_used": true
       },
@@ -907,7 +907,7 @@
         "input_chars": 17,
         "output_chars": 26,
         "method": "Fallback",
-        "latency_ms": 331,
+        "latency_ms": 373,
         "attempts": 1,
         "fallback_used": true
       },
@@ -925,7 +925,7 @@
         "input_chars": 69,
         "output_chars": 89,
         "method": "Fallback",
-        "latency_ms": 327,
+        "latency_ms": 343,
         "attempts": 1,
         "fallback_used": true
       },
@@ -939,7 +939,7 @@
         "fallback_used": false
       }
     ],
-    "translated_at": "2026-08-09T06:51:34Z",
+    "translated_at": "2026-08-09T06:52:16Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   ".agents/specs/2026-08-09-360-degree-e2e-coverage.md": {
@@ -975,7 +975,7 @@
         "input_chars": 77,
         "output_chars": 104,
         "method": "Fallback",
-        "latency_ms": 322,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       },
@@ -984,7 +984,7 @@
         "input_chars": 18,
         "output_chars": 22,
         "method": "Fallback",
-        "latency_ms": 324,
+        "latency_ms": 367,
         "attempts": 1,
         "fallback_used": true
       },
@@ -993,7 +993,7 @@
         "input_chars": 297,
         "output_chars": 317,
         "method": "Fallback",
-        "latency_ms": 1316,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1002,7 +1002,7 @@
         "input_chars": 850,
         "output_chars": 1039,
         "method": "Fallback",
-        "latency_ms": 1377,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1011,7 +1011,7 @@
         "input_chars": 175,
         "output_chars": 214,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 341,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1029,7 +1029,7 @@
         "input_chars": 45,
         "output_chars": 48,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 379,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1038,7 +1038,7 @@
         "input_chars": 766,
         "output_chars": 880,
         "method": "Fallback",
-        "latency_ms": 717,
+        "latency_ms": 334,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1047,7 +1047,7 @@
         "input_chars": 414,
         "output_chars": 442,
         "method": "Fallback",
-        "latency_ms": 563,
+        "latency_ms": 334,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1056,7 +1056,7 @@
         "input_chars": 312,
         "output_chars": 353,
         "method": "Fallback",
-        "latency_ms": 1413,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1074,7 +1074,7 @@
         "input_chars": 35,
         "output_chars": 41,
         "method": "Fallback",
-        "latency_ms": 330,
+        "latency_ms": 328,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1083,7 +1083,7 @@
         "input_chars": 349,
         "output_chars": 361,
         "method": "Fallback",
-        "latency_ms": 875,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1092,7 +1092,7 @@
         "input_chars": 207,
         "output_chars": 221,
         "method": "Fallback",
-        "latency_ms": 334,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1101,7 +1101,7 @@
         "input_chars": 198,
         "output_chars": 259,
         "method": "Fallback",
-        "latency_ms": 326,
+        "latency_ms": 341,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1110,7 +1110,7 @@
         "input_chars": 241,
         "output_chars": 296,
         "method": "Fallback",
-        "latency_ms": 758,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1128,7 +1128,7 @@
         "input_chars": 143,
         "output_chars": 163,
         "method": "Fallback",
-        "latency_ms": 1436,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1142,7 +1142,7 @@
         "fallback_used": false
       }
     ],
-    "translated_at": "2026-08-09T06:51:45Z",
+    "translated_at": "2026-08-09T06:52:20Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "AGENTS.md": {
@@ -1178,12 +1178,12 @@
         "input_chars": 17,
         "output_chars": 19,
         "method": "Fallback",
-        "latency_ms": 341,
+        "latency_ms": 337,
         "attempts": 1,
         "fallback_used": true
       }
     ],
-    "translated_at": "2026-08-09T06:50:59Z",
+    "translated_at": "2026-08-09T06:51:51Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "CLAUDE.md": {
@@ -1219,12 +1219,12 @@
         "input_chars": 17,
         "output_chars": 19,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 338,
         "attempts": 1,
         "fallback_used": true
       }
     ],
-    "translated_at": "2026-08-09T06:50:59Z",
+    "translated_at": "2026-08-09T06:51:51Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "README.md": {
@@ -1260,7 +1260,7 @@
         "input_chars": 1033,
         "output_chars": 1060,
         "method": "Fallback",
-        "latency_ms": 771,
+        "latency_ms": 360,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1269,7 +1269,7 @@
         "input_chars": 132,
         "output_chars": 131,
         "method": "Fallback",
-        "latency_ms": 886,
+        "latency_ms": 341,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1278,7 +1278,7 @@
         "input_chars": 9,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 370,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1287,7 +1287,7 @@
         "input_chars": 158,
         "output_chars": 155,
         "method": "Fallback",
-        "latency_ms": 997,
+        "latency_ms": 334,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1296,7 +1296,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 337,
+        "latency_ms": 328,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1305,7 +1305,7 @@
         "input_chars": 20,
         "output_chars": 22,
         "method": "Fallback",
-        "latency_ms": 334,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1314,7 +1314,7 @@
         "input_chars": 56,
         "output_chars": 62,
         "method": "Fallback",
-        "latency_ms": 744,
+        "latency_ms": 343,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1323,7 +1323,7 @@
         "input_chars": 185,
         "output_chars": 204,
         "method": "Fallback",
-        "latency_ms": 365,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1332,7 +1332,7 @@
         "input_chars": 145,
         "output_chars": 176,
         "method": "Fallback",
-        "latency_ms": 809,
+        "latency_ms": 334,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1341,7 +1341,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 340,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1350,7 +1350,7 @@
         "input_chars": 20,
         "output_chars": 15,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 457,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1359,7 +1359,7 @@
         "input_chars": 128,
         "output_chars": 127,
         "method": "Fallback",
-        "latency_ms": 425,
+        "latency_ms": 326,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1368,7 +1368,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 349,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1377,7 +1377,7 @@
         "input_chars": 17,
         "output_chars": 15,
         "method": "Fallback",
-        "latency_ms": 338,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1386,7 +1386,7 @@
         "input_chars": 92,
         "output_chars": 102,
         "method": "Fallback",
-        "latency_ms": 874,
+        "latency_ms": 323,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1395,7 +1395,7 @@
         "input_chars": 184,
         "output_chars": 209,
         "method": "Fallback",
-        "latency_ms": 669,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1404,7 +1404,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 330,
+        "latency_ms": 325,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1422,7 +1422,7 @@
         "input_chars": 247,
         "output_chars": 311,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 328,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1431,7 +1431,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1440,7 +1440,7 @@
         "input_chars": 16,
         "output_chars": 15,
         "method": "Fallback",
-        "latency_ms": 330,
+        "latency_ms": 340,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1449,7 +1449,7 @@
         "input_chars": 68,
         "output_chars": 60,
         "method": "Fallback",
-        "latency_ms": 865,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1458,7 +1458,7 @@
         "input_chars": 26,
         "output_chars": 23,
         "method": "Fallback",
-        "latency_ms": 344,
+        "latency_ms": 338,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1467,7 +1467,7 @@
         "input_chars": 12,
         "output_chars": 10,
         "method": "Fallback",
-        "latency_ms": 566,
+        "latency_ms": 344,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1485,7 +1485,7 @@
         "input_chars": 13,
         "output_chars": 11,
         "method": "Fallback",
-        "latency_ms": 388,
+        "latency_ms": 333,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1503,7 +1503,7 @@
         "input_chars": 44,
         "output_chars": 45,
         "method": "Fallback",
-        "latency_ms": 690,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1521,7 +1521,7 @@
         "input_chars": 22,
         "output_chars": 26,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1530,7 +1530,7 @@
         "input_chars": 12,
         "output_chars": 10,
         "method": "Fallback",
-        "latency_ms": 322,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1548,7 +1548,7 @@
         "input_chars": 13,
         "output_chars": 11,
         "method": "Fallback",
-        "latency_ms": 334,
+        "latency_ms": 348,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1566,7 +1566,7 @@
         "input_chars": 29,
         "output_chars": 35,
         "method": "Fallback",
-        "latency_ms": 331,
+        "latency_ms": 330,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1575,7 +1575,7 @@
         "input_chars": 82,
         "output_chars": 104,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 323,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1584,7 +1584,7 @@
         "input_chars": 21,
         "output_chars": 24,
         "method": "Fallback",
-        "latency_ms": 337,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1593,7 +1593,7 @@
         "input_chars": 50,
         "output_chars": 56,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1602,7 +1602,7 @@
         "input_chars": 28,
         "output_chars": 27,
         "method": "Fallback",
-        "latency_ms": 335,
+        "latency_ms": 332,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1620,7 +1620,7 @@
         "input_chars": 28,
         "output_chars": 28,
         "method": "Fallback",
-        "latency_ms": 344,
+        "latency_ms": 336,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1638,7 +1638,7 @@
         "input_chars": 32,
         "output_chars": 30,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1656,7 +1656,7 @@
         "input_chars": 43,
         "output_chars": 43,
         "method": "Fallback",
-        "latency_ms": 334,
+        "latency_ms": 338,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1674,7 +1674,7 @@
         "input_chars": 58,
         "output_chars": 64,
         "method": "Fallback",
-        "latency_ms": 828,
+        "latency_ms": 501,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1692,7 +1692,7 @@
         "input_chars": 34,
         "output_chars": 36,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 364,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1710,7 +1710,7 @@
         "input_chars": 31,
         "output_chars": 29,
         "method": "Fallback",
-        "latency_ms": 333,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1728,7 +1728,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 327,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1737,7 +1737,7 @@
         "input_chars": 16,
         "output_chars": 13,
         "method": "Fallback",
-        "latency_ms": 335,
+        "latency_ms": 324,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1746,7 +1746,7 @@
         "input_chars": 85,
         "output_chars": 84,
         "method": "Fallback",
-        "latency_ms": 465,
+        "latency_ms": 329,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1755,7 +1755,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 329,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1764,7 +1764,7 @@
         "input_chars": 16,
         "output_chars": 14,
         "method": "Fallback",
-        "latency_ms": 331,
+        "latency_ms": 324,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1773,7 +1773,7 @@
         "input_chars": 61,
         "output_chars": 77,
         "method": "Fallback",
-        "latency_ms": 765,
+        "latency_ms": 335,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1782,7 +1782,7 @@
         "input_chars": 269,
         "output_chars": 347,
         "method": "Fallback",
-        "latency_ms": 337,
+        "latency_ms": 339,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1791,7 +1791,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 325,
+        "latency_ms": 403,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1809,7 +1809,7 @@
         "input_chars": 40,
         "output_chars": 46,
         "method": "Fallback",
-        "latency_ms": 652,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1836,7 +1836,7 @@
         "input_chars": 7,
         "output_chars": 2,
         "method": "Fallback",
-        "latency_ms": 334,
+        "latency_ms": 331,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1845,7 +1845,7 @@
         "input_chars": 16,
         "output_chars": 15,
         "method": "Fallback",
-        "latency_ms": 328,
+        "latency_ms": 340,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1863,7 +1863,7 @@
         "input_chars": 26,
         "output_chars": 31,
         "method": "Fallback",
-        "latency_ms": 336,
+        "latency_ms": 334,
         "attempts": 1,
         "fallback_used": true
       },
@@ -1872,12 +1872,12 @@
         "input_chars": 179,
         "output_chars": 253,
         "method": "Fallback",
-        "latency_ms": 946,
+        "latency_ms": 337,
         "attempts": 1,
         "fallback_used": true
       }
     ],
-    "translated_at": "2026-08-09T06:51:26Z",
+    "translated_at": "2026-08-09T06:52:12Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/README.md": {
