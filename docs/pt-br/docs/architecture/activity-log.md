@@ -1,29 +1,29 @@
-# Arquitetura do log de atividades
+# Arquitetura do Registro de Atividades
 
-Este documento descreve o limite arquitetônico implementado para a área `Activity Log` no plugin `Reorder`.
+Este documento descreve os limites arquitetônicos implementados para a área `Activity Log` no plug-in `Reorder`.
 
-É a fonte da verdade em tempo de execução para:
-- regras de propriedade e fonte da verdade
-- contrato de evento e taxonomia
-- escrever caminho e ler limites do caminho
+É a fonte de verdade em tempo de execução para:
+- regras de propriedade e de fonte de verdade
+- contrato de eventos e taxonomia
+- limites dos caminhos de gravação e leitura
 - retenção e considerações operacionais
 
-## Meta
+## Objetivo
 
-A área `Activity Log` fornece uma trilha de auditoria unificada voltada para o operador para eventos de negócios relacionados a assinaturas em todo o plug-in.
+A área `Activity Log` fornece um histórico de auditoria unificado, voltado para os operadores, para eventos de negócios relacionados a assinaturas em todo o plug-in.
 
 Seu objetivo é:
-- mostre eventos importantes do ciclo de vida de uma assinatura em um só lugar
-- fornecer aos operadores uma trilha de auditoria legível em diversas áreas de comércio recorrente
-- oferecer suporte a visualizações futuras de lista de administradores, detalhes e linha do tempo
+- mostrar eventos importantes do ciclo de vida de uma assinatura em um único local
+- fornecer aos operadores um histórico de auditoria claro em diversas áreas do comércio recorrente
+- dar suporte a futuras visualizações de lista, detalhes e linha do tempo no painel de administração
 
-Seu objetivo não é substituir os modelos de domínio de origem que já possuem seu próprio estado de negócio.
+Seu objetivo não é substituir os modelos de domínio de origem que já possuem seu próprio estado de negócios.
 
-## Papel arquitetônico
+## Função de arquitetura
 
-`Activity Log` é uma camada de auditoria de negócios dedicada somente para acréscimos.
+`Activity Log` é uma camada de auditoria empresarial dedicada, apenas para adição de dados.
 
-Deve agregar eventos importantes relacionados à assinatura emitidos por:
+Ele deve agregar eventos importantes relacionados à assinatura emitidos por:
 - `Subscriptions`
 - `Plans & Offers`
 - `Renewals`
@@ -32,107 +32,107 @@ Deve agregar eventos importantes relacionados à assinatura emitidos por:
 
 A principal decisão arquitetônica é:
 
-- `Activity Log` é a trilha de auditoria canônica somente para acréscimos para eventos de negócios voltados para o operador em torno de uma assinatura.
-- `Activity Log` não é a fonte da verdade para o estado do domínio pertencente aos módulos existentes.
+- `Activity Log` é a trilha de auditoria canônica, do tipo “somente acréscimo”, para eventos de negócios voltados para operadores relacionados a uma assinatura.
+- `Activity Log` não é a fonte de verdade para o estado do domínio de propriedade dos módulos existentes.
 
-Isso significa que o log é uma visualização de auditoria entre domínios e não um substituto para agregações existentes.
+Isso significa que o registro é uma visão de auditoria entre domínios, e não um substituto para os agregados existentes.
 
 ## Limites de propriedade
 
-O modelo de propriedade atual do plugin permanece inalterado.
+O modelo atual de propriedade do plug-in permanece inalterado.
 
-`Subscriptions` continua sendo a fonte da verdade para:
+`Subscriptions` continua sendo a fonte de referência para:
 - estado do ciclo de vida da assinatura
-- campos de agendamento de cadência e renovação
-- endereço de entrega e materialização de alteração de plano pendente
+- campos de cadência e programação de renovação
+- endereço de entrega e concretização de alterações pendentes no plano
 
-`Plans & Offers` continua sendo a fonte da verdade para:
+`Plans & Offers` continua sendo a fonte de referência para:
 - configuração da oferta de assinatura
 - frequências de cobrança permitidas
-- oferecer regras e resolução política eficaz
+- regras da oferta e resolução efetiva da política
 
-`Renewals` continua sendo a fonte da verdade para:
-- estado de execução do ciclo de renovação
-- histórico de tentativas de renovação
-- decisões de aprovação e resultados de execução
+`Renewals` continua sendo a fonte de referência para:
+- o estado de execução do ciclo de renovação
+- o histórico de tentativas de renovação
+- as decisões de aprovação e os resultados da execução
 
-`Dunning` continua sendo a fonte da verdade para:
-- estado de recuperação de pagamento
-- agendamento de nova tentativa
+`Dunning` continua sendo a fonte de referência para:
+- status da cobrança de pagamentos
+- cronograma de novas tentativas
 - histórico de tentativas de cobrança
-- resultados recuperados e não recuperados
+- resultados de cobranças bem-sucedidas e malsucedidas
 
-`Cancellation & Retention` continua sendo a fonte da verdade para:
+O `Cancellation & Retention` continua sendo a fonte de referência para:
 - estado do processo de cancelamento
 - histórico de ofertas de retenção
-- motivo da rotatividade e resultado final do cancelamento
+- motivo da saída e resultado final do cancelamento
 
 `Activity Log` não retira a propriedade de nenhum dos módulos acima.
 
-## Relação com campos de auditoria e metadados existentes
+## Relação com os campos de auditoria e metadados existentes
 
-O plugin já armazena dados orientados para auditoria dentro de módulos específicos de domínio.
+O plug-in já armazena dados voltados para auditoria dentro de módulos específicos do domínio.
 
-Os exemplos incluem:
-- campos de ator explícitos, como `finalized_by`, `decided_by` e campos relacionados à aprovação
-- metadados `manual_actions` somente anexados em `Cancellation & Retention`
-- histórico de tentativas de renovação e cobrança
-- metadados específicos do fluxo de trabalho e contexto de operação manual
+Entre os exemplos estão:
+- campos explícitos do ator, como `finalized_by`, `decided_by` e campos relacionados à aprovação
+- metadados `manual_actions`, que só podem ser acrescentados, em `Cancellation & Retention`
+- histórico de renovações e tentativas de cobrança
+- metadados específicos do fluxo de trabalho e contexto de operações manuais
 
-Esses campos permanecem válidos e devem permanecer nos módulos de sua propriedade.
+Esses campos continuam válidos e devem permanecer nos módulos aos quais pertencem.
 
-A função arquitetônica de `Activity Log` é diferente:
-- os módulos de domínio mantêm um contexto detalhado de auditoria local do módulo
-- `Activity Log` fornece uma trilha de auditoria unificada entre domínios para operadoras
+A função arquitetônica do `Activity Log` é diferente:
+- os módulos de domínio mantêm um contexto de auditoria detalhado e específico do módulo
+- o `Activity Log` fornece uma trilha de auditoria unificada entre domínios para os operadores
 
-Isso significa:
+Isso significa que:
 - `Activity Log` pode resumir ou fazer referência a resultados importantes desses módulos
-- não deve substituir o histórico detalhado de tentativas ou metadados específicos do módulo
-- não deve tornar-se um depósito de lixo para todos os campos internos ou valores de diagnóstico
+- não deve substituir o histórico detalhado de tentativas nem os metadados específicos de cada módulo
+- não deve se tornar um depósito de todos os campos internos ou valores de diagnóstico
 
-## Trilha de auditoria empresarial versus registro operacional
+## Trilha de auditoria empresarial x Registro operacional
 
-O plug-in já usa registro operacional estruturado e métricas de resumo do agendador em áreas como `Renewals`, `Dunning` e `Cancellation & Retention`.
+O plug-in já utiliza registros operacionais estruturados e métricas de resumo do agendador em áreas como `Renewals`, `Dunning` e `Cancellation & Retention`.
 
-Esses registros operacionais continuam sendo uma preocupação separada.
+Esses registros operacionais continuam sendo uma questão à parte.
 
-`Activity Log` deve conter apenas eventos significativos para os negócios voltados para o operador, como:
+`Activity Log` deve conter apenas eventos relevantes para os negócios e voltados para os operadores, tais como:
 - assinatura criada, pausada, retomada, cancelada
-- mudança de plano programada ou aplicada
+- alteração de plano agendada ou aplicada
 - endereço de entrega atualizado
 - próxima entrega ignorada
-- tentativa de renovação, sucesso, falha
-- cobrança iniciada, repetida, recuperada, não recuperada
-- caso de cancelamento iniciado
+- tentativa de renovação, bem-sucedida, malsucedida
+- processo de cobrança iniciado, repetido, recuperado, não recuperado
+- processo de cancelamento iniciado
 - oferta de retenção aplicada
 - cancelamento finalizado
 
-`Activity Log` não deve conter ruído operacional ou de diagnóstico de baixo nível, como:
-- pulsação do agendador e resumos de lote
-- diagnóstico de aquisição de bloqueio
-- tente novamente os internos e a saída de depuração em nível de etapa
-- erros de infraestrutura ou camada de transporte
-- detalhes de pagamento confidenciais
+`Activity Log` não deve conter ruídos operacionais ou de diagnóstico de baixo nível, tais como:
+- sinais de vida do agendador e resumos de lotes
+- diagnósticos de aquisição de bloqueios
+- detalhes internos de repetição de tentativas e saídas de depuração em nível de etapa
+- erros de infraestrutura ou da camada de transporte
+- detalhes confidenciais de pagamento
 
-Essas preocupações pertencem a registros estruturados, auxiliares de observabilidade e métricas operacionais, e não à trilha de auditoria de negócios.
+Essas questões devem constar em registros estruturados, ferramentas de observabilidade e métricas operacionais, e não na trilha de auditoria da empresa.
 
-## Regras de limite da Medusa
+## Regras de Limite do Medusa
 
-A decisão segue as regras de arquitetura modular da Medusa:
-- módulos de domínio permanecem isolados
-- a coordenação de negócios entre módulos acontece em fluxos de trabalho
-- modelos de leitura podem agregar dados para Admin sem transferir propriedade entre módulos
+A decisão segue as regras da arquitetura modular do Medusa:
+- os módulos de domínio permanecem isolados
+- a coordenação de negócios entre módulos ocorre nos fluxos de trabalho
+- os modelos de leitura podem agregar dados para a Administração sem transferir a propriedade entre módulos
 
 Para `Activity Log`, isso significa:
-- as entradas de log devem ser criadas a partir de caminhos de mutação apoiados por fluxo de trabalho
-- os serviços do módulo devem continuar possuindo seu próprio estado
-- a futura camada de leitura do administrador pode agregar eventos entre domínios, mas não deve redefinir a propriedade do domínio
+- as entradas de log devem ser criadas a partir de caminhos de mutação baseados em fluxos de trabalho
+- os serviços dos módulos devem manter o controle sobre seu próprio estado
+- a futura camada de leitura do Admin poderá agregar eventos entre domínios, mas não deve redefinir a propriedade dos domínios
 
-## Contrato de registro de evento
+## Contrato de Registro de Eventos
 
-`Activity Log` armazena um registro somente anexado por evento de assinatura significativo para os negócios.
+`Activity Log` armazena um registro de gravação exclusiva por evento de assinatura relevante para os negócios.
 
-O contrato de evento lógico é:
+O contrato de eventos lógicos é:
 - `id`
 - `subscription_id`
 - `customer_id`
@@ -146,18 +146,18 @@ O contrato de evento lógico é:
 - `metadata`
 - `created_at`
 
-### Semântica de Campo
+### Semântica de campos
 
 `id`
-- identificador de evento exclusivo
+- identificador exclusivo do evento
 
 `subscription_id`
 - obrigatório
-- o log está centrado em um ciclo de vida de assinatura
+- o registro é centrado no ciclo de vida de uma assinatura
 
 `customer_id`
-- opcional, mas persistido quando conhecido
-- usado para filtragem administrativa e pesquisas de auditoria no nível do cliente
+- opcional, mas armazenado de forma persistente quando conhecido
+- usado para filtragem administrativa e consultas de auditoria no nível do cliente
 
 `event_type`
 - obrigatório
@@ -174,27 +174,27 @@ O contrato de evento lógico é:
 
 `actor_id`
 - opcional
-- armazena o ID do usuário administrador ou outro identificador de ator, quando disponível
+- armazena o ID do usuário administrador ou outro identificador do agente, quando disponível
 
 `previous_state`
 - resumo JSON opcional
-- armazena apenas o estado relevante do evento antes da mutação
+- armazena apenas o estado relevante para o evento antes da mutação
 - não deve conter cópias brutas completas dos agregados proprietários
 
 `new_state`
 - resumo JSON opcional
-- armazena apenas o estado relevante do evento após a mutação
+- armazena apenas o estado relevante para o evento após a mutação
 - não deve conter cópias brutas completas dos agregados proprietários
 
 `changed_fields`
 - comparação estruturada opcional
-- deve capturar uma representação compacta antes/depois dos campos que foram alterados
-- forma pretendida:
-  - matriz de entradas em nível de campo, como `field`, `before`, `after`
+- deve capturar uma representação compacta do “antes” e “depois” dos campos que foram alterados
+- formato pretendido:
+  - matriz de entradas no nível do campo, como `field`, `before`, `after`
 
 `reason`
-- motivo opcional voltado para a empresa ou para a operadora
-- por exemplo, motivo de aprovação, motivo de decisão de retenção ou motivo de cancelamento manual
+- motivo opcional voltado para o cliente ou para o operador
+- por exemplo, motivo da aprovação, motivo da decisão de retenção ou motivo do cancelamento manual
 
 `metadata`
 - JSON opcional
@@ -205,35 +205,35 @@ O contrato de evento lógico é:
   - `retention_offer_event_id`
   - `order_id`
   - `correlation_id`
-- não deve conter detalhes de pagamento confidenciais ou cargas de diagnóstico ilimitadas
+- não deve conter detalhes confidenciais de pagamento ou cargas de diagnóstico ilimitadas
 
 `created_at`
-- carimbo de data/hora do evento necessário
+- carimbo de data e hora do evento (obrigatório)
 
-## Regras estaduais de carga útil
+## Regras estaduais sobre carga útil
 
-O registro do evento destina-se a permanecer estável e legível pelo operador ao longo do tempo.
+O registro do evento deve permanecer estável e legível para o operador ao longo do tempo.
 
 Por isso, `previous_state`, `new_state` e `changed_fields` devem seguir estas regras:
-- armazenar pequenos resumos específicos de eventos, não instantâneos completos de entidades
-- inclua apenas os campos necessários para explicar o que mudou
-- evite copiar grandes objetos de domínio aninhados
-- evite o vazamento de dados confidenciais de pagamentos ou infraestrutura
+- armazenar pequenos resumos específicos de eventos, e não instantâneos completos das entidades
+- incluir apenas os campos necessários para explicar o que mudou
+- evitar copiar objetos de domínio grandes e aninhados
+- evitar o vazamento de dados confidenciais de pagamento ou de infraestrutura
 
-Exemplos de bons resumos de estado em nível de evento:
+Exemplos de bons resumos de estado no nível do evento:
 - status antes e depois de uma pausa ou retomada
 - alteração de plano pendente antes e depois da decisão de aprovação
-- tentar agendar novamente antes e depois da substituição manual
+- programação de nova tentativa antes e depois da intervenção manual
 
-Exemplos de dados que devem ficar fora da carga útil do estado do evento:
-- matrizes completas de histórico de tentativas
-- instantâneos completos da assinatura
-- cargas úteis de pedidos completos
-- diagnóstico bruto do provedor
+Exemplos de dados que devem permanecer fora da carga útil do estado do evento:
+- matrizes com o histórico completo de tentativas
+- instantâneos completos de assinaturas
+- cargas úteis completas de pedidos
+- diagnósticos brutos do provedor
 
-## Taxonomia do tipo de evento
+## Taxonomia de tipos de eventos
 
-O `Activity Log` deve usar uma taxonomia explícita e estável agrupada por prefixo de domínio.
+O `Activity Log` deve utilizar uma taxonomia estável e explícita, agrupada por prefixo de domínio.
 
 ### Eventos de assinatura
 
@@ -273,7 +273,7 @@ O `Activity Log` deve usar uma taxonomia explícita e estável agrupada por pref
 
 O modelo de armazenamento implementado é `subscription_log`.
 
-Ele pertence ao módulo dedicado `activity-log` e, do ponto de vista comercial, permanece apenas para gravação.
+Ele pertence ao módulo específico `activity-log` e, do ponto de vista comercial, permanece apenas para gravação.
 
 O registro é mantido:
 - campos de identidade principal e de filtro
@@ -360,26 +360,26 @@ A política de retenção atual para a v1 é:
 - sem tarefa de limpeza baseada em tempo
 - sem política de arquivamento silencioso em segundo plano
 
-Raciocínio:
+Fundamentação:
 - a utilidade da auditoria depende da continuidade histórica
 - a carga útil é intencionalmente compacta
-- as regras de limpeza operacional devem ser explícitas e implementadas separadamente, se introduzidas posteriormente
+- as regras operacionais de limpeza devem ser explícitas e implementadas separadamente, caso sejam introduzidas posteriormente
 
-Se surgir um requisito de retenção futuro, ele deverá ser implementado como uma capacidade de manutenção dedicada com:
-- uma janela de retenção explícita
-- limpar semântica de arquivamento ou eliminação
-- documentação separada e orientação de implementação
+Caso surja uma exigência futura de retenção, ela deverá ser implementada como um recurso de manutenção específico, com:
+- um período de retenção explícito;
+- regras claras de arquivamento ou eliminação;
+- documentação e orientações de implementação específicas.
 
 ## Monitoramento e Desempenho
 
-Operacionalmente, o seguinte deve ser observado para `Activity Log`:
-- crescimento de linha em `subscription_log`
+Do ponto de vista operacional, deve-se observar o seguinte para `Activity Log`:
+- crescimento do número de linhas em `subscription_log`
 - volume de eventos por dia e por semana
 - tempo de resposta para:
   - `GET /admin/subscription-logs`
   - `GET /admin/subscription-logs/:id`
   - `GET /admin/subscriptions/:id/logs`
-- comportamento de consulta em torno de:
+- comportamento das consultas em relação a:
   - `subscription_id`
   - `customer_id`
   - `event_type`
@@ -387,79 +387,79 @@ Operacionalmente, o seguinte deve ser observado para `Activity Log`:
 
 Premissas operacionais atuais:
 - a lista principal e a linha do tempo são paginadas
-- a classificação padrão é `created_at desc`
-- os índices atuais são suficientes para a carga de trabalho v1 esperada
+- a ordenação padrão é `created_at desc`
+- os índices atuais são suficientes para a carga de trabalho esperada da v1
 
-Sinais que devem desencadear a revisão:
-- desaceleração visível nas consultas de listas globais
-- desaceleração visível nas consultas de cronograma de assinatura
-- grandes aumentos no volume `subscription_log` causados pela emissão de eventos ruidosos
-- pressão para ampliar a pesquisa ou o enriquecimento além do atual modelo instantâneo
+Sinais que devem desencadear uma revisão:
+- lentidão perceptível nas consultas à lista global
+- lentidão perceptível nas consultas à linha do tempo de assinaturas
+- aumentos significativos no volume de `subscription_log` causados pela emissão de eventos irrelevantes
+- pressão para ampliar a pesquisa ou o enriquecimento além do atual modelo que prioriza os snapshots
 
-## Não metas
+## Não-objetivos
 
-A implementação atual de `Activity Log` não visa fornecer:
+A implementação atual do `Activity Log` não tem como objetivo fornecer:
 - telemetria de uso geral
-- diagnóstico de pagamento em nível de provedor
+- diagnósticos de pagamento no nível do provedor
 - instantâneos históricos completos de agregados de domínio
-- limpeza automática de retenção
+- limpeza automática de dados retidos
 - ferramentas de exportação
-- filtros salvos ou personalização em nível de usuário
+- filtros salvos ou personalização no nível do usuário
 
-Essas áreas são melhorias futuras e não fazem parte do contrato arquitetônico v1.
+Essas áreas são melhorias futuras e não fazem parte do contrato de arquitetura da v1.
 
-## Decisão de escopo para planos e ofertas
+## Decisão sobre o escopo para planos e ofertas
 
-`Plans & Offers` fazem parte do tempo de execução de comércio recorrente, mas não devem introduzir eventos de configuração global autônomos no `Activity Log` centrado em assinatura na v1.
+`Plans & Offers` fazem parte do ambiente de execução do comércio recorrente, mas não devem introduzir eventos de configuração global independentes no `Activity Log` centrado em assinaturas da v1.
 
-Raciocínio:
-- `Activity Log` é centrado em uma assinatura
-- `Plans & Offers` gerencia principalmente a configuração no nível do produto ou no nível da variante
-- as operações de criação, atualização e alternância na configuração da oferta não são inerentemente eventos de uma assinatura específica
+Fundamentação:
+- `Activity Log` está centrado em uma assinatura
+- `Plans & Offers` gerencia principalmente a configuração no nível do produto ou da variante
+- as operações de criação, atualização e ativação/desativação na configuração da oferta não são, por natureza, eventos de uma assinatura específica
 
-Portanto, a decisão de escopo atual é:
-- não adicione eventos `plan-offer.*` independentes a `Activity Log` v1
-- capturar o efeito da configuração do plano voltado para a assinatura por meio de eventos de assinatura e renovação
+Portanto, a decisão atual sobre o escopo é:
+- não adicionar eventos `plan-offer.*` independentes ao `Activity Log` v1
+- capturar o efeito da configuração do plano sobre a assinatura por meio de eventos de assinatura e renovação
 
 Exemplos:
-- uma futura alteração de plano solicitada em uma assinatura é representada por `subscription.plan_change_scheduled`
-- o sucesso ou fracasso da renovação após a validação da política é representado por eventos de renovação
+- uma alteração futura solicitada em uma assinatura é representada por `subscription.plan_change_scheduled`
+- o sucesso ou a falha na renovação após a validação da apólice é representado por eventos de renovação
 
-Se os requisitos de auditoria de configuração se tornarem importantes posteriormente, eles deverão ser modelados como uma trilha de auditoria de configuração separada, em vez de incluídos no fluxo de atividades por assinatura.
+Caso os requisitos de auditoria de configuração venham a se tornar importantes no futuro, eles devem ser modelados como uma trilha de auditoria de configuração separada, em vez de serem incorporados ao fluxo de atividades por assinatura.
 
-## Modelo de dados SubscriptionLog
+## Modelo de dados do SubscriptionLog
 
-A futura área `Activity Log` deve usar um modelo de dados personalizado dedicado chamado `subscription_log`.
+A futura área `Activity Log` deverá utilizar um modelo de dados personalizado dedicado denominado `subscription_log`.
 
-Este modelo pretende ser:
-- apenas anexar
-- centrado em assinatura
-- otimizado para leituras de lista de administradores, detalhes e cronograma por assinatura
+Este modelo foi projetado para ser:
+- somente de adição
+- centrado em assinaturas
+- otimizado para leituras da lista de administração, detalhes e linha do tempo por assinatura
 
-Não se pretende tornar-se um barramento de eventos generalizado ou uma área de armazenamento para diagnósticos operacionais.
+Não se destina a se tornar um barramento de eventos generalizado nem uma área de armazenamento para diagnósticos operacionais.
 
-O proprietário do tempo de execução desse modelo é o módulo personalizado Medusa dedicado:
+O proprietário de tempo de execução desse modelo é o módulo personalizado dedicado do Medusa:
 - `src/modules/activity-log`
 
 O módulo expõe:
 - `ACTIVITY_LOG_MODULE = "activityLog"`
 - o modelo de dados `subscription_log`
-- o serviço de módulo usado posteriormente por fluxos de trabalho e auxiliares de leitura de administrador
+- o serviço do módulo utilizado posteriormente pelos fluxos de trabalho e pelos auxiliares de leitura do Admin
 
-## Semântica somente para acréscimos
+## Semântica de apenas adição
 
-`subscription_log` deve ser tratado como uma entidade somente anexada.
+`subscription_log` deve ser tratado como uma entidade apenas para adição.
 
-Isso significa:
-- um evento de negócios produz um registro de log
-- os registros existentes não são editados como parte do fluxo comercial normal
-- a evolução do estado é representada por novas entradas de log, não pela mutação das mais antigas
+Isso significa que:
+- cada evento de negócios gera um registro de log
+- os registros existentes não são editados como parte do fluxo normal de negócios
+- a evolução do estado é representada por novas entradas no log, e não pela modificação das entradas mais antigas
 
-Isto mantém a trilha de auditoria estável e compreensível para os operadores.
+Isso mantém a trilha de auditoria estável e compreensível para os operadores.
 
-A regra somente acréscimo é especialmente importante porque o log se destina a descrever eventos comerciais históricos, e não a propriedade atual do domínio.
+A regra de “somente adição” é especialmente importante porque o log tem como objetivo descrever eventos comerciais históricos, e não a propriedade atual do domínio.
 
-## Campos Físicos Propostos
+## Campos físicos propostos
 
 O modelo deve armazenar os seguintes campos:
 
@@ -479,136 +479,136 @@ O modelo deve armazenar os seguintes campos:
 - `reason`
 - `metadata`
 
-Os campos Medusa automáticos também estão presentes:
+Também estão presentes campos automáticos do Medusa:
 - `created_at`
 - `updated_at`
 - `deleted_at`
 
 ### Campos principais de filtragem
 
-Os principais campos de filtragem de administrador e linha do tempo são:
+Os principais campos de filtragem e linha do tempo do Admin são:
 - `subscription_id`
 - `customer_id`
 - `event_type`
 - `created_at`
 
-Devem ser colunas escalares de primeira classe, não valores ocultos dentro do JSON.
+Essas devem ser colunas escalares de primeira classe, e não valores ocultos dentro de JSON.
 
 ### Campos JSON
 
-O modelo deve usar campos JSON para:
+O modelo deve utilizar campos JSON para:
 - `previous_state`
 - `new_state`
 - `changed_fields`
 - `metadata`
 
-Esses campos JSON são justificados porque armazenam cargas específicas de eventos que podem variar de acordo com o tipo de evento.
+Esses campos JSON se justificam porque armazenam cargas úteis específicas de cada evento, que podem variar de acordo com o tipo de evento.
 
-No entanto, devem permanecer compactos e limitados:
-- sem cópias agregadas completas
+No entanto, eles devem permanecer compactos e limitados:
+- sem cópias completas de agregados
 - sem matrizes de histórico de tentativas
-- sem cargas úteis brutas do provedor de pagamento
-- sem grandes despejos de diagnóstico
+- sem cargas úteis brutas de provedores de pagamento
+- sem dumps de diagnóstico de grande porte
 
-## Exibir decisão de instantâneo
+## Exibir decisão sobre o instantâneo
 
-O modelo `subscription_log` deve armazenar um pequeno conjunto de campos de snapshot orientados para exibição diretamente no registro:
+O modelo `subscription_log` deve armazenar um pequeno conjunto de campos de instantâneo voltados para exibição diretamente no registro:
 - `subscription_reference`
 - `customer_name`
 - `product_title`
 - `variant_title`
 
-Esta é a decisão recomendada para `Activity Log` v1.
+Esta é a decisão recomendada para o `Activity Log` v1.
 
-### Por que armazenar pequenos instantâneos de exibição
+### Por que armazenar miniaturas de telas pequenas
 
-A trilha de auditoria deve permanecer legível mesmo que as entidades atualmente vinculadas sejam alteradas posteriormente.
+A trilha de auditoria deve permanecer legível mesmo que as entidades vinculadas atualmente venham a sofrer alterações posteriormente.
 
 Por exemplo:
 - o nome de exibição de um cliente pode mudar
 - o título de um produto ou variante pode mudar
-- os rótulos voltados para assinatura podem evoluir após o evento acontecer
+- os rótulos relacionados às assinaturas podem sofrer alterações após a ocorrência do evento
 
-Se o log do administrador dependesse apenas do enriquecimento atual, os eventos históricos poderiam se tornar enganosos.
+Se o registro de administração se baseasse apenas no enriquecimento atual, os eventos históricos poderiam se tornar enganosos.
 
-Pequenos instantâneos resolvem esse problema sem copiar todo o agregado de assinaturas.
+Pequenos instantâneos resolvem esse problema sem precisar copiar todo o agregado da assinatura.
 
-### Por que não armazenar instantâneos completos da entidade
+### Por que não armazenar instantâneos completos das entidades?
 
-O plugin atual já usa snapshots onde são operacionalmente necessários, especialmente em `Subscriptions`.
+O plugin atual já utiliza instantâneos nos casos em que são operacionalmente necessários, especialmente em `Subscriptions`.
 
-Para `Activity Log`, um instantâneo completo seria desnecessário e muito pesado porque:
-- o log é focado em eventos, não em agregados
-- a maioria das linhas da lista de administradores só precisa de alguns rótulos de exibição estáveis
-- instantâneos grandes criariam desvios de esquema e pressão de duplicação
+Para o `Activity Log`, um snapshot completo seria desnecessário e muito pesado porque:
+- o log é focado em eventos, e não em agregados
+- a maioria das linhas da lista de administração precisa apenas de alguns rótulos de exibição estáveis
+- snapshots grandes criariam desvio de esquema e pressão por duplicação
 
 Portanto, a regra acordada é:
-- armazenar alguns campos de instantâneo de exibição estáveis como colunas escalares
-- manter detalhes de alterações específicas do evento em campos JSON compactos
-- confiar no enriquecimento do tempo de consulta apenas para detalhes contextuais opcionais, não para os principais rótulos de auditoria
+- armazenar alguns campos estáveis de instantâneos de exibição como colunas escalares
+- manter os detalhes de alterações específicas de eventos em campos JSON compactos
+- recorrer ao enriquecimento no momento da consulta apenas para detalhes contextuais opcionais, e não para os rótulos essenciais de auditoria
 
 ## Estratégia de indexação
 
-A estratégia de indexação inicial deve corresponder ao padrão existente de índices escalares pragmáticos do plugin.
+A estratégia inicial de indexação deve seguir o padrão existente do plug-in de índices escalares pragmáticos.
 
-Índices de coluna única necessários:
+Índices de coluna única obrigatórios:
 - `subscription_id`
 - `customer_id`
 - `event_type`
 - `created_at`
 
-Índices compostos necessários:
+Índices compostos obrigatórios:
 - `subscription_id + created_at`
 - `customer_id + created_at`
 - `event_type + created_at`
 
-## Escopo de Emissão do Fluxo de Trabalho
+## Âmbito das emissões do fluxo de trabalho
 
-As entradas `Activity Log` são emitidas a partir de caminhos de mutação apoiados por fluxo de trabalho, não diretamente de rotas ou auxiliares técnicos de baixo nível.
+As entradas `Activity Log` são geradas a partir de caminhos de mutação baseados em fluxos de trabalho, e não diretamente a partir de rotas ou auxiliares técnicos de baixo nível.
 
-Para `Cancellation & Retention`, o escopo atual de emissões de eventos comerciais é:
+Para `Cancellation & Retention`, o escopo atual de emissão do evento de negócios é:
 - `start-cancellation-case` -> `cancellation.case_started`
 - `apply-retention-offer` -> `cancellation.offer_applied`
 - `update-cancellation-reason` -> `cancellation.reason_updated`
 - `finalize-cancellation` -> `cancellation.finalized`
 
-Essas entradas têm como objetivo resumir os resultados do fluxo de cancelamento voltados para o operador.
+Essas entradas têm como objetivo resumir os resultados do fluxo de cancelamento do ponto de vista do operador.
 
-Eles não substituem o contexto de auditoria local do módulo mais detalhado armazenado no próprio domínio de cancelamento, como:
+Eles não substituem o contexto de auditoria local do módulo, mais detalhado, armazenado no próprio domínio de cancelamento, como:
 - `finalized_by`
 - `decided_by`
 - `manual_actions`
 - histórico de eventos de oferta
 - metadados detalhados do caso
 
-Esses registros detalhados do processo permanecem como fonte da verdade dentro de `Cancellation & Retention`.
+Esses registros detalhados do processo continuam sendo a fonte de referência dentro do `Cancellation & Retention`.
 
-`Activity Log` armazena apenas um resumo compacto de vários domínios que é adequado para linha do tempo do administrador e visualizações de auditoria.
+`Activity Log` armazena apenas um resumo compacto entre domínios, adequado para a linha do tempo do administrador e as visualizações de auditoria.
 
-## Modelo de leitura administrativa
+## Modelo de leitura do administrador
 
-`Activity Log` deve expor um modelo de leitura de administrador dedicado, separado dos caminhos de gravação do serviço do módulo.
+O `Activity Log` deve disponibilizar um modelo de leitura exclusivo para administradores, separado dos caminhos de gravação do serviço do módulo.
 
-O formato recomendado segue o mesmo padrão já utilizado nas demais áreas Admin do plugin:
-- ajudantes dedicados de leitura/consulta
-- DTOs administrativos dedicados
-- ler a composição fora do serviço de gravação principal do módulo
+A estrutura recomendada segue o mesmo padrão já utilizado nas outras áreas de administração do plug-in:
+- auxiliares dedicados para leitura/consulta
+- DTOs dedicados para a administração
+- composição de leitura fora do serviço principal de gravação do módulo
 
-O modelo de leitura deve suportar três caminhos de consulta:
-- lista de registros globais
-- detalhe de registro único
-- cronograma por assinatura
+O modelo de leitura deve oferecer suporte a três caminhos de consulta:
+- lista global de registros
+- detalhes de um único registro
+- linha do tempo por assinatura
 
-## Lista de registros globais
+## Lista global de registros
 
-A lista global destina-se à futura página Admin `Activity Log`.
+A lista global destina-se à futura página de administração `Activity Log`.
 
-Sua finalidade é apoiar:
-- navegação de auditoria de operador de alto sinal
-- filtragem entre assinaturas e clientes
-- paginação e cronologia descendente padrão
+Seu objetivo é oferecer suporte a:
+- navegação em auditorias de operadores com grande volume de sinais;
+- filtragem por assinaturas e clientes;
+- paginação e ordenação cronológica decrescente por padrão
 
-A lista recomendada DTO inclui:
+A lista recomendada de DTOs inclui:
 - `id`
 - `subscription_id`
 - `subscription_reference`
@@ -619,9 +619,9 @@ A lista recomendada DTO inclui:
 - `actor_id`
 - `reason`
 - `created_at`
-- compacto `change_summary`
+- compact `change_summary`
 
-### Filtros de lista
+### Filtros da lista
 
 O caminho de leitura da lista deve suportar:
 - `subscription_id`
@@ -632,35 +632,35 @@ O caminho de leitura da lista deve suportar:
 - `date_to`
 - texto livre `q`
 
-A pesquisa de texto livre deve ser limitada a campos estáveis voltados para o operador:
+A pesquisa de texto livre deve ser limitada aos campos fixos destinados aos operadores:
 - `subscription_reference`
 - `customer_name`
 - `reason`
 
-### Classificação e paginação de lista
+### Classificação e paginação de listas
 
-A classificação padrão deve ser:
+A ordenação padrão deve ser:
 - `created_at desc`
 
-A paginação deve seguir o padrão Admin padrão do plugin:
+A paginação deve seguir o padrão de administração do plugin:
 - `limit`
 - `offset`
 - `count`
 
-A lista global deve ser lida diretamente de `subscription_log` e não deve exigir enriquecimento de tempo de execução vinculado para renderizar linhas úteis.
+A lista global deve ser lida diretamente de `subscription_log` e não deve exigir o enriquecimento dinâmico vinculado para exibir linhas úteis.
 
-## Detalhe do registro
+## Detalhes do registro
 
-O caminho de leitura de detalhes do log destina-se ao detalhamento da tabela Admin ou da linha do tempo.
+O caminho de leitura dos detalhes do log destina-se à análise detalhada a partir da tabela “Admin” ou da linha do tempo.
 
-O DTO detalhado deve expor a carga completa do evento:
+O DTO de detalhes deve expor toda a carga útil do evento:
 - `id`
 - `subscription_id`
 - `customer_id`
 - `event_type`
 - `actor_type`
 - `actor_id`
-- exibir campos de instantâneo
+- exibir campos do snapshot
 - `previous_state`
 - `new_state`
 - `changed_fields`
@@ -668,22 +668,22 @@ O DTO detalhado deve expor a carga completa do evento:
 - `metadata`
 - `created_at`
 
-A visualização detalhada pode, opcionalmente, adicionar um resumo com link leve para a assinatura relacionada, mas esse enriquecimento deve permanecer intencionalmente pequeno.
+A visualização detalhada pode, opcionalmente, incluir um breve resumo vinculado à assinatura relacionada, mas esse enriquecimento deve ser intencionalmente sucinto.
 
 Resumo vinculado opcional recomendado:
 - `subscription_id`
 - `subscription_reference`
 - assinatura atual `status`
 
-O caminho de leitura detalhada não deve hidratar avidamente o estado atual `renewal`, `dunning` ou `cancellation`, porque isso misturaria dados históricos de auditoria com o estado atual do tempo de execução entre módulos.
+O caminho de leitura de detalhes não deve atualizar antecipadamente o estado atual de `renewal`, `dunning` ou `cancellation`, pois isso misturaria os dados históricos de auditoria com o estado atual de tempo de execução entre módulos.
 
 ## Cronograma por assinatura
 
-O cronograma por assinatura destina-se a ser incorporado à experiência administrativa `Subscriptions`.
+A linha do tempo por assinatura destina-se a ser incorporada na interface de administração `Subscriptions`.
 
-Deve usar os mesmos registros de eventos subjacentes da lista global, mas filtrados por um `subscription_id`.
+Ela deve utilizar os mesmos registros de eventos subjacentes da lista global, mas filtrados por um `subscription_id`.
 
-O DTO da linha do tempo pode reutilizar o DTO da lista com os mesmos campos principais:
+O DTO de linha do tempo pode reutilizar o DTO de lista com os mesmos campos principais:
 - `id`
 - `event_type`
 - `actor_type`
@@ -691,172 +691,172 @@ O DTO da linha do tempo pode reutilizar o DTO da lista com os mesmos campos prin
 - `reason`
 - `created_at`
 - `change_summary`
-- exibir campos de instantâneo quando necessário
+- exibir campos do instantâneo quando necessário
 
-A linha do tempo deve apoiar:
-- padrão `created_at desc`
-- ordem ascendente opcional posteriormente, se necessário, para reprodução na linha do tempo
+A linha do tempo deve suportar:
+- o valor padrão `created_at desc`
+- ordem ascendente opcional posteriormente, se necessário para a reprodução da linha do tempo
 
-O agrupamento da linha do tempo, os emblemas e a lógica de apresentação pertencem à camada da IU, não ao modelo de leitura.
+O agrupamento na linha do tempo, os emblemas e a lógica de apresentação pertencem à camada da interface do usuário, e não ao modelo de leitura.
 
-## Decisão de enriquecimento
+## Decisão sobre o enriquecimento
 
-A decisão final do modelo de leitura para `Activity Log` v1 é:
-- usar dados de exibição `snapshot-first`
-- permitir o enriquecimento de luz opcional apenas quando for claramente necessário
+A decisão final sobre o modelo de leitura para o `Activity Log` v1 é:
+- usar os dados de exibição do `snapshot-first`
+- permitir o enriquecimento opcional de luz apenas quando for claramente necessário
 
-Isso significa:
-- a lista primária e a linha do tempo devem ser renderizadas somente a partir de `subscription_log`
-- rótulos de exibição vêm de campos de instantâneo armazenados
-- pesquisa vinculada opcional pode ser adicionada para conveniência de detalhes, mas não é a base do modelo de leitura
+Isso significa que:
+- a lista principal e a linha do tempo devem ser renderizadas apenas a partir de `subscription_log`
+- os rótulos exibidos provêm de campos de instantâneos armazenados
+- uma consulta vinculada opcional pode ser adicionada para facilitar a visualização dos detalhes, mas não constitui a base do modelo de leitura
 
-### Por que tirar o snapshot primeiro
+### Por que priorizar o snapshot
 
 A trilha de auditoria deve permanecer historicamente estável.
 
-Se as entidades atualmente vinculadas mudaram ao longo do tempo:
+Se as entidades vinculadas atualmente mudarem com o tempo:
 - os nomes dos clientes podem mudar
-- os títulos dos produtos podem mudar
-- os títulos das variantes podem mudar
-- rótulos voltados para assinatura podem variar
+- os nomes dos produtos podem mudar
+- os nomes das variantes podem mudar
+- os rótulos relacionados às assinaturas podem sofrer alterações
 
-Usar campos de snapshot como primeira fonte preserva o que os operadores deveriam ter visto no momento do evento.
+O uso dos campos do snapshot como primeira fonte preserva o que os operadores deveriam ter visto no momento do evento.
 
-### Por que não enriquecimento totalmente vinculado
+### Por que não um enriquecimento totalmente interligado?
 
-O enriquecimento vinculado pesado criaria vários problemas:
-- enfraqueceria a natureza histórica da pista de auditoria
-- introduziria acoplamento desnecessário entre módulos nas leituras do administrador
-- tornaria a lista e o cronograma mais caros do que o necessário
+Um enriquecimento com muitas ligações criaria vários problemas:
+- enfraqueceria a natureza histórica da trilha de auditoria
+- introduziria um acoplamento desnecessário entre módulos nas consultas do Admin
+- tornaria a lista e a linha do tempo mais pesadas do que o necessário
 
 Portanto, a regra acordada é:
-- lista e linha do tempo são instantâneas primeiro e locais da tabela
-- os detalhes podem usar enriquecimento de luz por conveniência
-- o estado atual do domínio permanece pertencente aos seus módulos originais
+- a lista e a linha do tempo priorizam os instantâneos e são locais à tabela
+- os detalhes podem utilizar um leve enriquecimento por conveniência
+- o estado atual do domínio permanece sob a responsabilidade de seus módulos originais
 
-Raciocínio:
-- `subscription_id + created_at` suporta o cronograma por assinatura
+Fundamentação:
+- `subscription_id + created_at` oferece suporte à linha do tempo por assinatura
 - `customer_id + created_at` oferece suporte a futuras consultas de auditoria no nível do cliente
-- `event_type + created_at` suporta filtragem operacional no Admin
-- `created_at` suporta navegação cronológica reversa padrão
+- `event_type + created_at` oferece suporte à filtragem operacional no Admin
+- `created_at` oferece suporte à navegação padrão em ordem cronológica inversa
 
 O modelo inicial não deve adicionar índices JSON.
 
-Raciocínio:
-- os caminhos de consulta primários esperados são escalares e baseados no tempo
-- A indexação JSON adicionaria complexidade antes que existissem evidências reais de consulta
-- a filtragem de carga útil do evento não é um requisito primário da v1
+Fundamentação:
+- os caminhos de consulta primários esperados são escalares e baseados em tempo
+- a indexação JSON aumentaria a complexidade antes que haja evidências concretas de consultas
+- a filtragem da carga útil dos eventos não é um requisito primário da v1
 
-## Módulo e Estratégia de Migração
+## Módulo e estratégia de migração
 
-`subscription_log` deve residir em um módulo personalizado `activity-log` dedicado.
+O `subscription_log` deve estar em um módulo personalizado dedicado chamado `activity-log`.
 
-O padrão de tempo de execução deve corresponder às convenções atuais do plugin:
+O padrão de execução deve estar de acordo com as convenções atuais dos plug-ins:
 - modelo de dados dedicado
 - serviço de módulo dedicado
 - migrações dedicadas
-- referências escalares a domínios externos em vez de propriedade direta entre módulos
+- referências escalares a domínios externos, em vez de propriedade direta entre módulos
 
-Status atual de implementação:
+Status atual da implementação:
 - o esqueleto do módulo existe em `src/modules/activity-log`
-- o modelo, o serviço e a exportação do módulo são definidos
-- a migração inicial e o instantâneo do módulo agora existem em `src/modules/activity-log/migrations`
+- o modelo, o serviço e a exportação do módulo estão definidos
+- a migração inicial e o snapshot do módulo agora estão em `src/modules/activity-log/migrations`
 
-A primeira migração para o módulo deve:
-- crie a tabela `subscription_log`
-- crie os índices escalares e compostos listados acima
-- confiar no padrão de índice parcial `deleted_at` da Medusa
+A primeira migração do módulo deve:
+- criar a tabela `subscription_log`
+- criar os índices escalares e compostos listados acima
+- utilizar o padrão de índice parcial padrão do Medusa, `deleted_at`
 
-Status atual de implementação:
+Status atual da implementação:
 - a migração gerada cria a tabela `subscription_log`
 - a migração gerada inclui os índices escalares necessários
-- a migração gerada inclui a linha do tempo composta e os índices do filtro Admin
-- a migração gerada inclui um índice exclusivo para `dedupe_key`
-- aplicar a migração ao banco de dados continua sendo uma etapa separada no nível do aplicativo
+- a migração gerada inclui os índices compostos “timeline” e “Admin filter”
+- a migração gerada inclui um índice único para `dedupe_key`
+- a aplicação da migração ao banco de dados continua sendo uma etapa separada no nível do aplicativo
 
-## Limite do auxiliar de normalização
+## Limite do Auxiliar de Normalização
 
-Antes de os registros de eventos serem gravados, eles devem passar por um auxiliar de normalização compartilhado de propriedade do módulo `activity-log`.
+Antes que os registros de eventos sejam gravados, eles devem passar por um auxiliar de normalização compartilhado pertencente ao módulo `activity-log`.
 
-O ajudante é responsável por:
-- construindo compacto `changed_fields` de `previous_state` e `new_state`
-- redigindo valores confidenciais de cargas úteis de estado de evento
-- filtrar `metadata` para uma lista de permissões estável
-- anexar `correlation_id` quando já existe um no fluxo de chamada
-- gerando um `dedupe_key` determinístico
+O helper é responsável por:
+- construir um `changed_fields` compacto a partir de `previous_state` e `new_state`
+- ocultar valores confidenciais das cargas úteis do estado dos eventos
+- filtrar `metadata` para reduzir a lista a uma lista de permissões estável
+- anexar `correlation_id` quando já houver um no fluxo de chamada
+- gerar um `dedupe_key` determinístico
 
-O ajudante é intencionalmente:
+O helper é, intencionalmente:
 - síncrono
 - livre de efeitos colaterais
 - independente do contêiner Medusa
 
-Isso mantém a modelagem da carga útil reutilizável em fluxos de trabalho sem misturar lógica de normalização com lógica de persistência.
+Isso permite que o modelamento da carga útil seja reutilizável em diferentes fluxos de trabalho, sem misturar a lógica de normalização com a lógica de persistência.
 
-### Regras de redação
+### Regras de supressão
 
-O auxiliar deve remover ou excluir valores confidenciais de cargas e metadados estaduais.
+O helper deve remover ou excluir valores confidenciais das cargas de estado e dos metadados.
 
-As categorias protegidas atuais incluem:
+As categorias protegidas atualmente incluem:
 - linhas completas de endereço de entrega
 - números de telefone
 - contexto de pagamento e referências de pagamento
-- cargas úteis do provedor bruto
+- cargas úteis brutas de provedores
 - rastreamentos de pilha e diagnósticos de baixo nível
 
-O objetivo é preservar o significado comercial voltado para o operador sem transformar `Activity Log` em uma área de armazenamento para dados técnicos confidenciais ou de baixo nível.
+O objetivo é preservar o significado comercial voltado para o operador, sem transformar o `Activity Log` em um espaço de armazenamento para dados confidenciais ou técnicos de baixo nível.
 
-### Regras principais de eliminação de duplicação
+### Regras-chave para a deduplicação
 
-O auxiliar deve gerar `dedupe_key` deterministicamente a partir de:
+O auxiliar deve gerar `dedupe_key` de forma determinística a partir de:
 - `event_type`
 - um escopo de domínio
 - um identificador de domínio de destino
 - um qualificador de evento opcional
 
-Isso permite que gravações posteriores apoiadas por fluxo de trabalho permaneçam idempotentes durante as novas tentativas.
+Isso permite que as gravações posteriores, realizadas por meio do fluxo de trabalho, permaneçam idempotentes mesmo em caso de novas tentativas.
 
 ## Etapa de gravação do fluxo de trabalho central
 
-O caminho de gravação futuro deve usar uma etapa central do fluxo de trabalho para persistência:
+O futuro caminho de gravação deve utilizar uma etapa central do fluxo de trabalho para a persistência:
 - `create-subscription-log-event`
 
-A etapa é responsável apenas por:
-- receber uma carga útil de evento normalizada e amigável ao fluxo de trabalho
-- verificando um registro existente por `dedupe_key`
-- criando um novo registro `subscription_log` somente quando necessário
-- retornando entrada de compensação que distingue `created` de `existing`
+Esta etapa é responsável apenas por:
+- receber uma carga útil de evento normalizada e compatível com o fluxo de trabalho
+- verificar se existe um registro para `dedupe_key`
+- criar um novo registro de `subscription_log` somente quando necessário
+- retornar dados de remuneração que distingam `created` de `existing`
 
-### Regra de Idempotência
+### Regra da idempotência
 
-A etapa deve tratar `dedupe_key` como a chave de idempotência lógica primária.
+A etapa deve tratar `dedupe_key` como a chave de idempotência lógica principal.
 
-Estratégia de gravação atual:
-- lido por `dedupe_key`
-- se existir um registro, reutilize-o
-- se não existir nenhum registro, crie um
+Estratégia atual de gravação:
+- leitura feita por `dedupe_key`
+- se houver um registro, reutilizá-lo
+- se não houver nenhum registro, criar um
 
-O índice exclusivo do banco de dados em `dedupe_key` permanece a última linha de proteção contra gravações duplicadas.
+O índice exclusivo do banco de dados em `dedupe_key` continua sendo a última linha de defesa contra gravações duplicadas.
 
-### Regra de compensação
+### Regra de remuneração
 
-A função de compensação da etapa deve excluir apenas os registros criados pela execução do fluxo de trabalho atual.
+A função de compensação desta etapa deve excluir apenas os registros criados pela execução atual do fluxo de trabalho.
 
 Não deve excluir:
-- registros de log previamente existentes
-- registros retornados porque o caminho de gravação atingiu uma duplicata idempotente
+- registros de log já existentes;
+- registros devolvidos porque o caminho de gravação encontrou uma duplicata idempotente
 
-O modelo não deve introduzir chaves estrangeiras para outros módulos.
+O modelo não deve introduzir chaves estrangeiras rígidas em outros módulos.
 
-Isso segue o mesmo limite prático já usado em:
+Isso segue o mesmo limite prático já utilizado em:
 - `renewal_cycle`
 - `dunning_case`
 - `cancellation_case`
 
-Essas áreas persistem identificadores escalares e usam enriquecimento em tempo de consulta em vez de propriedade entre módulos no nível SQL.
+Essas áreas mantêm identificadores escalares e utilizam o enriquecimento no momento da consulta, em vez da propriedade entre módulos no nível do SQL.
 
-## Escopo atual de emissão de renovação
+## Escopo atual das emissões de renovação
 
-A integração `Renewals` atual emite eventos `Activity Log` apenas para resultados finais significativos para os negócios e decisões do operador.
+A integração atual do `Renewals` emite eventos `Activity Log` apenas para resultados finais relevantes para os negócios e decisões dos operadores.
 
 Eventos de renovação implementados:
 - `renewal.approval_approved`
@@ -867,28 +867,28 @@ Eventos de renovação implementados:
 
 Limites de emissão:
 - as decisões de aprovação são emitidas a partir dos fluxos de trabalho de aprovação
-- a execução forçada manual é emitida somente depois que a solicitação de força passa na validação do domínio
+- a execução manual forçada só é emitida após a solicitação de execução forçada passar pela validação de domínio
 - a execução da renovação emite apenas o resultado final `succeeded` ou `failed`
 
-Os itens a seguir permanecem fora de `Activity Log` e permanecem apenas na observabilidade da renovação:
-- aquisição e liberação de bloqueio de fluxo de trabalho
-- tentativa de criação e tentativa de processamento interno
-- sessão de pagamento e internos do provedor de pagamento
-- agendador estruturado e diagnóstico de execução forçada
-- casos de execução bloqueados como `already_processing` e `duplicate_execution`
+Os seguintes itens permanecem fora do `Activity Log` e ficam restritos apenas à observabilidade de renovação:
+- aquisição e liberação do bloqueio do fluxo de trabalho
+- criação de tentativas e mecanismos internos de processamento de tentativas
+- mecanismos internos da sessão de pagamento e do provedor de pagamento
+- agendador estruturado e diagnósticos de execução forçada
+- casos de execução bloqueada, como `already_processing` e `duplicate_execution`
 
-Isso mantém o fluxo de atividades de renovação legível pelo operador, preservando o rastreamento operacional detalhado em `src/modules/renewal/utils/observability.ts`.
+Isso mantém o fluxo de atividades de renovação compreensível para o operador, ao mesmo tempo em que preserva o rastreamento operacional detalhado em `src/modules/renewal/utils/observability.ts`.
 
 ## Resumo
 
 O limite acordado para `Activity Log` é:
 
-- é uma trilha de auditoria de negócios canônica somente com anexos para eventos relacionados a assinaturas
-- não é a fonte da verdade para estado de assinatura, renovação, cobrança ou cancelamento
-- os campos e históricos de auditoria local do módulo existente permanecem em vigor
-- os registros operacionais estruturados permanecem separados da trilha de auditoria empresarial
-- a gravação de eventos entre domínios deve acontecer por meio de orquestração de fluxo de trabalho, consistente com os padrões Medusa
-- os registros de eventos devem permanecer compactos, estáveis e legíveis pelo operador
-- As alterações de configuração de `Plans & Offers` estão fora do escopo para eventos `Activity Log` v1 independentes
-- `subscription_log` deve ser um modelo dedicado somente para acréscimos com campos de filtro escalar e cargas JSON compactas
-- `subscription_log` deve armazenar pequenos instantâneos de exibição do administrador diretamente no registro
+- trata-se de um registro de auditoria comercial canônico, do tipo “somente adição”, para eventos relacionados a assinaturas
+- não é a fonte de verdade para o status de assinatura, renovação, cobrança ou cancelamento
+- os campos e históricos de auditoria locais dos módulos existentes permanecem em vigor
+- os logs operacionais estruturados permanecem separados do registro de auditoria comercial
+- o registro de eventos entre domínios deve ocorrer por meio da orquestração de fluxos de trabalho, em conformidade com os padrões do Medusa
+- os registros de eventos devem permanecer compactos, estáveis e legíveis pelo operador;
+- alterações na configuração do `Plans & Offers` estão fora do escopo dos eventos independentes do `Activity Log` v1;
+- o `subscription_log` deve ser um modelo dedicado de apenas acréscimo, com campos de filtro escalares e cargas JSON compactas;
+- o `subscription_log` deve armazenar pequenos instantâneos da tela de administração diretamente no registro
