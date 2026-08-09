@@ -37,6 +37,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: reorder-medusa:latest
     container_name: reorder-medusa
     restart: unless-stopped
     depends_on:
@@ -45,7 +46,7 @@ services:
       redis:
         condition: service_healthy
     ports:
-      - "9000:9000"
+      - "${MEDUSA_PORT:-9005}:9000"
     environment:
       NODE_ENV: development
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-reorder
@@ -55,10 +56,10 @@ services:
       POSTGRES_USER: postgres
       JWT_SECRET: supersecret
       COOKIE_SECRET: supersecret
-      MEDUSA_BACKEND_URL: http://localhost:9000
+      MEDUSA_BACKEND_URL: http://localhost:${MEDUSA_PORT:-9005}
       STORE_CORS: http://localhost:8000,http://localhost:3000,http://localhost:5173
-      ADMIN_CORS: http://localhost:9000,http://localhost:7001
-      AUTH_CORS: http://localhost:9000,http://localhost:7001,http://localhost:8000,http://localhost:3000,http://localhost:5173
+      ADMIN_CORS: http://localhost:${MEDUSA_PORT:-9005},http://localhost:9000,http://localhost:7001
+      AUTH_CORS: http://localhost:${MEDUSA_PORT:-9005},http://localhost:9000,http://localhost:7001,http://localhost:8000,http://localhost:3000,http://localhost:5173
       MEDUSA_ADMIN_ONBOARDING_TYPE: default
       MEDUSA_ADMIN_EMAIL: ${MEDUSA_ADMIN_EMAIL:-admin@reorder.local}
       MEDUSA_ADMIN_PASSWORD: ${MEDUSA_ADMIN_PASSWORD:-supersecret}

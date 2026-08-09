@@ -9,7 +9,10 @@ module.exports = defineConfig({
   projectConfig: {
     databaseUrl:
       process.env.DATABASE_URL ||
-      "postgres://postgres:postgres@localhost:5432/medusa-reorder",
+      "postgres://postgres:postgres@localhost:5432/medusa-reorder?sslmode=disable",
+    databaseDriverOptions: {
+      ssl: false,
+    },
     redisUrl: process.env.REDIS_URL,
     http: {
       jwtSecret: process.env.JWT_SECRET || "supersecret",
@@ -19,15 +22,15 @@ module.exports = defineConfig({
         "http://localhost:8000,http://localhost:3000,http://localhost:5173",
       adminCors:
         process.env.ADMIN_CORS ||
-        "http://localhost:9000,http://localhost:7001",
+        "http://localhost:9005,http://localhost:9000,http://localhost:7001",
       authCors:
         process.env.AUTH_CORS ||
-        "http://localhost:9000,http://localhost:7001,http://localhost:8000,http://localhost:3000,http://localhost:5173",
+        "http://localhost:9005,http://localhost:9000,http://localhost:7001,http://localhost:8000,http://localhost:3000,http://localhost:5173",
     },
   },
   admin: {
     disable: false,
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
+    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9005",
   },
   plugins: [
     {
