@@ -1,41 +1,41 @@
-# Reordenar: UI de administração de planos e ofertas e especificações de API
+# Reorder: Especificações da interface de usuário e da API de administração de planos e ofertas
 
-Este documento cobre a etapa `2.2.1` de `documentation/implementation_plan.md`.
+Este documento abrange a etapa `2.2.1`, de `documentation/implementation_plan.md`.
 
 Objetivo:
-- definir tipos de Admin DTO para `Plans & Offers`
-- definir a lista/detalhe do contrato para um Administrador `DataTable`
-- definir criar/editar/alternar cargas úteis para as próximas etapas de back-end
-- definir um contrato UX alinhado com os padrões padrão do Medusa Admin
+- definir os tipos de DTO do Admin para `Plans & Offers`
+- definir o contrato de lista/detalhes para um `DataTable` do Admin
+- definir as cargas de dados de criação/edição/ativação/desativação para as próximas etapas do backend
+- definir um contrato de UX alinhado aos padrões padrão do Medusa Admin
 
 Artefatos produzidos nesta etapa:
-- Tipos de DTO de administrador: `reorder/src/admin/types/plan-offer.ts`
-- este documento como especificação para colunas, ações, filtros e formas de solicitação/resposta
+- Tipos de DTO de administração: `reorder/src/admin/types/plan-offer.ts`
+- este documento como especificação para colunas, ações, filtros e formatos de solicitação/resposta
 
-Nota:
-- esta é uma especificação de design para etapas posteriores, não a implementação final do módulo
-- back-end, fluxos de trabalho e a rota da UI Admin serão implementados em `2.2` etapas posteriores
+Observação:
+- esta é uma especificação de projeto para etapas posteriores, não a implementação final do módulo
+- o backend, os fluxos de trabalho e a rota da interface de usuário administrativa serão implementados em etapas posteriores `2.2`
 
-## 1. Suposições de design
+## 1. Premissas de projeto
 
-`Plans & Offers` é uma visualização administrativa operacional usada para gerenciar a configuração da oferta de assinatura para um produto ou variante.
+`Plans & Offers` é uma visualização operacional do Admin utilizada para gerenciar a configuração da oferta de assinatura de um produto ou de uma variante.
 
-No nível do contrato, assumimos:
-- um registro Admin representa uma oferta de assinatura configurável
+No âmbito do contrato, partimos dos seguintes pressupostos:
+- um registro de Admin representa uma oferta de assinatura configurável
 - uma oferta pode ser definida para `product` ou `variant`
-- `variant` tem prioridade mais alta que `product`
-- O administrador deve ver o registro de origem e um resumo compacto da configuração efetiva
+- `variant` tem prioridade maior do que `product`
+- o Admin deve visualizar tanto o registro de origem quanto um resumo compacto da configuração efetiva
 
-Seguindo as convenções da Medusa:
-- a lista é baseada em `DataTable`
-- endpoints de leitura retornam DTOs paginados para a tabela e página de detalhes
-- mutações são expostas como rotas `POST` dedicadas
+Seguindo as convenções do Medusa:
+- a lista se baseia em `DataTable`
+- os endpoints de leitura retornam DTOs paginados para a tabela e a página de detalhes
+- as mutações são expostas como rotas dedicadas `POST`
 - o fluxo de criação deve usar `FocusModal`
-- editar um registro existente deve usar `Drawer`
+- a edição de um registro existente deve usar `Drawer`
 
-## 2. Administrador DTO
+## 2. DTO de administração
 
-Os tipos de UI são definidos como:
+Os tipos de interface do usuário são definidos como:
 - `PlanOfferAdminStatus`
 - `PlanOfferScope`
 - `PlanOfferFrequencyInterval`
@@ -56,7 +56,7 @@ Os tipos de UI são definidos como:
 Arquivo:
 - `reorder/src/admin/types/plan-offer.ts`
 
-## 3. Formato de registro de lista
+## 3. Formato dos registros da lista
 
 Registro mínimo da lista:
 - `id`
@@ -72,7 +72,7 @@ Registro mínimo da lista:
 
 ### `target`
 
-O campo `target` agrupa os dados necessários para exibir o produto ou variante:
+O campo `target` agrupa os dados necessários para exibir o produto ou a variante:
 
 ```ts
 {
@@ -85,13 +85,13 @@ O campo `target` agrupa os dados necessários para exibir o produto ou variante:
 }
 ```
 
-Por quê:
-- a tabela e a visualização detalhada devem renderizar dados comerciais sem exigir outro formato
-- a UI pode renderizar um bloco `product + variant` consistente
+Por que:
+- a tabela e a visualização detalhada devem exibir os dados de comércio sem a necessidade de outra forma
+- a interface do usuário pode exibir um único bloco `product + variant` consistente
 
 ### `allowed_frequencies`
 
-Lista de frequências de cobrança permitidas:
+Lista das frequências de cobrança permitidas:
 
 ```ts
 Array<{
@@ -101,8 +101,8 @@ Array<{
 }>
 ```
 
-Por quê:
-- a UI precisa de valores técnicos e de um rótulo pronto para renderização para emblemas ou listas compactas
+Por que:
+- a interface do usuário precisa tanto dos valores técnicos quanto de um rótulo pronto para renderização para emblemas ou listas compactas
 
 ### `discounts`
 
@@ -116,13 +116,13 @@ Array<{
 }>
 ```
 
-Nota:
-- a lista DTO não mapeia descontos em um objeto `interval -> value`
-- uma lista de registros é mais simples de renderizar e mais fácil de validar e classificar no lado da API/UI
+Observação:
+- o DTO de lista não mapeia descontos para um objeto `interval -> value`
+- uma lista de registros é mais simples de renderizar e mais fácil de validar e classificar tanto na API quanto na interface do usuário
 
 ### `effective_config_summary`
 
-A lista/detalhe do administrador deve mostrar imediatamente de onde vem a configuração final:
+A lista/detalhes de administração devem indicar imediatamente de onde vem a configuração final:
 
 ```ts
 {
@@ -134,21 +134,21 @@ A lista/detalhe do administrador deve mostrar imediatamente de onde vem a config
 }
 ```
 
-Por quê:
-- para registros `variant`, a visualização detalhada pode mostrar a configuração final da fonte sem outra solicitação
-- isso também apoiará a integração futura com `Subscriptions`
+Por que:
+- para registros `variant`, a visualização detalhada pode exibir a configuração final da fonte sem a necessidade de outra solicitação
+- isso também facilitará a integração futura com `Subscriptions`
 
-## 4. Forma detalhada
+## 4. Forma dos detalhes
 
-O DTO detalhado estende o registro da lista com:
+O DTO de detalhes amplia o registro da lista com:
 - `created_at`
 - `metadata`
 - `rules`
 
-A visualização detalhada deve suportar:
+A visualização detalhada deve permitir:
 - revisar a configuração completa da oferta
-- editar fluxo em um `Drawer`
-- futuras seções de auditoria ou integração
+- fluxo de edição em um `Drawer`
+- seções futuras de auditoria ou integração
 
 ## 5. Status
 
@@ -156,38 +156,38 @@ Nesta fase, o Admin precisa apenas de dois estados visuais:
 - `enabled`
 - `disabled`
 
-Mapeamento da IU:
+Mapeamento da interface do usuário:
 - `enabled` -> emblema verde
 - `disabled` -> emblema cinza
 
-Nota:
+Observação:
 - o domínio ainda pode armazenar `is_enabled: boolean`
-- um enum DTO separado simplifica a renderização de `StatusBadge` e os contratos de tabela
+- uma enumeração DTO separada simplifica a renderização de `StatusBadge` e os contratos de tabela
 
 ## 6. Lista `Plans & Offers`
 
-A lista é baseada em `DataTable` e deve expor as seguintes colunas:
+A lista é baseada em `DataTable` e deve apresentar as seguintes colunas:
 
-| Coluna | Visível por padrão | Classificável | Notas |
+| Coluna | Visível por padrão | Podem ser ordenadas | Observações |
 |---|---:|---:|---|
 | `name` | sim | sim | nome da configuração |
 | `target` | sim | sim | produto + variante + SKU |
 | `scope` | sim | sim | `product` ou `variant` |
-| `status` | sim | sim | emblema baseado em `is_enabled` |
+| `status` | sim | sim | emblema com base em `is_enabled` |
 | `allowed_frequencies` | sim | não | lista compacta ou emblemas |
 | `discounts` | sim | não | resumo compacto de descontos |
-| `effective_source` | sim | sim | fonte de configuração eficaz |
-| `updated_at` | não | sim | coluna de ajudante técnico |
+| `effective_source` | sim | sim | fonte de configuração efetiva |
+| `updated_at` | não | sim | coluna auxiliar técnica |
 
-### Renderização de coluna
+### Exibição de colunas
 
 `name`
-- gravadora principal
+- principal gravadora
 
 `target`
 - primeira linha: `product_title`
 - segunda linha: `variant_title` ou `All variants`
-- opcional `SKU` como texto secundário
+- opcional: `SKU` como texto secundário
 
 `scope`
 - texto ou emblema: `Product override` / `Variant override`
@@ -196,10 +196,10 @@ A lista é baseada em `DataTable` e deve expor as seguintes colunas:
 - `StatusBadge`
 
 `allowed_frequencies`
-- emblemas ou texto compacto como `Every month`, `Every 2 months`
+- emblemas ou textos concisos, como `Every month`, `Every 2 months`
 
 `discounts`
-- emblemas ou texto compacto como `10% off`, `15% off`
+- emblemas ou textos concisos, como `10% off`, `15% off`
 
 `effective_source`
 - indica de onde vem a configuração final:
@@ -208,20 +208,20 @@ A lista é baseada em `DataTable` e deve expor as seguintes colunas:
 
 ## 7. Ações
 
-Listar/detalhar ações:
+Ações da lista/detalhes:
 
 | Ação | Disponível quando | Confirmar | Finalidade |
 |---|---|---:|---|
 | `create` | sempre | não | criar uma nova oferta |
 | `edit` | sempre | não | atualizar uma configuração existente |
-| `enable` | quando `disabled` | sim | habilitar a oferta |
+| `enable` | quando `disabled` | sim | ativar a oferta |
 | `disable` | quando `enabled` | sim | desativar a oferta |
 
 Notas:
-- `enable` e `disable` devem ser implementados através de uma rota `toggle` com `is_enabled` explícito
-- para consistência com os padrões de ação da Medusa, as mutações devem desabilitar as ações enquanto estiverem pendentes
+- `enable` e `disable` devem ser implementados por meio de uma rota `toggle` com `is_enabled` explícito
+- para manter a consistência com os padrões de ação do Medusa, as mutações devem desativar as ações enquanto estiverem pendentes
 
-## 8. Campos do formulário
+## 8. Campos de formulário
 
 ### 8.1 Criar fluxo
 
@@ -231,17 +231,17 @@ Campos:
 - `name` - obrigatório
 - `scope` - obrigatório, enumeração: `product | variant`
 - `product_id` - obrigatório
-- `variant_id` - necessário somente quando `scope = variant`
+- `variant_id` - obrigatório apenas quando `scope = variant`
 - `is_enabled` - obrigatório
 - `allowed_frequencies[]` - obrigatório, pelo menos uma entrada
 - `discounts[]` - opcional, no máximo um desconto por frequência
 - `rules.minimum_cycles` - opcional
-- `rules.trial_enabled` - necessário dentro do objeto `rules`
-- `rules.trial_days` - opcional, permitido somente quando a avaliação estiver habilitada
-- `rules.stacking_policy` - necessário dentro do objeto `rules`
-- `metadata` - opcional, não exposto como campo principal da UI no MVP
+- `rules.trial_enabled` - obrigatório dentro do objeto `rules`
+- `rules.trial_days` - opcional, permitido somente quando o período de teste estiver ativado
+- `rules.stacking_policy` - obrigatório dentro do objeto `rules`
+- `metadata` - opcional, não exibido como um campo principal da interface do usuário no MVP
 
-### 8.2 Editar fluxo
+### 8.2 Fluxo de edição
 
 O fluxo de edição deve ser implementado com `Drawer`.
 
@@ -252,17 +252,17 @@ Campos editáveis:
 - `discounts[]`
 - `rules.*`
 
-Bloqueado após a criação:
+Bloqueados após a criação:
 - `scope`
 - `product_id`
 - `variant_id`
 
-Por quê:
-- alterar o destino em um registro existente é propenso a regressões e semanticamente mais próximo da criação de uma nova configuração
+Por que:
+- alterar o destino em um registro existente está sujeito a regressões e, semanticamente, é mais semelhante à criação de uma nova configuração
 
 ## 9. Filtros e classificação
 
-Filtros de lista:
+Filtros da lista:
 - `q`
 - `is_enabled`
 - `scope`
@@ -273,9 +273,9 @@ Filtros de lista:
 Significado do filtro:
 - `q` pesquisa pelo menos `name`, `product_title`, `variant_title` e `sku`
 - `is_enabled` filtra por estado de ativação
-- `scope` separa configurações em nível de produto e em nível de variante
-- `product_id` e `variant_id` suportam estreitamento preciso
-- `frequency` filtra registros que permitem uma determinada frequência de faturamento
+- `scope` separa as configurações no nível do produto das configurações no nível da variante
+- `product_id` e `variant_id` permitem um refinamento preciso
+- `frequency` filtra registros que permitem uma determinada frequência de cobrança
 
 Classificação:
 - `name`
@@ -298,11 +298,11 @@ Contrato de consulta de lista:
 - `order`
 
 Nota de implementação:
-- `order` deve permanecer alinhado com as convenções da lista Medusa, ou seja, um único campo com um prefixo `-` opcional para ordem decrescente
+- `order` deve seguir as convenções de lista do Medusa, ou seja, um único campo com um prefixo opcional `-` para ordenação decrescente
 
 ## 10. Contrato de API
 
-### 10.1 Listar ofertas de planos
+### 10.1 Ofertas de planos da List
 
 - Método: `GET`
 - Caminho: `/admin/subscription-offers`
@@ -330,9 +330,9 @@ Nota de implementação:
 }
 ```
 
-A carga corresponde a `PlanOfferAdminListResponse`.
+A carga útil corresponde a `PlanOfferAdminListResponse`.
 
-### 10.2 Obtenha detalhes da oferta do plano
+### 10.2 Obter detalhes da oferta do plano
 
 - Método: `GET`
 - Caminho: `/admin/subscription-offers/:id`
@@ -345,9 +345,9 @@ A carga corresponde a `PlanOfferAdminListResponse`.
 }
 ```
 
-A carga corresponde a `PlanOfferAdminDetailResponse`.
+A carga útil corresponde a `PlanOfferAdminDetailResponse`.
 
-### 10.3 Criar oferta de plano
+### 10.3 Criar uma oferta de plano
 
 - Método: `POST`
 - Caminho: `/admin/subscription-offers`
@@ -396,7 +396,7 @@ A carga corresponde a `PlanOfferAdminDetailResponse`.
 }
 ```
 
-### 10.4 Oferta do plano de atualização
+### Oferta do plano de atualização 10.4
 
 - Método: `POST`
 - Caminho: `/admin/subscription-offers/:id`
@@ -444,7 +444,7 @@ Exemplo:
 }
 ```
 
-### 10.5 Alternar oferta de plano
+### 10.5 Alternar oferta do plano
 
 - Método: `POST`
 - Caminho: `/admin/subscription-offers/:id/toggle`
@@ -467,7 +467,7 @@ Exemplo:
 
 ## 11. Erros de domínio
 
-As próximas etapas de back-end devem preparar um contrato de erro consistente.
+As próximas etapas no backend devem estabelecer um contrato de erros consistente.
 
 Casos esperados:
 - `plan_offer_not_found`
@@ -480,27 +480,27 @@ Casos esperados:
 - `invalid_trial_configuration`
 - `conflicting_override_configuration`
 
-## 12. UX e carregamento de dados
+## 12. Experiência do usuário e carregamento de dados
 
 A visualização deve seguir os padrões do Medusa Admin:
 
-- uma rota administrativa dedicada com `DataTable`
-- a consulta de exibição da lista é carregada na montagem
-- uma consulta separada para o modal de criação quando produtos/variantes devem ser buscados
-- uma consulta separada para a gaveta de edição quando dados auxiliares são necessários
-- invalidar a consulta de lista e consulta detalhada após mutações
+- uma rota dedicada ao administrador com `DataTable`
+- a consulta de exibição da lista é carregada no momento da montagem
+- uma consulta separada para o modal de criação, quando for necessário buscar produtos/variantes
+- uma consulta separada para a gaveta de edição, quando forem necessários dados auxiliares
+- invalidar a consulta da lista e a consulta de detalhes após as alterações
 
-Estados da IU:
-- carregando: spinner ou estado de carregamento `DataTable`
-- vazio: estado semântico vazio com CTA para criar a primeira oferta
-- erro: `Alert` com uma mensagem orientada ao domínio
-- mutações pendentes: botões desabilitados e estado de envio de carregamento
+Estados da interface do usuário:
+- carregando: indicador de carregamento ou estado de carregamento `DataTable`
+- vazio: estado semântico de vazio com um CTA para criar a primeira oferta
+- erro: `Alert` com uma mensagem específica do domínio
+- alterações pendentes: botões desativados e estado de carregamento ao enviar
 
 ## 13. Impacto nas etapas posteriores
 
-Este contrato significa que as próximas `2.2.x` etapas devem entregar:
-- um módulo de domínio que armazena o registro da oferta de origem
-- consulte ajudantes para lista, detalhes e configuração eficaz
-- fluxos de trabalho para criar, atualizar e alternar
-- rotas administrativas em `/admin/subscription-offers`
+Este contrato estabelece que as próximas `2.2.x` etapas devem fornecer:
+- um módulo de domínio que armazene o registro da oferta de origem
+- auxiliares de consulta para lista, detalhes e configuração efetiva
+- fluxos de trabalho para criação, atualização e alternância
+- rotas de administração em `/admin/subscription-offers`
 - uma página de administração com `DataTable`, `FocusModal` para criação e `Drawer` para edição

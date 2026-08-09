@@ -1,31 +1,31 @@
 # Armazenar rotas de assinatura
 
-## Meta
+## Objetivo
 
-- definir a API mínima da loja voltada para o cliente exigida pelo MVP da vitrine
-- manter as ações de assinatura do cliente nas rotas da Loja, não nas rotas administrativas
-- manter as mutações apoiadas pelo fluxo de trabalho e orientadas pelo validador
+- definir a API da Loja mínima voltada para o cliente exigida pelo MVP da loja
+- manter as ações de assinatura do cliente nas rotas da Loja, e não nas rotas de administração
+- manter as mutações baseadas em fluxos de trabalho e orientadas por validadores
 
-## Suporte de checkout atual
+## Suporte atual para finalização de compra
 
-Implementamos rotas de loja relacionadas ao checkout:
+Rotas da loja relacionadas ao checkout implementadas:
 - `POST /store/carts/:id/sync-subscription-pricing`
 - `POST /store/carts/:id/subscribe`
 
-Intenção atual:
-- `sync-subscription-pricing` é a etapa de normalização usada antes da criação da sessão de pagamento e antes da conclusão da assinatura
-- `subscribe` é a mutação final de checkout da assinatura e ainda rejeita carrinhos mistos
+Objetivo atual:
+- `sync-subscription-pricing` é a etapa de normalização utilizada antes da criação da sessão de pagamento e antes da conclusão da assinatura
+- `subscribe` é a mutação final do checkout da assinatura e ainda rejeita carrinhos mistos
 
-Semântica de preços atual:
-- o desconto da assinatura é armazenado como um ajuste manual do item de linha do carrinho
-- identidade de ajuste usa `provider_id = "subscription_discount"`
-- `code` não é usado intencionalmente no ajuste do carrinho, portanto os fluxos promocionais da Medusa não o reinterpretam como um código promocional
-- o valor do desconto é armazenado com impostos incluídos e atualizado por meio de fluxos de trabalho do carrinho antes que o pagamento continue
+Semântica atual de preços:
+- o desconto por assinatura é armazenado como um ajuste manual na linha de item do carrinho
+- a identificação do ajuste utiliza `provider_id = "subscription_discount"`
+- o `code` não é utilizado intencionalmente no ajuste do carrinho, para que os fluxos de promoção do Medusa não o reinterpretem como um código promocional
+- o valor do desconto é armazenado com impostos incluídos e atualizado por meio dos fluxos de trabalho do carrinho antes de o pagamento prosseguir
 
 ## Rotas obrigatórias
 
 - `GET /store/customers/me/subscriptions/:id`
-  - retorna detalhes de assinatura seguros para loja DTO
+  - retorna um DTO com detalhes da assinatura compatível com a loja virtual
 - `POST /store/customers/me/subscriptions/:id/pause`
 - `POST /store/customers/me/subscriptions/:id/resume`
 - `POST /store/customers/me/subscriptions/:id/skip-next-delivery`
@@ -36,39 +36,39 @@ Semântica de preços atual:
 
 ## Regras de design
 
-- use apenas `GET`, `POST`, `DELETE`
-- manter a validação no middleware Store API
-- manter regras de negócios e verificações de propriedade em fluxos de trabalho
-- mantenha os manipuladores de rotas finos
-- retornar DTOs seguros para vitrines, e não modelos internos brutos
+- use apenas `GET`, `POST` e `DELETE`
+- mantenha a validação no middleware da API da loja
+- mantenha as regras de negócios e as verificações de propriedade nos fluxos de trabalho
+- mantenha os manipuladores de rota leves
+- retorne DTOs seguros para a interface do usuário, e não modelos internos brutos
 
 ## Contratos recomendados
 
 - `pause`
   - corpo opcional
-  - retorna um resumo de status atualizado
+  - retorna o resumo de status atualizado
 - `resume`
   - corpo opcional
-  - retorna um resumo de status atualizado
+  - retorna o resumo de status atualizado
 - `skip-next-delivery`
   - corpo opcional
-  - retorna `next_renewal_at` técnico inalterado
-  - retorna projetado `effective_next_renewal_at`
+  - retorna o `next_renewal_at` técnico inalterado
+  - retorna o `effective_next_renewal_at` projetado
 - `change-frequency`
   - corpo:
     - `frequency_interval`
     - `frequency_value`
 - `change-address`
-  - o corpo deve suportar:
-    - referência de endereço de cliente existente
-    - ou instantâneo completo do endereço de entrega
+  - o corpo deve incluir:
+    - referência ao endereço do cliente existente
+    - ou um instantâneo completo do endereço de entrega
 - `swap-product`
-  - o corpo deve identificar a variante alvo e a cadência selecionada
+  - o corpo deve identificar a variante de destino e a cadência selecionada
 - `retry-payment`
   - corpo opcional
-  - retorna o resultado da nova tentativa e o estado atualizado de recuperação do pagamento
+  - retorna o resultado da nova tentativa e o estado atualizado da recuperação do pagamento
 
-## Detalhe o escopo mínimo do DTO
+## Escopo mínimo do DTO de detalhes
 
 - `id`
 - `reference`
@@ -84,25 +84,25 @@ Semântica de preços atual:
 - `payment_recovery`
 - `active_cancellation_case`
 
-## 6.2 Armazenar DTO para vitrine
+## 6.2 DTO da loja para a vitrine
 
-- O DTO da loja deve permanecer separado do DTO do administrador
-- os formatos de resposta do administrador não devem ser reutilizados automaticamente em rotas de vitrine
+- O DTO da loja deve permanecer separado do DTO de administração
+- Os formatos de resposta de administração não devem ser reutilizados automaticamente nas rotas da loja virtual
 - O DTO da loja deve ser:
   - simplificado
   - voltado para o cliente
-  - estável para renderização de UI
-  - livre de campos de operadores internos
+  - estável para a renderização da interface do usuário
+  - livre de campos operacionais internos
 
-## Armazenar regras DTO
+## Armazenar regras de DTO
 
-- expor apenas os campos exigidos pela UX da conta do cliente
-- evite o estado interno do fluxo de trabalho, cargas de auditoria, IDs internos de sistemas vinculados e notas do operador
-- normalizar enums e objetos aninhados para renderização de front-end previsível
-- prefira campos de resumo explícitos em vez de estrutura de back-end com vazamento
-- manter o formato da resposta estável, mesmo que os contratos administrativos evoluam
+- expor apenas os campos exigidos pela experiência do usuário (UX) da conta do cliente
+- evitar estado interno do fluxo de trabalho, cargas de auditoria, IDs internos de sistemas vinculados e notas do operador
+- normalizar enums e objetos aninhados para uma renderização previsível no front-end
+- dar preferência a campos de resumo explícitos em vez de expor a estrutura do back-end
+- manter o formato da resposta estável, mesmo que os contratos de administração evoluam
 
-## DTOs de loja recomendados
+## DTOs recomendados para lojas
 
 - item da lista de assinaturas:
   - `id`
@@ -122,35 +122,35 @@ Semântica de preços atual:
   - `frequency_interval`
   - `frequency_value`
   - `next_renewal_at`
-  -`effective_next_renewal_at`
+  - `effective_next_renewal_at`
   - `shipping_address`
   - `payment_status`
   - `payment_recovery`
   - `active_cancellation_case`
-- resposta de mutação de ação:
+- ação, mutação, resposta:
   - `subscription`
   - `result`
   - opcional `message`
 
-## Campos a serem excluídos do Store DTO
+## Campos a serem excluídos do DTO do Store
 
-- notas apenas para o operador
-- campos de auditoria somente para administrador
-- cargas brutas da etapa do fluxo de trabalho
-- diagnóstico interno do fornecedor
-- campos usados apenas para ferramentas de recuperação administrativa
-- dados de entidades vinculadas não relacionadas que não são necessários para a vitrine
+- notas exclusivas para operadores
+- campos de auditoria exclusivos para administradores
+- cargas brutas das etapas do fluxo de trabalho
+- diagnósticos internos do provedor
+- campos utilizados exclusivamente para ferramentas de recuperação de administradores
+- dados de entidades vinculadas não relacionadas e desnecessários para a loja virtual
 
-## 6.3 Resolução de oferta de assinatura para PDP
+## 6.3 Resolução da oferta de assinatura para o PDP
 
-- a vitrine não deve codificar dados de oferta de assinatura no PDP
-- os dados da oferta de assinatura devem vir de `Reorder` `Plans & Offers`
-- um endpoint de leitura da Loja dedicado é necessário para renderização da página do produto
+- a loja virtual não deve codificar diretamente os dados da oferta de assinatura na página de detalhes do produto (PDP)
+- os dados da oferta de assinatura devem ser obtidos de `Reorder` `Plans & Offers`
+- é necessário um endpoint de leitura dedicado da Loja para a renderização da página do produto
 
 ## Rota recomendada
 
 - `GET /store/products/:id/subscription-offer`
-  - rota com escopo de produto
+  - rota no escopo do produto
 - alternativa opcional:
   - `GET /store/subscription-offers?variant_id=...`
 
@@ -166,67 +166,67 @@ Semântica de preços atual:
 
 ## Carga útil de frequência
 
-- cada frequência permitida deverá expor:
+- cada frequência permitida deve exibir:
   - `frequency_interval`
   - `frequency_value`
-  - etiqueta de exibição opcional
-- a cadência deve ser retornada em formato canônico de back-end, e não em rótulos apenas para vitrines
+  - rótulo de exibição opcional
+- a cadência deve ser retornada no formato canônico do backend, e não apenas com os rótulos específicos da interface do usuário
 
 ## Carga útil com desconto
 
-- a resposta de desconto deve tornar a semântica explícita:
+- a resposta relativa ao desconto deve deixar a semântica explícita:
   - `type`
   - `value`
   - `compare_at_amount`
   - `subscription_amount`
-- a vitrine não deve inferir lógica de desconto a partir de campos de preços não relacionados
+- o site de vendas não deve inferir a lógica de desconto a partir de campos de preço não relacionados
 
 ## Impacto do PDP
 
-- O seletor PDP deve renderizar apenas as frequências retornadas por este endpoint
-- A precificação dinâmica do PDP deve usar esse endpoint como fonte de verdade
-- sem essa rota, a vitrine permanece nos dados temporários do adaptador de metadados ou configuração local
+- O seletor de PDP deve exibir apenas as frequências retornadas por este endpoint
+- A precificação dinâmica do PDP deve usar este endpoint como fonte de referência
+- Sem essa rota, a loja virtual continua utilizando dados temporários do adaptador, provenientes de metadados ou da configuração local
 
-## 6.4 Suporte a carrinho misto
+## 6.4 Suporte a carrinhos mistos
 
-- atual `POST /store/carts/:id/subscribe` bloqueia carrinho misto
-- se o carrinho misto for necessário para o MVP de negócios, o backend deverá definir uma nova semântica de checkout
-- a UX da vitrine deve permanecer bloqueada até que essa semântica seja decidida
+- atualmente, o `POST /store/carts/:id/subscribe` bloqueia o carrinho misto
+- se o carrinho misto for necessário para o MVP do negócio, o backend deve definir uma nova semântica de finalização de compra
+- a experiência do usuário (UX) da loja virtual deve permanecer bloqueada até que essa semântica seja definida
 
-## Decisão de back-end necessária
+## Decisão necessária do backend
 
 - opção A:
-  - um fluxo de checkout misto cria:
+  - um fluxo de finalização de compra misto gera:
     - um pedido
     - um ou mais registros de assinatura
 - opção B:
-  - o checkout é explicitamente dividido em:
-    - fluxo de checkout único
-    - fluxo de checkout de assinatura
+  - a finalização de compra é explicitamente dividida em:
+    - fluxo de finalização de compra única
+    - fluxo de finalização de compra por assinatura
 
 ## Recomendação
 
-- torne isso uma decisão de back-end/domínio antes que a interface de checkout final seja implementada
-- não falsifique o suporte ao carrinho misto na vitrine enquanto `POST /store/carts/:id/subscribe` ainda o rejeita
+- definir isso como uma decisão do back-end/domínio antes da implementação da interface de checkout final
+- não simular o suporte a carrinhos mistos na interface do cliente enquanto o `POST /store/carts/:id/subscribe` ainda rejeitar isso
 
-## Impacto na vitrine
+## Impacto na fachada da loja
 
-- carrinho e checkout devem manter a proteção atual do carrinho misto até que exista suporte de back-end
-- a lógica final do CTA e a cópia do resumo dependem da semântica de back-end selecionada
+- O carrinho e o checkout devem manter a proteção atual para carrinhos com itens mistos até que haja suporte no backend
+- A lógica final do CTA e o texto do resumo dependem da semântica do backend selecionado
 
-## Prioridade MVP
+## Prioridade do MVP
 
-1.`GET :id`
-2.`pause`
-3.`resume`
-4.`change-frequency`
-5.`change-address`
-6.`skip-next-delivery`
-7.`retry-payment`
-8.`swap-product`
+1. `GET :id`
+2. `pause`
+3. `resume`
+4. `change-frequency`
+5. `change-address`
+6. `skip-next-delivery`
+7. `retry-payment`
+8. `swap-product`
 
-## Impacto na vitrine
+## Impacto na fachada da loja
 
-- os detalhes da conta permanecem parciais até que `GET :id` exista
-- as ações do cliente permanecem desativadas até que existam rotas de loja correspondentes
-- `retry payment` e `address override` devem permanecer ocultos ou desativados sem suporte de back-end
+- os detalhes da conta permanecem parciais enquanto `GET :id` existir
+- as ações do cliente permanecem desativadas enquanto não houver rotas correspondentes na Loja
+- `retry payment` e `address override` devem permanecer ocultos ou desativados sem suporte do backend

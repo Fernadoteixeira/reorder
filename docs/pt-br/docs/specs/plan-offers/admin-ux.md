@@ -1,21 +1,21 @@
-# Planos e ofertas Admin UX Spec
+# Especificações de experiência do usuário (UX) para a área de planos e ofertas
 
 ## 1. Objetivo
 
-Este documento define o Admin UX para a área `Plans & Offers`.
+Este documento define a experiência do usuário (UX) do administrador para a área `Plans & Offers`.
 
-O objetivo é seguir as convenções de administração da Medusa o mais fielmente possível e permanecer alinhado visual e comportamentalmente com a UI `Subscriptions` já implementada neste plugin.
+O objetivo é seguir as convenções do Medusa Admin o mais fielmente possível e manter a coerência visual e funcional com a interface de usuário `Subscriptions` já implementada neste plug-in.
 
-Esta é apenas uma especificação de UX e interação. Ainda não implementa a página Admin.
+Este é apenas um documento de especificações de experiência do usuário (UX) e interação. A página de administração ainda não foi implementada.
 
-## 2. Fonte de verdade para direção UX
+## 2. Referência definitiva para a orientação da experiência do usuário
 
-A principal referência de UX para este recurso é a implementação `Subscriptions` Admin existente neste plugin.
+A principal referência de experiência do usuário (UX) para esse recurso é a implementação existente do `Subscriptions` Admin neste plugin.
 
-Por quê:
-- já segue bem as convenções de administração da Medusa
-- corresponde à arquitetura de informação existente da base de código
-- define o padrão de qualidade para espaçamento, padrões de tabela, tratamento de erros, estados de carregamento e mutações
+Por que:
+- já segue bem as convenções do Medusa Admin
+- está alinhado com a arquitetura de informação existente na base de código
+- define o padrão de qualidade para espaçamento, padrões de tabelas, tratamento de erros, estados de carregamento e mutações
 
 Referências de implementação:
 - `reorder/src/admin/routes/subscriptions/page.tsx`
@@ -24,175 +24,175 @@ Referências de implementação:
 
 ## 3. Arquitetura da informação
 
-`Plans & Offers` não deve ser apresentado como uma área administrativa de nível superior.
+O `Plans & Offers` não deve ser introduzido como uma área administrativa de nível superior.
 
-Deve ser uma rota Admin aninhada em `Subscriptions`, semelhante a como o Medusa mostra páginas filhas em áreas pai existentes, como:
+Deve ser uma rota de administração aninhada sob `Subscriptions`, semelhante à forma como o Medusa exibe páginas filhas sob áreas-pai existentes, tais como:
 - `Products`
 - `Collections`
 - `Categories`
 
-### Estrutura de rota alvo
+### Estrutura da rota alvo
 
 Rota recomendada:
 - `/subscriptions/plans-offers`
 
-Configuração de rota de administrador recomendada:
-- rótulo: `Plans & Offers`
-- aninhado: `/subscriptions`
+Configuração recomendada da rota de administração:
+- label: `Plans & Offers`
+- nested: `/subscriptions`
 
-Por quê:
-- isso mantém o recurso agrupado conceitualmente com o gerenciamento de assinaturas
-- evita a dispersão da configuração relacionada à assinatura em áreas separadas de nível superior
-- corresponde à IA esperada do usuário
+Por que:
+- isso mantém o recurso conceitualmente agrupado com o gerenciamento de assinaturas
+- evita que as configurações relacionadas às assinaturas fiquem espalhadas por áreas distintas de nível superior
+- corresponde à arquitetura da informação (IA) esperada pelo usuário
 
 ## 4. Comportamento de navegação
 
-Quando o usuário abre a área `Subscriptions` na barra lateral Admin:
-- `Subscriptions` permanece a entrada pai
+Quando o usuário abre a área `Subscriptions` na barra lateral de administração:
+- `Subscriptions` continua sendo a entrada pai
 - `Plans & Offers` aparece como uma rota filha aninhada abaixo dela
 
 Comportamento esperado:
-- o usuário pode mover-se entre a lista de assinaturas e a área de configuração do plano-oferta sem sair do domínio de assinatura mais amplo
-- a rota secundária deve herdar o cromo e o espaçamento padrão da página Medusa
-- nenhum sistema de navegação personalizado deve ser introduzido se a navegação da barra lateral aninhada já atender à necessidade
+- o usuário pode alternar entre a lista de assinaturas e a área de configuração de planos e ofertas sem sair do domínio mais amplo de assinaturas
+- a rota filha deve herdar o estilo e o espaçamento padrão das páginas do Medusa
+- nenhum sistema de navegação personalizado deve ser introduzido se a navegação por barra lateral aninhada já atender à necessidade
 
 ## 5. Responsabilidades da página
 
 ### 5.1 Página de assinaturas
 
-A página `Subscriptions` existente permanece responsável por:
-- listando assinaturas
-- abertura de detalhes da assinatura
-- realizar ações do ciclo de vida da assinatura
+A página `Subscriptions` existente continua sendo responsável por:
+- listar assinaturas;
+- abrir os detalhes da assinatura;
+- realizar ações relacionadas ao ciclo de vida da assinatura
 
-### 5.2 Página Planos e Ofertas
+### 5.2 Página “Planos e ofertas”
 
 A nova página `Plans & Offers` é responsável por:
-- listando registros de origem `PlanOffer`
-- expondo ações de criação e edição
-- expor ações de ativação/desativação
-- mostrando resumos de configuração eficazes
+- listar registros de origem `PlanOffer`
+- disponibilizar as ações de criação e edição
+- disponibilizar as ações de ativação/desativação
+- exibir resumos da configuração em vigor
 
-Ela não deve tentar se comportar como uma página de detalhes da assinatura.
+Ela não deve tentar funcionar como uma página de detalhes de assinatura.
 
 ## 6. Separação entre criação e edição
 
-Criar e editar devem ser separados intencionalmente.
+As funções de criação e edição devem ser separadas de forma intencional.
 
 ### Criar fluxo
 
 Objetivo:
-- crie uma nova configuração de origem para:
+- criar uma nova configuração de fonte para:
   - um produto
   - uma variante
 
-O fluxo de criação possui:
-- seleção de alvo
-- configuração inicial do plano-oferta
-- validação inicial UX
+O fluxo de criação é responsável por:
+- seleção do destino
+- configuração inicial da proposta do plano
+- validação inicial da experiência do usuário (UX)
 
-### Editar fluxo
+### Fluxo de edição
 
 Objetivo:
 - atualizar um registro de origem `PlanOffer` existente
 
-O fluxo de edição possui:
-- edição de campos de configuração mutáveis
-- preservar a identidade alvo do registro
+O fluxo de edição é responsável por:
+- editar campos de configuração mutáveis
+- preservar a identidade de destino do registro
 
-O fluxo de edição não deve permitir alterações:
+O fluxo de edição não deve permitir a alteração de:
 - `scope`
 - `product_id`
 - `variant_id`
 
 Alterar o destino é semanticamente equivalente a criar um registro diferente.
 
-## 7. Decisões modais de contêineres
+## 7. Decisões sobre contêineres modais
 
-### 7.1 Criar usa `FocusModal`
+### 7.1 A função `create` utiliza ``FocusModal``
 
 O fluxo de criação deve usar `FocusModal`.
 
-Por quê:
-- Os padrões Medusa Admin recomendam `FocusModal` para criar formulários
-- criar é uma tarefa primária com mais contexto de configuração do que uma edição in-line rápida
-- o usuário precisa de espaço focado para:
-  - seleção de alvo
-  - pesquisa de produto/variante
-  - frequências e configuração de descontos
+Por que:
+- Os padrões do Medusa Admin recomendam o uso de `FocusModal` para formulários de criação
+- A criação é uma tarefa principal que envolve mais contexto de configuração do que uma edição rápida em linha
+- O usuário precisa de um espaço dedicado para:
+  - seleção do destino
+  - pesquisa de produtos/variantes
+  - configuração de frequências e descontos
   - definição de regras
 
-### 7.2 Editar usa `Drawer`
+### 7.2 A função `edit` utiliza ``Drawer``
 
 O fluxo de edição deve usar `Drawer`.
 
-Por quê:
-- Os padrões Medusa Admin recomendam `Drawer` para edição/atualização de formulários
-- a edição é contextual a uma linha que já existe na lista
-- o usuário se beneficia ao manter o contexto da lista visível enquanto altera a configuração
+Por que:
+- Os padrões do Medusa Admin recomendam o uso de `Drawer` em formulários de edição/atualização
+- A ação de edição está relacionada a uma linha que já existe na lista
+- O usuário se beneficia ao manter o contexto da lista visível enquanto altera a configuração
 
-## 8. UX da página da lista de planos e ofertas
+## 8. Experiência do usuário (UX) da página de lista de planos e ofertas
 
-A página da lista deve usar a mesma estrutura geral de página de `Subscriptions`:
+A página de lista deve seguir a mesma estrutura geral de página que `Subscriptions`:
 - `Container`
 - cabeçalho da página com título e CTA principal
 - `DataTable`
-- estados de vazio, carregamento e erro consistentes com as convenções da UI do Medusa
+- estados vazio, carregando e de erro, de acordo com as convenções da interface do usuário do Medusa
 
 ### Cabeçalho
 
 Conteúdo do cabeçalho:
 - título: `Plans & Offers`
-- legenda ou texto de apoio são opcionais, somente se adicionarem clareza real
+- o subtítulo ou texto complementar é opcional, apenas se contribuir para maior clareza
 - botão de ação principal: `Create`
 
-### Finalidade da tabela
+### Objetivo da tabela
 
-A tabela representa registros de origem, não configurações derivadas.
+A tabela representa registros de origem, e não configurações derivadas.
 
-Cada linha deve comunicar:
+Cada linha deve indicar:
 - a qual público-alvo a oferta pertence
-- se o registro de origem está habilitado
-- quais frequências e descontos define
-- qual fonte vence na configuração efetiva
+- se o registro de origem está ativado
+- quais frequências e descontos ela define
+- qual origem prevalece na configuração efetiva
 
-## 9. Separação de carregamento de dados
+## 9. Separação do carregamento de dados
 
-A página deve seguir o mesmo padrão de `Subscriptions` e da orientação de habilidades do Medusa Admin:
+A página deve seguir o mesmo padrão de `Subscriptions` e das orientações da habilidade Medusa Admin:
 
-- exibir cargas de consulta na montagem
-- criar consulta auxiliar é separada
-- a consulta de ajuda/detalhe de edição é separada
+- exibir as cargas de consulta na montagem
+- a consulta auxiliar de criação é separada
+- a consulta auxiliar de edição/detalhes é separada
 
-### 9.1 Exibir consulta
+### 9.1 Exibição da consulta
 
-Exibir responsabilidades de consulta:
+Responsabilidades da consulta de exibição:
 - lista de ofertas de planos
 - filtros
-- classificação
+- ordenação
 - paginação
-- resumo de configuração eficaz usado na lista
+- resumo da configuração efetiva utilizada na lista
 
-Esta consulta deve ser carregada imediatamente na montagem da página.
+Essa consulta deve ser carregada imediatamente ao carregar a página.
 
 ### 9.2 Criar consulta auxiliar
 
-Crie responsabilidades de consulta auxiliar:
-- dados de pesquisa de produto
-- dados de pesquisa de variantes, se necessário
-- quaisquer metadados auxiliares leves para seleção de formulário
+Criar responsabilidades de consultas auxiliares:
+- dados de consulta de produtos
+- dados de consulta de variantes, se necessário
+- quaisquer metadados auxiliares simples para seleção em formulários
 
-Esta consulta deve carregar somente quando o modal de criação for aberto.
+Essa consulta deve ser carregada somente quando o modal de criação for aberto.
 
 ### 9.3 Editar consulta auxiliar
 
-Edite as responsabilidades da consulta auxiliar:
+Editar as responsabilidades da consulta auxiliar:
 - buscar os detalhes do registro de origem atual
-- buscar todos os dados auxiliares necessários ao formulário da gaveta
+- buscar quaisquer dados auxiliares necessários para o formulário do drawer
 
-Esta consulta deve ser carregada somente quando a gaveta de edição for aberta.
+Essa consulta deve ser carregada somente quando a aba de edição for aberta.
 
-## 10. Crie UX de fluxo
+## 10. Criar uma experiência do usuário fluida
 
 ### Ponto de entrada
 
@@ -206,13 +206,13 @@ CTA principal na página `Plans & Offers`:
 ### Estrutura do formulário
 
 Seções recomendadas:
-- alvo
+- destino
 - frequências de cobrança
 - descontos
 - regras
-- metadados avançados, se expostos
+- metadados avançados, caso estejam disponíveis
 
-### Seção de destino
+### Seção “Destino”
 
 Campos:
 - `scope`
@@ -220,23 +220,23 @@ Campos:
 - `variant_id`
 
 Comportamento:
-- se `scope = product`, a seleção de variante está oculta ou desativada
-- se `scope = variant`, a seleção de variante é necessária
+- se for `scope = product`, a seleção de variantes fica oculta ou desativada
+- se for `scope = variant`, a seleção de variantes é obrigatória
 
-### Comportamento de envio
+### Comportamento do envio
 
 Ao enviar com sucesso:
-- feche o `FocusModal`
-- invalidar a consulta de exibição do plano-oferta
-- opcionalmente invalidar consultas detalhadas relevantes se armazenadas em cache
-- mostrar brinde de sucesso
+- fechar o `FocusModal`
+- invalidar a consulta de exibição da oferta do plano
+- opcionalmente, invalidar as consultas de detalhes relevantes, caso estejam em cache
+- exibir uma notificação de sucesso
 
-Ao enviar erro:
-- mantenha o modal aberto
-- mostrar erros de campo embutidos quando possível
-- mostrar brinde para falhas de back-end/domínio
+Em caso de erro ao enviar:
+- manter a janela modal aberta
+- exibir erros nos campos diretamente, quando possível
+- exibir uma notificação pop-up para falhas no backend ou no domínio
 
-## 11. Editar UX do fluxo
+## 11. Experiência do usuário (UX) do fluxo de edição
 
 ### Ponto de entrada
 
@@ -249,7 +249,7 @@ De uma ação de linha:
 
 ### Comportamento do formulário
 
-A gaveta é aberta com valores pré-preenchidos do registro de origem selecionado.
+A gaveta é aberta com valores pré-preenchidos a partir do registro de origem selecionado.
 
 Campos bloqueados:
 - `scope`
@@ -262,40 +262,40 @@ Campos editáveis:
 - `allowed_frequencies`
 - `discounts`
 - `rules`
-- `metadata` se exposto
+- `metadata`, se estiver visível
 
-### Comportamento de envio
+### Comportamento do envio
 
 Ao enviar com sucesso:
-- fechar gaveta
-- invalidar consulta de exibição
-- invalidar consulta de detalhes afetados
-- mostrar brinde de sucesso
+- fechar a gaveta
+- invalidar a consulta de exibição
+- invalidar a consulta de detalhes afetada
+- exibir uma notificação de sucesso
 
-Ao enviar erro:
-- mantenha a gaveta aberta
-- mostrar feedback de erro sem perder o estado do formulário
+Em caso de erro ao enviar:
+- manter a gaveta aberta
+- exibir o feedback do erro sem perder o estado do formulário
 
-## 12. Ações de linha
+## 12. Ações em linhas
 
-Ações de linha recomendadas:
+Ações recomendadas para a linha:
 - `Edit`
 - `Enable` ou `Disable`
 
 Opcional:
-- `View details` somente se a página posteriormente obtiver uma rota de detalhes dedicada ou painel lateral
+- `View details` somente se a página vier a receber posteriormente uma rota de detalhes dedicada ou um painel lateral
 
-Nesta fase, as ações mínimas exigidas são:
+Nesta fase, as ações mínimas necessárias são:
 - editar a configuração existente
-- alternar estado ativado
+- ativar ou desativar o estado
 
-## 13. Estados de vazio, carregamento e erro
+## 13. Estados vazio, carregando e de erro
 
 ### Carregando
 
-A lista deve mostrar o comportamento padrão de carregamento da Medusa:
+A lista deve apresentar o comportamento padrão de carregamento do Medusa:
 - carregando `DataTable`
-- não é um espaço reservado para estado vazio durante o primeiro carregamento
+- não exibe um espaço reservado para o estado vazio durante o primeiro carregamento
 
 ### Vazio
 
@@ -321,11 +321,11 @@ A fonte de verdade continua sendo o modelo de leitura do backend.
 
 ## 15. Restrições de interação
 
-Para manter a consistência com a experiência do usuário (UX) existente do `Subscriptions`:
+Para manter a coerência com a experiência do usuário (UX) existente do `Subscriptions`:
 - evite misturar as funções de criação e edição no mesmo contêiner
 - evite abrir o formulário de criação em uma gaveta
 - evite permitir a reatribuição de destino na edição
-- evite vincular os dados de exibição da página às consultas auxiliares de criação/edição
+- evite vincular os dados exibidos na página às consultas auxiliares de criação/edição
 
 ## 16. Orientações de implementação decorrentes
 

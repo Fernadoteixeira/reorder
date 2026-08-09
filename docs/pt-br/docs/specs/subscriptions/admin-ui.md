@@ -1,19 +1,19 @@
-# Reordenar: UI de administração de assinatura e especificações de API
+# Reorganização: Interface do usuário de administração de assinaturas e especificações da API
 
-Este documento completa a etapa `2.1.1` de `documentation/implementation_plan.md` e define a especificação de dados para a área `Subscriptions` no Admin de uma forma mais próxima dos padrões oficiais da Medusa.
+Este documento completa a etapa `2.1.1` de `documentation/implementation_plan.md` e define a especificação de dados para a área `Subscriptions` no Admin de uma forma mais próxima dos padrões oficiais do Medusa.
 
 Artefatos produzidos nesta etapa:
-- Tipos de DTO de administrador: `reorder/src/admin/types/subscription.ts`
-- este documento como especificação de colunas, ações, filtros e formas de solicitação para etapas posteriores
+- Tipos de DTO de administração: `reorder/src/admin/types/subscription.ts`
+- este documento como especificação para colunas, ações, filtros e formatos de solicitação para as etapas posteriores
 
-Nota:
-- Medusa não requer um artefato `contract` separado
-- na prática, a estrutura usa uma combinação de definições de `types`, `Zod validators`, `WorkflowInput` e UI route/DataTable
-- este documento é uma especificação de design, não um artefato Medusa em nível de estrutura
+Observação:
+- O Medusa não requer um artefato `contract` separado
+- na prática, a estrutura utiliza uma combinação de `types`, `Zod validators`, `WorkflowInput` e definições de rotas de interface do usuário/tabelas de dados
+- este documento é uma especificação de projeto, não um artefato do Medusa no nível da estrutura
 
-## 1. Administrador DTO
+## 1. DTO de administração
 
-Os tipos de UI foram movidos para:
+Os tipos de interface do usuário foram movidos para:
 - `SubscriptionAdminStatus`
 - `SubscriptionFrequencyInterval`
 - `SubscriptionAdminListItem`
@@ -26,20 +26,20 @@ Arquivo:
 
 ## 2. Lista `Subscriptions`
 
-A lista é baseada em `DataTable` e usa as seguintes colunas:
+A lista é baseada em `DataTable` e utiliza as seguintes colunas:
 
-| Coluna | Visível por padrão | Classificável | Notas |
+| Coluna | Visível por padrão | Podem ser ordenadas | Observações |
 |---|---:|---:|---|
 | `subscription` | sim | sim | `reference` + identificador estável |
-| `status` | sim | sim | emblema de status |
-| `customer` | não | sim | disponível no DTO e na classificação/pesquisa de back-end, mas atualmente não renderizado como uma coluna de lista visível |
+| `status` | sim | sim | ícone de status |
+| `customer` | não | sim | disponível no DTO e na classificação/busca do backend, mas atualmente não exibido como uma coluna visível na lista |
 | `product` | sim | sim | produto + variante + SKU opcional |
-| `frequency` | sim | sim | por exemplo `Every 2 months` |
+| `frequency` | sim | sim | por exemplo, `Every 2 months` |
 | `next_renewal_at` | sim | sim | próxima data de renovação |
-| `trial` | sim | sim | bandeira + `trial_ends_at` |
-| `discount` | sim | sim | instantâneo de desconto de assinatura |
+| `trial` | sim | sim | sinalizador + `trial_ends_at` |
+| `discount` | sim | sim | instantâneo do desconto da assinatura |
 | `skip_next_cycle` | sim | sim | booleano |
-| `updated_at` | não | sim | campo de classificação do auxiliar técnico, não renderizado como uma coluna de lista visível |
+| `updated_at` | não | sim | campo de classificação auxiliar técnico, não exibido como uma coluna visível da lista |
 
 Registro mínimo da lista:
 - `id`
@@ -56,39 +56,39 @@ Registro mínimo da lista:
 
 ## 3. Status
 
-Os status de administrador do MVP são:
+Os status do MVP Admin são:
 - `active`
 - `paused`
 - `cancelled`
 - `past_due`
 
 Notas:
-- `cancelled` permanece na ortografia britânica porque esse status já é usado nos documentos do plano e do produto
-- `expired` não faz parte do contrato desta etapa porque não está no escopo atual do `Subscriptions` MVP
+- `cancelled` mantém a grafia britânica, pois essa designação já é utilizada nos documentos do plano e do produto
+- `expired` não faz parte do contrato desta etapa, pois não está incluído no escopo atual do MVP de `Subscriptions`
 
-## 4. Ações de linha/ações de visualização de detalhes
+## 4. Ações nas linhas / ações na visualização detalhada
 
 Ações definidas:
 
 | Ação | Status permitidos | Confirmar | Finalidade |
 |---|---|---:|---|
-| `pause` | `active`, `past_due` | sim | impedir futuras renovações |
+| `pause` | `active`, `past_due` | sim | interromper renovações futuras |
 | `resume` | `paused` | sim | retomar a assinatura |
-| `cancel` | `active`, `paused`, `past_due` | sim | encerrar a assinatura |
+| `cancel` | `active`, `paused`, `past_due` | sim | cancelar a assinatura |
 | `schedule_plan_change` | `active`, `paused`, `past_due` | não | agendar uma alteração de variante/frequência |
 | `update_shipping_address` | `active`, `paused`, `past_due` | não | atualizar o endereço de entrega |
 
-`cancelled` não possui ações de mutação nesta visualização MVP.
+`cancelled` não possui ações de mutação nesta visualização do MVP.
 
 ## 5. Editar campos
 
-### 5.1 Mudança de plano de cronograma
+### 5.1 Alteração do plano de programação
 
 Campos:
 - `plan_variant_id` - obrigatório
 - `frequency_interval` - obrigatório, enumeração: `week | month | year`
 - `frequency_value` - obrigatório, número positivo
-- `pending_change_effective_at` - data e hora ISO opcional
+- `pending_change_effective_at` - opcional, data e hora no formato ISO
 
 ### 5.2 Atualizar endereço de entrega
 
@@ -106,7 +106,7 @@ Campos:
 
 ## 6. Filtros e classificação
 
-Filtros de lista:
+Filtros da lista:
 - `q`
 - `status[]`
 - `customer_id`
@@ -141,8 +141,8 @@ Contrato de consulta de lista:
 
 ## 7. Cargas úteis de mutação
 
-As cargas abaixo são uma especificação para etapas posteriores.
-Sua implementação deve ser adicionada aos validadores Zod em `src/api/admin/subscriptions/**/validators.ts` ou arquivos de middleware seguindo os padrões Medusa.
+As cargas úteis abaixo constituem uma especificação para etapas posteriores.
+Sua implementação deve ser adicionada aos validadores do Zod nos arquivos `src/api/admin/subscriptions/**/validators.ts` ou de middleware, seguindo os padrões do Medusa.
 
 ### `pause`
 ```json
@@ -194,9 +194,9 @@ Sua implementação deve ser adicionada aos validadores Zod em `src/api/admin/su
 }
 ```
 
-## 8. Carga útil detalhada
+## 8. Detalhes da carga útil
 
-Os detalhes da assinatura estendem o registro da lista com:
+Os detalhes da assinatura ampliam o registro da lista com:
 - `created_at`
 - `started_at`
 - `paused_at`
@@ -205,18 +205,18 @@ Os detalhes da assinatura estendem o registro da lista com:
 - `shipping_address`
 - `pending_update_data`
 
-`pending_update_data` armazena uma prévia da mudança de plano agendada:
+`pending_update_data` armazena uma prévia da alteração programada no plano:
 - `variant_id`
 - `variant_title`
 - `frequency_interval`
 - `frequency_value`
 - `effective_at`
 
-Na interface de usuário de detalhes atual, o instantâneo `product` é renderizado como um cartão estilo Medusa vinculado à página de detalhes da variante padrão, com `sku` mostrado separadamente abaixo dele.
+Na interface de usuário atual de detalhes, o instantâneo `product` é exibido como um cartão no estilo Medusa com link para a página de detalhes da variante padrão, com o `sku` exibido separadamente abaixo dele.
 
 ## 9. Impacto nas etapas posteriores
 
-Este contrato significa que a próxima etapa `2.1.2` deve projetar pelo menos estes endpoints:
+Este contrato implica que, na próxima etapa, a `2.1.2` deve projetar, no mínimo, os seguintes pontos finais:
 - `GET /admin/subscriptions`
 - `GET /admin/subscriptions/:id`
 - `POST /admin/subscriptions/:id/pause`

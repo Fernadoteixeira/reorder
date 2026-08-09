@@ -1,37 +1,37 @@
-# Reordenar: especificações de endpoints administrativos de assinatura
+# Reorder: Especificação dos endpoints de administração de assinaturas
 
 Este documento conclui a etapa `2.1.2` de `documentation/implementation_plan.md`.
 
 Objetivo:
-- projetar os endpoints de back-end para a visualização Admin `Subscriptions`
-- fique o mais próximo possível dos padrões oficiais da Medusa
+- projetar os endpoints de backend para a visualização de administração do `Subscriptions`
+- seguir o mais fielmente possível os padrões oficiais do Medusa
 
-Padrões de referência da Medusa:
+Padrões de referência do Medusa:
 - `GET /admin/subscriptions`
 - `GET /admin/subscriptions/:id`
 - `validateAndTransformQuery(...)`
 - `AuthenticatedMedusaRequest`
 - `query.graph(...)`
-- mutações como rotas `POST` dedicadas que executam fluxos de trabalho
+- mutações como rotas dedicadas `POST` que executam fluxos de trabalho
 
 ## 1. Regras de design
 
-- Todos os endpoints estão sob o prefixo `/admin`, portanto, são automaticamente somente administradores no Medusa.
+- Todos os endpoints estão sob o prefixo `/admin`, portanto, são automaticamente restritos ao administrador no Medusa.
 - Os manipuladores de rota usam `AuthenticatedMedusaRequest`.
-- Os pontos de extremidade de leitura usam `query.graph()` ou `query.index()` se a filtragem exigir a passagem de módulos vinculados.
-- Os pontos finais de mutação são apenas uma camada HTTP fina:
-  - solicitar validação
-  - execução de fluxo de trabalho
+- Os endpoints de leitura utilizam `query.graph()` ou `query.index()` caso a filtragem exija percorrer módulos vinculados.
+- Os endpoints de mutação consistem apenas em uma camada HTTP simples:
+  - validação da solicitação
+  - execução do fluxo de trabalho
   - retorno de uma resposta normalizada
-- A lógica de negócios não reside na rota.
+- A lógica de negócios não está presente na rota.
 
 ## 2. Pontos finais
 
-### 2.1 Listar assinaturas
+### 2.1 Assinaturas de listas
 
 - Método: `GET`
 - Caminho: `/admin/subscriptions`
-- Objetivo: fonte de dados para `DataTable` na página `Subscriptions`
+- Finalidade: fonte de dados para o `DataTable` na página `Subscriptions`
 
 #### Parâmetros de consulta
 
@@ -63,17 +63,17 @@ Padrões de referência da Medusa:
 
 - Middleware:
   - `validateAndTransformQuery(...)`
-- Ler modelo:
+- Modelo de leitura:
   - carga útil alinhada com `SubscriptionAdminListResponse`
 - Consulta:
-  - prefira `query.graph()` se todos os filtros forem possíveis dentro deste modelo
-  - mude para `query.index()` se a filtragem por `customer`, `product` ou `variant` exigir módulos vinculados
+  - dar preferência a `query.graph()` se todos os filtros forem possíveis dentro deste modelo
+  - alternar para `query.index()` se a filtragem por `customer`, `product` ou `variant` exigir módulos vinculados
 
-### 2.2 Obtenha detalhes da assinatura
+### 2.2 Obter detalhes da assinatura
 
 - Método: `GET`
 - Caminho: `/admin/subscriptions/:id`
-- Objetivo: visualização de detalhes da assinatura
+- Finalidade: visualização dos detalhes da assinatura
 
 #### Parâmetros de caminho
 
@@ -89,18 +89,18 @@ Padrões de referência da Medusa:
 
 #### Notas de implementação
 
-- Ler modelo:
+- Modelo de leitura:
   - carga útil alinhada com `SubscriptionAdminDetailResponse`
 - Consulta:
   - `query.graph(...)`
 - Erro:
   - `404` se a assinatura não existir
 
-### 2.3 Pausar assinatura
+### 2.3 Suspender a assinatura
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/pause`
-- Objetivo: impedir renovações futuras
+- Objetivo: interromper renovações futuras
 
 #### Corpo
 
@@ -126,11 +126,11 @@ Padrões de referência da Medusa:
 - Fluxo de trabalho:
   - `pauseSubscriptionWorkflow`
 
-### 2.4 Retomar assinatura
+### 2.4 Retomar a assinatura
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/resume`
-- Objetivo: retomar uma assinatura pausada
+- Finalidade: retomar uma assinatura pausada
 
 #### Corpo
 
@@ -156,7 +156,7 @@ Padrões de referência da Medusa:
 - Fluxo de trabalho:
   - `resumeSubscriptionWorkflow`
 
-### 2.5 Cancelar assinatura
+### 2.5 Cancelar a assinatura
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/cancel`
@@ -186,11 +186,11 @@ Padrões de referência da Medusa:
 - Fluxo de trabalho:
   - `cancelSubscriptionWorkflow`
 
-### 2.6 Mudança de plano de cronograma
+### 2.6 Alteração do plano de programação
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/schedule-plan-change`
-- Objetivo: armazenar `pending_update_data` para um ciclo futuro
+- Finalidade: armazenar `pending_update_data` para um ciclo futuro
 
 #### Corpo
 
@@ -223,7 +223,7 @@ Padrões de referência da Medusa:
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/update-shipping-address`
-- Objetivo: atualizar o endereço de entrega para atendimentos futuros
+- Objetivo: atualizar o endereço de entrega para pedidos futuros
 
 #### Corpo
 
@@ -257,9 +257,9 @@ Padrões de referência da Medusa:
 - Fluxo de trabalho:
   - `updateSubscriptionShippingAddressWorkflow`
 
-## 3. Estrutura de arquivo proposta
+## 3. Estrutura de arquivos proposta
 
-Estrutura alvo alinhada com Medusa:
+Estrutura-alvo alinhada com o Medusa:
 
 ```text
 reorder/src/api/admin/subscriptions/route.ts
@@ -274,18 +274,18 @@ reorder/src/api/admin/subscriptions/middlewares.ts
 reorder/src/api/middlewares.ts
 ```
 
-Notas:
-- se os validadores ficarem grandes, eles poderão ser divididos por rota
-- o middleware pode permanecer compartilhado por todo o namespace `subscriptions`
+Observações:
+- se os validadores ficarem muito grandes, eles podem ser divididos por rota
+- o middleware pode continuar sendo compartilhado por todo o namespace `subscriptions`
 
 ## 4. Erros de domínio e HTTP
 
-Conjunto mínimo esperado em etapas posteriores:
+Conjunto mínimo esperado nas etapas posteriores:
 
 - `404 Not Found`
   - assinatura não encontrada
 - `400 Bad Request`
-  - carga útil inválida/parâmetros de consulta inválidos
+  - carga inválida / parâmetros de consulta inválidos
 - `409 Conflict`
   - transição de status inválida
   - conflito de atualização pendente
@@ -295,12 +295,12 @@ Conjunto mínimo esperado em etapas posteriores:
   - variante não elegível para assinatura
   - configuração de frequência inválida
 
-## 5. Rota -> mapeamento de responsabilidades
+## 5. Mapeamento entre rota e responsabilidade
 
 | Rota | Tipo | Camada lógica |
 |---|---|---|
-| `GET /admin/subscriptions` | leia | modelo de consulta/leitura |
-| `GET /admin/subscriptions/:id` | leia | modelo de consulta/leitura |
+| `GET /admin/subscriptions` | leitura | modelo de consulta/leitura |
+| `GET /admin/subscriptions/:id` | leitura | modelo de consulta/leitura |
 | `POST /admin/subscriptions/:id/pause` | mutação | fluxo de trabalho |
 | `POST /admin/subscriptions/:id/resume` | mutação | fluxo de trabalho |
 | `POST /admin/subscriptions/:id/cancel` | mutação | fluxo de trabalho |
@@ -309,11 +309,11 @@ Conjunto mínimo esperado em etapas posteriores:
 
 ## 6. Impacto nas etapas posteriores
 
-As próximas etapas agora devem entregar:
+As próximas etapas devem agora proporcionar:
 
-1.`2.1.3`
+1. `2.1.3`
    - fluxos de trabalho de mutação para os cinco endpoints `POST`
-2.`2.1.4`
-   - Validadores Zod e middlewares
-3.`2.1.5`
-   - consultas de lista/detalhe alinhadas com esta especificação
+2. `2.1.4`
+   - validadores e middlewares do Zod
+3. `2.1.5`
+   - consultas de lista/detalhes alinhadas com esta especificação
