@@ -20,6 +20,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -47,6 +50,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -74,6 +80,9 @@
     "mermaid_target": 0,
     "frontmatter_source": true,
     "frontmatter_target": true,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -101,6 +110,9 @@
     "mermaid_target": 0,
     "frontmatter_source": true,
     "frontmatter_target": true,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -128,6 +140,9 @@
     "mermaid_target": 0,
     "frontmatter_source": true,
     "frontmatter_target": true,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -155,6 +170,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -182,6 +200,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -209,6 +230,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -236,6 +260,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -263,6 +290,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -290,6 +320,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -317,6 +350,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -344,6 +380,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -371,6 +410,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -398,6 +440,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -425,6 +470,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -452,6 +500,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -479,6 +530,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -506,6 +560,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -533,6 +590,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -560,6 +620,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -587,6 +650,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -614,6 +680,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -641,6 +710,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -668,6 +740,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -695,6 +770,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -722,6 +800,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -749,6 +830,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -776,6 +860,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -803,6 +890,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -830,6 +920,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -857,6 +950,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -884,6 +980,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -911,6 +1010,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -938,6 +1040,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -965,6 +1070,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -992,6 +1100,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1019,6 +1130,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1046,6 +1160,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1073,6 +1190,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1100,6 +1220,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1127,6 +1250,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1152,6 +1278,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1177,6 +1306,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1202,6 +1334,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1227,6 +1362,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1252,6 +1390,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1277,6 +1418,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1302,6 +1446,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1327,6 +1474,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1352,6 +1502,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1377,6 +1530,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1402,6 +1558,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1427,6 +1586,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1452,6 +1614,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1477,6 +1642,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1502,6 +1670,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1527,6 +1698,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1552,6 +1726,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1577,6 +1754,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -1602,6 +1782,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1629,6 +1812,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1656,6 +1842,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1683,6 +1872,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1710,6 +1902,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1737,6 +1932,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1764,6 +1962,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -1775,24 +1976,29 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/admin-spec.md",
     "batch": "B06",
     "source_sha256": "9e8288f6254c9a9562b9e7e0472d69c5462437be6738874c6071512ba9601446",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "1aa976133ea7b4b3d7b47a0a22c3ba0658f47aa7c8ed31a6c0fc70e983268536",
+    "status": "validated",
     "source_bytes": 10775,
-    "target_bytes": 0,
+    "target_bytes": 12115,
     "headings_source": 25,
-    "headings_target": 0,
+    "headings_target": 25,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 8,
-    "code_fences_target": 0,
+    "code_fences_target": 8,
     "tables_source": 0,
-    "tables_target": 0,
+    "tables_target": 2,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:18:11Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/renewals/billing-anchor-semantics.md": {
@@ -1800,12 +2006,12 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/billing-anchor-semantics.md",
     "batch": "B06",
     "source_sha256": "3f58797416eca88da278d6557ba4ce971e68d418c185f6f1bb9b48a2e31d9afb",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "c308cd70b0fc513e0eab534d098dbcfbed21dbcb6e936c06cf841d7a468bceb3",
+    "status": "validated",
     "source_bytes": 10230,
-    "target_bytes": 0,
+    "target_bytes": 11671,
     "headings_source": 25,
-    "headings_target": 0,
+    "headings_target": 25,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1816,8 +2022,13 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:18:32Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/renewals/data-model.md": {
@@ -1825,12 +2036,12 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/data-model.md",
     "batch": "B06",
     "source_sha256": "3308d0d331bbd51139177076b9992442cb32e4e5263c3a6835e1381dda3c08f7",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "0eff98cdb7a087ea0311fdf5fb12237bc89035333cfb261005778faf41ed0dc9",
+    "status": "validated",
     "source_bytes": 11399,
-    "target_bytes": 0,
+    "target_bytes": 13323,
     "headings_source": 29,
-    "headings_target": 0,
+    "headings_target": 29,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1841,8 +2052,13 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:20:18Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/renewals/domain-model.md": {
@@ -1850,24 +2066,29 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/domain-model.md",
     "batch": "B06",
     "source_sha256": "9b3f06d99e201d5c52975c75fe121c3067c6e1de406d065cecc4ba0b1d8c9e19",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "6ba49e28812fea01c77660e3465756b9e3bd915236fd2a57ff4da6299938332a",
+    "status": "validated",
     "source_bytes": 11697,
-    "target_bytes": 0,
+    "target_bytes": 13424,
     "headings_source": 27,
-    "headings_target": 0,
+    "headings_target": 27,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 3,
-    "code_fences_target": 0,
+    "code_fences_target": 3,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:20:29Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/renewals/module-links.md": {
@@ -1875,24 +2096,29 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/module-links.md",
     "batch": "B06",
     "source_sha256": "b0a25c073c229c6c53976df3ba83f7b1914b0e39534918bec240b7ecbc9bbaf9",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "fb53658e8faa1948eb9e704b7c79479d79eb379f312f6f4c5e2c7592f059b2a8",
+    "status": "validated",
     "source_bytes": 9690,
-    "target_bytes": 0,
+    "target_bytes": 11319,
     "headings_source": 23,
-    "headings_target": 0,
+    "headings_target": 23,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 2,
-    "code_fences_target": 0,
+    "code_fences_target": 2,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:21:20Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/renewals/query-read-model.md": {
@@ -1900,24 +2126,29 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/query-read-model.md",
     "batch": "B06",
     "source_sha256": "bc1dccbb737e263a73763f5e1edc8c4f525ec3c0307917bec257b8c7817fff03",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "fb523ccab2df41e13dda3d46e5f0d1cf712d356096e37658b9c475cf3d8d5289",
+    "status": "validated",
     "source_bytes": 10490,
-    "target_bytes": 0,
+    "target_bytes": 12358,
     "headings_source": 40,
-    "headings_target": 0,
+    "headings_target": 40,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 3,
-    "code_fences_target": 0,
+    "code_fences_target": 3,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:21:48Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/renewals/source-of-truth-semantics.md": {
@@ -1925,12 +2156,12 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/source-of-truth-semantics.md",
     "batch": "B06",
     "source_sha256": "7c0dfb4256316deba43d0c935cc624674e4db6666232d2f97f896bde2a7bea50",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "ecabe998b9966a3f87bc4a1be218f5d81be37a19d359a55944730fc6284fd8a4",
+    "status": "validated",
     "source_bytes": 13967,
-    "target_bytes": 0,
+    "target_bytes": 15952,
     "headings_source": 38,
-    "headings_target": 0,
+    "headings_target": 38,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1941,8 +2172,13 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:23:10Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/renewals/state-machine.md": {
@@ -1950,12 +2186,12 @@
     "target": "docs/pt-br/docs/docs/specs/renewals/state-machine.md",
     "batch": "B06",
     "source_sha256": "3ce119124359d13702737bdfff82ad46dd88499fda7832fbbfe8a1c9c6182bc8",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "c086c32b125529a938b1aedc46211c1276dae11e892e9d754cb6ac2858d5f3ac",
+    "status": "validated",
     "source_bytes": 11563,
-    "target_bytes": 0,
+    "target_bytes": 13327,
     "headings_source": 40,
-    "headings_target": 0,
+    "headings_target": 40,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1966,8 +2202,13 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "validation": null,
-    "translated_at": "",
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
+    "validation": [
+      "PASS"
+    ],
+    "translated_at": "2026-08-09T07:23:30Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/specs/store-subscription-routes.md": {
@@ -1991,6 +2232,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -2018,6 +2262,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -2045,6 +2292,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -2072,6 +2322,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": [
       "PASS"
     ],
@@ -2099,6 +2352,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2124,6 +2380,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2149,6 +2408,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2174,6 +2436,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2199,6 +2464,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2224,6 +2492,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2249,6 +2520,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2274,6 +2548,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2299,6 +2576,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2324,6 +2604,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2349,6 +2632,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2374,6 +2660,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2399,6 +2688,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2424,6 +2716,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2449,6 +2744,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2474,6 +2772,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2499,6 +2800,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2524,6 +2828,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
@@ -2549,6 +2856,9 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
+    "encoding_valid": false,
+    "token_loss_count": 0,
+    "code_fence_exact": false,
     "validation": null,
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
