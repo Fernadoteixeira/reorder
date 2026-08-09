@@ -20,10 +20,10 @@ Deve ser revisado no início de uma sessão e atualizado após a correção de q
 ### Instalação de pacote com Yarn 4 no Windows
 
 - **Lição**: Ao instalar dependências usando Yarn Berry (v4) com `nodeLinker: node-modules`, patches de compatibilidade TypeScript integrados podem desencadear conflitos de blocos em determinadas plataformas.
-- **Regra**: Use `corepack yarn install --mode=skip-build` para ignorar patches de ciclo de vida conflitantes e garantir links limpos em `node_modules`.
+- **Regra**: Use `corepack yarn install --mode=skip-build` para ignorar patches de ciclo de vida conflitantes e garantir links limpos para `node_modules`.
 
 ### Autenticação de Cliente em Testes de Integração de Loja
 
-- **Lição**: Rotas de loja autenticadas pelo cliente (`/store/customers/me/subscriptions/*`) requerem tokens JWT assinados com `actor_type: "customer"` e `auth_identity_id` vinculados à entidade do cliente.
-- **Regra**: Sempre use o auxiliar de fixação `createCustomerAuthHeaders(container, customerId)` compartilhado para gerar autenticação de portador padrão para testes de integração de vitrine do cliente.
+- **Lição**: Rotas de loja autenticadas pelo cliente (`/store/customers/me/subscriptions/*`) exigem tokens JWT assinados com `actor_type: "customer"` e `auth_identity_id` vinculados à entidade do cliente.
+- **Regra**: Sempre use o auxiliar de fixture `createCustomerAuthHeaders(container, customerId)` compartilhado para gerar autenticação de portador padrão para testes de integração de vitrine do cliente.
 
