@@ -9066,27 +9066,94 @@
     "target": "docs/pt-br/src/admin/README.md",
     "batch": "B10",
     "source_sha256": "dac167a82f98314dc9779ce06f947a1a16891e34c6b39d534043c7a192cbe5fc",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "b391338f4ad6af9a9fce6afe26ae5336a6376fa0a66001c8a28e9aa801917528",
+    "status": "validated",
     "source_bytes": 902,
-    "target_bytes": 0,
+    "target_bytes": 962,
     "headings_source": 2,
-    "headings_target": 0,
+    "headings_target": 2,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 1,
-    "code_fences_target": 0,
+    "code_fences_target": 1,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 23,
+        "output_chars": 37,
+        "method": "Free",
+        "latency_ms": 757,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 2,
+        "input_chars": 157,
+        "output_chars": 193,
+        "method": "Free",
+        "latency_ms": 2449,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 4,
+        "input_chars": 28,
+        "output_chars": 28,
+        "method": "Free",
+        "latency_ms": 880,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 6,
+        "input_chars": 97,
+        "output_chars": 110,
+        "method": "Free",
+        "latency_ms": 1642,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 96,
+        "output_chars": 93,
+        "method": "Free",
+        "latency_ms": 1573,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 385,
+        "output_chars": 385,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 12,
+        "input_chars": 98,
+        "output_chars": 104,
+        "method": "Free",
+        "latency_ms": 2867,
+        "attempts": 1,
+        "fallback_used": false
+      }
+    ],
+    "translated_at": "2026-08-09T07:45:46Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/admin/i18n/README.md": {
@@ -9094,27 +9161,112 @@
     "target": "docs/pt-br/src/admin/i18n/README.md",
     "batch": "B10",
     "source_sha256": "c514d8bf510d38cf03be91a83f6c1e789bb7cc511bf8f1efda85db0cc19075b9",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "cd08e497d6974f8f3ea2c0c80ab818c43a29cdbeaf3d2b057a59c73651cf4e73",
+    "status": "validated",
     "source_bytes": 1748,
-    "target_bytes": 0,
+    "target_bytes": 1846,
     "headings_source": 1,
-    "headings_target": 0,
+    "headings_target": 1,
     "links_source": 2,
-    "links_target": 0,
+    "links_target": 2,
     "code_fences_source": 3,
-    "code_fences_target": 0,
+    "code_fences_target": 3,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 36,
+        "output_chars": 53,
+        "method": "Free",
+        "latency_ms": 859,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 2,
+        "input_chars": 177,
+        "output_chars": 213,
+        "method": "Free",
+        "latency_ms": 3187,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 4,
+        "input_chars": 199,
+        "output_chars": 202,
+        "method": "Free",
+        "latency_ms": 2940,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 6,
+        "input_chars": 131,
+        "output_chars": 131,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 60,
+        "output_chars": 65,
+        "method": "Free",
+        "latency_ms": 1376,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 126,
+        "output_chars": 126,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 12,
+        "input_chars": 92,
+        "output_chars": 110,
+        "method": "Free",
+        "latency_ms": 2780,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 14,
+        "input_chars": 738,
+        "output_chars": 738,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 16,
+        "input_chars": 165,
+        "output_chars": 192,
+        "method": "Free",
+        "latency_ms": 2034,
+        "attempts": 1,
+        "fallback_used": false
+      }
+    ],
+    "translated_at": "2026-08-09T07:45:49Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/api/README.md": {
@@ -9122,27 +9274,256 @@
     "target": "docs/pt-br/src/api/README.md",
     "batch": "B10",
     "source_sha256": "b62f2cfa9c2b5ee28c30531653bc4c0e09bb86fd46f821b3e8d113b39bf4b763",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "db84def621b2b408bb1e157f46e318f830e9dcd6a7f95bbe1be90f784aa49eea",
+    "status": "validated",
     "source_bytes": 3781,
-    "target_bytes": 0,
+    "target_bytes": 3920,
     "headings_source": 5,
-    "headings_target": 0,
+    "headings_target": 5,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 5,
-    "code_fences_target": 0,
+    "code_fences_target": 5,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 20,
+        "output_chars": 30,
+        "method": "Free",
+        "latency_ms": 925,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 2,
+        "input_chars": 37,
+        "output_chars": 44,
+        "method": "Free",
+        "latency_ms": 1162,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 4,
+        "input_chars": 170,
+        "output_chars": 169,
+        "method": "Free",
+        "latency_ms": 3232,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 6,
+        "input_chars": 147,
+        "output_chars": 149,
+        "method": "Free",
+        "latency_ms": 2548,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 217,
+        "output_chars": 217,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 26,
+        "output_chars": 30,
+        "method": "Free",
+        "latency_ms": 765,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 12,
+        "input_chars": 60,
+        "output_chars": 69,
+        "method": "Free",
+        "latency_ms": 1307,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 14,
+        "input_chars": 59,
+        "output_chars": 59,
+        "method": "Free",
+        "latency_ms": 2052,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 16,
+        "input_chars": 133,
+        "output_chars": 146,
+        "method": "Free",
+        "latency_ms": 2174,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 18,
+        "input_chars": 13,
+        "output_chars": 13,
+        "method": "Free",
+        "latency_ms": 615,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 20,
+        "input_chars": 396,
+        "output_chars": 396,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 22,
+        "input_chars": 14,
+        "output_chars": 15,
+        "method": "Free",
+        "latency_ms": 876,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 24,
+        "input_chars": 136,
+        "output_chars": 145,
+        "method": "Free",
+        "latency_ms": 2429,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 26,
+        "input_chars": 157,
+        "output_chars": 173,
+        "method": "Free",
+        "latency_ms": 3039,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 28,
+        "input_chars": 288,
+        "output_chars": 288,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 30,
+        "input_chars": 154,
+        "output_chars": 165,
+        "method": "Free",
+        "latency_ms": 2683,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 32,
+        "input_chars": 201,
+        "output_chars": 223,
+        "method": "Free",
+        "latency_ms": 3150,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 34,
+        "input_chars": 23,
+        "output_chars": 26,
+        "method": "Free",
+        "latency_ms": 824,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 36,
+        "input_chars": 122,
+        "output_chars": 141,
+        "method": "Free",
+        "latency_ms": 2141,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 38,
+        "input_chars": 345,
+        "output_chars": 345,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 40,
+        "input_chars": 14,
+        "output_chars": 14,
+        "method": "Free",
+        "latency_ms": 751,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 42,
+        "input_chars": 190,
+        "output_chars": 214,
+        "method": "Free",
+        "latency_ms": 3016,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 44,
+        "input_chars": 167,
+        "output_chars": 179,
+        "method": "Fallback",
+        "latency_ms": 1637,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 479,
+        "output_chars": 479,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 48,
+        "input_chars": 140,
+        "output_chars": 142,
+        "method": "Fallback",
+        "latency_ms": 712,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T07:46:22Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/jobs/README.md": {
@@ -9150,27 +9531,103 @@
     "target": "docs/pt-br/src/jobs/README.md",
     "batch": "B10",
     "source_sha256": "c5893143ddf3cc3328f69f5fe861b73224f8cc0f917523d1b2d41fcadf016515",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "c9050a21b46de3437c01ab4a5c8a5b90aaa80f5e8215029d4925bcb99fc94de9",
+    "status": "validated",
     "source_bytes": 1301,
-    "target_bytes": 0,
+    "target_bytes": 1364,
     "headings_source": 1,
-    "headings_target": 0,
+    "headings_target": 1,
     "links_source": 1,
-    "links_target": 0,
+    "links_target": 1,
     "code_fences_source": 1,
-    "code_fences_target": 0,
+    "code_fences_target": 1,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 24,
+        "output_chars": 35,
+        "method": "Free",
+        "latency_ms": 941,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 2,
+        "input_chars": 117,
+        "output_chars": 127,
+        "method": "Free",
+        "latency_ms": 1992,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 4,
+        "input_chars": 94,
+        "output_chars": 95,
+        "method": "Free",
+        "latency_ms": 1908,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 6,
+        "input_chars": 83,
+        "output_chars": 80,
+        "method": "Free",
+        "latency_ms": 1416,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 431,
+        "output_chars": 431,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 34,
+        "output_chars": 45,
+        "method": "Free",
+        "latency_ms": 1013,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 12,
+        "input_chars": 363,
+        "output_chars": 406,
+        "method": "Free",
+        "latency_ms": 5973,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 14,
+        "input_chars": 133,
+        "output_chars": 130,
+        "method": "Free",
+        "latency_ms": 2495,
+        "attempts": 1,
+        "fallback_used": false
+      }
+    ],
+    "translated_at": "2026-08-09T07:46:05Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/links/README.md": {
@@ -9178,27 +9635,103 @@
     "target": "docs/pt-br/src/links/README.md",
     "batch": "B10",
     "source_sha256": "ae4ae694b9730a6e1f6fb34182186e11d366aab7e0700a2d019976ecf626d641",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "f53d71c543941af3dffec08d47d960f75e5e2c7e5cb4227c029b6e6564a82554",
+    "status": "validated",
     "source_bytes": 805,
-    "target_bytes": 0,
+    "target_bytes": 868,
     "headings_source": 1,
-    "headings_target": 0,
+    "headings_target": 1,
     "links_source": 1,
-    "links_target": 0,
+    "links_target": 1,
     "code_fences_source": 2,
-    "code_fences_target": 0,
+    "code_fences_target": 2,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 15,
+        "output_chars": 19,
+        "method": "Free",
+        "latency_ms": 711,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 2,
+        "input_chars": 117,
+        "output_chars": 135,
+        "method": "Free",
+        "latency_ms": 1733,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 4,
+        "input_chars": 106,
+        "output_chars": 105,
+        "method": "Free",
+        "latency_ms": 1371,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 6,
+        "input_chars": 13,
+        "output_chars": 13,
+        "method": "Free",
+        "latency_ms": 632,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 259,
+        "output_chars": 259,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 127,
+        "output_chars": 154,
+        "method": "Free",
+        "latency_ms": 3186,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 12,
+        "input_chars": 112,
+        "output_chars": 134,
+        "method": "Free",
+        "latency_ms": 1963,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 14,
+        "input_chars": 35,
+        "output_chars": 35,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      }
+    ],
+    "translated_at": "2026-08-09T07:46:14Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/modules/README.md": {
@@ -9206,27 +9739,274 @@
     "target": "docs/pt-br/src/modules/README.md",
     "batch": "B10",
     "source_sha256": "c42e1a2941f4e152cd9485a36f7cc4d76d7deaa0489173fdce8adb08083df210",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "d6a30b33c8e08757666f125aa29813897b9ab1025d3e3fd0d0b452639b665c1f",
+    "status": "validated",
     "source_bytes": 3231,
-    "target_bytes": 0,
+    "target_bytes": 3323,
     "headings_source": 7,
-    "headings_target": 0,
+    "headings_target": 7,
     "links_source": 2,
-    "links_target": 0,
+    "links_target": 2,
     "code_fences_source": 6,
-    "code_fences_target": 0,
+    "code_fences_target": 6,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 16,
+        "output_chars": 24,
+        "method": "Free",
+        "latency_ms": 788,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 2,
+        "input_chars": 184,
+        "output_chars": 199,
+        "method": "Free",
+        "latency_ms": 2731,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 4,
+        "input_chars": 104,
+        "output_chars": 107,
+        "method": "Free",
+        "latency_ms": 1379,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 6,
+        "input_chars": 20,
+        "output_chars": 23,
+        "method": "Free",
+        "latency_ms": 726,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 26,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 794,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 150,
+        "output_chars": 166,
+        "method": "Fallback",
+        "latency_ms": 1279,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 91,
+        "output_chars": 87,
+        "method": "Fallback",
+        "latency_ms": 881,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 184,
+        "output_chars": 184,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 16,
+        "input_chars": 23,
+        "output_chars": 22,
+        "method": "Fallback",
+        "latency_ms": 749,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 149,
+        "output_chars": 180,
+        "method": "Fallback",
+        "latency_ms": 1252,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 87,
+        "output_chars": 83,
+        "method": "Fallback",
+        "latency_ms": 613,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 208,
+        "output_chars": 208,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 24,
+        "input_chars": 31,
+        "output_chars": 44,
+        "method": "Fallback",
+        "latency_ms": 766,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 146,
+        "output_chars": 151,
+        "method": "Fallback",
+        "latency_ms": 893,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 85,
+        "output_chars": 81,
+        "method": "Fallback",
+        "latency_ms": 600,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 218,
+        "output_chars": 218,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 32,
+        "input_chars": 26,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 1136,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 93,
+        "output_chars": 94,
+        "method": "Fallback",
+        "latency_ms": 473,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 44,
+        "output_chars": 44,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 38,
+        "input_chars": 14,
+        "output_chars": 15,
+        "method": "Fallback",
+        "latency_ms": 912,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 201,
+        "output_chars": 226,
+        "method": "Fallback",
+        "latency_ms": 857,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 48,
+        "output_chars": 52,
+        "method": "Fallback",
+        "latency_ms": 1025,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 472,
+        "output_chars": 472,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 46,
+        "input_chars": 18,
+        "output_chars": 22,
+        "method": "Fallback",
+        "latency_ms": 495,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 138,
+        "output_chars": 134,
+        "method": "Fallback",
+        "latency_ms": 571,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 257,
+        "output_chars": 257,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 52,
+        "input_chars": 119,
+        "output_chars": 125,
+        "method": "Fallback",
+        "latency_ms": 1119,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T07:46:35Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/providers/README.md": {
@@ -9234,27 +10014,76 @@
     "target": "docs/pt-br/src/providers/README.md",
     "batch": "B10",
     "source_sha256": "aba3b7c242ae513d0cfa5604b830704dc3e51c92183b8575af81af08087b87ad",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "b4310e5c84c2adfb25878ffec18e6d8f97374c9366fc8317d758490b1a1f5eee",
+    "status": "validated",
     "source_bytes": 841,
-    "target_bytes": 0,
+    "target_bytes": 838,
     "headings_source": 1,
-    "headings_target": 0,
+    "headings_target": 1,
     "links_source": 1,
     "links_target": 0,
     "code_fences_source": 1,
-    "code_fences_target": 0,
+    "code_fences_target": 1,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 20,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 1262,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 166,
+        "output_chars": 167,
+        "method": "Fallback",
+        "latency_ms": 859,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 94,
+        "output_chars": 92,
+        "method": "Fallback",
+        "latency_ms": 736,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 451,
+        "output_chars": 451,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 97,
+        "output_chars": 94,
+        "method": "Fallback",
+        "latency_ms": 1349,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T07:46:27Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/subscribers/README.md": {
@@ -9262,27 +10091,130 @@
     "target": "docs/pt-br/src/subscribers/README.md",
     "batch": "B10",
     "source_sha256": "08fda3e649265c126259dc0c3e294a67a3ae06a7136debfb9a043238b6ce230f",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "7ad6e772cbbac02117d3e6d5e397ab99cd92229d5d6e8a5dd03962d9ae12c589",
+    "status": "validated",
     "source_bytes": 1671,
-    "target_bytes": 0,
+    "target_bytes": 1696,
     "headings_source": 2,
-    "headings_target": 0,
+    "headings_target": 2,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 2,
-    "code_fences_target": 0,
+    "code_fences_target": 2,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 21,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 1053,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 61,
+        "output_chars": 62,
+        "method": "Fallback",
+        "latency_ms": 1563,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 100,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 565,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 94,
+        "output_chars": 90,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 301,
+        "output_chars": 301,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 31,
+        "output_chars": 38,
+        "method": "Fallback",
+        "latency_ms": 682,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 190,
+        "output_chars": 195,
+        "method": "Fallback",
+        "latency_ms": 720,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 25,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 714,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 65,
+        "output_chars": 60,
+        "method": "Fallback",
+        "latency_ms": 712,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 222,
+        "output_chars": 252,
+        "method": "Fallback",
+        "latency_ms": 911,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 531,
+        "output_chars": 531,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      }
+    ],
+    "translated_at": "2026-08-09T07:46:34Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "src/workflows/README.md": {
@@ -9290,27 +10222,112 @@
     "target": "docs/pt-br/src/workflows/README.md",
     "batch": "B10",
     "source_sha256": "252cac46b34881503d58ddf975919a98564e373c800327004625085810d2513d",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "b6b2b8d737e927cfa5de0c947b667674a46e00b10411e7f20bf4e7d721fca23d",
+    "status": "validated",
     "source_bytes": 1612,
-    "target_bytes": 0,
+    "target_bytes": 1677,
     "headings_source": 2,
-    "headings_target": 0,
+    "headings_target": 2,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 2,
-    "code_fences_target": 0,
+    "code_fences_target": 2,
     "tables_source": 0,
     "tables_target": 0,
     "mermaid_source": 0,
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 19,
+        "output_chars": 35,
+        "method": "Fallback",
+        "latency_ms": 1120,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 68,
+        "output_chars": 83,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 96,
+        "output_chars": 99,
+        "method": "Fallback",
+        "latency_ms": 823,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 13,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 339,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 821,
+        "output_chars": 821,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 20,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 1293,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 103,
+        "output_chars": 122,
+        "method": "Fallback",
+        "latency_ms": 421,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 54,
+        "output_chars": 66,
+        "method": "Fallback",
+        "latency_ms": 1264,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 393,
+        "output_chars": 393,
+        "method": "Verbatim-CodeFence",
+        "latency_ms": 0,
+        "attempts": 1,
+        "fallback_used": false
+      }
+    ],
+    "translated_at": "2026-08-09T07:46:40Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   }
 }
