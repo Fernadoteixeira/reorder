@@ -5,7 +5,6 @@ loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
 const backendUrl = process.env.MEDUSA_BACKEND_URL || "http://localhost:9005"
 const publicPort = Number(process.env.MEDUSA_PUBLIC_PORT || 9005)
-const adminSrcDir = path.resolve(process.cwd(), "src/admin")
 
 module.exports = defineConfig({
   projectConfig: {
@@ -33,13 +32,22 @@ module.exports = defineConfig({
   admin: {
     disable: false,
     backendUrl,
-    ...({ sources: [adminSrcDir] } as unknown as Partial<import("@medusajs/types").AdminOptions>),
+    ...({ sources: [process.cwd()] } as unknown as Partial<import("@medusajs/types").AdminOptions>),
     vite: (config) => ({
       ...config,
       server: {
         ...(config?.server || {}),
         host: "0.0.0.0",
         origin: backendUrl,
+        watch: {
+          ignored: [
+            "**/.medusa/**",
+            "**/.cache/**",
+            "**/logs/**",
+            "**/node_modules/**",
+            "**/.git/**",
+          ],
+        },
         hmr: {
           protocol: "ws",
           host: "localhost",
