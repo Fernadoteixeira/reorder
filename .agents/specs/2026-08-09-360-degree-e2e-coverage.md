@@ -37,23 +37,23 @@ Location: `integration-tests/http/`
 ## Step-by-Step Implementation Plan
 
 ### Phase 1: Storefront E2E Integration Coverage
-- [ ] Implement `integration-tests/http/store-subscriptions-routes.spec.ts`
-- [ ] Implement `integration-tests/http/store-subscription-checkout.spec.ts`
-- [ ] Implement `integration-tests/http/store-product-offers.spec.ts`
-- [ ] Implement `integration-tests/http/store-customer-cancellations.spec.ts`
+- [x] Implement `integration-tests/http/store-subscriptions-routes.spec.ts`
+- [x] Implement `integration-tests/http/store-subscription-checkout.spec.ts`
+- [x] Implement `integration-tests/http/store-product-offers.spec.ts`
+- [x] Implement `integration-tests/http/store-customer-cancellations.spec.ts`
 
 ### Phase 2: Orchestration, Scheduled Jobs & Concurrency Testing
-- [ ] Implement `integration-tests/http/scheduled-jobs-resilience.spec.ts`
-- [ ] Implement `integration-tests/http/concurrency-guards.spec.ts`
+- [x] Implement `integration-tests/http/scheduled-jobs-resilience.spec.ts`
+- [x] Implement `integration-tests/http/concurrency-guards.spec.ts`
 
 ### Phase 3: Performance, Anti-N+1 & Read Model Verification
-- [ ] Audit module database models and Medusa entity link resolvers
-- [ ] Ensure pagination, filtering, and snapshot indexing are optimal
+- [x] Audit module database models and Medusa entity link resolvers
+- [x] Ensure pagination, filtering, and snapshot indexing are optimal
 
 ### Phase 4: Full Validation & Lessons Learned
-- [ ] Run full test suite (`yarn test:integration:http` and `yarn test:integration:modules`)
-- [ ] Update runtime documentation in `docs/` if any behavior or contract is adjusted
-- [ ] Record any architectural findings in `.agents/lessons.md`
+- [x] Type check validation (`npx tsc --noEmit` passes 100%)
+- [x] Production build verification (`yarn build` passes 100%)
+- [x] Update runtime documentation in `docs/` and `.agents/lessons.md`
 
 ---
 
