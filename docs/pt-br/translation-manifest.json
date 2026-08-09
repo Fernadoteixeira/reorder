@@ -22718,12 +22718,12 @@
     "target": "docs/pt-br/docs/architecture/dunning.md",
     "batch": "B04",
     "source_sha256": "d076af143b4492dfed100af71a16fe5d24cf1bd626e66f3cc6fa2f39c2fb6661",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "0589a011e6ddb19af2fe21bfe245594ca56a8de12639057f9802b667a19637c1",
+    "status": "validated",
     "source_bytes": 11597,
-    "target_bytes": 0,
+    "target_bytes": 14555,
     "headings_source": 20,
-    "headings_target": 0,
+    "headings_target": 20,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -22734,11 +22734,690 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": [],
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 23,
+        "output_chars": 27,
+        "method": "Free",
+        "latency_ms": 1393,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 2,
+        "input_chars": 104,
+        "output_chars": 108,
+        "method": "Free",
+        "latency_ms": 2435,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 4,
+        "input_chars": 76,
+        "output_chars": 77,
+        "method": "Free",
+        "latency_ms": 1257,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 6,
+        "input_chars": 8,
+        "output_chars": 12,
+        "method": "Free",
+        "latency_ms": 811,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 8,
+        "input_chars": 85,
+        "output_chars": 127,
+        "method": "Free",
+        "latency_ms": 2144,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 10,
+        "input_chars": 457,
+        "output_chars": 601,
+        "method": "Free",
+        "latency_ms": 7626,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 12,
+        "input_chars": 26,
+        "output_chars": 31,
+        "method": "Free",
+        "latency_ms": 972,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 14,
+        "input_chars": 51,
+        "output_chars": 63,
+        "method": "Free",
+        "latency_ms": 1135,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 16,
+        "input_chars": 76,
+        "output_chars": 138,
+        "method": "Free",
+        "latency_ms": 2428,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 18,
+        "input_chars": 39,
+        "output_chars": 51,
+        "method": "Free",
+        "latency_ms": 1024,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 20,
+        "input_chars": 390,
+        "output_chars": 592,
+        "method": "Free",
+        "latency_ms": 6095,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 22,
+        "input_chars": 20,
+        "output_chars": 26,
+        "method": "Free",
+        "latency_ms": 1000,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 24,
+        "input_chars": 68,
+        "output_chars": 95,
+        "method": "Free",
+        "latency_ms": 1533,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 26,
+        "input_chars": 288,
+        "output_chars": 363,
+        "method": "Free",
+        "latency_ms": 5471,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 28,
+        "input_chars": 369,
+        "output_chars": 454,
+        "method": "Free",
+        "latency_ms": 5961,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 30,
+        "input_chars": 17,
+        "output_chars": 22,
+        "method": "Free",
+        "latency_ms": 934,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 32,
+        "input_chars": 268,
+        "output_chars": 382,
+        "method": "Free",
+        "latency_ms": 5606,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 34,
+        "input_chars": 347,
+        "output_chars": 348,
+        "method": "Free",
+        "latency_ms": 5925,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 36,
+        "input_chars": 198,
+        "output_chars": 196,
+        "method": "Free",
+        "latency_ms": 5219,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 38,
+        "input_chars": 22,
+        "output_chars": 31,
+        "method": "Free",
+        "latency_ms": 766,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 40,
+        "input_chars": 330,
+        "output_chars": 420,
+        "method": "Free",
+        "latency_ms": 5031,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 42,
+        "input_chars": 28,
+        "output_chars": 33,
+        "method": "Free",
+        "latency_ms": 1028,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 44,
+        "input_chars": 84,
+        "output_chars": 96,
+        "method": "Free",
+        "latency_ms": 2050,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 46,
+        "input_chars": 655,
+        "output_chars": 808,
+        "method": "Free",
+        "latency_ms": 8848,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 48,
+        "input_chars": 314,
+        "output_chars": 383,
+        "method": "Free",
+        "latency_ms": 5588,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 50,
+        "input_chars": 172,
+        "output_chars": 255,
+        "method": "Free",
+        "latency_ms": 3605,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 52,
+        "input_chars": 95,
+        "output_chars": 108,
+        "method": "Free",
+        "latency_ms": 2460,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 54,
+        "input_chars": 393,
+        "output_chars": 486,
+        "method": "Free",
+        "latency_ms": 5666,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 56,
+        "input_chars": 233,
+        "output_chars": 334,
+        "method": "Free",
+        "latency_ms": 4638,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 58,
+        "input_chars": 16,
+        "output_chars": 25,
+        "method": "Free",
+        "latency_ms": 915,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 60,
+        "input_chars": 72,
+        "output_chars": 95,
+        "method": "Free",
+        "latency_ms": 1532,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 62,
+        "input_chars": 280,
+        "output_chars": 335,
+        "method": "Free",
+        "latency_ms": 3641,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 64,
+        "input_chars": 15,
+        "output_chars": 18,
+        "method": "Free",
+        "latency_ms": 777,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 66,
+        "input_chars": 366,
+        "output_chars": 450,
+        "method": "Free",
+        "latency_ms": 5938,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 68,
+        "input_chars": 135,
+        "output_chars": 159,
+        "method": "Free",
+        "latency_ms": 3256,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 70,
+        "input_chars": 16,
+        "output_chars": 22,
+        "method": "Free",
+        "latency_ms": 748,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 72,
+        "input_chars": 278,
+        "output_chars": 377,
+        "method": "Free",
+        "latency_ms": 4561,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 74,
+        "input_chars": 183,
+        "output_chars": 237,
+        "method": "Free",
+        "latency_ms": 3080,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 76,
+        "input_chars": 24,
+        "output_chars": 46,
+        "method": "Free",
+        "latency_ms": 882,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 78,
+        "input_chars": 90,
+        "output_chars": 137,
+        "method": "Free",
+        "latency_ms": 1949,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 80,
+        "input_chars": 98,
+        "output_chars": 124,
+        "method": "Free",
+        "latency_ms": 1749,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 82,
+        "input_chars": 224,
+        "output_chars": 250,
+        "method": "Free",
+        "latency_ms": 3994,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 84,
+        "input_chars": 17,
+        "output_chars": 28,
+        "method": "Free",
+        "latency_ms": 904,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 86,
+        "input_chars": 68,
+        "output_chars": 116,
+        "method": "Free",
+        "latency_ms": 1543,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 88,
+        "input_chars": 140,
+        "output_chars": 208,
+        "method": "Free",
+        "latency_ms": 2856,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 90,
+        "input_chars": 285,
+        "output_chars": 374,
+        "method": "Free",
+        "latency_ms": 5024,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 92,
+        "input_chars": 85,
+        "output_chars": 111,
+        "method": "Free",
+        "latency_ms": 1825,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 94,
+        "input_chars": 16,
+        "output_chars": 25,
+        "method": "Free",
+        "latency_ms": 1006,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 96,
+        "input_chars": 179,
+        "output_chars": 191,
+        "method": "Free",
+        "latency_ms": 4053,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 98,
+        "input_chars": 19,
+        "output_chars": 32,
+        "method": "Free",
+        "latency_ms": 742,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 100,
+        "input_chars": 79,
+        "output_chars": 113,
+        "method": "Free",
+        "latency_ms": 1939,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 102,
+        "input_chars": 321,
+        "output_chars": 358,
+        "method": "Free",
+        "latency_ms": 5146,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 104,
+        "input_chars": 19,
+        "output_chars": 37,
+        "method": "Free",
+        "latency_ms": 889,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 106,
+        "input_chars": 112,
+        "output_chars": 152,
+        "method": "Free",
+        "latency_ms": 2856,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 108,
+        "input_chars": 347,
+        "output_chars": 362,
+        "method": "Free",
+        "latency_ms": 5441,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 110,
+        "input_chars": 264,
+        "output_chars": 331,
+        "method": "Free",
+        "latency_ms": 4686,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 112,
+        "input_chars": 32,
+        "output_chars": 45,
+        "method": "Free",
+        "latency_ms": 948,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 114,
+        "input_chars": 132,
+        "output_chars": 160,
+        "method": "Free",
+        "latency_ms": 2552,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 116,
+        "input_chars": 203,
+        "output_chars": 242,
+        "method": "Free",
+        "latency_ms": 2857,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 118,
+        "input_chars": 27,
+        "output_chars": 31,
+        "method": "Free",
+        "latency_ms": 744,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 120,
+        "input_chars": 45,
+        "output_chars": 46,
+        "method": "Free",
+        "latency_ms": 1351,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 122,
+        "input_chars": 40,
+        "output_chars": 40,
+        "method": "Free",
+        "latency_ms": 865,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 124,
+        "input_chars": 219,
+        "output_chars": 290,
+        "method": "Free",
+        "latency_ms": 4128,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 126,
+        "input_chars": 118,
+        "output_chars": 153,
+        "method": "Free",
+        "latency_ms": 2445,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 128,
+        "input_chars": 44,
+        "output_chars": 49,
+        "method": "Free",
+        "latency_ms": 1027,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 130,
+        "input_chars": 78,
+        "output_chars": 131,
+        "method": "Free",
+        "latency_ms": 1978,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 132,
+        "input_chars": 516,
+        "output_chars": 693,
+        "method": "Free",
+        "latency_ms": 6874,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 134,
+        "input_chars": 24,
+        "output_chars": 34,
+        "method": "Free",
+        "latency_ms": 946,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 136,
+        "input_chars": 78,
+        "output_chars": 117,
+        "method": "Free",
+        "latency_ms": 1989,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 138,
+        "input_chars": 88,
+        "output_chars": 89,
+        "method": "Free",
+        "latency_ms": 1693,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 140,
+        "input_chars": 173,
+        "output_chars": 202,
+        "method": "Free",
+        "latency_ms": 3596,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 142,
+        "input_chars": 15,
+        "output_chars": 14,
+        "method": "Free",
+        "latency_ms": 802,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 144,
+        "input_chars": 87,
+        "output_chars": 116,
+        "method": "Free",
+        "latency_ms": 2022,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 146,
+        "input_chars": 319,
+        "output_chars": 377,
+        "method": "Free",
+        "latency_ms": 6428,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 148,
+        "input_chars": 152,
+        "output_chars": 203,
+        "method": "Free",
+        "latency_ms": 2367,
+        "attempts": 1,
+        "fallback_used": false
+      }
+    ],
+    "translated_at": "2026-08-09T10:00:07Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/architecture/plan-offers.md": {

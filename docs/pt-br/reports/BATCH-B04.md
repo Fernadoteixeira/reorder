@@ -3,11 +3,11 @@
 - **Batch ID:** B04
 - **Name:** Docs Architecture & Roadmap
 - **Files in Batch:** 12
-- **Validated:** 11
-- **Failed:** 1
+- **Validated:** 12
+- **Failed:** 0
 - **Encoding Gate:** PASS (100% Strict UTF-8)
 - **Code Fences Integrity:** PASS (100% Byte-for-Byte Exact)
-- **Status:** FAIL
+- **Status:** PASS
 
 ## File Audit Table
 
@@ -16,7 +16,7 @@
 | `docs/architecture/activity-log.md` | `docs/pt-br/docs/architecture/activity-log.md` | 30198 | 36564 | `true` | `UTF-8` | `validated` |
 | `docs/architecture/analytics.md` | `docs/pt-br/docs/architecture/analytics.md` | 34353 | 41952 | `true` | `UTF-8` | `validated` |
 | `docs/architecture/cancellation.md` | `docs/pt-br/docs/architecture/cancellation.md` | 13733 | 16866 | `true` | `UTF-8` | `validated` |
-| `docs/architecture/dunning.md` | `docs/pt-br/docs/architecture/dunning.md` | 11597 | 0 | `false` | `UTF-8` | `failed` |
+| `docs/architecture/dunning.md` | `docs/pt-br/docs/architecture/dunning.md` | 11597 | 14555 | `true` | `UTF-8` | `validated` |
 | `docs/architecture/plan-offers.md` | `docs/pt-br/docs/architecture/plan-offers.md` | 11944 | 14937 | `true` | `UTF-8` | `validated` |
 | `docs/architecture/renewals.md` | `docs/pt-br/docs/architecture/renewals.md` | 14950 | 18318 | `true` | `UTF-8` | `validated` |
 | `docs/architecture/settings.md` | `docs/pt-br/docs/architecture/settings.md` | 25256 | 31320 | `true` | `UTF-8` | `validated` |
