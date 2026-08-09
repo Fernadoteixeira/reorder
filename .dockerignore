@@ -1,0 +1,15 @@
+.git
+.gitignore
+.medusa
+node_modules
+dist
+build
+coverage
+.cache
+yarn-error.log
+.yarn/cache
+.yarn/install-state.gz
+medusa-db.sql
+.env
+.env.*
+!.env.example

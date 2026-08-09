@@ -129,7 +129,10 @@ For a new developer joining the project:
 
 ## Local Development
 
-To use the local `reorder` plugin in a Medusa backend during development:
+For quick containerized development using Docker:
+- See `docs/development/docker.md` or run `docker compose up -d --build` to spin up PostgreSQL, Redis, and the Medusa dev server with the Reorder plugin and Admin UI pre-configured.
+
+To use the local `reorder` plugin in an external Medusa backend during development:
 
 - add this dependency in the Medusa backend `package.json`:
   - `"@reorderjs/reorder": "file:../reorder"`
@@ -142,6 +145,7 @@ When you make changes in this `reorder` repository and want the Medusa backend t
 3. In the Medusa backend, run `yarn install`
 
 Do not assume the Medusa backend is using the newest local plugin code until that sequence has completed.
+
 
 ## Implemented Areas
 

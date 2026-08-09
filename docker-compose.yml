@@ -1,0 +1,73 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: reorder-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medusa-reorder
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d medusa-reorder"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  redis:
+    image: redis:7-alpine
+    container_name: reorder-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  medusa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: reorder-medusa
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "9000:9000"
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-reorder
+      REDIS_URL: redis://redis:6379
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      JWT_SECRET: supersecret
+      COOKIE_SECRET: supersecret
+      MEDUSA_BACKEND_URL: http://localhost:9000
+      STORE_CORS: http://localhost:8000,http://localhost:3000,http://localhost:5173
+      ADMIN_CORS: http://localhost:9000,http://localhost:7001
+      AUTH_CORS: http://localhost:9000,http://localhost:7001,http://localhost:8000,http://localhost:3000,http://localhost:5173
+      MEDUSA_ADMIN_ONBOARDING_TYPE: default
+      ADMIN_EMAIL: admin@reorder.local
+      ADMIN_PASSWORD: supersecret
+      SEED_DATABASE: "false"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.medusa
+
+volumes:
+  postgres_data:
+  redis_data:
