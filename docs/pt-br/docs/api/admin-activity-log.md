@@ -1,16 +1,16 @@
-# API de registro de atividades do administrador
+# API do Registro de Atividades do Administrador
 
-Este documento descreve o contrato Admin API implementado para a área `Activity Log` do plugin `Reorder`.
+Este documento descreve o contrato da API de administração implementado para a área `Activity Log` do plug-in `Reorder`.
 
-Pretende ser a fonte atual de verdade para:
+Este documento pretende ser a fonte oficial de referência atual para:
 - parâmetros de solicitação
-- formas de resposta
+- formatos de resposta
 - regras de filtragem, classificação e paginação
-- cenários de erro comuns
+- cenários comuns de erro
 
-Todas as rotas descritas aqui são rotas administrativas personalizadas expostas pelo plugin e destinadas a usuários autenticados do Medusa Admin.
+Todas as rotas descritas aqui são rotas personalizadas do Admin expostas pelo plug-in e destinadas a usuários autenticados do Medusa Admin.
 
-## Caminhos básicos
+## Caminhos de base
 
 Rotas implementadas:
 - `/admin/subscription-logs`
@@ -19,18 +19,18 @@ Rotas implementadas:
 
 ## Autenticação
 
-Todas as rotas são rotas somente para administradores.
+Todas as rotas são exclusivas para administradores.
 
 Em termos de implementação:
-- as rotas usam `AuthenticatedMedusaRequest`
-- a validação da solicitação é feita por meio de middleware Medusa e esquemas Zod
-- manipuladores de rota permanecem finos e delegam lógica de leitura para auxiliares de consulta
+- as rotas utilizam `AuthenticatedMedusaRequest`
+- a validação das solicitações é feita por meio do middleware Medusa e dos esquemas Zod
+- os manipuladores de rota são simples e delegam a lógica de leitura aos auxiliares de consulta
 
-Isso mantém a API alinhada com a rota Medusa e as convenções de modelo de leitura do administrador.
+Isso mantém a API alinhada com as convenções de rotas do Medusa e do modelo de leitura do Admin.
 
 ## DTOs compartilhados
 
-As respostas da API são baseadas nos Admin DTOs definidos em:
+As respostas da API são baseadas nos DTOs de administração definidos em:
 
 - `src/admin/types/activity-log.ts`
 
@@ -42,36 +42,36 @@ Principais tipos de resposta:
 - `ActivityLogAdminSubscriptionSummary`
 - `ActivityLogAdminActorSummary`
 
-## Valores de domínio compartilhado
+## Valores compartilhados do domínio
 
-### Valores de tipo de ator
+### Valores dos tipos de ator
 
 Valores de ator suportados:
 - `user`
 - `system`
 - `scheduler`
 
-### Valores de tipo de evento
+### Valores do tipo de evento
 
-Grupos de eventos suportados:
+Grupos de eventos compatíveis:
 - `subscription.*`
 - `renewal.*`
 - `dunning.*`
 - `cancellation.*`
 
-A atual taxonomia de eventos explícita é definida em:
+A taxonomia explícita atual de eventos está definida em:
 - `docs/architecture/activity-log.md`
 
-## 1. Listar eventos do log de atividades
+## 1. Listar eventos do registro de atividades
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscription-logs`
 
-### Propósito
+### Objetivo
 
-Retorna a lista de log de atividades global paginada usada pelo Admin `Activity Log` DataTable.
+Retorna a lista global paginada do registro de atividades utilizada pela DataTable “Admin `Activity Log`”.
 
 ### Parâmetros de consulta
 
@@ -98,7 +98,7 @@ Tipos de atores suportados:
 - `system`
 - `scheduler`
 
-### Campos de classificação suportados
+### Campos de classificação compatíveis
 
 Baseado em banco de dados:
 - `created_at`
@@ -110,14 +110,14 @@ Na memória:
 - `customer_name`
 - `reason`
 
-### Classificação padrão
+### Ordenação padrão
 
-Se nenhuma classificação explícita for passada, a lista será retornada usando:
+Se nenhuma ordem de classificação explícita for passada, a lista será retornada usando:
 - `created_at desc`
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -157,21 +157,21 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de parâmetro de consulta inválido ou campo de classificação não compatível.
+  Formato inválido do parâmetro de consulta ou campo de classificação não suportado.
 
-## 2. Obtenha detalhes do registro de atividades
+## 2. Obter detalhes do registro de atividades
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscription-logs/:id`
 
-### Propósito
+### Objetivo
 
-Retorna a carga detalhada completa para um evento `subscription_log`.
+Retorna a carga útil com todos os detalhes de um evento `subscription_log`.
 
 ### Parâmetros de caminho
 
@@ -179,7 +179,7 @@ Retorna a carga detalhada completa para um evento `subscription_log`.
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -231,21 +231,21 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O registro do log de atividades não existe.
 
-## 3. Obtenha o cronograma para uma assinatura
+## 3. Obter a linha do tempo de uma assinatura
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscriptions/:id/logs`
 
-### Propósito
+### Objetivo
 
-Retorna o cronograma do log de atividades paginado para uma página de detalhes da assinatura.
+Retorna a linha do tempo paginada do registro de atividades para uma página de detalhes de assinatura.
 
 ### Parâmetros de caminho
 
@@ -253,19 +253,19 @@ Retorna o cronograma do log de atividades paginado para uma página de detalhes 
 
 ### Parâmetros de consulta
 
-Suporta os mesmos campos de paginação, classificação e filtro da lista global.
+Oferece os mesmos campos de paginação, ordenação e filtragem que a lista global.
 
-Na prática, a rota aplica o mesmo modelo de leitura enquanto força:
+Na prática, a rota aplica o mesmo modelo de leitura, ao mesmo tempo em que impõe:
 - `subscription_id = :id`
 
-### Classificação padrão
+### Ordenação padrão
 
-Se nenhuma classificação explícita for passada, a linha do tempo será retornada usando:
+Se nenhuma ordem de classificação explícita for passada, a linha do tempo é retornada usando:
 - `created_at desc`
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -305,30 +305,30 @@ Forma:
 }
 ```
 
-## Leia as notas do modelo
+## Ler as notas do modelo
 
-O modelo de leitura implementado prioriza o instantâneo.
+O modelo de leitura implementado é do tipo “snapshot-first”.
 
-Isso significa:
-- a lista e a linha do tempo renderizadas dos instantâneos `subscription_log`
-- a visualização detalhada retorna a carga útil do evento armazenado do mesmo registro
-- a API não requer grande enriquecimento de tempo de execução de módulos vinculados para a experiência base
+Isso significa que:
+- a lista e a linha do tempo são renderizadas a partir de instantâneos de `subscription_log`
+- a visualização detalhada retorna a carga útil do evento armazenada no mesmo registro
+- a API não exige um enriquecimento pesado em tempo de execução por parte dos módulos vinculados para a experiência básica
 
-Isto mantém a trilha de auditoria historicamente estável e operacionalmente previsível.
+Isso mantém a trilha de auditoria historicamente estável e operacionalmente previsível.
 
-## Notas de exibição do ator
+## Notas sobre a exibição dos atores
 
-O modelo de leitura mantém os campos brutos de identidade de auditoria:
+O modelo de leitura mantém os campos de identidade de auditoria em formato bruto:
 - `actor_type`
 - `actor_id`
 
-Também enriquece o Admin DTO com:
+Além disso, ele enriquece o DTO Admin com:
 - `actor.type`
 - `actor.id`
 - `actor.email`
 - `actor.name`
 - `actor.display`
 
-O comportamento pretendido da IU é:
-- prefira `actor.display`
-- volte para `actor_id` somente quando o enriquecimento de exibição não estiver disponível
+O comportamento pretendido da interface do usuário é:
+- dar preferência a `actor.display`
+- recorrer a `actor_id` somente quando o enriquecimento de exibição não estiver disponível
