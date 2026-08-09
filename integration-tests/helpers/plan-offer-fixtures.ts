@@ -10,6 +10,7 @@ import {
 import {
   createAdminAuthHeaders,
   createCustomer,
+  createCustomerAuthHeaders,
   createProductWithVariant,
   createSubscriptionSeed,
   updateCustomer,
@@ -44,6 +45,7 @@ type PlanOfferSeedInput = {
 export {
   createAdminAuthHeaders,
   createCustomer,
+  createCustomerAuthHeaders,
   createProductWithVariant,
   createSubscriptionSeed,
   updateCustomer,

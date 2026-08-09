@@ -104,6 +104,65 @@ export async function createAdminAuthHeaders(container: MedusaContainer) {
   }
 }
 
+export async function createCustomerAuthHeaders(
+  container: MedusaContainer,
+  customerId?: string
+) {
+  const authModule = container.resolve<AuthModuleService>(Modules.AUTH)
+  const customerModule =
+    container.resolve<CustomerModuleService>(Modules.CUSTOMER)
+
+  const email = `customer-${Date.now()}@medusa.test`
+  let targetCustomerId = customerId
+
+  if (!targetCustomerId) {
+    const customer = await customerModule.createCustomers({
+      email,
+      first_name: "Customer",
+      last_name: "Tester",
+    })
+    targetCustomerId = customer.id
+  }
+
+  const authIdentity = await authModule.createAuthIdentities({
+    provider_identities: [
+      {
+        provider: "emailpass",
+        entity_id: email,
+        provider_metadata: {
+          password: "supersecret",
+        },
+      },
+    ],
+    app_metadata: {
+      customer_id: targetCustomerId,
+    },
+  })
+
+  const token = jwt.sign(
+    {
+      actor_id: targetCustomerId,
+      actor_type: "customer",
+      auth_identity_id: authIdentity.id,
+      app_metadata: {
+        customer_id: targetCustomerId,
+      },
+      user_metadata: {},
+    },
+    process.env.JWT_SECRET || "supersecret",
+    {
+      expiresIn: "1d",
+    }
+  )
+
+  return {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+    customerId: targetCustomerId,
+  }
+}
+
 export async function createProductWithVariant(container: MedusaContainer) {
   const productModule = container.resolve<ProductModuleService>(Modules.PRODUCT)
 
