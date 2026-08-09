@@ -2,6 +2,8 @@ import { defineConfig, loadEnv } from "@medusajs/framework/utils"
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
+const port = Number(process.env.MEDUSA_PORT || 9005)
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl:
@@ -27,7 +29,16 @@ module.exports = defineConfig({
   },
   admin: {
     disable: false,
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9005",
+    backendUrl: process.env.MEDUSA_BACKEND_URL || `http://localhost:${port}`,
+    vite: (config) => ({
+      ...config,
+      server: {
+        ...(config?.server || {}),
+        hmr: {
+          clientPort: port,
+        },
+      },
+    }),
   },
   modules: [
     {

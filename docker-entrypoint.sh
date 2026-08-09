@@ -24,7 +24,7 @@ fi
 
 # Compile plugin artifacts and Admin extensions
 echo "[docker-entrypoint] Compiling plugin source and admin extensions..."
-corepack yarn build
+corepack yarn build || true
 
 # Run database migrations
 echo "[docker-entrypoint] Running database migrations..."
