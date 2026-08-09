@@ -22,10 +22,10 @@ It should be reviewed at the start of a session and updated after fixing any bug
 - **Lesson**: When installing dependencies using Yarn Berry (v4) with `nodeLinker: node-modules`, built-in TypeScript compatibility patches can trigger hunk conflicts on TypeScript 5.7+ (`Cannot apply hunk #1`).
 - **Rule**: Pin `"typescript": "5.6.2"` and add `"resolutions": { "typescript": "5.6.2" }` in `package.json`. Use `corepack yarn install --mode=skip-build` to bypass conflicting lifecycle patches and ensure clean linking into `node_modules`.
 
-### Medusa v2 Module Registration in Root Plugin Config
+### Medusa v2 Module Registration & Admin Extension Sources in Root Plugin Config
 
-- **Lesson**: In Medusa v2 development server configs (`medusa-config.ts`), custom domain modules must be registered in the `modules` array (`resolve: "./src/modules/<name>"`). Do NOT set `plugins: [{ resolve: projectRoot }]` in the root config because Medusa will discover links twice and fail with `Link module ... already exists`.
-- **Rule**: Declare all custom domain modules in `modules` and keep `plugins: []` in the root development config.
+- **Lesson**: In Medusa v2 development server configs (`medusa-config.ts`), custom domain modules must be registered in the `modules` array (`resolve: "./src/modules/<name>"`). Setting `plugins: []` prevents duplicate link loading, BUT causes `adminLoader` to leave `sources: []` empty, breaking `@medusajs/admin-vite-plugin` virtual module resolution (`virtual:medusa/*` returning HTML instead of JS).
+- **Rule**: Declare all custom domain modules in `modules`, set `plugins: []`, and explicitly supply `...({ sources: [process.cwd()] } as unknown as Partial<AdminOptions>)` under `admin` in `medusa-config.ts`.
 
 ### PostgreSQL SSL Mode in Local Docker Containers
 

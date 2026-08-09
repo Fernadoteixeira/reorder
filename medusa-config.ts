@@ -1,4 +1,5 @@
 import { defineConfig, loadEnv } from "@medusajs/framework/utils"
+import path from "path"
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
@@ -31,6 +32,7 @@ module.exports = defineConfig({
   admin: {
     disable: false,
     backendUrl,
+    ...({ sources: [process.cwd()] } as unknown as Partial<import("@medusajs/types").AdminOptions>),
     vite: (config) => ({
       ...config,
       server: {

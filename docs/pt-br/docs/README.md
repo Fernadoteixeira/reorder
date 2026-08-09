@@ -1,8 +1,8 @@
-# Reordenar documentos
+# Reorganizar documentos
 
-`Reorder` é um plugin Medusa.js para fluxos comerciais recorrentes gerenciados pelo Admin.
+`Reorder` é um plug-in do Medusa.js para fluxos de comércio recorrentes gerenciados pelo Painel de Administração.
 
-Agora ele também expõe rotas de API da Loja voltadas para o cliente para check-out de assinatura, ações de conta de assinatura e resolução de oferta de assinatura PDP.
+Agora, ela também disponibiliza rotas da API da Loja voltadas para o cliente para finalização de compra de assinaturas, ações relacionadas à conta de assinatura e resolução de ofertas de assinatura na página de detalhes do produto (PDP).
 
 No momento, as seguintes áreas estão implementadas e testadas:
 - `Subscriptions`
@@ -13,73 +13,73 @@ No momento, as seguintes áreas estão implementadas e testadas:
 - `Activity Log`
 - `Analytics`
 
-## Status atual
+## Situação atual
 
 Concluído:
-- modelo de domínio `Subscriptions`
-- `Subscriptions` rotas de API de administração
-- `Subscriptions` Admin UI: lista, detalhes, ações, mudança de plano, edição de endereço de entrega e widget de assinatura com detalhes do pedido
-- `Subscriptions` testes de integração de back-end
-- `Subscriptions` teste de integração de fluxo administrativo
-- modelo de domínio `Plans & Offers`
-- `Plans & Offers` rotas de API de administração
-- `Plans & Offers` Admin UI: listar, criar, editar, alternar, filtrar, classificar e selecionar fluxos
-- `Plans & Offers` testes de integração de back-end
-- `Plans & Offers` cobertura de integração de fluxo administrativo
-- integração do nível de fumaça entre `Plans & Offers` e `Subscriptions`
-- modelo de domínio `Renewals`
-- `Renewals` rotas de API de administração
-- `Renewals` UI Admin: fila, detalhes, aprovação, rejeição e fluxos forçados
-- `Renewals` testes de integração de back-end
-- `Renewals` cobertura de integração de fluxo administrativo
-- integração do nível de fumaça entre `Renewals`, `Subscriptions` e `Plans & Offers`
-- `Renewals` fortalecimento operacional para agendadores e fluxos de execução manual
-- modelo de domínio `Dunning`
-- `Dunning` rotas de API de administração
-- `Dunning` UI de administração: fila, detalhes, tentar novamente agora, marcar como recuperado, marcar como não recuperado e substituir a programação de novas tentativas
-- `Dunning` testes de integração de back-end
-- `Dunning` cobertura de integração de fluxo administrativo
-- integração do nível de fumaça entre `Dunning`, `Renewals` e `Subscriptions`
-- `Dunning` fortalecimento operacional para agendador e fluxos de repetição manual
-- modelo de domínio `Cancellation & Retention`
-- `Cancellation & Retention` rotas de API de administração
-- `Cancellation & Retention` UI de administração: fluxos de fila, detalhes, aplicação de oferta, finalização e atualização de motivo
-- `Cancellation & Retention` testes de integração de back-end
-- `Cancellation & Retention` cobertura de integração de fluxo administrativo
-- integração do nível de fumaça entre `Cancellation & Retention`, `Subscriptions`, `Renewals` e `Dunning`
+- `Subscriptions` modelo de domínio
+- `Subscriptions` rotas da API de administração
+- `Subscriptions` Interface de usuário de administração: lista, detalhes, ações, alteração de plano, edição de endereço de entrega e widget de detalhes do pedido para assinaturas
+- `Subscriptions` testes de integração do backend
+- Teste de integração do fluxo administrativo: `Subscriptions`
+- Modelo de domínio: `Plans & Offers`
+- Rotas da API administrativa: `Plans & Offers`
+- Interface do usuário administrativa: fluxos de lista, criação, edição, alternância, filtragem, classificação e seleção: `Plans & Offers`
+- Testes de integração do back-end: `Plans & Offers`
+- `Plans & Offers` cobertura de integração do fluxo administrativo
+- integração de nível básico entre `Plans & Offers` e `Subscriptions`
+- `Renewals` modelo de domínio
+- `Renewals` rotas da API administrativa
+- `Renewals` Interface de usuário administrativa: fluxos de fila, detalhes, aprovação, rejeição e força
+- `Renewals` testes de integração do back-end
+- `Renewals` cobertura de integração dos fluxos administrativos
+- integração de nível básico entre `Renewals`, `Subscriptions` e `Plans & Offers`
+- `Renewals` fortalecimento operacional para o agendador e fluxos de execução manual
+- `Dunning` modelo de domínio
+- `Dunning` rotas da API de administração
+- `Dunning` Interface de usuário de administração: fila, detalhes, tentar novamente agora, marcar como recuperado, marcar como não recuperado e substituir agendamento de nova tentativa
+- `Dunning` testes de integração do backend
+- `Dunning` cobertura de integração do fluxo administrativo
+- integração de nível básico entre `Dunning`, `Renewals` e `Subscriptions`
+- `Dunning` fortalecimento operacional para o agendador e fluxos de repetição manual
+- `Cancellation & Retention` modelo de domínio
+- `Cancellation & Retention` rotas da API administrativa
+- `Cancellation & Retention` Interface do usuário administrativa: fluxos de fila, detalhes, aplicação de oferta, finalização e atualização de motivo
+- `Cancellation & Retention` testes de integração do backend
+- Cobertura de integração do fluxo de administração
+- Integração de nível básico entre `Cancellation & Retention`, `Subscriptions`, `Renewals` e `Dunning`
 - `Cancellation & Retention` fortalecimento operacional para trilha de auditoria, registro estruturado e métricas de resumo do agendador
 - `Activity Log` modelo de domínio e armazenamento
-- `Activity Log` criação de eventos apoiados por fluxo de trabalho em `Subscriptions`, checkout de assinatura de loja, `Renewals`, `Dunning` e `Cancellation & Retention`
-- `Activity Log` rotas de API de administração
-- `Activity Log` Admin UI: lista global, detalhes do evento e cronograma por assinatura
-- `Activity Log` testes de integração de back-end e cobertura de integração de fluxo administrativo
-- `Activity Log` documentação operacional para retenção, monitoramento e limites do roteiro
-- Modelo de domínio `Analytics` e armazenamento diário de snapshots
-- `Analytics` rotas de API administrativa para KPI, tendências, exportação e fluxos de reconstrução
-- `Analytics` Admin UI: página de análise dedicada com filtros, cartões KPI, visualização de tendências e ações de exportação
-- `Analytics` testes de integração de back-end e cobertura de integração de fluxo administrativo
-- Integração de invalidação de cache `Analytics` com `Subscriptions`, `Renewals`, `Dunning` e `Cancellation & Retention`
+- `Activity Log` criação de eventos baseada em fluxo de trabalho entre `Subscriptions`, finalização da assinatura da loja, `Renewals`, `Dunning` e `Cancellation & Retention`
+- `Activity Log` rotas da API de administração
+- `Activity Log` Interface de usuário de administração: lista global, detalhes do evento e linha do tempo por assinatura
+- `Activity Log` testes de integração do back-end e cobertura de integração do fluxo de administração
+- `Activity Log` documentação operacional para retenção, monitoramento e limites do roteiro de desenvolvimento
+- `Analytics` modelo de domínio e armazenamento de instantâneos diários
+- `Analytics` rotas da API de administração para KPIs, tendências, exportação e fluxos de reconstrução
+- `Analytics` Interface de usuário de administração: página dedicada à análise com filtros, cartões de KPIs, visualização de tendências e ações de exportação
+- `Analytics` testes de integração de back-end e cobertura de integração dos fluxos de administração
+- `Analytics` integração da invalidação de cache com `Subscriptions`, `Renewals`, `Dunning` e `Cancellation & Retention`
 
 Em andamento:
-- página de análise dedicada e visualizações de relatórios para `Cancellation & Retention`
+- página dedicada à análise e visualizações de relatórios para `Cancellation & Retention`
 - futuras extensões operacionais para `Activity Log`, como arquivamento ou exportação
 
-## Mapa de documentação
+## Mapa da documentação
 
-Use estes documentos dependendo do que você precisa:
+Utilize esses documentos de acordo com a sua necessidade:
 
 - `specs/`
   Documentos iniciais de projeto e planejamento criados antes ou durante a implementação.
 - `architecture/`
   Documentação técnica que descreve como cada área de domínio está estruturada.
 - `api/`
-  Contratos de API atuais usados pelo administrador e outros consumidores.
+  Contratos de API atuais utilizados pelo Admin e por outros usuários.
 - `admin/`
-  Comportamento da UI do administrador, telas, ações, filtros e convenções de UX.
+  Comportamento da interface do usuário do Admin, telas, ações, filtros e convenções de experiência do usuário.
 - `testing/`
-  Como os testes são estruturados, o que é abordado e como executá-los.
+  Como os testes são estruturados, o que eles abrangem e como executá-los.
 
-Documentos de fonte de verdade em tempo de execução existem atualmente para:
+Atualmente, existem documentos de referência oficial de tempo de execução para:
 
 - `Subscriptions`
   - `architecture/subscriptions.md`
@@ -97,7 +97,7 @@ Documentos de fonte de verdade em tempo de execução existem atualmente para:
   - `admin/renewals.md`
   - `testing/renewals.md`
 - `Dunning`
-  -`architecture/dunning.md`
+  - `architecture/dunning.md`
   - `api/admin-dunning.md`
   - `admin/dunning.md`
   - `testing/dunning.md`
@@ -120,124 +120,124 @@ Documentos de fonte de verdade em tempo de execução existem atualmente para:
 
 ## Ordem de leitura recomendada
 
-Para um novo desenvolvedor ingressando no projeto:
+Para um novo desenvolvedor que esteja ingressando no projeto:
 1. Leia este arquivo.
-2. Leia o documento de arquitetura da área em que você trabalha.
-3. Leia o documento da API dessa área.
-4. Leia o documento Admin UI se você tocar nos fluxos do painel.
-5. Leia o documento de teste antes de mudar de comportamento.
+2. Leia o documento de arquitetura referente à área em que você trabalha.
+3. Leia o documento da API referente a essa área.
+4. Leia o documento da interface de usuário administrativa caso você trabalhe com fluxos do painel de controle.
+5. Leia o documento de testes antes de alterar qualquer comportamento.
 
-## Desenvolvimento Local
+## Desenvolvimento local
 
-Para desenvolvimento rápido em contêineres usando Docker:
-- Consulte `docs/development/docker.md` ou execute `docker compose up -d --build` para ativar o PostgreSQL, Redis e o servidor de desenvolvimento Medusa com o plug-in Reorder e a UI Admin pré-configurados.
+Para um desenvolvimento rápido em contêineres usando o Docker:
+- Consulte `docs/development/docker.md` ou execute `docker compose up -d --build` para iniciar o PostgreSQL, o Redis e o servidor de desenvolvimento do Medusa com o plug-in Reorder e a interface de usuário administrativa pré-configurados.
 
-Para usar o plugin `reorder` local em um backend externo da Medusa durante o desenvolvimento:
+Para usar o plugin local `reorder` em um backend externo do Medusa durante o desenvolvimento:
 
-- adicione esta dependência no backend Medusa `package.json`:
+- adicione esta dependência no backend do Medusa `package.json`:
   - `"@reorderjs/reorder": "file:../reorder"`
 - execute `yarn install` no backend do Medusa após adicionar ou atualizar essa dependência
 
-Quando você fizer alterações neste repositório `reorder` e quiser que o backend do Medusa use a versão local mais recente, use esta sequência:
+Quando você fizer alterações neste repositório `reorder` e quiser que o backend do Medusa utilize a versão local mais recente, siga esta sequência:
 
-1. Em `reorder`, execute `yarn medusa plugin:publish`
-2. No back-end do Medusa, execute `yarn medusa db:migrate`
-3. No back-end do Medusa, execute `yarn install`
+1. No `reorder`, execute o `yarn medusa plugin:publish`
+2. No backend do Medusa, execute o `yarn medusa db:migrate`
+3. No backend do Medusa, execute o `yarn install`
 
-Não presuma que o back-end do Medusa está usando o código do plug-in local mais recente até que a sequência seja concluída.
+Não presuma que o backend do Medusa esteja utilizando o código mais recente do plug-in local até que essa sequência tenha sido concluída.
 
 
-## Áreas Implementadas
+## Áreas implementadas
 
 As áreas atualmente implementadas são `Subscriptions`, `Plans & Offers`, `Renewals`, `Dunning`, `Cancellation & Retention`, `Activity Log` e `Analytics`.
 
-`Activity Log` agora é implementado de ponta a ponta como uma trilha de auditoria de negócios com APIs de leitura de administrador, uma página de administração dedicada e um cronograma de nível de assinatura.
+O `Activity Log` agora está implementado de ponta a ponta como um registro de auditoria de negócios, com APIs de leitura para administradores, uma página dedicada à administração e uma linha do tempo no nível da assinatura.
 
 ### Assinaturas
 
 Esta área inclui:
-- lista de assinaturas no Admin
+- lista de assinaturas na seção Admin
 - página de detalhes da assinatura
-- widget de assinatura com detalhes do pedido na página de pedido padrão da Medusa
-- pausar, retomar e cancelar ações
-- mudança de plano de cronograma
+- widget de detalhes da assinatura na página padrão de pedidos do Medusa
+- ações para pausar, retomar e cancelar
+- agendar alteração do plano
 - editar endereço de entrega
-- filtros, classificação, paginação e estados de carregamento/erro
+- filtros, ordenação, paginação e estados de carregamento/erro
 
-### Planos e Ofertas
+### Planos e ofertas
 
 Esta área inclui:
-- configuração de oferta de assinatura em nível de produto e variante
+- configuração de ofertas de assinatura no nível do produto e no nível da variante
 - frequências permitidas e descontos por frequência
-- oferecer regras como ciclos mínimos, configurações de teste e política de empilhamento
-- Página de gerenciamento administrativo com criação, edição, filtragem, classificação e alternância de fluxos
-- resolução de configuração eficaz com semântica `variant > product`
-- integração com validação de mudança de plano `Subscriptions`
+- regras de oferta, como ciclos mínimos, configurações de período de teste e política de acumulação
+- página de gerenciamento administrativo com funções para criar, editar, filtrar, classificar e ativar/desativar fluxos
+- resolução eficaz da configuração com a semântica de `variant > product`
+- integração com a validação de mudança de plano de `Subscriptions`
 
 ### Renovações
 
 Esta área inclui:
-- fila do ciclo de renovação no Admin
+- fila do ciclo de renovação na Administração
 - página de detalhes do ciclo de renovação
-- aprovar e rejeitar fluxos para alterações pendentes
-- forçar o fluxo de renovação
-- execução de renovação manual e apoiada por agendador
+- fluxos de aprovação e rejeição para alterações pendentes
+- fluxo de renovação forçada
+- execução de renovações por meio do agendador e manualmente
 - histórico de tentativas e resumos de assinaturas/pedidos vinculados
-- integração com elegibilidade `Subscriptions` e alterações pendentes
-- integração com validação de política `Plans & Offers` em tempo de execução
-- criação automática de casos `Dunning` para falhas de renovação qualificadas para pagamento
-- fortalecimento operacional por meio de bloqueio de fluxo de trabalho, IDs de correlação, logs estruturados e métricas de resumo do agendador
+- integração com a elegibilidade de `Subscriptions` e alterações pendentes
+- integração com a validação de políticas do `Plans & Offers` no momento da execução
+- criação automática de casos do `Dunning` para falhas de renovação qualificadas para pagamento
+- fortalecimento operacional por meio de bloqueio de fluxos de trabalho, IDs de correlação, logs estruturados e métricas de resumo do agendador
 
 ### Cobrança
 
 Esta área inclui:
-- lista de casos de cobrança no Admin
+- lista de casos de cobrança em Admin
 - página de detalhes do caso de cobrança
-- ação repetir agora
-- marcar recuperadas e marcar ações não recuperadas
-- tentar novamente a substituição do agendamento
-- execução de nova tentativa apoiada pelo agendador
-- histórico de tentativas e resumos de assinaturas, renovações e pedidos vinculados
-- integração com `Renewals` falhas qualificadas para pagamento
-- integração com o estado do ciclo de vida `Subscriptions` através de `past_due` e recuperação de volta para `active`
+- ação “repetir agora”
+- ações “marcar como recuperado” e “marcar como não recuperado”
+- substituição da programação de repetição
+- execução de repetição por meio do agendador
+- histórico de tentativas e resumos vinculados de assinaturas, renovações e pedidos
+- integração com falhas qualificadas para pagamento `Renewals`
+- integração com o estado do ciclo de vida `Subscriptions` por meio de `past_due` e recuperação de volta para `active`
 - fortalecimento operacional por meio de bloqueio de fluxo de trabalho, IDs de correlação, logs estruturados e métricas de resumo do agendador
 
 ### Cancelamento e retenção
 
 Esta área inclui:
-- lista de casos de cancelamento no Admin
+- lista de casos de cancelamento na Administração
 - página de detalhes do caso de cancelamento
-- aplicar fluxo de oferta de retenção para `pause`, `discount` e `bonus`
-- atualizar o fluxo do motivo
-- finalizar o fluxo de cancelamento
-- oferecer histórico e cronograma do resultado final
-- integração com o estado do ciclo de vida `Subscriptions`
-- integração com `Renewals` por meio de resumo de renovação e efeitos de elegibilidade de renovação
-- integração com `Dunning` através da coexistência de casos ativos e resumo de cobrança vinculado
-- fortalecimento operacional por meio de trilha de auditoria, logs estruturados e métricas de resumo do agendador
+- fluxo de aplicação da oferta de retenção para `pause`, `discount` e `bonus`
+- fluxo de atualização do motivo
+- fluxo de finalização do cancelamento
+- histórico de ofertas e linha do tempo do resultado final
+- integração com o estado do ciclo de vida de `Subscriptions`
+- integração com `Renewals` por meio do resumo de renovação e dos efeitos sobre a elegibilidade para renovação
+- integração com `Dunning` por meio da coexistência de casos ativos e do resumo de cobranças vinculadas
+- fortalecimento operacional por meio de trilha de auditoria, registros estruturados e métricas de resumo do agendador
 
 ### Registro de atividades
 
 Esta área inclui:
-- armazenamento `subscription_log` somente para acréscimos e criação de eventos com suporte de fluxo de trabalho
-- cobertura de auditoria empresarial entre domínios para `Subscriptions`, `Renewals`, `Dunning` e `Cancellation & Retention`
-- Página da lista de administradores com filtragem, classificação, paginação e detalhes do evento
-- cronograma por assinatura na página de detalhes da assinatura
-- modelo de leitura instantânea e rotas de API de leitura administrativa
-- cobertura de back-end para normalização, criação de eventos, contratos de API e integração de fluxo administrativo
+- armazenamento `subscription_log` somente para adição e criação de eventos apoiada por fluxo de trabalho
+- cobertura de auditoria de negócios entre domínios para `Subscriptions`, `Renewals`, `Dunning` e `Cancellation & Retention`
+- página de lista de administradores com filtragem, classificação, paginação e detalhes de eventos
+- linha do tempo por assinatura na página de detalhes da assinatura
+- modelo de leitura “snapshot-first” e rotas da API de leitura para administradores
+- cobertura de back-end para normalização, criação de eventos, contratos de API e integração do fluxo administrativo
 
-### Análise
+### Análises
 
 Esta área inclui:
-- armazenamento diário de instantâneos analíticos e suporte ao fluxo de trabalho de reconstrução
-- Relatórios de KPI para `MRR`, `Churn Rate`, `LTV` e `Active Subscriptions`
-- relatórios de tendências agrupados por `day`, `week` e `month`
-- Página de análise de administração com filtros, cartões KPI, visualização de tendências e ações de exportação
-- Rotas da API Admin para fluxos de KPI, tendências, exportação e reconstrução
-- cobertura de back-end para fórmulas analíticas, modelos de leitura, contratos de API e fluxos de relatórios administrativos
+- armazenamento de instantâneos diários de análises e suporte ao fluxo de trabalho de reconstrução;
+- relatórios de KPIs para `MRR`, `Churn Rate`, `LTV` e `Active Subscriptions`;
+- relatórios de tendências agrupados por `day`, `week` e `month`;
+- página de análises de administração com filtros, cartões de KPIs, visualização de tendências e ações de exportação
+- rotas da API de administração para fluxos de KPIs, tendências, exportação e reconstrução
+- cobertura de back-end para fórmulas de análise, modelos de leitura, contratos de API e fluxos de relatórios de administração
 
 ## Notas
 
-- Os documentos em `specs/` são documentos em tempo de design. São úteis para contextualizar, mas não devem ser tratados como a fonte final da verdade depois que a implementação evolui.
-- Os documentos em `architecture/`, `api/`, `admin/` e `testing/` são a fonte de verdade em tempo de execução para o comportamento implementado.
-- O plano de implementação continua sendo o roteiro para trabalhos futuros, enquanto a documentação do tempo de execução deve descrever o estado atual do plugin.
+- Os documentos em `specs/` são documentos de fase de projeto. Eles são úteis para contextualização, mas não devem ser considerados como a fonte definitiva de informação à medida que a implementação evolui.
+- Os documentos em `architecture/`, `api/`, `admin/` e `testing/` constituem a fonte definitiva de informação em tempo de execução para o comportamento implementado.
+- O plano de implementação continua sendo o roteiro para trabalhos futuros, enquanto a documentação de tempo de execução deve descrever o estado atual do plug-in.
