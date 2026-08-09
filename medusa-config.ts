@@ -4,7 +4,6 @@ import path from "path"
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
 const backendUrl = process.env.MEDUSA_BACKEND_URL || "http://localhost:9005"
-const publicPort = Number(process.env.MEDUSA_PUBLIC_PORT || 9005)
 
 module.exports = defineConfig({
   projectConfig: {
@@ -39,20 +38,7 @@ module.exports = defineConfig({
         ...(config?.server || {}),
         host: "0.0.0.0",
         origin: backendUrl,
-        watch: {
-          ignored: [
-            "**/.medusa/**",
-            "**/.cache/**",
-            "**/logs/**",
-            "**/node_modules/**",
-            "**/.git/**",
-          ],
-        },
-        hmr: {
-          protocol: "ws",
-          host: "localhost",
-          clientPort: publicPort,
-        },
+        hmr: false,
       },
     }),
   },
