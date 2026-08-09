@@ -8,6 +8,8 @@ import {
 } from "../../src/modules/dunning/types"
 import {
   createAdminAuthHeaders,
+  createCustomer,
+  createCustomerAuthHeaders,
   createRenewalCycleSeed,
   createSubscriptionSeed,
 } from "./renewal-fixtures"
@@ -46,6 +48,8 @@ type DunningAttemptSeedInput = {
 
 export {
   createAdminAuthHeaders,
+  createCustomer,
+  createCustomerAuthHeaders,
   createRenewalCycleSeed,
   createSubscriptionSeed,
 }

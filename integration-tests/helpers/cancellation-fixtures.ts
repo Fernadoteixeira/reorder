@@ -11,6 +11,8 @@ import {
 } from "../../src/modules/cancellation/types"
 import {
   createAdminAuthHeaders,
+  createCustomer,
+  createCustomerAuthHeaders,
   createDunningCaseSeed,
   createRenewalCycleSeed,
   createSubscriptionSeed,
@@ -45,6 +47,8 @@ type RetentionOfferEventSeedInput = {
 
 export {
   createAdminAuthHeaders,
+  createCustomer,
+  createCustomerAuthHeaders,
   createDunningCaseSeed,
   createRenewalCycleSeed,
   createSubscriptionSeed,

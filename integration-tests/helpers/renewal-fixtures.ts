@@ -8,6 +8,8 @@ import {
 } from "../../src/modules/renewal/types"
 import {
   createAdminAuthHeaders,
+  createCustomer,
+  createCustomerAuthHeaders,
   createProductWithVariant,
   createSubscriptionSeed,
 } from "./subscription-fixtures"
@@ -46,6 +48,8 @@ type RenewalAttemptSeedInput = {
 
 export {
   createAdminAuthHeaders,
+  createCustomer,
+  createCustomerAuthHeaders,
   createProductWithVariant,
   createSubscriptionSeed,
 }
