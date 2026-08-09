@@ -1,9 +1,6 @@
 import { defineConfig, loadEnv } from "@medusajs/framework/utils"
-import path from "path"
 
-const projectRoot = __dirname
-
-loadEnv(process.env.NODE_ENV || "development", projectRoot)
+loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
 module.exports = defineConfig({
   projectConfig: {
@@ -32,10 +29,5 @@ module.exports = defineConfig({
     disable: false,
     backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9005",
   },
-  plugins: [
-    {
-      resolve: projectRoot,
-      options: {},
-    },
-  ],
+  plugins: [],
 })
