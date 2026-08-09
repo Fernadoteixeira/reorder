@@ -29,5 +29,31 @@ module.exports = defineConfig({
     disable: false,
     backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9005",
   },
+  modules: [
+    {
+      resolve: "./src/modules/subscription",
+    },
+    {
+      resolve: "./src/modules/plan-offer",
+    },
+    {
+      resolve: "./src/modules/renewal",
+    },
+    {
+      resolve: "./src/modules/dunning",
+    },
+    {
+      resolve: "./src/modules/cancellation",
+    },
+    {
+      resolve: "./src/modules/activity-log",
+    },
+    {
+      resolve: "./src/modules/analytics",
+    },
+    {
+      resolve: "./src/modules/settings",
+    },
+  ],
   plugins: [],
 })
