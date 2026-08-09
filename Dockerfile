@@ -15,12 +15,11 @@ WORKDIR /app
 # Enable Corepack for Yarn Berry v4
 RUN corepack enable && corepack prepare yarn@4.4.1 --activate
 
-# Copy package management files first for efficient layer caching
+# Copy package management files
 COPY package.json .yarnrc.yml yarn.lock ./
-COPY .yarn/ ./.yarn/
 
-# Install dependencies with skip-build mode to prevent lifecycle patch conflicts
-RUN corepack yarn install --mode=skip-build
+# Install dependencies in non-immutable mode for Linux
+RUN YARN_ENABLE_TELEMETRY=0 corepack yarn install --mode=skip-build --inline-builds
 
 # Copy application source code and configuration
 COPY . .
