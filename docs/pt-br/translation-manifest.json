@@ -1885,12 +1885,12 @@
     "target": "docs/pt-br/docs/README.md",
     "batch": "B02",
     "source_sha256": "2b0b53fda2657aec6c4d3f395f0bf0895c2bae621f4646b4480093a177f936ad",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "d1853fc27e247c16acaf7da50f281c8cc7d1f992a9c6240cd136f84dd6ce4599",
+    "status": "validated",
     "source_bytes": 10726,
-    "target_bytes": 0,
+    "target_bytes": 12590,
     "headings_source": 14,
-    "headings_target": 0,
+    "headings_target": 14,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1901,11 +1901,393 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 15,
+        "output_chars": 22,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 85,
+        "output_chars": 91,
+        "method": "Fallback",
+        "latency_ms": 626,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 149,
+        "output_chars": 173,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 192,
+        "output_chars": 193,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 18,
+        "output_chars": 15,
+        "method": "Fallback",
+        "latency_ms": 339,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10022,
+        "input_chars": 1181,
+        "output_chars": 1477,
+        "method": "Fallback",
+        "latency_ms": 715,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10038,
+        "input_chars": 1167,
+        "output_chars": 1396,
+        "method": "Fallback",
+        "latency_ms": 845,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10999,
+        "input_chars": 537,
+        "output_chars": 637,
+        "method": "Fallback",
+        "latency_ms": 902,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 171,
+        "output_chars": 200,
+        "method": "Fallback",
+        "latency_ms": 1069,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 21,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 48,
+        "output_chars": 53,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 420,
+        "output_chars": 484,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 55,
+        "output_chars": 78,
+        "method": "Fallback",
+        "latency_ms": 326,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 1017,
+        "output_chars": 1015,
+        "method": "Fallback",
+        "latency_ms": 795,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 29,
+        "output_chars": 31,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 280,
+        "output_chars": 312,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 21,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 326,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 233,
+        "output_chars": 267,
+        "method": "Fallback",
+        "latency_ms": 1587,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 84,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 991,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 192,
+        "output_chars": 203,
+        "method": "Fallback",
+        "latency_ms": 774,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 131,
+        "output_chars": 148,
+        "method": "Fallback",
+        "latency_ms": 724,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 152,
+        "output_chars": 163,
+        "method": "Fallback",
+        "latency_ms": 1271,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 106,
+        "output_chars": 129,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 43,
+        "input_chars": 21,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 45,
+        "input_chars": 155,
+        "output_chars": 155,
+        "method": "Fallback",
+        "latency_ms": 937,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 47,
+        "input_chars": 152,
+        "output_chars": 214,
+        "method": "Fallback",
+        "latency_ms": 1379,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 49,
+        "input_chars": 18,
+        "output_chars": 15,
+        "method": "Fallback",
+        "latency_ms": 404,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 51,
+        "input_chars": 293,
+        "output_chars": 350,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 53,
+        "input_chars": 19,
+        "output_chars": 20,
+        "method": "Fallback",
+        "latency_ms": 345,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 55,
+        "input_chars": 414,
+        "output_chars": 505,
+        "method": "Fallback",
+        "latency_ms": 1015,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 57,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 59,
+        "input_chars": 591,
+        "output_chars": 735,
+        "method": "Fallback",
+        "latency_ms": 771,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 61,
+        "input_chars": 12,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 353,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 63,
+        "input_chars": 555,
+        "output_chars": 714,
+        "method": "Fallback",
+        "latency_ms": 1186,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 65,
+        "input_chars": 29,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 659,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 67,
+        "input_chars": 572,
+        "output_chars": 696,
+        "method": "Fallback",
+        "latency_ms": 771,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 69,
+        "input_chars": 17,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 934,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 71,
+        "input_chars": 498,
+        "output_chars": 631,
+        "method": "Fallback",
+        "latency_ms": 921,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 73,
+        "input_chars": 14,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 389,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 75,
+        "input_chars": 469,
+        "output_chars": 608,
+        "method": "Fallback",
+        "latency_ms": 1499,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 77,
+        "input_chars": 9,
+        "output_chars": 8,
+        "method": "Fallback",
+        "latency_ms": 939,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 79,
+        "input_chars": 449,
+        "output_chars": 509,
+        "method": "Fallback",
+        "latency_ms": 1219,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:52:51Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/activity-log.md": {
@@ -1913,12 +2295,12 @@
     "target": "docs/pt-br/docs/admin/activity-log.md",
     "batch": "B02",
     "source_sha256": "c2a5697f6851eaa1325fb0ab5f9dfcbd2f21ef140b20afb621e71d5233018ea6",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "70c14a9436e978a6c6a2d455ae9ab44f60a40d797a36b15bb86fddbef1c1d9ce",
+    "status": "validated",
     "source_bytes": 7275,
-    "target_bytes": 0,
+    "target_bytes": 8499,
     "headings_source": 22,
-    "headings_target": 0,
+    "headings_target": 22,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1929,11 +2311,735 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 25,
+        "output_chars": 45,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 102,
+        "output_chars": 96,
+        "method": "Fallback",
+        "latency_ms": 628,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 102,
+        "output_chars": 143,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 192,
+        "output_chars": 224,
+        "method": "Fallback",
+        "latency_ms": 577,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 160,
+        "output_chars": 178,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 128,
+        "output_chars": 146,
+        "method": "Fallback",
+        "latency_ms": 324,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 363,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 128,
+        "output_chars": 133,
+        "method": "Fallback",
+        "latency_ms": 833,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 243,
+        "output_chars": 276,
+        "method": "Fallback",
+        "latency_ms": 695,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 31,
+        "output_chars": 47,
+        "method": "Fallback",
+        "latency_ms": 322,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 69,
+        "output_chars": 80,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 43,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 812,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 134,
+        "output_chars": 175,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 95,
+        "output_chars": 91,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 202,
+        "output_chars": 231,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 11,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 66,
+        "output_chars": 91,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 111,
+        "output_chars": 120,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 322,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 90,
+        "output_chars": 113,
+        "method": "Fallback",
+        "latency_ms": 823,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 43,
+        "output_chars": 44,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 83,
+        "output_chars": 91,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 143,
+        "output_chars": 190,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 109,
+        "output_chars": 126,
+        "method": "Fallback",
+        "latency_ms": 876,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 209,
+        "output_chars": 252,
+        "method": "Fallback",
+        "latency_ms": 621,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 65,
+        "output_chars": 83,
+        "method": "Fallback",
+        "latency_ms": 849,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 69,
+        "output_chars": 83,
+        "method": "Fallback",
+        "latency_ms": 343,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 73,
+        "output_chars": 96,
+        "method": "Fallback",
+        "latency_ms": 348,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 18,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 339,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 107,
+        "output_chars": 133,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 109,
+        "output_chars": 125,
+        "method": "Fallback",
+        "latency_ms": 1018,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 12,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 56,
+        "output_chars": 72,
+        "method": "Fallback",
+        "latency_ms": 1157,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 44,
+        "output_chars": 56,
+        "method": "Fallback",
+        "latency_ms": 999,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 22,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 1119,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 54,
+        "output_chars": 62,
+        "method": "Fallback",
+        "latency_ms": 860,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 130,
+        "output_chars": 141,
+        "method": "Fallback",
+        "latency_ms": 883,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 116,
+        "output_chars": 146,
+        "method": "Fallback",
+        "latency_ms": 613,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 88,
+        "output_chars": 86,
+        "method": "Fallback",
+        "latency_ms": 687,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 35,
+        "output_chars": 42,
+        "method": "Fallback",
+        "latency_ms": 1001,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 414,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 121,
+        "output_chars": 136,
+        "method": "Fallback",
+        "latency_ms": 971,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 92,
+        "input_chars": 87,
+        "output_chars": 110,
+        "method": "Fallback",
+        "latency_ms": 1499,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 94,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 480,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 96,
+        "input_chars": 171,
+        "output_chars": 226,
+        "method": "Fallback",
+        "latency_ms": 433,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 98,
+        "input_chars": 21,
+        "output_chars": 31,
+        "method": "Fallback",
+        "latency_ms": 765,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 100,
+        "input_chars": 90,
+        "output_chars": 110,
+        "method": "Fallback",
+        "latency_ms": 803,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 102,
+        "input_chars": 75,
+        "output_chars": 75,
+        "method": "Fallback",
+        "latency_ms": 851,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 104,
+        "input_chars": 45,
+        "output_chars": 56,
+        "method": "Fallback",
+        "latency_ms": 579,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 106,
+        "input_chars": 23,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 1138,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 108,
+        "input_chars": 66,
+        "output_chars": 65,
+        "method": "Fallback",
+        "latency_ms": 847,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 110,
+        "input_chars": 94,
+        "output_chars": 91,
+        "method": "Fallback",
+        "latency_ms": 1026,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 112,
+        "input_chars": 114,
+        "output_chars": 139,
+        "method": "Fallback",
+        "latency_ms": 771,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 114,
+        "input_chars": 43,
+        "output_chars": 54,
+        "method": "Fallback",
+        "latency_ms": 945,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 116,
+        "input_chars": 403,
+        "output_chars": 463,
+        "method": "Fallback",
+        "latency_ms": 1077,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 118,
+        "input_chars": 21,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 527,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 120,
+        "input_chars": 72,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 491,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 122,
+        "input_chars": 80,
+        "output_chars": 82,
+        "method": "Fallback",
+        "latency_ms": 791,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 124,
+        "input_chars": 41,
+        "output_chars": 47,
+        "method": "Fallback",
+        "latency_ms": 688,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 126,
+        "input_chars": 168,
+        "output_chars": 219,
+        "method": "Fallback",
+        "latency_ms": 825,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 128,
+        "input_chars": 22,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 130,
+        "input_chars": 123,
+        "output_chars": 140,
+        "method": "Fallback",
+        "latency_ms": 585,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 132,
+        "input_chars": 72,
+        "output_chars": 82,
+        "method": "Fallback",
+        "latency_ms": 444,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 134,
+        "input_chars": 19,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 136,
+        "input_chars": 70,
+        "output_chars": 75,
+        "method": "Fallback",
+        "latency_ms": 956,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 138,
+        "input_chars": 278,
+        "output_chars": 337,
+        "method": "Fallback",
+        "latency_ms": 761,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 140,
+        "input_chars": 218,
+        "output_chars": 260,
+        "method": "Fallback",
+        "latency_ms": 681,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 142,
+        "input_chars": 20,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 1360,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 144,
+        "input_chars": 51,
+        "output_chars": 61,
+        "method": "Fallback",
+        "latency_ms": 691,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 146,
+        "input_chars": 162,
+        "output_chars": 185,
+        "method": "Fallback",
+        "latency_ms": 860,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 148,
+        "input_chars": 141,
+        "output_chars": 182,
+        "method": "Fallback",
+        "latency_ms": 534,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 150,
+        "input_chars": 30,
+        "output_chars": 42,
+        "method": "Fallback",
+        "latency_ms": 667,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 152,
+        "input_chars": 71,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 1048,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 154,
+        "input_chars": 239,
+        "output_chars": 273,
+        "method": "Fallback",
+        "latency_ms": 926,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 156,
+        "input_chars": 21,
+        "output_chars": 20,
+        "method": "Fallback",
+        "latency_ms": 737,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 158,
+        "input_chars": 134,
+        "output_chars": 157,
+        "method": "Fallback",
+        "latency_ms": 987,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:53:14Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/analytics.md": {
@@ -1941,12 +3047,12 @@
     "target": "docs/pt-br/docs/admin/analytics.md",
     "batch": "B02",
     "source_sha256": "e181779dced332c55c562aa29c191e69b0f344505db921836a410d6e548e4ab4",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "c680b39d301024edce0a5883cc3c234f28475030670111875fcb59ccf1525311",
+    "status": "validated",
     "source_bytes": 5420,
-    "target_bytes": 0,
+    "target_bytes": 6365,
     "headings_source": 19,
-    "headings_target": 0,
+    "headings_target": 19,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1957,11 +3063,501 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 22,
+        "output_chars": 31,
+        "method": "Fallback",
+        "latency_ms": 856,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 99,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 140,
+        "output_chars": 180,
+        "method": "Fallback",
+        "latency_ms": 583,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 112,
+        "output_chars": 128,
+        "method": "Fallback",
+        "latency_ms": 728,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 234,
+        "output_chars": 269,
+        "method": "Fallback",
+        "latency_ms": 892,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 82,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 1027,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 53,
+        "output_chars": 52,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 140,
+        "output_chars": 166,
+        "method": "Fallback",
+        "latency_ms": 770,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 21,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 109,
+        "output_chars": 144,
+        "method": "Fallback",
+        "latency_ms": 504,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 207,
+        "output_chars": 243,
+        "method": "Fallback",
+        "latency_ms": 721,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 14,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 603,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 24,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 586,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 114,
+        "output_chars": 114,
+        "method": "Fallback",
+        "latency_ms": 686,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 21,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 1314,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 253,
+        "output_chars": 309,
+        "method": "Fallback",
+        "latency_ms": 1266,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 241,
+        "output_chars": 267,
+        "method": "Fallback",
+        "latency_ms": 1280,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 98,
+        "output_chars": 113,
+        "method": "Fallback",
+        "latency_ms": 753,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 16,
+        "output_chars": 18,
+        "method": "Fallback",
+        "latency_ms": 488,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 104,
+        "output_chars": 107,
+        "method": "Fallback",
+        "latency_ms": 554,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 23,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 676,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 351,
+        "output_chars": 436,
+        "method": "Fallback",
+        "latency_ms": 880,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 18,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 994,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 91,
+        "output_chars": 108,
+        "method": "Fallback",
+        "latency_ms": 1031,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 348,
+        "output_chars": 384,
+        "method": "Fallback",
+        "latency_ms": 1074,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 110,
+        "output_chars": 113,
+        "method": "Fallback",
+        "latency_ms": 787,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 13,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 735,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 71,
+        "output_chars": 70,
+        "method": "Fallback",
+        "latency_ms": 665,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 243,
+        "output_chars": 285,
+        "method": "Fallback",
+        "latency_ms": 776,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 68,
+        "output_chars": 81,
+        "method": "Fallback",
+        "latency_ms": 943,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 19,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 654,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 57,
+        "output_chars": 68,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 244,
+        "output_chars": 356,
+        "method": "Fallback",
+        "latency_ms": 672,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 120,
+        "output_chars": 148,
+        "method": "Fallback",
+        "latency_ms": 731,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 25,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 944,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 101,
+        "output_chars": 112,
+        "method": "Fallback",
+        "latency_ms": 689,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 139,
+        "output_chars": 164,
+        "method": "Fallback",
+        "latency_ms": 884,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 103,
+        "output_chars": 121,
+        "method": "Fallback",
+        "latency_ms": 1227,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 16,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 666,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 346,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 74,
+        "output_chars": 106,
+        "method": "Fallback",
+        "latency_ms": 969,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 10,
+        "output_chars": 9,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 92,
+        "output_chars": 107,
+        "method": "Fallback",
+        "latency_ms": 784,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 92,
+        "input_chars": 63,
+        "output_chars": 76,
+        "method": "Fallback",
+        "latency_ms": 689,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 94,
+        "input_chars": 129,
+        "output_chars": 156,
+        "method": "Fallback",
+        "latency_ms": 1086,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 96,
+        "input_chars": 10,
+        "output_chars": 8,
+        "method": "Fallback",
+        "latency_ms": 958,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 98,
+        "input_chars": 62,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 630,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 100,
+        "input_chars": 82,
+        "output_chars": 100,
+        "method": "Fallback",
+        "latency_ms": 638,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 102,
+        "input_chars": 28,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 1245,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 104,
+        "input_chars": 214,
+        "output_chars": 286,
+        "method": "Fallback",
+        "latency_ms": 749,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 106,
+        "input_chars": 175,
+        "output_chars": 202,
+        "method": "Fallback",
+        "latency_ms": 725,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:53:33Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/cancellations.md": {
@@ -1969,12 +3565,12 @@
     "target": "docs/pt-br/docs/admin/cancellations.md",
     "batch": "B02",
     "source_sha256": "4e6d27c71c16a5d64a38e00c06b8c480e27df9f9abc1c6fa1f904923c8f35247",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "3b5362bda27e2d0cf401dd9b6ff1afb3858fe54e59964046d0578d8762652d13",
+    "status": "validated",
     "source_bytes": 8154,
-    "target_bytes": 0,
+    "target_bytes": 9436,
     "headings_source": 32,
-    "headings_target": 0,
+    "headings_target": 32,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -1985,11 +3581,816 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 37,
+        "output_chars": 48,
+        "method": "Fallback",
+        "latency_ms": 678,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 114,
+        "output_chars": 108,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 75,
+        "output_chars": 111,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 330,
+        "output_chars": 415,
+        "method": "Fallback",
+        "latency_ms": 954,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 146,
+        "output_chars": 149,
+        "method": "Fallback",
+        "latency_ms": 511,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 100,
+        "output_chars": 100,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 217,
+        "output_chars": 240,
+        "method": "Fallback",
+        "latency_ms": 685,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 17,
+        "output_chars": 21,
+        "method": "Fallback",
+        "latency_ms": 1118,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 66,
+        "output_chars": 74,
+        "method": "Fallback",
+        "latency_ms": 542,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 43,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 343,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 150,
+        "output_chars": 184,
+        "method": "Fallback",
+        "latency_ms": 906,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 95,
+        "output_chars": 89,
+        "method": "Fallback",
+        "latency_ms": 817,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 156,
+        "output_chars": 174,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 11,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 342,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 45,
+        "output_chars": 62,
+        "method": "Fallback",
+        "latency_ms": 369,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 199,
+        "output_chars": 244,
+        "method": "Fallback",
+        "latency_ms": 561,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 69,
+        "output_chars": 56,
+        "method": "Fallback",
+        "latency_ms": 1039,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 71,
+        "output_chars": 72,
+        "method": "Fallback",
+        "latency_ms": 344,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 83,
+        "output_chars": 91,
+        "method": "Fallback",
+        "latency_ms": 326,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 179,
+        "output_chars": 239,
+        "method": "Fallback",
+        "latency_ms": 889,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 92,
+        "output_chars": 120,
+        "method": "Fallback",
+        "latency_ms": 637,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 73,
+        "output_chars": 83,
+        "method": "Fallback",
+        "latency_ms": 1277,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 12,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 57,
+        "output_chars": 69,
+        "method": "Fallback",
+        "latency_ms": 647,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 201,
+        "output_chars": 242,
+        "method": "Fallback",
+        "latency_ms": 933,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 19,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 341,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 65,
+        "output_chars": 74,
+        "method": "Fallback",
+        "latency_ms": 914,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 56,
+        "output_chars": 61,
+        "method": "Fallback",
+        "latency_ms": 1047,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 18,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 344,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 74,
+        "output_chars": 83,
+        "method": "Fallback",
+        "latency_ms": 560,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 140,
+        "output_chars": 168,
+        "method": "Fallback",
+        "latency_ms": 875,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 11,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 104,
+        "output_chars": 123,
+        "method": "Fallback",
+        "latency_ms": 1106,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 91,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 18,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 188,
+        "output_chars": 196,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 77,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 21,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 16,
+        "output_chars": 18,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 92,
+        "input_chars": 111,
+        "output_chars": 120,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 94,
+        "input_chars": 24,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 822,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 96,
+        "input_chars": 32,
+        "output_chars": 30,
+        "method": "Fallback",
+        "latency_ms": 770,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 98,
+        "input_chars": 207,
+        "output_chars": 224,
+        "method": "Fallback",
+        "latency_ms": 798,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 100,
+        "input_chars": 84,
+        "output_chars": 97,
+        "method": "Fallback",
+        "latency_ms": 753,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 102,
+        "input_chars": 66,
+        "output_chars": 82,
+        "method": "Fallback",
+        "latency_ms": 798,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 104,
+        "input_chars": 37,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 844,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 106,
+        "input_chars": 92,
+        "output_chars": 115,
+        "method": "Fallback",
+        "latency_ms": 545,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 108,
+        "input_chars": 85,
+        "output_chars": 88,
+        "method": "Fallback",
+        "latency_ms": 671,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 110,
+        "input_chars": 23,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 718,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 112,
+        "input_chars": 58,
+        "output_chars": 68,
+        "method": "Fallback",
+        "latency_ms": 669,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 114,
+        "input_chars": 29,
+        "output_chars": 33,
+        "method": "Fallback",
+        "latency_ms": 500,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 116,
+        "input_chars": 88,
+        "output_chars": 92,
+        "method": "Fallback",
+        "latency_ms": 740,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 118,
+        "input_chars": 118,
+        "output_chars": 124,
+        "method": "Fallback",
+        "latency_ms": 618,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 120,
+        "input_chars": 114,
+        "output_chars": 121,
+        "method": "Fallback",
+        "latency_ms": 677,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 122,
+        "input_chars": 269,
+        "output_chars": 340,
+        "method": "Fallback",
+        "latency_ms": 871,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 124,
+        "input_chars": 25,
+        "output_chars": 31,
+        "method": "Fallback",
+        "latency_ms": 883,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 126,
+        "input_chars": 51,
+        "output_chars": 63,
+        "method": "Fallback",
+        "latency_ms": 901,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 128,
+        "input_chars": 71,
+        "output_chars": 70,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 130,
+        "input_chars": 168,
+        "output_chars": 223,
+        "method": "Fallback",
+        "latency_ms": 789,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 132,
+        "input_chars": 33,
+        "output_chars": 36,
+        "method": "Fallback",
+        "latency_ms": 443,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 134,
+        "input_chars": 41,
+        "output_chars": 41,
+        "method": "Fallback",
+        "latency_ms": 552,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 136,
+        "input_chars": 70,
+        "output_chars": 69,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 138,
+        "input_chars": 173,
+        "output_chars": 211,
+        "method": "Fallback",
+        "latency_ms": 1064,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 140,
+        "input_chars": 19,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 142,
+        "input_chars": 82,
+        "output_chars": 87,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 144,
+        "input_chars": 427,
+        "output_chars": 537,
+        "method": "Fallback",
+        "latency_ms": 1160,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 146,
+        "input_chars": 207,
+        "output_chars": 258,
+        "method": "Fallback",
+        "latency_ms": 819,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 148,
+        "input_chars": 39,
+        "output_chars": 41,
+        "method": "Fallback",
+        "latency_ms": 339,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 150,
+        "input_chars": 15,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 152,
+        "input_chars": 130,
+        "output_chars": 165,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 154,
+        "input_chars": 16,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 156,
+        "input_chars": 132,
+        "output_chars": 178,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 158,
+        "input_chars": 36,
+        "output_chars": 44,
+        "method": "Fallback",
+        "latency_ms": 581,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 160,
+        "input_chars": 193,
+        "output_chars": 264,
+        "method": "Fallback",
+        "latency_ms": 878,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 162,
+        "input_chars": 25,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 164,
+        "input_chars": 182,
+        "output_chars": 243,
+        "method": "Fallback",
+        "latency_ms": 802,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 166,
+        "input_chars": 51,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 168,
+        "input_chars": 15,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 170,
+        "input_chars": 91,
+        "output_chars": 94,
+        "method": "Fallback",
+        "latency_ms": 816,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 172,
+        "input_chars": 270,
+        "output_chars": 303,
+        "method": "Fallback",
+        "latency_ms": 618,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 174,
+        "input_chars": 159,
+        "output_chars": 173,
+        "method": "Fallback",
+        "latency_ms": 999,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 176,
+        "input_chars": 102,
+        "output_chars": 115,
+        "method": "Fallback",
+        "latency_ms": 1267,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:54:10Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/dunning.md": {
@@ -1997,12 +4398,12 @@
     "target": "docs/pt-br/docs/admin/dunning.md",
     "batch": "B02",
     "source_sha256": "b3af2ea1e79d2ae0b1392848e6ed3d2ccb59a2b050733de76cc89813606eb60c",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "adaa8ff6c63034f9c4656c7b036283be85ace0498128acb723949b83c9529b4f",
+    "status": "validated",
     "source_bytes": 7694,
-    "target_bytes": 0,
+    "target_bytes": 9051,
     "headings_source": 29,
-    "headings_target": 0,
+    "headings_target": 29,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -2013,11 +4414,762 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 20,
+        "output_chars": 32,
+        "method": "Fallback",
+        "latency_ms": 597,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 97,
+        "output_chars": 91,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 75,
+        "output_chars": 111,
+        "method": "Fallback",
+        "latency_ms": 324,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 343,
+        "output_chars": 458,
+        "method": "Fallback",
+        "latency_ms": 880,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 153,
+        "output_chars": 156,
+        "method": "Fallback",
+        "latency_ms": 564,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 88,
+        "output_chars": 88,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 201,
+        "output_chars": 234,
+        "method": "Fallback",
+        "latency_ms": 693,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 17,
+        "output_chars": 21,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 61,
+        "output_chars": 71,
+        "method": "Fallback",
+        "latency_ms": 576,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 43,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 139,
+        "output_chars": 170,
+        "method": "Fallback",
+        "latency_ms": 790,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 106,
+        "output_chars": 100,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 156,
+        "output_chars": 174,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 11,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 45,
+        "output_chars": 62,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 227,
+        "output_chars": 277,
+        "method": "Fallback",
+        "latency_ms": 699,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 69,
+        "output_chars": 56,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 33,
+        "output_chars": 34,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 153,
+        "output_chars": 158,
+        "method": "Fallback",
+        "latency_ms": 707,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 81,
+        "output_chars": 80,
+        "method": "Fallback",
+        "latency_ms": 803,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 60,
+        "output_chars": 80,
+        "method": "Fallback",
+        "latency_ms": 986,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 126,
+        "output_chars": 151,
+        "method": "Fallback",
+        "latency_ms": 713,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 12,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 57,
+        "output_chars": 69,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 211,
+        "output_chars": 252,
+        "method": "Fallback",
+        "latency_ms": 766,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 19,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 60,
+        "output_chars": 71,
+        "method": "Fallback",
+        "latency_ms": 542,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 56,
+        "output_chars": 61,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 18,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 69,
+        "output_chars": 78,
+        "method": "Fallback",
+        "latency_ms": 1157,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 136,
+        "output_chars": 188,
+        "method": "Fallback",
+        "latency_ms": 829,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 11,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 99,
+        "output_chars": 120,
+        "method": "Fallback",
+        "latency_ms": 823,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 91,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 18,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 217,
+        "output_chars": 225,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 77,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 293,
+        "output_chars": 318,
+        "method": "Fallback",
+        "latency_ms": 839,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 21,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 368,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 92,
+        "input_chars": 16,
+        "output_chars": 18,
+        "method": "Fallback",
+        "latency_ms": 343,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 94,
+        "input_chars": 120,
+        "output_chars": 129,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 96,
+        "input_chars": 24,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 98,
+        "input_chars": 32,
+        "output_chars": 30,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 100,
+        "input_chars": 403,
+        "output_chars": 501,
+        "method": "Fallback",
+        "latency_ms": 640,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 102,
+        "input_chars": 66,
+        "output_chars": 82,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 104,
+        "input_chars": 37,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 106,
+        "input_chars": 101,
+        "output_chars": 137,
+        "method": "Fallback",
+        "latency_ms": 600,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 108,
+        "input_chars": 85,
+        "output_chars": 88,
+        "method": "Fallback",
+        "latency_ms": 344,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 110,
+        "input_chars": 27,
+        "output_chars": 41,
+        "method": "Fallback",
+        "latency_ms": 498,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 112,
+        "input_chars": 53,
+        "output_chars": 76,
+        "method": "Fallback",
+        "latency_ms": 451,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 114,
+        "input_chars": 119,
+        "output_chars": 141,
+        "method": "Fallback",
+        "latency_ms": 323,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 116,
+        "input_chars": 32,
+        "output_chars": 35,
+        "method": "Fallback",
+        "latency_ms": 868,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 118,
+        "input_chars": 56,
+        "output_chars": 68,
+        "method": "Fallback",
+        "latency_ms": 589,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 120,
+        "input_chars": 119,
+        "output_chars": 141,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 122,
+        "input_chars": 34,
+        "output_chars": 40,
+        "method": "Fallback",
+        "latency_ms": 788,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 124,
+        "input_chars": 58,
+        "output_chars": 73,
+        "method": "Fallback",
+        "latency_ms": 1205,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 126,
+        "input_chars": 119,
+        "output_chars": 141,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 128,
+        "input_chars": 26,
+        "output_chars": 43,
+        "method": "Fallback",
+        "latency_ms": 893,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 130,
+        "input_chars": 67,
+        "output_chars": 86,
+        "method": "Fallback",
+        "latency_ms": 746,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 132,
+        "input_chars": 62,
+        "output_chars": 61,
+        "method": "Fallback",
+        "latency_ms": 467,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 134,
+        "input_chars": 223,
+        "output_chars": 283,
+        "method": "Fallback",
+        "latency_ms": 838,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 136,
+        "input_chars": 19,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 342,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 138,
+        "input_chars": 65,
+        "output_chars": 70,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 140,
+        "input_chars": 367,
+        "output_chars": 495,
+        "method": "Fallback",
+        "latency_ms": 693,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 142,
+        "input_chars": 183,
+        "output_chars": 236,
+        "method": "Fallback",
+        "latency_ms": 704,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 144,
+        "input_chars": 39,
+        "output_chars": 41,
+        "method": "Fallback",
+        "latency_ms": 353,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 146,
+        "input_chars": 15,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 148,
+        "input_chars": 130,
+        "output_chars": 165,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 150,
+        "input_chars": 16,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 347,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 152,
+        "input_chars": 132,
+        "output_chars": 178,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 154,
+        "input_chars": 25,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 156,
+        "input_chars": 154,
+        "output_chars": 206,
+        "method": "Fallback",
+        "latency_ms": 757,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 158,
+        "input_chars": 51,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 160,
+        "input_chars": 15,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 162,
+        "input_chars": 386,
+        "output_chars": 445,
+        "method": "Fallback",
+        "latency_ms": 680,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 164,
+        "input_chars": 109,
+        "output_chars": 114,
+        "method": "Fallback",
+        "latency_ms": 702,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:54:17Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/plan-offers.md": {
@@ -2025,14 +5177,14 @@
     "target": "docs/pt-br/docs/admin/plan-offers.md",
     "batch": "B02",
     "source_sha256": "de1b6cedb1b2375007117899812afab4433f5f94860a173eee3786c0cfcf2359",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "4c366d9fdc7159fe0fb8a221720c424828787a1acad7780ccca2a839f229a494",
+    "status": "validated",
     "source_bytes": 9861,
-    "target_bytes": 0,
+    "target_bytes": 11429,
     "headings_source": 46,
-    "headings_target": 0,
+    "headings_target": 46,
     "links_source": 5,
-    "links_target": 0,
+    "links_target": 5,
     "code_fences_source": 0,
     "code_fences_target": 0,
     "tables_source": 0,
@@ -2041,11 +5193,1095 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 27,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 794,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 104,
+        "output_chars": 98,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 89,
+        "output_chars": 137,
+        "method": "Fallback",
+        "latency_ms": 959,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 344,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 283,
+        "output_chars": 350,
+        "method": "Fallback",
+        "latency_ms": 806,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 115,
+        "output_chars": 131,
+        "method": "Fallback",
+        "latency_ms": 631,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 52,
+        "output_chars": 51,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 292,
+        "output_chars": 329,
+        "method": "Fallback",
+        "latency_ms": 663,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 16,
+        "output_chars": 22,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 76,
+        "output_chars": 88,
+        "method": "Fallback",
+        "latency_ms": 691,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 43,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 485,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 394,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 191,
+        "output_chars": 220,
+        "method": "Fallback",
+        "latency_ms": 815,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 19,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 879,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 62,
+        "output_chars": 67,
+        "method": "Fallback",
+        "latency_ms": 400,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 55,
+        "output_chars": 62,
+        "method": "Fallback",
+        "latency_ms": 1105,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 50,
+        "output_chars": 54,
+        "method": "Fallback",
+        "latency_ms": 833,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 16,
+        "output_chars": 22,
+        "method": "Fallback",
+        "latency_ms": 883,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 18,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 636,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 57,
+        "output_chars": 70,
+        "method": "Fallback",
+        "latency_ms": 826,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 208,
+        "output_chars": 246,
+        "method": "Fallback",
+        "latency_ms": 856,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 135,
+        "output_chars": 139,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 160,
+        "output_chars": 173,
+        "method": "Fallback",
+        "latency_ms": 640,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 28,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 1262,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 58,
+        "output_chars": 64,
+        "method": "Fallback",
+        "latency_ms": 708,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 95,
+        "output_chars": 86,
+        "method": "Fallback",
+        "latency_ms": 1042,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 143,
+        "output_chars": 182,
+        "method": "Fallback",
+        "latency_ms": 659,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 35,
+        "output_chars": 41,
+        "method": "Fallback",
+        "latency_ms": 598,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 11,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 54,
+        "output_chars": 77,
+        "method": "Fallback",
+        "latency_ms": 1060,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 113,
+        "output_chars": 131,
+        "method": "Fallback",
+        "latency_ms": 604,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 68,
+        "output_chars": 57,
+        "method": "Fallback",
+        "latency_ms": 857,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 105,
+        "output_chars": 106,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 68,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 1193,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 61,
+        "output_chars": 72,
+        "method": "Fallback",
+        "latency_ms": 1378,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 32,
+        "output_chars": 35,
+        "method": "Fallback",
+        "latency_ms": 886,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 64,
+        "output_chars": 83,
+        "method": "Fallback",
+        "latency_ms": 1431,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 137,
+        "output_chars": 154,
+        "method": "Fallback",
+        "latency_ms": 666,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 83,
+        "output_chars": 90,
+        "method": "Fallback",
+        "latency_ms": 733,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 12,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 51,
+        "output_chars": 59,
+        "method": "Fallback",
+        "latency_ms": 776,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 125,
+        "output_chars": 153,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 92,
+        "input_chars": 18,
+        "output_chars": 22,
+        "method": "Fallback",
+        "latency_ms": 452,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 94,
+        "input_chars": 41,
+        "output_chars": 42,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 96,
+        "input_chars": 60,
+        "output_chars": 66,
+        "method": "Fallback",
+        "latency_ms": 891,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 98,
+        "input_chars": 9,
+        "output_chars": 10,
+        "method": "Fallback",
+        "latency_ms": 661,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 100,
+        "input_chars": 45,
+        "output_chars": 45,
+        "method": "Fallback",
+        "latency_ms": 1045,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 102,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Free",
+        "latency_ms": 659,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 104,
+        "input_chars": 99,
+        "output_chars": 122,
+        "method": "Free",
+        "latency_ms": 2560,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 106,
+        "input_chars": 60,
+        "output_chars": 74,
+        "method": "Free",
+        "latency_ms": 1563,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 108,
+        "input_chars": 153,
+        "output_chars": 171,
+        "method": "Free",
+        "latency_ms": 3494,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 110,
+        "input_chars": 18,
+        "output_chars": 18,
+        "method": "Free",
+        "latency_ms": 1086,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 112,
+        "input_chars": 37,
+        "output_chars": 46,
+        "method": "Free",
+        "latency_ms": 1354,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 114,
+        "input_chars": 59,
+        "output_chars": 65,
+        "method": "Free",
+        "latency_ms": 1292,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 116,
+        "input_chars": 12,
+        "output_chars": 13,
+        "method": "Free",
+        "latency_ms": 667,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 118,
+        "input_chars": 100,
+        "output_chars": 117,
+        "method": "Free",
+        "latency_ms": 1996,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 120,
+        "input_chars": 18,
+        "output_chars": 24,
+        "method": "Free",
+        "latency_ms": 908,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 122,
+        "input_chars": 133,
+        "output_chars": 134,
+        "method": "Free",
+        "latency_ms": 4685,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 124,
+        "input_chars": 30,
+        "output_chars": 29,
+        "method": "Free",
+        "latency_ms": 934,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 126,
+        "input_chars": 50,
+        "output_chars": 66,
+        "method": "Free",
+        "latency_ms": 1303,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 128,
+        "input_chars": 118,
+        "output_chars": 139,
+        "method": "Free",
+        "latency_ms": 2457,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 130,
+        "input_chars": 59,
+        "output_chars": 73,
+        "method": "Free",
+        "latency_ms": 1302,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 132,
+        "input_chars": 18,
+        "output_chars": 22,
+        "method": "Free",
+        "latency_ms": 866,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 134,
+        "input_chars": 104,
+        "output_chars": 163,
+        "method": "Free",
+        "latency_ms": 2582,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 136,
+        "input_chars": 68,
+        "output_chars": 84,
+        "method": "Free",
+        "latency_ms": 1617,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 138,
+        "input_chars": 19,
+        "output_chars": 27,
+        "method": "Free",
+        "latency_ms": 780,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 140,
+        "input_chars": 235,
+        "output_chars": 295,
+        "method": "Free",
+        "latency_ms": 4174,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 142,
+        "input_chars": 16,
+        "output_chars": 24,
+        "method": "Free",
+        "latency_ms": 979,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 144,
+        "input_chars": 31,
+        "output_chars": 41,
+        "method": "Free",
+        "latency_ms": 1253,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 146,
+        "input_chars": 63,
+        "output_chars": 72,
+        "method": "Free",
+        "latency_ms": 1242,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 148,
+        "input_chars": 12,
+        "output_chars": 13,
+        "method": "Free",
+        "latency_ms": 762,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 150,
+        "input_chars": 86,
+        "output_chars": 106,
+        "method": "Free",
+        "latency_ms": 1878,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 152,
+        "input_chars": 23,
+        "output_chars": 27,
+        "method": "Free",
+        "latency_ms": 771,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 154,
+        "input_chars": 86,
+        "output_chars": 104,
+        "method": "Free",
+        "latency_ms": 2103,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 156,
+        "input_chars": 46,
+        "output_chars": 45,
+        "method": "Fallback",
+        "latency_ms": 446,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 158,
+        "input_chars": 117,
+        "output_chars": 138,
+        "method": "Fallback",
+        "latency_ms": 643,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 160,
+        "input_chars": 20,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 1490,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 162,
+        "input_chars": 306,
+        "output_chars": 399,
+        "method": "Fallback",
+        "latency_ms": 876,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 164,
+        "input_chars": 39,
+        "output_chars": 45,
+        "method": "Fallback",
+        "latency_ms": 825,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 166,
+        "input_chars": 71,
+        "output_chars": 89,
+        "method": "Fallback",
+        "latency_ms": 584,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 168,
+        "input_chars": 19,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 382,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 170,
+        "input_chars": 183,
+        "output_chars": 188,
+        "method": "Fallback",
+        "latency_ms": 828,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 172,
+        "input_chars": 19,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 709,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 174,
+        "input_chars": 165,
+        "output_chars": 180,
+        "method": "Fallback",
+        "latency_ms": 1097,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 176,
+        "input_chars": 37,
+        "output_chars": 44,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 178,
+        "input_chars": 237,
+        "output_chars": 278,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 180,
+        "input_chars": 39,
+        "output_chars": 43,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 182,
+        "input_chars": 44,
+        "output_chars": 51,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 184,
+        "input_chars": 14,
+        "output_chars": 20,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 186,
+        "input_chars": 228,
+        "output_chars": 283,
+        "method": "Fallback",
+        "latency_ms": 814,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 188,
+        "input_chars": 88,
+        "output_chars": 94,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 190,
+        "input_chars": 23,
+        "output_chars": 20,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 192,
+        "input_chars": 188,
+        "output_chars": 230,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 194,
+        "input_chars": 46,
+        "output_chars": 58,
+        "method": "Fallback",
+        "latency_ms": 346,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 196,
+        "input_chars": 42,
+        "output_chars": 55,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 198,
+        "input_chars": 60,
+        "output_chars": 68,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 200,
+        "input_chars": 18,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 202,
+        "input_chars": 229,
+        "output_chars": 270,
+        "method": "Fallback",
+        "latency_ms": 476,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 204,
+        "input_chars": 24,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 206,
+        "input_chars": 250,
+        "output_chars": 354,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 208,
+        "input_chars": 72,
+        "output_chars": 99,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 210,
+        "input_chars": 26,
+        "output_chars": 32,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 212,
+        "input_chars": 154,
+        "output_chars": 183,
+        "method": "Fallback",
+        "latency_ms": 326,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 214,
+        "input_chars": 100,
+        "output_chars": 115,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 216,
+        "input_chars": 29,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 218,
+        "input_chars": 59,
+        "output_chars": 63,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 220,
+        "input_chars": 15,
+        "output_chars": 15,
+        "method": "Fallback",
+        "latency_ms": 339,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 222,
+        "input_chars": 167,
+        "output_chars": 172,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 224,
+        "input_chars": 22,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 365,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 226,
+        "input_chars": 185,
+        "output_chars": 212,
+        "method": "Fallback",
+        "latency_ms": 372,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 228,
+        "input_chars": 31,
+        "output_chars": 32,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 230,
+        "input_chars": 189,
+        "output_chars": 223,
+        "method": "Fallback",
+        "latency_ms": 603,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 232,
+        "input_chars": 17,
+        "output_chars": 20,
+        "method": "Fallback",
+        "latency_ms": 372,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 234,
+        "input_chars": 222,
+        "output_chars": 267,
+        "method": "Fallback",
+        "latency_ms": 364,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 236,
+        "input_chars": 21,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 357,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 238,
+        "input_chars": 259,
+        "output_chars": 297,
+        "method": "Fallback",
+        "latency_ms": 363,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:55:54Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/renewals.md": {
@@ -2053,14 +6289,14 @@
     "target": "docs/pt-br/docs/admin/renewals.md",
     "batch": "B02",
     "source_sha256": "72aa94b382eea38d5ae3fa10ed6bfaa9ecca3d00fa94217dac660c705a0f6263",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "92b2b2f9afe2af40bbba4dc4c4c306159bec6c63891a64a7ea30dfa234111f86",
+    "status": "validated",
     "source_bytes": 7720,
-    "target_bytes": 0,
+    "target_bytes": 9140,
     "headings_source": 29,
-    "headings_target": 0,
+    "headings_target": 29,
     "links_source": 4,
-    "links_target": 0,
+    "links_target": 4,
     "code_fences_source": 0,
     "code_fences_target": 0,
     "tables_source": 0,
@@ -2069,11 +6305,789 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 21,
+        "output_chars": 35,
+        "method": "Fallback",
+        "latency_ms": 696,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 98,
+        "output_chars": 92,
+        "method": "Fallback",
+        "latency_ms": 470,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 75,
+        "output_chars": 111,
+        "method": "Fallback",
+        "latency_ms": 397,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 345,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 285,
+        "output_chars": 374,
+        "method": "Fallback",
+        "latency_ms": 616,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 114,
+        "output_chars": 126,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 90,
+        "output_chars": 90,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 209,
+        "output_chars": 245,
+        "method": "Fallback",
+        "latency_ms": 582,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 17,
+        "output_chars": 21,
+        "method": "Fallback",
+        "latency_ms": 355,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 62,
+        "output_chars": 74,
+        "method": "Fallback",
+        "latency_ms": 1083,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 43,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 147,
+        "output_chars": 181,
+        "method": "Fallback",
+        "latency_ms": 651,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 107,
+        "output_chars": 101,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 156,
+        "output_chars": 174,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 11,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 67,
+        "output_chars": 88,
+        "method": "Fallback",
+        "latency_ms": 794,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 180,
+        "output_chars": 214,
+        "method": "Fallback",
+        "latency_ms": 589,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 326,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 69,
+        "output_chars": 56,
+        "method": "Fallback",
+        "latency_ms": 326,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 65,
+        "output_chars": 66,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 87,
+        "output_chars": 95,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 191,
+        "output_chars": 251,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 92,
+        "output_chars": 120,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 61,
+        "output_chars": 70,
+        "method": "Fallback",
+        "latency_ms": 899,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 12,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 344,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 57,
+        "output_chars": 69,
+        "method": "Fallback",
+        "latency_ms": 324,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 154,
+        "output_chars": 182,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 19,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 61,
+        "output_chars": 74,
+        "method": "Fallback",
+        "latency_ms": 798,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 56,
+        "output_chars": 61,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 18,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 344,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 324,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 75,
+        "output_chars": 90,
+        "method": "Fallback",
+        "latency_ms": 1264,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 139,
+        "output_chars": 177,
+        "method": "Fallback",
+        "latency_ms": 1450,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 11,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 100,
+        "output_chars": 123,
+        "method": "Fallback",
+        "latency_ms": 1264,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 91,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 18,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 198,
+        "output_chars": 206,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 77,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 248,
+        "output_chars": 265,
+        "method": "Fallback",
+        "latency_ms": 766,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 21,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 350,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 92,
+        "input_chars": 16,
+        "output_chars": 18,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 94,
+        "input_chars": 98,
+        "output_chars": 107,
+        "method": "Fallback",
+        "latency_ms": 342,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 96,
+        "input_chars": 24,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 98,
+        "input_chars": 32,
+        "output_chars": 30,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 100,
+        "input_chars": 274,
+        "output_chars": 324,
+        "method": "Fallback",
+        "latency_ms": 754,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 102,
+        "input_chars": 50,
+        "output_chars": 69,
+        "method": "Fallback",
+        "latency_ms": 1141,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 104,
+        "input_chars": 37,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 106,
+        "input_chars": 91,
+        "output_chars": 112,
+        "method": "Fallback",
+        "latency_ms": 687,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 108,
+        "input_chars": 97,
+        "output_chars": 101,
+        "method": "Fallback",
+        "latency_ms": 701,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 110,
+        "input_chars": 27,
+        "output_chars": 34,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 112,
+        "input_chars": 61,
+        "output_chars": 76,
+        "method": "Fallback",
+        "latency_ms": 342,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 114,
+        "input_chars": 29,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 116,
+        "input_chars": 272,
+        "output_chars": 375,
+        "method": "Free",
+        "latency_ms": 6262,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 118,
+        "input_chars": 26,
+        "output_chars": 39,
+        "method": "Free",
+        "latency_ms": 1018,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 120,
+        "input_chars": 62,
+        "output_chars": 75,
+        "method": "Free",
+        "latency_ms": 1568,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 122,
+        "input_chars": 29,
+        "output_chars": 33,
+        "method": "Free",
+        "latency_ms": 1334,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 124,
+        "input_chars": 310,
+        "output_chars": 397,
+        "method": "Free",
+        "latency_ms": 5733,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 126,
+        "input_chars": 31,
+        "output_chars": 43,
+        "method": "Free",
+        "latency_ms": 1003,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 128,
+        "input_chars": 58,
+        "output_chars": 69,
+        "method": "Free",
+        "latency_ms": 1262,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 130,
+        "input_chars": 119,
+        "output_chars": 155,
+        "method": "Free",
+        "latency_ms": 2736,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 132,
+        "input_chars": 19,
+        "output_chars": 28,
+        "method": "Free",
+        "latency_ms": 953,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 134,
+        "input_chars": 66,
+        "output_chars": 102,
+        "method": "Free",
+        "latency_ms": 2206,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 136,
+        "input_chars": 227,
+        "output_chars": 337,
+        "method": "Free",
+        "latency_ms": 5183,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 138,
+        "input_chars": 156,
+        "output_chars": 179,
+        "method": "Free",
+        "latency_ms": 2954,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 140,
+        "input_chars": 191,
+        "output_chars": 246,
+        "method": "Free",
+        "latency_ms": 3463,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 142,
+        "input_chars": 39,
+        "output_chars": 44,
+        "method": "Free",
+        "latency_ms": 1662,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 144,
+        "input_chars": 15,
+        "output_chars": 20,
+        "method": "Free",
+        "latency_ms": 757,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 146,
+        "input_chars": 130,
+        "output_chars": 164,
+        "method": "Free",
+        "latency_ms": 2471,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 148,
+        "input_chars": 16,
+        "output_chars": 24,
+        "method": "Free",
+        "latency_ms": 915,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 150,
+        "input_chars": 132,
+        "output_chars": 185,
+        "method": "Free",
+        "latency_ms": 2890,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 152,
+        "input_chars": 25,
+        "output_chars": 33,
+        "method": "Free",
+        "latency_ms": 1029,
+        "attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "index": 154,
+        "input_chars": 131,
+        "output_chars": 159,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 156,
+        "input_chars": 51,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 158,
+        "input_chars": 15,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 160,
+        "input_chars": 121,
+        "output_chars": 126,
+        "method": "Fallback",
+        "latency_ms": 1111,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 162,
+        "input_chars": 143,
+        "output_chars": 152,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 164,
+        "input_chars": 186,
+        "output_chars": 193,
+        "method": "Fallback",
+        "latency_ms": 673,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 166,
+        "input_chars": 138,
+        "output_chars": 144,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 168,
+        "input_chars": 21,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 170,
+        "input_chars": 204,
+        "output_chars": 250,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:55:37Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/subscription-settings.md": {
@@ -2081,12 +7095,12 @@
     "target": "docs/pt-br/docs/admin/subscription-settings.md",
     "batch": "B02",
     "source_sha256": "081d11c2be3fc1d647ae8326be32aa14260166e8a2d18a5f3113d03859e8cf7f",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "55dfa5eb6fe70ec171bef6fabddc583ff800437f8748a10b84d9704b047c1c6d",
+    "status": "validated",
     "source_bytes": 4363,
-    "target_bytes": 0,
+    "target_bytes": 5204,
     "headings_source": 15,
-    "headings_target": 0,
+    "headings_target": 15,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -2097,11 +7111,429 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 34,
+        "output_chars": 52,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 111,
+        "output_chars": 105,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 116,
+        "output_chars": 161,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 188,
+        "output_chars": 241,
+        "method": "Fallback",
+        "latency_ms": 974,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 147,
+        "output_chars": 177,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 60,
+        "output_chars": 59,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 154,
+        "output_chars": 172,
+        "method": "Fallback",
+        "latency_ms": 525,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 21,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 170,
+        "output_chars": 223,
+        "method": "Fallback",
+        "latency_ms": 345,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 144,
+        "output_chars": 176,
+        "method": "Fallback",
+        "latency_ms": 717,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 20,
+        "output_chars": 29,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 111,
+        "output_chars": 119,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 10,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 39,
+        "output_chars": 36,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 12,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 71,
+        "output_chars": 69,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 68,
+        "output_chars": 94,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 45,
+        "output_chars": 42,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 83,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 26,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 50,
+        "output_chars": 47,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 80,
+        "output_chars": 81,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 19,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 57,
+        "output_chars": 68,
+        "method": "Fallback",
+        "latency_ms": 336,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 267,
+        "output_chars": 346,
+        "method": "Fallback",
+        "latency_ms": 347,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 140,
+        "output_chars": 168,
+        "method": "Fallback",
+        "latency_ms": 1233,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 14,
+        "output_chars": 37,
+        "method": "Fallback",
+        "latency_ms": 343,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 282,
+        "output_chars": 345,
+        "method": "Fallback",
+        "latency_ms": 810,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 31,
+        "output_chars": 48,
+        "method": "Fallback",
+        "latency_ms": 359,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 67,
+        "output_chars": 80,
+        "method": "Fallback",
+        "latency_ms": 364,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 234,
+        "output_chars": 267,
+        "method": "Fallback",
+        "latency_ms": 371,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 245,
+        "output_chars": 318,
+        "method": "Fallback",
+        "latency_ms": 737,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 23,
+        "output_chars": 28,
+        "method": "Fallback",
+        "latency_ms": 359,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 73,
+        "output_chars": 86,
+        "method": "Fallback",
+        "latency_ms": 368,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 160,
+        "output_chars": 196,
+        "method": "Fallback",
+        "latency_ms": 367,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 90,
+        "output_chars": 104,
+        "method": "Fallback",
+        "latency_ms": 369,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 33,
+        "output_chars": 40,
+        "method": "Fallback",
+        "latency_ms": 365,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 102,
+        "output_chars": 107,
+        "method": "Fallback",
+        "latency_ms": 359,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 85,
+        "output_chars": 94,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 107,
+        "output_chars": 144,
+        "method": "Fallback",
+        "latency_ms": 363,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 28,
+        "output_chars": 26,
+        "method": "Fallback",
+        "latency_ms": 367,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 212,
+        "output_chars": 295,
+        "method": "Fallback",
+        "latency_ms": 359,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 161,
+        "output_chars": 196,
+        "method": "Fallback",
+        "latency_ms": 375,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:55:58Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/admin/subscriptions.md": {
@@ -2109,12 +7541,12 @@
     "target": "docs/pt-br/docs/admin/subscriptions.md",
     "batch": "B02",
     "source_sha256": "66d1a614844f1eaff3498f4a8d9ef29934d66a318300b09fad8cb8b909a10b28",
-    "target_sha256": "",
-    "status": "pending",
+    "target_sha256": "ffbcdc4f4604e1414922f2b2dcbce4927956b1236495d53802b254e491b608dd",
+    "status": "validated",
     "source_bytes": 10637,
-    "target_bytes": 0,
+    "target_bytes": 12333,
     "headings_source": 35,
-    "headings_target": 0,
+    "headings_target": 35,
     "links_source": 0,
     "links_target": 0,
     "code_fences_source": 0,
@@ -2125,11 +7557,987 @@
     "mermaid_target": 0,
     "frontmatter_source": false,
     "frontmatter_target": false,
-    "encoding_valid": false,
+    "encoding_valid": true,
     "token_loss_count": 0,
-    "code_fence_exact": false,
-    "validation": null,
-    "translated_at": "",
+    "code_fence_exact": true,
+    "validation": [
+      "PASS: ZERO CONTENT LOSS VERIFIED"
+    ],
+    "telemetry": [
+      {
+        "index": 0,
+        "input_chars": 26,
+        "output_chars": 34,
+        "method": "Fallback",
+        "latency_ms": 368,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 2,
+        "input_chars": 103,
+        "output_chars": 97,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 4,
+        "input_chars": 75,
+        "output_chars": 111,
+        "method": "Fallback",
+        "latency_ms": 359,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 6,
+        "input_chars": 11,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 358,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 8,
+        "input_chars": 242,
+        "output_chars": 283,
+        "method": "Fallback",
+        "latency_ms": 361,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 10,
+        "input_chars": 114,
+        "output_chars": 126,
+        "method": "Fallback",
+        "latency_ms": 367,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 12,
+        "input_chars": 13,
+        "output_chars": 16,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 14,
+        "input_chars": 72,
+        "output_chars": 72,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 16,
+        "input_chars": 172,
+        "output_chars": 179,
+        "method": "Fallback",
+        "latency_ms": 360,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 18,
+        "input_chars": 108,
+        "output_chars": 119,
+        "method": "Fallback",
+        "latency_ms": 839,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 20,
+        "input_chars": 185,
+        "output_chars": 219,
+        "method": "Fallback",
+        "latency_ms": 353,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 22,
+        "input_chars": 139,
+        "output_chars": 154,
+        "method": "Fallback",
+        "latency_ms": 741,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 24,
+        "input_chars": 16,
+        "output_chars": 22,
+        "method": "Fallback",
+        "latency_ms": 359,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 26,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 365,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 28,
+        "input_chars": 64,
+        "output_chars": 73,
+        "method": "Fallback",
+        "latency_ms": 360,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 30,
+        "input_chars": 43,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 356,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 32,
+        "input_chars": 21,
+        "output_chars": 49,
+        "method": "Fallback",
+        "latency_ms": 356,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 34,
+        "input_chars": 112,
+        "output_chars": 132,
+        "method": "Fallback",
+        "latency_ms": 368,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 36,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 350,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 38,
+        "input_chars": 121,
+        "output_chars": 125,
+        "method": "Fallback",
+        "latency_ms": 357,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 40,
+        "input_chars": 156,
+        "output_chars": 174,
+        "method": "Fallback",
+        "latency_ms": 352,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 42,
+        "input_chars": 11,
+        "output_chars": 12,
+        "method": "Fallback",
+        "latency_ms": 342,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 44,
+        "input_chars": 66,
+        "output_chars": 89,
+        "method": "Fallback",
+        "latency_ms": 345,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 46,
+        "input_chars": 160,
+        "output_chars": 182,
+        "method": "Fallback",
+        "latency_ms": 352,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 48,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 351,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 50,
+        "input_chars": 68,
+        "output_chars": 57,
+        "method": "Fallback",
+        "latency_ms": 375,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 52,
+        "input_chars": 83,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 354,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 54,
+        "input_chars": 83,
+        "output_chars": 109,
+        "method": "Fallback",
+        "latency_ms": 360,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 56,
+        "input_chars": 61,
+        "output_chars": 70,
+        "method": "Fallback",
+        "latency_ms": 352,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 58,
+        "input_chars": 12,
+        "output_chars": 19,
+        "method": "Fallback",
+        "latency_ms": 352,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 60,
+        "input_chars": 56,
+        "output_chars": 70,
+        "method": "Fallback",
+        "latency_ms": 363,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 62,
+        "input_chars": 214,
+        "output_chars": 270,
+        "method": "Fallback",
+        "latency_ms": 1552,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 64,
+        "input_chars": 16,
+        "output_chars": 20,
+        "method": "Fallback",
+        "latency_ms": 355,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 66,
+        "input_chars": 41,
+        "output_chars": 42,
+        "method": "Fallback",
+        "latency_ms": 361,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 68,
+        "input_chars": 61,
+        "output_chars": 66,
+        "method": "Fallback",
+        "latency_ms": 379,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 70,
+        "input_chars": 179,
+        "output_chars": 196,
+        "method": "Fallback",
+        "latency_ms": 1117,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 72,
+        "input_chars": 19,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 356,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 74,
+        "input_chars": 60,
+        "output_chars": 64,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 76,
+        "input_chars": 49,
+        "output_chars": 52,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 78,
+        "input_chars": 18,
+        "output_chars": 25,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 80,
+        "input_chars": 12,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 82,
+        "input_chars": 74,
+        "output_chars": 79,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 84,
+        "input_chars": 131,
+        "output_chars": 155,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 86,
+        "input_chars": 11,
+        "output_chars": 14,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 88,
+        "input_chars": 106,
+        "output_chars": 122,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 90,
+        "input_chars": 91,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 92,
+        "input_chars": 18,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 94,
+        "input_chars": 145,
+        "output_chars": 153,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 96,
+        "input_chars": 77,
+        "output_chars": 93,
+        "method": "Fallback",
+        "latency_ms": 342,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 98,
+        "input_chars": 173,
+        "output_chars": 201,
+        "method": "Fallback",
+        "latency_ms": 919,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 100,
+        "input_chars": 229,
+        "output_chars": 291,
+        "method": "Fallback",
+        "latency_ms": 403,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 102,
+        "input_chars": 24,
+        "output_chars": 32,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 104,
+        "input_chars": 65,
+        "output_chars": 65,
+        "method": "Fallback",
+        "latency_ms": 760,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 106,
+        "input_chars": 295,
+        "output_chars": 330,
+        "method": "Fallback",
+        "latency_ms": 1780,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 108,
+        "input_chars": 21,
+        "output_chars": 24,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 110,
+        "input_chars": 16,
+        "output_chars": 18,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 112,
+        "input_chars": 126,
+        "output_chars": 135,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 114,
+        "input_chars": 77,
+        "output_chars": 88,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 116,
+        "input_chars": 52,
+        "output_chars": 59,
+        "method": "Fallback",
+        "latency_ms": 592,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 118,
+        "input_chars": 94,
+        "output_chars": 106,
+        "method": "Fallback",
+        "latency_ms": 700,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 120,
+        "input_chars": 253,
+        "output_chars": 282,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 122,
+        "input_chars": 14,
+        "output_chars": 13,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 124,
+        "input_chars": 69,
+        "output_chars": 77,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 126,
+        "input_chars": 48,
+        "output_chars": 52,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 128,
+        "input_chars": 32,
+        "output_chars": 48,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 130,
+        "input_chars": 53,
+        "output_chars": 65,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 132,
+        "input_chars": 76,
+        "output_chars": 84,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 134,
+        "input_chars": 222,
+        "output_chars": 298,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 136,
+        "input_chars": 33,
+        "output_chars": 41,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 138,
+        "input_chars": 78,
+        "output_chars": 86,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 140,
+        "input_chars": 150,
+        "output_chars": 177,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 142,
+        "input_chars": 298,
+        "output_chars": 352,
+        "method": "Fallback",
+        "latency_ms": 1291,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 144,
+        "input_chars": 27,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 146,
+        "input_chars": 82,
+        "output_chars": 85,
+        "method": "Fallback",
+        "latency_ms": 983,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 148,
+        "input_chars": 206,
+        "output_chars": 254,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 150,
+        "input_chars": 578,
+        "output_chars": 667,
+        "method": "Fallback",
+        "latency_ms": 1174,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 152,
+        "input_chars": 29,
+        "output_chars": 33,
+        "method": "Fallback",
+        "latency_ms": 348,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 154,
+        "input_chars": 35,
+        "output_chars": 37,
+        "method": "Fallback",
+        "latency_ms": 340,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 156,
+        "input_chars": 105,
+        "output_chars": 126,
+        "method": "Fallback",
+        "latency_ms": 337,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 158,
+        "input_chars": 106,
+        "output_chars": 127,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 160,
+        "input_chars": 155,
+        "output_chars": 188,
+        "method": "Fallback",
+        "latency_ms": 326,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 162,
+        "input_chars": 97,
+        "output_chars": 134,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 164,
+        "input_chars": 39,
+        "output_chars": 43,
+        "method": "Fallback",
+        "latency_ms": 334,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 166,
+        "input_chars": 44,
+        "output_chars": 51,
+        "method": "Fallback",
+        "latency_ms": 328,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 168,
+        "input_chars": 14,
+        "output_chars": 20,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 170,
+        "input_chars": 178,
+        "output_chars": 235,
+        "method": "Fallback",
+        "latency_ms": 741,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 172,
+        "input_chars": 16,
+        "output_chars": 23,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 174,
+        "input_chars": 201,
+        "output_chars": 274,
+        "method": "Fallback",
+        "latency_ms": 1080,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 176,
+        "input_chars": 12,
+        "output_chars": 11,
+        "method": "Fallback",
+        "latency_ms": 343,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 178,
+        "input_chars": 217,
+        "output_chars": 290,
+        "method": "Fallback",
+        "latency_ms": 1209,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 180,
+        "input_chars": 24,
+        "output_chars": 27,
+        "method": "Fallback",
+        "latency_ms": 369,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 182,
+        "input_chars": 52,
+        "output_chars": 51,
+        "method": "Fallback",
+        "latency_ms": 324,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 184,
+        "input_chars": 281,
+        "output_chars": 346,
+        "method": "Fallback",
+        "latency_ms": 333,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 186,
+        "input_chars": 19,
+        "output_chars": 43,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 188,
+        "input_chars": 36,
+        "output_chars": 39,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 190,
+        "input_chars": 100,
+        "output_chars": 123,
+        "method": "Fallback",
+        "latency_ms": 330,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 192,
+        "input_chars": 92,
+        "output_chars": 122,
+        "method": "Fallback",
+        "latency_ms": 338,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 194,
+        "input_chars": 73,
+        "output_chars": 78,
+        "method": "Fallback",
+        "latency_ms": 879,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 196,
+        "input_chars": 107,
+        "output_chars": 101,
+        "method": "Fallback",
+        "latency_ms": 332,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 198,
+        "input_chars": 217,
+        "output_chars": 232,
+        "method": "Fallback",
+        "latency_ms": 485,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 200,
+        "input_chars": 25,
+        "output_chars": 34,
+        "method": "Fallback",
+        "latency_ms": 367,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 202,
+        "input_chars": 202,
+        "output_chars": 242,
+        "method": "Fallback",
+        "latency_ms": 335,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 204,
+        "input_chars": 62,
+        "output_chars": 74,
+        "method": "Fallback",
+        "latency_ms": 325,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 206,
+        "input_chars": 110,
+        "output_chars": 129,
+        "method": "Fallback",
+        "latency_ms": 331,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 208,
+        "input_chars": 46,
+        "output_chars": 43,
+        "method": "Fallback",
+        "latency_ms": 327,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 210,
+        "input_chars": 105,
+        "output_chars": 126,
+        "method": "Fallback",
+        "latency_ms": 655,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 212,
+        "input_chars": 122,
+        "output_chars": 146,
+        "method": "Fallback",
+        "latency_ms": 997,
+        "attempts": 1,
+        "fallback_used": true
+      },
+      {
+        "index": 214,
+        "input_chars": 252,
+        "output_chars": 340,
+        "method": "Fallback",
+        "latency_ms": 329,
+        "attempts": 1,
+        "fallback_used": true
+      }
+    ],
+    "translated_at": "2026-08-09T06:56:46Z",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
   "docs/api/admin-activity-log.md": {
