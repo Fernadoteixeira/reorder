@@ -1,14 +1,14 @@
 # Ofertas de assinatura da loja
 
-Este documento descreve o endpoint de leitura da vitrine usado pelo PDP para resolver dados de oferta de assinatura de `Plans & Offers`.
+Este documento descreve o endpoint de leitura da loja virtual utilizado pelo PDP para obter dados de ofertas de assinatura do `Plans & Offers`.
 
 ## Ponto final
 
 ### `GET /store/products/:id/subscription-offer`
 
-Retorna a oferta de assinatura efetiva de um produto ou variante.
+Retorna a oferta de assinatura vigente para um produto ou variante.
 
-Parâmetros de consulta:
+Parâmetros da consulta:
 - `variant_id` opcional
 
 Resposta:
@@ -34,17 +34,17 @@ Cada item `allowed_frequencies` contém:
 - `type`
 - `value`
 
-## Semântica de resolução
+## Semântica da resolução
 
-- a oferta em nível de variante tem precedência sobre a oferta em nível de produto
-- ofertas desativadas ou ausentes retornam `is_subscription_available: false`
-- a cadência é retornada em formato canônico de back-end:
+- a oferta no nível da variante tem precedência sobre a oferta no nível do produto
+- uma oferta desativada ou ausente retorna `is_subscription_available: false`
+- a cadência é retornada no formato canônico do backend:
   - `week`
   - `month`
   - `year`
 
-## Propósito
+## Objetivo
 
-- Seletor de assinatura PDP
-- Exibição de preços e economias de PDP
-- validação na loja da cadência de assinatura permitida
+- Seletor de assinaturas do PDP
+- Exibição de preços e descontos do PDP
+- Validação na loja virtual da periodicidade de assinatura permitida
