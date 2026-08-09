@@ -1,16 +1,16 @@
-# API de cancelamentos de administrador
+# API de cancelamentos administrativos
 
-Este documento descreve o contrato Admin API implementado para a área `Cancellation & Retention` do plugin `Reorder`.
+Este documento descreve o contrato da API de administração implementado para a área `Cancellation & Retention` do plug-in `Reorder`.
 
-É a fonte atual de verdade em tempo de execução para:
+É a fonte de referência atual em tempo de execução para:
 - parâmetros de solicitação
-- solicitar órgãos
-- formas de resposta
-- cenários de erro comuns
+- corpos de solicitação
+- formatos de resposta
+- cenários comuns de erro
 
-Todas as rotas descritas aqui são rotas administrativas personalizadas expostas pelo plugin e destinadas a usuários autenticados do Medusa Admin.
+Todas as rotas descritas aqui são rotas personalizadas do Admin expostas pelo plug-in e destinadas a usuários autenticados do Medusa Admin.
 
-## Caminho Básico
+## Caminho base
 
 Todas as rotas estão em:
 
@@ -18,16 +18,16 @@ Todas as rotas estão em:
 
 ## Autenticação
 
-Todas as rotas são rotas somente para administradores.
+Todas as rotas são exclusivas para administradores.
 
 Em termos de implementação:
-- as rotas usam `AuthenticatedMedusaRequest`
-- a validação da solicitação é feita por meio de middleware Medusa e esquemas Zod
-- todas as mutações são executadas por meio de fluxos de trabalho, em vez de alterar os dados diretamente no manipulador de rotas
+- as rotas utilizam `AuthenticatedMedusaRequest`
+- a validação das solicitações é feita por meio do middleware Medusa e dos esquemas Zod
+- todas as mutações são executadas por meio de fluxos de trabalho, em vez de se alterar os dados diretamente no manipulador da rota
 
 ## DTOs compartilhados
 
-As respostas da API são baseadas nos Admin DTOs definidos em:
+As respostas da API se baseiam nos DTOs de administração definidos em:
 
 - `src/admin/types/cancellation.ts`
 
@@ -41,9 +41,9 @@ Principais tipos de resposta:
 - `CancellationAdminDunningSummary`
 - `CancellationAdminRenewalSummary`
 
-## Valores de domínio compartilhado
+## Valores compartilhados do domínio
 
-### Valores de status do caso
+### Valores do status do caso
 
 Status de casos de cancelamento suportados:
 - `requested`
@@ -53,23 +53,23 @@ Status de casos de cancelamento suportados:
 - `paused`
 - `canceled`
 
-### Valores do Resultado Final
+### Valores dos resultados finais
 
-Resultados finais apoiados:
+Resultados finais suportados:
 - `retained`
 - `paused`
 - `canceled`
 
-### Oferecer valores de status de decisão
+### Valores do status da decisão sobre a oferta
 
-Status de decisão de oferta de retenção com suporte:
+Status de decisão de oferta de retenção suportados:
 - `proposed`
 - `accepted`
 - `rejected`
 - `applied`
 - `expired`
 
-### Valores de categoria de motivo
+### Valores da categoria “Motivo”
 
 Categorias de motivos suportadas:
 - `price`
@@ -80,16 +80,16 @@ Categorias de motivos suportadas:
 - `switched_competitor`
 - `other`
 
-## 1. Listar casos de cancelamento
+## 1. Lista de casos de cancelamento
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/cancellations`
 
-### Propósito
+### Objetivo
 
-Retorna a fila de cancelamento paginada usada pelo Admin `Cancellation & Retention` DataTable.
+Retorna a fila de cancelamento paginada utilizada pela DataTable `Cancellation & Retention` do Admin.
 
 ### Parâmetros de consulta
 
@@ -111,7 +111,7 @@ Filtros:
 - `created_from?: string`
 - `created_to?: string`
 
-### Campos de classificação suportados
+### Campos de classificação compatíveis
 
 Baseado em banco de dados:
 - `created_at`
@@ -128,7 +128,7 @@ Na memória:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -167,23 +167,23 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de parâmetro de consulta inválido ou valor de consulta incompatível.
+  Formato inválido do parâmetro de consulta ou valor de consulta não suportado.
 - `400 invalid_data`
   Campo de classificação não suportado.
 
-## 2. Obtenha detalhes do caso de cancelamento
+## 2. Obter detalhes do caso de cancelamento
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/cancellations/:id`
 
-### Propósito
+### Objetivo
 
-Retorna a carga completa de detalhes do administrador para um único caso de cancelamento.
+Retorna a carga útil completa dos detalhes administrativos de um único caso de cancelamento.
 
 ### Parâmetros de caminho
 
@@ -191,7 +191,7 @@ Retorna a carga completa de detalhes do administrador para um único caso de can
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -261,27 +261,27 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso de cancelamento não existe.
 
-## 3. Aplicar oferta de retenção
+## 3. Apresentar a oferta de retenção
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/cancellations/:id/apply-offer`
 
-### Propósito
+### Objetivo
 
-Aplica uma ação de retenção concreta, cria um `RetentionOfferEvent`, atualiza a assinatura e fecha o caso como `retained` ou `paused`.
+Aplica uma medida de retenção de concreto, cria um `RetentionOfferEvent`, atualiza a assinatura e encerra o caso como `retained` ou `paused`.
 
 ### Corpo da solicitação
 
-Cargas suportadas:
+Cargas úteis compatíveis:
 
-#### Pausar oferta
+#### Oferta de pausa
 
 ```json
 {
@@ -298,7 +298,7 @@ Cargas suportadas:
 }
 ```
 
-#### Oferta de desconto
+#### Oferta com desconto
 
 ```json
 {
@@ -337,23 +337,23 @@ Cargas suportadas:
 
 ### Notas de validação
 
-A validação atual da API impõe:
+A validação atual da API exige o seguinte:
 - `pause_offer` requer `pause_cycles` ou `resume_at`
 - os descontos percentuais não podem exceder `50`
-- `discount_value` deve ser positivo
-- `duration_cycles` deve ser positivo quando fornecido
-- Os valores `bonus_offer` devem ser não negativos
-- `free_cycle` e `credit` requerem `value`
+- `discount_value` deve ser positivo;
+- `duration_cycles` deve ser positivo quando fornecido;
+- os valores de `bonus_offer` devem ser não negativos;
+- `free_cycle` e `credit` exigem `value`
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
 - igual a `GET /admin/cancellations/:id`
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso não existe.
@@ -362,16 +362,16 @@ Forma:
 - `409 offer_out_of_policy`
   A carga útil da oferta viola as regras da política de retenção.
 
-## 4. Finalizar cancelamento
+## 4. Concluir o cancelamento
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/cancellations/:id/finalize`
 
-### Propósito
+### Objetivo
 
-Finaliza o caso como `canceled`, atualiza o ciclo de vida da assinatura, calcula `cancel_effective_at` e limpa a elegibilidade para renovação.
+Encerra o caso como `canceled`, atualiza o ciclo de vida da assinatura, calcula `cancel_effective_at` e desativa a elegibilidade para renovação.
 
 ### Corpo da solicitação
 
@@ -387,39 +387,39 @@ Finaliza o caso como `canceled`, atualiza o ciclo de vida da assinatura, calcula
 
 ### Notas
 
-- `reason` é exigido pelas regras do domínio para cancelamento final.
-- Se omitido no corpo, o fluxo de trabalho poderá utilizar o motivo do caso existente.
+- `reason` é obrigatório, de acordo com as regras do domínio, para o cancelamento definitivo.
+- Se for omitido no corpo, o fluxo de trabalho poderá utilizar o motivo do caso existente.
 - `effective_at` suporta:
   - `immediately`
   - `end_of_cycle`
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
 - igual a `GET /admin/cancellations/:id`
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso não existe.
 - `409 invalid_state`
   O caso é terminal ou não é elegível para cancelamento final.
 - `400 invalid_data`
-  Falta o motivo após a resolução do corpo e dos dados do caso existente.
+  Falta o motivo após a análise do corpo do caso e dos dados existentes do caso.
 
-## 5. Motivo de cancelamento da atualização
+## 5. Atualizar o motivo do cancelamento
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/cancellations/:id/reason`
 
-### Propósito
+### Objetivo
 
-Atualiza o motivo da rotatividade, a categoria do motivo normalizado e as notas do caso.
+Atualiza o motivo da cancelamento, a categoria normalizada do motivo e as observações do caso.
 
 ### Corpo da solicitação
 
@@ -435,13 +435,13 @@ Atualiza o motivo da rotatividade, a categoria do motivo normalizado e as notas 
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
 - igual a `GET /admin/cancellations/:id`
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso não existe.
@@ -450,18 +450,18 @@ Forma:
 
 ## 7. Cenários comuns de erros de domínio
 
-Nas rotas de mutação, o tempo de execução atual expõe erros de reconhecimento de domínio para:
+Em todas as rotas de mutação, o ambiente de execução atual expõe erros relacionados ao domínio para:
 
 - `duplicate_active_case`
   Existe mais de um caso ativo para a mesma assinatura.
 - `invalid_state`
-  A mutação solicitada não é legal para o estado atual do caso.
+  A alteração solicitada não é válida para o estado atual do caso.
 - `already_finalized`
-  O caso já é terminal.
+  O caso já está encerrado.
 - `offer_out_of_policy`
   A oferta de retenção solicitada viola a política.
 - `not_found`
   O caso ou o registro de origem vinculado não existe.
 
-As rotas mapeiam-nas para respostas HTTP por meio de auxiliares de erro compartilhados em:
+As rotas mapeiam isso para respostas HTTP por meio de auxiliares de erro compartilhados em:
 - `src/api/admin/cancellations/utils.ts`

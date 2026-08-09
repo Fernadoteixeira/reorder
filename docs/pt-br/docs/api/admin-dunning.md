@@ -1,16 +1,16 @@
-# API de cobrança de administrador
+# API de cobrança administrativa
 
-Este documento descreve o contrato Admin API implementado para a área `Dunning` do plugin `Reorder`.
+Este documento descreve o contrato da API de administração implementado para a área `Dunning` do plug-in `Reorder`.
 
-É a fonte atual de verdade em tempo de execução para:
+É a fonte de referência atual em tempo de execução para:
 - parâmetros de solicitação
-- solicitar órgãos
-- formas de resposta
-- cenários de erro comuns
+- corpos de solicitação
+- formatos de resposta
+- cenários comuns de erro
 
-Todas as rotas descritas aqui são rotas administrativas personalizadas expostas pelo plugin e destinadas a usuários autenticados do Medusa Admin.
+Todas as rotas descritas aqui são rotas personalizadas do Admin expostas pelo plug-in e destinadas a usuários autenticados do Medusa Admin.
 
-## Caminho Básico
+## Caminho base
 
 Todas as rotas estão em:
 
@@ -18,16 +18,16 @@ Todas as rotas estão em:
 
 ## Autenticação
 
-Todas as rotas são rotas somente para administradores.
+Todas as rotas são exclusivas para administradores.
 
 Em termos de implementação:
-- as rotas usam `AuthenticatedMedusaRequest`
-- a validação da solicitação é feita por meio de middleware Medusa e esquemas Zod
-- todas as mutações são executadas por meio de fluxos de trabalho, em vez de alterar os dados diretamente no manipulador de rotas
+- as rotas utilizam `AuthenticatedMedusaRequest`
+- a validação das solicitações é feita por meio do middleware Medusa e dos esquemas Zod
+- todas as mutações são executadas por meio de fluxos de trabalho, em vez de se alterar os dados diretamente no manipulador da rota
 
 ## DTOs compartilhados
 
-As respostas da API são baseadas nos Admin DTOs definidos em:
+As respostas da API são baseadas nos DTOs de administração definidos em:
 
 - `src/admin/types/dunning.ts`
 
@@ -39,9 +39,9 @@ Principais tipos de resposta:
 - `DunningAttemptAdminRecord`
 - `DunningRetryScheduleSummary`
 
-## Valores de domínio compartilhado
+## Valores compartilhados do domínio
 
-### Valores de status do caso
+### Valores do status do caso
 
 Status de casos de cobrança suportados:
 - `open`
@@ -51,27 +51,27 @@ Status de casos de cobrança suportados:
 - `recovered`
 - `unrecovered`
 
-Significado do tempo de execução atual:
-- `retry_scheduled`: a última tentativa falhou com um erro de pagamento repetível e um futuro `next_retry_at` está agendado
-- `unrecovered`: o caso é terminal e encerrado, seja porque a falha no pagamento é tratada como permanente ou porque as tentativas se esgotaram
+Significado atual do tempo de execução:
+- `retry_scheduled`: a última tentativa falhou devido a um erro de pagamento que permite novas tentativas, e uma futura tentativa `next_retry_at` está agendada
+- `unrecovered`: o caso é terminal e foi encerrado, seja porque a falha no pagamento é considerada permanente, seja porque as tentativas foram esgotadas
 
-### Valores de status de tentativa
+### Valores do status da tentativa
 
-Status de tentativa de cobrança suportados:
+Status de tentativas de cobrança permitidos:
 - `processing`
 - `succeeded`
 - `failed`
 
-## 1. Listar casos de cobrança
+## 1. Lista de casos de cobrança
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/dunning`
 
-### Propósito
+### Objetivo
 
-Retorna a fila de cobrança paginada usada pelo DataTable de cobrança do administrador.
+Retorna a fila de cobranças paginada utilizada pela DataTable de cobranças do Admin.
 
 ### Parâmetros de consulta
 
@@ -97,7 +97,7 @@ Filtros:
 - `next_retry_to?: string`
 - `last_attempt_status?: string | string[]`
 
-### Campos de classificação suportados
+### Campos de classificação compatíveis
 
 Baseado em banco de dados:
 - `updated_at`
@@ -116,7 +116,7 @@ Na memória:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -162,23 +162,23 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de parâmetro de consulta inválido ou valor de consulta incompatível.
+  Formato inválido do parâmetro de consulta ou valor de consulta não suportado.
 - `400 invalid_data`
   Campo de classificação não suportado.
 
-## 2. Obtenha detalhes do caso de cobrança
+## 2. Obter detalhes do processo de cobrança
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/dunning/:id`
 
-### Propósito
+### Objetivo
 
-Retorna a carga completa de detalhes do administrador para um único caso de cobrança.
+Retorna a carga útil completa dos detalhes administrativos de um único caso de cobrança.
 
 ### Parâmetros de caminho
 
@@ -186,7 +186,7 @@ Retorna a carga completa de detalhes do administrador para um único caso de cob
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -254,24 +254,24 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso de cobrança não existe.
 
-## 3. Tente novamente agora
+## 3. Tentar novamente agora
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/dunning/:id/retry-now`
 
-### Propósito
+### Objetivo
 
-Executa imediatamente o fluxo de trabalho de nova tentativa de pagamento de cobrança compartilhada, ignorando `next_retry_at`.
+Executa imediatamente o fluxo de trabalho compartilhado de nova tentativa de pagamento de cobrança, ignorando `next_retry_at`.
 
 Comportamento atual do tempo de execução:
-- falhas de pagamento repetíveis mantêm o caso em `retry_scheduled`
+- falhas de pagamento que podem ser repetidas mantêm o caso em `retry_scheduled`
 - falhas de pagamento permanentes encerram o caso como `unrecovered`
 
 ### Corpo da solicitação
@@ -286,17 +286,17 @@ Comportamento atual do tempo de execução:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Retorna a carga útil detalhada `dunning_case` atualizada.
+Retorna a carga útil de detalhes `dunning_case` atualizada.
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso não existe.
 - `409 conflict`
-  A nova tentativa já está sendo processada, o caso é terminal ou a transição é ilegal.
+  A repetição já está em andamento, o caso é terminal ou a transição é inválida por algum outro motivo.
 
 ## 4. Marca recuperada
 
@@ -305,9 +305,9 @@ Retorna a carga útil detalhada `dunning_case` atualizada.
 - Método: `POST`
 - Caminho: `/admin/dunning/:id/mark-recovered`
 
-### Propósito
+### Objetivo
 
-Fecha o caso conforme recuperado por meio de uma ação manual do operador apoiada por fluxo de trabalho.
+Encerra o caso como recuperado por meio de uma ação manual do operador, apoiada por um fluxo de trabalho.
 
 ### Corpo da solicitação
 
@@ -321,28 +321,28 @@ Fecha o caso conforme recuperado por meio de uma ação manual do operador apoia
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Retorna a carga útil detalhada `dunning_case` atualizada.
+Retorna a carga útil de detalhes `dunning_case` atualizada.
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso não existe.
 - `409 conflict`
-  O caso já foi recuperado, já não foi recuperado ou a nova tentativa está em andamento.
+  O caso já foi recuperado, já não está mais em recuperação ou uma nova tentativa está em andamento.
 
-## 5. Marcar como não recuperado
+## 5. Marca não recuperada
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/dunning/:id/mark-unrecovered`
 
-### Propósito
+### Objetivo
 
-Fecha o caso como não recuperado por meio de uma ação manual do operador apoiada por fluxo de trabalho.
+Encerra o caso como não recuperado por meio de uma ação manual do operador, apoiada por um fluxo de trabalho.
 
 ### Corpo da solicitação
 
@@ -352,32 +352,32 @@ Fecha o caso como não recuperado por meio de uma ação manual do operador apoi
 }
 ```
 
-`reason` é obrigatório.
+É necessário preencher o campo `reason`.
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Retorna a carga útil detalhada `dunning_case` atualizada.
+Retorna a carga útil de detalhes `dunning_case` atualizada.
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O caso não existe.
 - `409 conflict`
-  O caso já foi recuperado, já não foi recuperado ou a nova tentativa está em andamento.
+  O caso já foi recuperado, já não está mais em recuperação ou uma nova tentativa está em andamento.
 
-## 6. Atualizar cronograma de novas tentativas
+## 6. Atualizar a programação de novas tentativas
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/dunning/:id/retry-schedule`
 
-### Propósito
+### Objetivo
 
-Substitui a política de novas tentativas para um caso e atualiza futuras tentativas automáticas.
+Substitui a política de novas tentativas para um caso específico e atualiza as futuras tentativas automáticas.
 
 ### Corpo da solicitação
 
@@ -392,33 +392,33 @@ Substitui a política de novas tentativas para um caso e atualiza futuras tentat
 Regras:
 - `intervals` deve conter números inteiros positivos
 - `max_attempts` deve ser positivo
-- `max_attempts` deve ser igual ao número de intervalos de novas tentativas
+- `max_attempts` deve ser igual ao número de intervalos de repetição
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Retorna a carga útil detalhada `dunning_case` atualizada.
+Retorna a carga útil de detalhes `dunning_case` atualizada.
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de carga útil inválido ou semântica de agendamento inválida.
+  Formato inválido da carga útil ou semântica inválida da programação.
 - `404 not_found`
   O caso não existe.
 - `409 conflict`
-  O caso é terminal, a nova tentativa está em andamento ou a substituição criaria uma transição ilegal.
+  O caso é terminal, uma nova tentativa está em andamento ou a substituição criaria uma transição inválida.
 
 ## 7. Mapeamento de erros
 
-A camada de rota de cobrança administrativa normaliza erros de domínio em respostas HTTP usando as regras atuais:
+A camada de rota de cobrança do administrador normaliza os erros de domínio em respostas HTTP usando as regras atuais:
 
 - `404`
-  para erros não encontrados
+  para erros de página não encontrada
 - `400`
-  para entrada inválida ou ausente
+  para entradas inválidas ou ausentes
 - `409`
   para conflitos de domínio e transições ilegais
 
-Isso mantém a API alinhada com o padrão Medusa orientado ao fluxo de trabalho usado pelo restante do plugin.
+Isso mantém a API alinhada com o padrão Medusa orientado por fluxo de trabalho utilizado pelo restante do plug-in.

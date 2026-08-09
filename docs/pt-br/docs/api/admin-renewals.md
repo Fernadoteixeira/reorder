@@ -1,16 +1,16 @@
-# API de renovações de administrador
+# API de renovações administrativas
 
-Este documento descreve o contrato Admin API implementado para a área `Renewals` do plugin `Reorder`.
+Este documento descreve o contrato da API de administração implementado para a área `Renewals` do plug-in `Reorder`.
 
-Pretende ser a fonte atual de verdade para:
+Este documento pretende ser a fonte oficial de referência atual para:
 - parâmetros de solicitação
-- solicitar órgãos
-- formas de resposta
-- cenários de erro comuns
+- corpos de solicitação
+- formatos de resposta
+- cenários comuns de erro
 
-Todas as rotas descritas aqui são rotas administrativas personalizadas expostas pelo plugin e destinadas a usuários autenticados do Medusa Admin.
+Todas as rotas descritas aqui são rotas personalizadas do Admin expostas pelo plug-in e destinadas a usuários autenticados do Medusa Admin.
 
-## Caminho Básico
+## Caminho base
 
 Todas as rotas estão em:
 
@@ -18,18 +18,18 @@ Todas as rotas estão em:
 
 ## Autenticação
 
-Todas as rotas são rotas somente para administradores.
+Todas as rotas são exclusivas para administradores.
 
 Em termos de implementação:
-- as rotas usam `AuthenticatedMedusaRequest`
-- a validação da solicitação é feita por meio de middleware Medusa e esquemas Zod
-- todas as mutações são executadas por meio de fluxos de trabalho, em vez de alterar os dados diretamente no manipulador de rotas
+- as rotas utilizam `AuthenticatedMedusaRequest`
+- a validação das solicitações é feita por meio do middleware Medusa e dos esquemas Zod
+- todas as mutações são executadas por meio de fluxos de trabalho, em vez de se alterar os dados diretamente no manipulador da rota
 
-Isso mantém a API alinhada com as convenções de rota e fluxo de trabalho da Medusa.
+Isso mantém a API alinhada com as convenções de rotas e fluxo de trabalho do Medusa.
 
 ## DTOs compartilhados
 
-As respostas da API são baseadas nos Admin DTOs definidos em:
+As respostas da API são baseadas nos DTOs de administração definidos em:
 
 - `src/admin/types/renewal.ts`
 
@@ -41,42 +41,42 @@ Principais tipos de resposta:
 - `RenewalAttemptAdminRecord`
 - `RenewalAdminApprovalSummary`
 
-## Valores de domínio compartilhado
+## Valores compartilhados do domínio
 
-### Valores de status do ciclo
+### Valores do status do ciclo
 
-Status do ciclo de renovação suportados:
+Status de ciclo de renovação suportados:
 - `scheduled`
 - `processing`
 - `succeeded`
 - `failed`
 
-### Valores de status de aprovação
+### Valores do status de aprovação
 
-Status de aprovação suportados:
+Estados de aprovação suportados:
 - `pending`
 - `approved`
 - `rejected`
 
-Quando a aprovação não é necessária, a API retorna `status = null` dentro do resumo de aprovação.
+Quando a aprovação não é necessária, a API retorna `status = null` no resumo da aprovação.
 
-### Valores de status de tentativa
+### Valores do status da tentativa
 
-Status de tentativa suportados:
+Estados de tentativa suportados:
 - `processing`
 - `succeeded`
 - `failed`
 
-## 1. Renovações de lista
+## 1. Renovações de listagens
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/renewals`
 
-### Propósito
+### Objetivo
 
-Retorna a fila de renovação paginada usada pelo DataTable de renovações de administrador.
+Retorna a fila de renovações paginada utilizada pela DataTable de renovações do Admin.
 
 ### Parâmetros de consulta
 
@@ -98,7 +98,7 @@ Filtros:
 - `subscription_id?: string`
 - `generated_order_id?: string`
 
-### Campos de classificação suportados
+### Campos de classificação compatíveis
 
 Baseado em banco de dados:
 - `scheduled_for`
@@ -117,7 +117,7 @@ Na memória:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -158,23 +158,23 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de parâmetro de consulta inválido ou valor de consulta incompatível.
+  Formato inválido do parâmetro de consulta ou valor de consulta não suportado.
 - `400 invalid_data`
   Campo de classificação não suportado.
 
-## 2. Obtenha detalhes de renovação
+## 2. Obter detalhes sobre a renovação
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/renewals/:id`
 
-### Propósito
+### Objetivo
 
-Retorna a carga completa de detalhes do administrador para um único ciclo de renovação.
+Retorna a carga útil completa dos detalhes administrativos para um único ciclo de renovação.
 
 ### Parâmetros de caminho
 
@@ -182,7 +182,7 @@ Retorna a carga completa de detalhes do administrador para um único ciclo de re
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -251,21 +251,21 @@ Forma:
 
 Notas:
 - `scheduled_for` é a data do ciclo de renovação operacional armazenada em `renewal_cycle`
-- `effective_scheduled_for` é a data de entrega projetada mostrada no Admin quando a assinatura vinculada atualmente tem um próximo ciclo ignorado
+- `effective_scheduled_for` é a data de entrega prevista exibida no Admin quando a assinatura vinculada tem, no momento, o próximo ciclo pulado
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O ciclo de renovação não existe.
 
-## 3. Forçar Renovação
+## 3. Renovação forçada
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/renewals/:id/force`
 
-### Propósito
+### Objetivo
 
 Aciona manualmente a execução de um ciclo de renovação que pode ser executado à força.
 
@@ -282,10 +282,10 @@ Campos:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Retorna o payload atualizado dos detalhes da renovação:
+Retorna a carga útil atualizada com os detalhes da renovação:
 
 ```json
 {
@@ -296,33 +296,33 @@ Retorna o payload atualizado dos detalhes da renovação:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O ciclo de renovação não existe.
 - `409 conflict`
-  O ciclo já está em processamento.
+  O ciclo já está em andamento.
 - `409 conflict`
-  A execução duplicada está bloqueada porque o ciclo já foi bem-sucedido.
+  A execução duplicada foi bloqueada porque o ciclo já foi concluído com sucesso.
 - `409 conflict`
-  O ciclo não está em um estado forçoso.
+  O ciclo não está em um estado que permita a execução forçada.
 - `409 conflict`
   O ciclo requer alterações aprovadas antes de poder ser executado à força.
 - `409 conflict`
   A assinatura vinculada não é elegível para renovação.
 - `400 invalid_data`
-  A política `Plans & Offers` atual bloqueia a aplicação da alteração pendente.
+  A política atual `Plans & Offers` impede que a alteração pendente seja aplicada.
 
-## 4. Aprovar alterações de renovação
+## 4. Aprovar alterações na renovação
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/renewals/:id/approve-changes`
 
-### Propósito
+### Objetivo
 
-Aprova alterações de assinatura pendentes para um ciclo de renovação que requer aprovação.
+Aprova as alterações pendentes na assinatura para um ciclo de renovação que exige aprovação.
 
 ### Corpo da solicitação
 
@@ -337,30 +337,30 @@ Campos:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Retorna a carga atualizada de detalhes de renovação com resumo de aprovação atualizado.
+Retorna a carga útil atualizada dos detalhes da renovação, com o resumo de aprovação atualizado.
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   O ciclo de renovação não existe.
 - `409 conflict`
-  A aprovação não é necessária para este ciclo.
+  Não é necessária aprovação para este ciclo.
 - `409 conflict`
   A aprovação já foi decidida para este ciclo.
 
-## 5. Rejeitar alterações de renovação
+## 5. Rejeitar alterações na renovação
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/renewals/:id/reject-changes`
 
-### Propósito
+### Objetivo
 
-Rejeita alterações de assinatura pendentes para um ciclo de renovação que requer aprovação.
+Rejeita alterações pendentes na assinatura para um ciclo de renovação que exija aprovação.
 
 ### Corpo da solicitação
 
@@ -373,55 +373,55 @@ Rejeita alterações de assinatura pendentes para um ciclo de renovação que re
 Campos:
 - `reason: string`
 
-Ao contrário da aprovação, `reason` é exigido no contrato de API atual.
+Ao contrário da aprovação, o `reason` é obrigatório no contrato da API atual.
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Retorna a carga atualizada de detalhes de renovação com resumo de aprovação atualizado.
+Retorna a carga útil atualizada dos detalhes da renovação, com o resumo de aprovação atualizado.
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
   `reason` ausente ou inválido.
 - `404 not_found`
   O ciclo de renovação não existe.
 - `409 conflict`
-  A aprovação não é necessária para este ciclo.
+  Não é necessária aprovação para este ciclo.
 - `409 conflict`
   A aprovação já foi decidida para este ciclo.
 
-## 6. Notas da API
+## 6. Notas sobre a API
 
-### Leia as notas do modelo
+### Ler as notas do modelo
 
-A API Admin de renovação usa auxiliares de modelo de leitura dedicados em vez de retornar entidades de módulo bruto.
+A API de administração de renovação utiliza auxiliares dedicados do modelo de leitura, em vez de retornar entidades do módulo em formato bruto.
 
-Isso significa que as cargas já incluem:
-- resumo de assinatura vinculado
+Isso significa que as cargas úteis já incluem:
+- resumo da assinatura vinculada
 - resumo do pedido vinculado
-- resumo de aprovação
+- resumo da aprovação
 - resumo da última tentativa na lista
-- histórico completo de tentativas em detalhes
+- histórico completo das tentativas nos detalhes
 
-### Notas Operacionais
+### Notas operacionais
 
-A implementação atual também anexa metadados operacionais durante a execução, incluindo informações de gatilho e IDs de correlação usados ​​para registro em log e rastreamento do agendador.
+A implementação atual também anexa metadados operacionais durante a execução, incluindo informações sobre gatilhos e IDs de correlação utilizados para registro em log e rastreamento do agendador.
 
-Esses campos são expostos por meio de `metadata` na resposta detalhada.
+Esses campos são exibidos por meio de `metadata` na resposta detalhada.
 
-Os consumidores Admin desta API são implementados em:
+Os consumidores de administração desta API estão implementados em:
 - `src/admin/routes/subscriptions/renewals/page.tsx`
 - `src/admin/routes/subscriptions/renewals/[id]/page.tsx`
 
 A camada correspondente de carregamento e invalidação de dados está centralizada em:
 - `src/admin/routes/subscriptions/renewals/data-loading.ts`
 
-## Documentos Relacionados
+## Documentos relacionados
 
 - [Arquitetura de renovações](../architecture/renewals.md)
-- [IU de renovações de administrador](../admin/renewals.md)
-- [Teste de renovações](../testing/renewals.md)
+- [Interface do usuário de renovações do administrador](../admin/renewals.md)
+- [Testes de renovações](../testing/renewals.md)
 - [Especificações de renovações](../specs/renewals/admin-spec.md)

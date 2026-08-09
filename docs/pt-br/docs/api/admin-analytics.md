@@ -1,16 +1,16 @@
-# API de análise administrativa
+# API de Análise Administrativa
 
-Este documento descreve o contrato Admin API implementado para a área `Analytics` do plugin `Reorder`.
+Este documento descreve o contrato da API de administração implementado para a área `Analytics` do plug-in `Reorder`.
 
-Pretende ser a fonte atual de verdade para:
+Este documento pretende ser a fonte oficial de referência atual para:
 - parâmetros de solicitação
-- formas de resposta
+- formatos de resposta
 - regras de filtragem e agrupamento
 - contrato de resposta de exportação
 
-Todas as rotas descritas aqui são rotas administrativas personalizadas expostas pelo plugin e destinadas a usuários autenticados do Medusa Admin.
+Todas as rotas descritas aqui são rotas personalizadas do Admin expostas pelo plug-in e destinadas a usuários autenticados do Medusa Admin.
 
-## Caminho Básico
+## Caminho base
 
 Todas as rotas estão em:
 
@@ -18,18 +18,18 @@ Todas as rotas estão em:
 
 ## Autenticação
 
-Todas as rotas são rotas somente para administradores.
+Todas as rotas são exclusivas para administradores.
 
 Em termos de implementação:
-- as rotas usam `AuthenticatedMedusaRequest`
-- a validação da solicitação é feita por meio de middleware Medusa e esquemas Zod
-- os manipuladores de rotas permanecem finos e delegam a lógica de leitura para auxiliares de consulta analítica ou serviços de leitura
+- as rotas utilizam `AuthenticatedMedusaRequest`
+- a validação das solicitações é feita por meio do middleware Medusa e dos esquemas Zod
+- os manipuladores de rota são enxutos e delegam a lógica de leitura a auxiliares de consulta de análise ou a serviços de leitura
 
-Isso mantém a API alinhada com as convenções do modelo de leitura do Medusa Admin.
+Isso mantém a API alinhada às convenções do modelo de leitura do Medusa Admin.
 
 ## DTOs compartilhados
 
-As respostas da API são baseadas nos Admin DTOs definidos em:
+As respostas da API são baseadas nos DTOs de administração definidos em:
 
 - `src/admin/types/analytics.ts`
 
@@ -41,14 +41,14 @@ Principais tipos de resposta:
 - `AnalyticsKpiSummary`
 - `AnalyticsTrendSeries`
 
-Todas as respostas analíticas bem-sucedidas também incluem:
+Todas as respostas de análise bem-sucedidas também incluem:
 - `metrics_version`
 
-## Valores de domínio compartilhado
+## Valores compartilhados do domínio
 
 ### Chaves métricas
 
-Chaves de métricas analíticas suportadas em KPI e respostas de tendências:
+Chaves de métricas analíticas compatíveis nas respostas de KPIs e tendências:
 - `mrr`
 - `churn_rate`
 - `ltv`
@@ -57,9 +57,9 @@ Chaves de métricas analíticas suportadas em KPI e respostas de tendências:
 
 Regras de superfície implementadas:
 - `created_subscriptions_count` é retornado apenas pela resposta de tendências
-- Os cartões KPI permanecem `mrr`, `churn_rate`, `ltv` e `active_subscriptions_count`
+- Os cartões de KPI permanecem como `mrr`, `churn_rate`, `ltv` e `active_subscriptions_count`
 
-### Agrupando Valores
+### Agrupamento de valores
 
 Valores de agrupamento suportados:
 - `day`
@@ -76,7 +76,7 @@ Valores de filtro de status de assinatura suportados:
 
 ### Valores do filtro de frequência
 
-Os filtros de frequência usam valores de cadência estruturados:
+Os filtros de frequência utilizam valores de cadência estruturados:
 - `interval`
   - `week`
   - `month`
@@ -86,12 +86,12 @@ Os filtros de frequência usam valores de cadência estruturados:
 
 Exemplos:
 - semanalmente: `interval = "week", value = 1`
-- a cada 2 semanas: `interval = "week", value = 2`
+- a cada duas semanas: `interval = "week", value = 2`
 - mensalmente: `interval = "month", value = 1`
 
-## Contrato de filtro compartilhado
+## Contrato de Filtro Compartilhado
 
-Todas as rotas de leitura analítica usam o mesmo contrato de filtro lógico.
+Todas as rotas de leitura de análises utilizam o mesmo contrato de filtro lógico.
 
 Filtros suportados:
 - `date_from?: string`
@@ -103,35 +103,35 @@ Filtros suportados:
 - `timezone?: "UTC"`
 
 Notas:
-- `date_from` e `date_to` são carimbos de data e hora semelhantes a ISO ou strings de data interpretadas pelo validador de API.
-- `status` é um filtro de vários valores.
-- `product_id` é um filtro de vários valores.
-- `frequency` é um filtro de vários valores representado em solicitações usando um token de cadência serializado.
-- `group_by` é padronizado como `day` quando omitido.
-- `timezone` é padronizado como `UTC` quando omitido.
-- A análise do MVP rejeita valores de fuso horário diferentes de `UTC`.
+- `date_from` e `date_to` são carimbos de data e hora no formato ISO ou cadeias de caracteres de data interpretadas pelo validador da API.
+- `status` é um filtro com vários valores.
+- `product_id` é um filtro com vários valores.
+- `frequency` é um filtro com vários valores representado nas solicitações por meio de um token de cadência serializado.
+- `group_by` assume o valor padrão de `day` quando omitido.
+- `timezone` assume o valor padrão de `UTC` quando omitido.
+- A análise do MVP rejeita valores de fuso horário que não sejam `UTC`.
 
-### Regras de validação compartilhada
+### Regras de validação compartilhadas
 
-Regras atuais de validação de tempo de execução:
+Regras atuais de validação em tempo de execução:
 - `date_from <= date_to`
 - a janela máxima de leitura de análises é de `731` dias
-- Os tokens `frequency` devem corresponder a `week:n`, `month:n` ou `year:n`
+- os tokens `frequency` devem corresponder a `week:n`, `month:n` ou `year:n`
 - valores `timezone` não suportados são rejeitados
 
-### Regras de conjunto de dados vazio
+### Regras para conjuntos de dados vazios
 
-Um conjunto de dados vazio não é tratado como um erro de API.
+Um conjunto de dados vazio não é considerado um erro da API.
 
-Comportamento atual do tempo de execução:
+Comportamento atual em tempo de execução:
 - `kpis` ainda retorna todas as chaves de KPI
-- `trends` retorna séries válidas com pontos vazios ou com valor nulo dependendo do intervalo
+- `trends` retorna séries válidas com pontos vazios ou com valor nulo, dependendo do intervalo
 - `created_subscriptions_count` retorna uma série diária preenchida com zeros em todo o intervalo solicitado
-- `export` retorna uma carga válida com `rows` vazio
+- `export` retorna uma carga útil válida com `rows` vazio
 
-### Codificação de solicitação de frequência
+### Codificação de solicitações de frequência
 
-Para simplificar a solicitação, os filtros de frequência são passados ​​como tokens serializados.
+Para simplificar as solicitações, os filtros de frequência são passados como tokens serializados.
 
 Codificação recomendada:
 - `week:1`
@@ -139,7 +139,7 @@ Codificação recomendada:
 - `month:1`
 - `year:1`
 
-A API analisa esses valores no formato Admin DTO:
+A API analisa esses valores e os converte no formato do DTO Admin:
 
 ```json
 {
@@ -148,16 +148,16 @@ A API analisa esses valores no formato Admin DTO:
 }
 ```
 
-## 1. Obtenha o resumo do KPI
+## 1. Obter resumo dos KPIs
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscription-analytics/kpis`
 
-### Propósito
+### Objetivo
 
-Retorna a carga de resumo de KPI usada pelos cartões de visão geral de análise de administrador.
+Retorna a carga útil do resumo de KPIs utilizada pelos cartões de visão geral de análises do Admin.
 
 ### Parâmetros de consulta
 
@@ -171,7 +171,7 @@ Filtros:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -244,31 +244,31 @@ Forma:
 
 ### Regras de resposta
 
-- `value` pode ser `null` se uma métrica não for computável para o intervalo de filtros selecionado.
-- `currency_code` é preenchido apenas para métricas baseadas em moeda.
-- `precision` informa à UI do administrador como formatar o valor.
-- a resposta sempre inclui todas as chaves de KPI suportadas para MVP, mesmo quando alguns valores são `null`
-- `MRR` e `LTV` podem ser resolvidos para `null` quando o conjunto de dados selecionado não tem um único contexto de moeda válido ou quando o instantâneo de receita está incompleto para o cálculo do MVP
+- `value` pode ser `null` se uma métrica não for calculável para o intervalo de filtro selecionado.
+- `currency_code` só é preenchido para métricas baseadas em moeda.
+- `precision` indica à interface de usuário do administrador como formatar o valor.
+- a resposta sempre inclui todas as chaves de KPI compatíveis para o MVP, mesmo quando alguns valores são `null`
+- `MRR` e `LTV` podem ser substituídos por `null` quando o conjunto de dados selecionado não tiver um único contexto de moeda válido ou quando o instantâneo de receita estiver incompleto para o cálculo do MVP
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de filtro inválido, valor de agrupamento incompatível ou token de frequência inválido.
+  Formato de filtro inválido, valor de agrupamento não suportado ou token de frequência inválido.
 
-## 2. Obtenha séries de tendências
+## 2. Obter séries de tendências
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscription-analytics/trends`
 
-### Propósito
+### Objetivo
 
-Retorna dados de série temporal agrupados usados ​​pelo gráfico de análise do administrador.
+Retorna dados agrupados de séries temporais utilizados pelo gráfico de análise do Admin.
 
-Exceção implementada:
+Exceções implementadas:
 - `created_subscriptions_count` é sempre agrupado por dia UTC
-- `created_subscriptions_count` é proveniente de `subscription.created_at`
+- `created_subscriptions_count` é derivado de `subscription.created_at`
 - `created_subscriptions_count` ignora `status`, `product_id`, `frequency` e `group_by`
 
 ### Parâmetros de consulta
@@ -283,7 +283,7 @@ Filtros:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -364,19 +364,19 @@ Forma:
 
 ### Regras de resposta
 
-- cada série é agrupada de acordo com o `group_by` solicitado
+- cada série é agrupada de acordo com o valor solicitado de `group_by`
 - `bucket_start` e `bucket_end` definem a janela de tempo exata para cada ponto
-- os pontos são ordenados crescentemente por `bucket_start`
-- a série pode conter `value = null` quando o intervalo existe, mas a métrica não pode ser calculada
-- a semântica do bucket usa `UTC` no MVP
-- As séries `MRR` e `LTV` podem conter `value = null` para intervalos onde nenhum instantâneo de receita válido em moeda única está disponível
-- `created_subscriptions_count` é sempre retornado como intervalos UTC diários, mesmo que `group_by` seja `week` ou `month`
-- `created_subscriptions_count` preenche com zero os dias faltantes dentro do intervalo selecionado
+- os pontos são ordenados em ordem crescente por `bucket_start`
+- as séries podem conter `value = null` quando o bucket existe, mas a métrica não pode ser calculada
+- a semântica do bucket utiliza `UTC` no MVP
+- As séries `MRR` e `LTV` podem conter `value = null` para buckets nos quais não há nenhum instantâneo válido de receita em moeda única disponível
+- `created_subscriptions_count` é sempre retornado como buckets diários em UTC, mesmo que `group_by` seja `week` ou `month`
+- `created_subscriptions_count` preenche com zeros os dias ausentes dentro do intervalo selecionado
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de filtro inválido, valor de agrupamento incompatível ou token de frequência inválido.
+  Formato de filtro inválido, valor de agrupamento não suportado ou token de frequência inválido.
 
 ## 3. Exportar relatório de análise
 
@@ -385,11 +385,11 @@ Forma:
 - Método: `GET`
 - Caminho: `/admin/subscription-analytics/export`
 
-### Propósito
+### Objetivo
 
-Retorna uma carga de exportação alinhada com os filtros de análise ativos.
+Retorna uma carga útil de exportação alinhada aos filtros de análise ativos.
 
-Para MVP, o contrato de exportação é síncrono e oferece suporte a `csv` e `json`.
+No MVP, o contrato de exportação é síncrono e suporta `csv` e `json`.
 
 ### Parâmetros de consulta
 
@@ -406,7 +406,7 @@ Formato:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -449,18 +449,18 @@ Forma:
 
 ### Regras de resposta
 
-- a resposta de exportação ecoa os filtros resolvidos
+- a resposta de exportação reflete os filtros resolvidos
 - a resposta de exportação inclui `metrics_version`
-- `columns` são determinísticos e definem a ordem de exportação nivelada
-- `rows` representa o conjunto de dados nivelado pronto para exportação
-- para `csv`, o servidor ainda retorna metadados de exportação e linhas niveladas sob o mesmo contrato lógico
-- uma futura implementação de exportação assíncrona pode substituir este contrato de rota por uma transação de exportação apoiada por fluxo de trabalho
-- As células de exportação `MRR` e `LTV` podem ser `null` quando o intervalo subjacente não tem uma base de receita válida em moeda única
+- `columns` são determinísticos e definem a ordem de exportação simplificada
+- `rows` representam o conjunto de dados simplificado e pronto para exportação
+- para `csv`, o servidor ainda retorna metadados de exportação e linhas simplificadas sob o mesmo contrato lógico
+- uma futura implementação de exportação assíncrona poderá substituir este contrato de rota por uma transação de exportação respaldada por fluxo de trabalho
+- as células de exportação `MRR` e `LTV` podem ser `null` quando o bucket subjacente não tiver uma base de receita válida em moeda única
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de filtro inválido, valor de agrupamento incompatível, formato de exportação incompatível ou token de frequência inválido.
+  Formato de filtro inválido, valor de agrupamento não suportado, formato de exportação não suportado ou token de frequência inválido.
 
 ## 4. Reconstrução manual
 
@@ -469,15 +469,15 @@ Forma:
 - Método: `POST`
 - Caminho: `/admin/subscription-analytics/rebuild`
 
-### Propósito
+### Objetivo
 
-Aciona uma reconstrução manual de instantâneos analíticos diários para um intervalo histórico.
+Inicia uma reconstrução manual dos instantâneos de análise diária para um intervalo histórico.
 
-Esta rota não usa um mecanismo de reconstrução separado.
+Essa rota não utiliza um mecanismo de reconstrução separado.
 
-Ele reutiliza o mesmo fluxo de trabalho de reconstrução de análise compartilhada usado por:
-- o trabalho de análise agendado
-- execuções de acompanhamento de análises incrementais
+Ele reutiliza o mesmo fluxo de trabalho compartilhado de reconstrução de análises utilizado por:
+- a tarefa de análise agendada
+- execuções incrementais de acompanhamento de análises
 
 ### Corpo da solicitação
 
@@ -492,11 +492,11 @@ Ele reutiliza o mesmo fluxo de trabalho de reconstrução de análise compartilh
 ### Regras de validação
 
 - `date_from <= date_to`
-- a janela máxima de reconstrução manual é de `365` dias
+- o prazo máximo para a reconstrução manual é de `365` dias
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -516,11 +516,11 @@ Forma:
 
 ### Regras de resposta
 
-- a falha parcial não altera automaticamente o status HTTP para `500`
-- `blocked_days` e `failed_days` aparecem no resumo da resposta
-- a reexecução do mesmo intervalo é esperada e suportada porque a reconstrução é idempotente no nível do dia
+- uma falha parcial não altera automaticamente o status HTTP para `500`
+- `blocked_days` e `failed_days` são exibidos no resumo da resposta
+- é esperado e permitido executar novamente o mesmo intervalo, pois a reconstrução é idempotente no nível do dia
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Corpo de solicitação inválido ou janela maior que o limite de reconstrução manual compatível.
+  Corpo da solicitação inválido ou janela maior do que o limite de reconstrução manual suportado.

@@ -1,16 +1,16 @@
-# API de planos e ofertas de administração
+# API de Planos e Ofertas para Administradores
 
-Este documento descreve o contrato Admin API implementado para a área `Plans & Offers` do plugin `Reorder`.
+Este documento descreve o contrato da API de administração implementado para a área `Plans & Offers` do plug-in `Reorder`.
 
-Pretende ser a fonte atual de verdade para:
+Este documento pretende ser a fonte oficial de referência atual para:
 - parâmetros de solicitação
-- solicitar órgãos
-- formas de resposta
-- cenários de erro comuns
+- corpos de solicitação
+- formatos de resposta
+- cenários comuns de erro
 
-Todas as rotas descritas aqui são rotas administrativas personalizadas expostas pelo plugin e destinadas a usuários autenticados do Medusa Admin.
+Todas as rotas descritas aqui são rotas personalizadas do Admin expostas pelo plug-in e destinadas a usuários autenticados do Medusa Admin.
 
-## Caminho Básico
+## Caminho base
 
 Todas as rotas estão em:
 
@@ -18,18 +18,18 @@ Todas as rotas estão em:
 
 ## Autenticação
 
-Todas as rotas são rotas somente para administradores.
+Todas as rotas são exclusivas para administradores.
 
 Em termos de implementação:
-- as rotas usam `AuthenticatedMedusaRequest`
-- a validação da solicitação é feita por meio de middleware Medusa e esquemas Zod
-- todas as mutações são executadas por meio de fluxos de trabalho, em vez de alterar os dados diretamente no manipulador de rotas
+- as rotas utilizam `AuthenticatedMedusaRequest`
+- a validação das solicitações é feita por meio do middleware Medusa e dos esquemas Zod
+- todas as mutações são executadas por meio de fluxos de trabalho, em vez de se alterar os dados diretamente no manipulador da rota
 
-Isso mantém a API alinhada com as convenções de rota e fluxo de trabalho da Medusa.
+Isso mantém a API alinhada com as convenções de rotas e fluxo de trabalho do Medusa.
 
 ## DTOs compartilhados
 
-As respostas da API são baseadas nos Admin DTOs definidos em:
+As respostas da API são baseadas nos DTOs de administração definidos em:
 
 - `src/admin/types/plan-offer.ts`
 
@@ -40,17 +40,17 @@ Principais tipos de resposta:
 - `PlanOfferAdminDetail`
 - `PlanOfferAdminEffectiveConfigSummary`
 
-## Valores de domínio compartilhado
+## Valores compartilhados do domínio
 
 ### Valores de status
 
-Status de administrador suportados:
+Estados de administração suportados:
 - `enabled`
 - `disabled`
 
-### Valores de escopo
+### Valores do escopo
 
-Escopos de destino suportados:
+Escopos-alvo suportados:
 - `product`
 - `variant`
 
@@ -61,29 +61,29 @@ Intervalos de frequência suportados:
 - `month`
 - `year`
 
-### Valores de Desconto
+### Valores dos descontos
 
 Tipos de desconto suportados:
 - `percentage`
 - `fixed`
 
-### Valores de regras
+### Valores das regras
 
 Políticas de empilhamento suportadas:
 - `allowed`
 - `disallow_all`
 - `disallow_subscription_discounts`
 
-## 1. Listar ofertas de planos
+## 1. Lista de ofertas de planos
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscription-offers`
 
-### Propósito
+### Objetivo
 
-Retorna a lista paginada usada pelos planos Admin e oferece DataTable.
+Retorna a lista paginada utilizada pela DataTable de planos e ofertas do Admin.
 
 ### Parâmetros de consulta
 
@@ -105,7 +105,7 @@ Filtros:
 - `discount_min?: number`
 - `discount_max?: number`
 
-### Campos de classificação suportados
+### Campos de classificação compatíveis
 
 Baseado em banco de dados:
 - `name`
@@ -121,7 +121,7 @@ Na memória:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -194,23 +194,23 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de parâmetro de consulta inválido ou valor de consulta incompatível.
+  Formato inválido do parâmetro de consulta ou valor de consulta não suportado.
 - `400 invalid_data`
   Campo de classificação não suportado.
 
-## 2. Obtenha detalhes da oferta do plano
+## 2. Veja os detalhes da oferta do plano
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscription-offers/:id`
 
-### Propósito
+### Objetivo
 
-Retorna a carga completa de detalhes do administrador para um único registro de origem de oferta de plano.
+Retorna a carga útil completa dos detalhes administrativos de um único registro de fonte de oferta de plano.
 
 ### Parâmetros de caminho
 
@@ -218,7 +218,7 @@ Retorna a carga completa de detalhes do administrador para um único registro de
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -296,7 +296,7 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   A oferta do plano não existe.
@@ -308,15 +308,15 @@ Forma:
 - Método: `POST`
 - Caminho: `/admin/subscription-offers`
 
-### Propósito
+### Objetivo
 
-Cria uma nova oferta de plano ou atualiza uma oferta existente para o mesmo destino, dependendo do estado atual.
+Cria uma nova oferta de plano ou atualiza uma já existente para o mesmo destinatário, dependendo do estado atual.
 
-A mutação é apoiada por fluxo de trabalho e retorna a carga detalhada atualizada.
+A mutação é apoiada por um fluxo de trabalho e retorna a carga útil de detalhes atualizada.
 
-Este endpoint atualmente se comporta como uma mutação create-or-upsert:
-- se não existir nenhum registro de origem para o destino, um novo `PlanOffer` será criado
-- se já existir um registro de origem para o mesmo destino, esse registro será atualizado no local
+Atualmente, este endpoint funciona como uma mutação do tipo “create-or-upsert”:
+- se não houver nenhum registro de origem para o destino, um novo `PlanOffer` é criado
+- se já houver um registro de origem para o mesmo destino, esse registro é atualizado no local
 
 ### Corpo da solicitação
 
@@ -355,11 +355,11 @@ Este endpoint atualmente se comporta como uma mutação create-or-upsert:
 
 ### Regras de campo
 
-- `name` é necessário e cortado.
+- `name` é obrigatório e deve ser ajustado.
 - `scope` é obrigatório e deve ser `product` ou `variant`.
 - `product_id` é obrigatório.
 - `variant_id`:
-  - deve ser omitido ou `null` para ofertas com escopo de produto
+  - deve ser omitido ou ser `null` para ofertas com escopo de produto
   - é obrigatório para ofertas com escopo de variante
 - `is_enabled` é obrigatório.
 - `allowed_frequencies` deve conter pelo menos uma cadência inteira positiva.
@@ -369,20 +369,20 @@ Este endpoint atualmente se comporta como uma mutação create-or-upsert:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Forma de resposta:
+Formato da resposta:
 - `PlanOfferAdminDetailResponse`
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de solicitação inválido.
+  Formato inválido da solicitação.
 - `400 invalid_data`
-  A oferta com escopo de produto especifica `variant_id`.
+  A oferta no âmbito do produto especifica `variant_id`.
 - `400 invalid_data`
-  A oferta com escopo variante omite `variant_id`.
+  A oferta no âmbito da variante omite `variant_id`.
 - `400 invalid_data`
   O produto não existe.
 - `400 invalid_data`
@@ -390,26 +390,26 @@ Forma de resposta:
 - `400 invalid_data`
   Definições de frequência duplicadas ou inválidas.
 - `400 invalid_data`
-  Desconto definido para frequência não presente em `allowed_frequencies`.
+  Desconto definido para uma frequência não presente em `allowed_frequencies`.
 - `400 invalid_data`
-  Faixa de desconto inválida.
+  Intervalo de desconto inválido.
 - `400 invalid_data`
   Configuração de avaliação inválida.
 - `409 conflict`
-  Configuração de substituição conflitante causada por um estado persistente inconsistente, como vários registros de origem para um destino.
+  Configuração de substituição conflitante causada por um estado persistido inconsistente, como vários registros de origem para um único destino.
 
-## 4. Oferta de plano de atualização
+## 4. Oferta do plano de atualização
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/subscription-offers/:id`
 
-### Propósito
+### Objetivo
 
-Atualiza um registro de origem de oferta de plano existente.
+Atualiza um registro de fonte de oferta de plano já existente.
 
-A mutação é apoiada por fluxo de trabalho e retorna a carga detalhada atualizada.
+A mutação é apoiada por um fluxo de trabalho e retorna a carga útil de detalhes atualizada.
 
 ### Parâmetros de caminho
 
@@ -417,7 +417,7 @@ A mutação é apoiada por fluxo de trabalho e retorna a carga detalhada atualiz
 
 ### Corpo da solicitação
 
-Todos os campos são opcionais, mas pelo menos um campo deve ser fornecido.
+Todos os campos são opcionais, mas é necessário preencher pelo menos um deles.
 
 ```json
 {
@@ -455,35 +455,35 @@ Todos os campos são opcionais, mas pelo menos um campo deve ser fornecido.
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Forma de resposta:
+Formato da resposta:
 - `PlanOfferAdminDetailResponse`
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Corpo vazio sem campos para atualizar.
+  Corpo vazio, sem campos a serem atualizados.
 - `400 invalid_data`
-  Formato de solicitação inválido.
+  Formato inválido da solicitação.
 - `400 invalid_data`
-  Configuração de frequência, desconto ou regras inválida.
+  Configuração inválida de frequência, desconto ou regras.
 - `404 not_found`
   A oferta do plano não existe.
 
-## 5. Alternar oferta de plano
+## 5. Alternar a oferta do plano
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/subscription-offers/:id/toggle`
 
-### Propósito
+### Objetivo
 
-Habilita ou desabilita uma oferta de plano existente sem atualizar seus outros campos.
+Ativa ou desativa uma oferta de plano existente sem atualizar seus outros campos.
 
-A mutação é apoiada por fluxo de trabalho e retorna a carga detalhada atualizada.
+A mutação é apoiada por um fluxo de trabalho e retorna a carga útil de detalhes atualizada.
 
 ### Parâmetros de caminho
 
@@ -499,58 +499,58 @@ A mutação é apoiada por fluxo de trabalho e retorna a carga detalhada atualiz
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Forma de resposta:
+Formato da resposta:
 - `PlanOfferAdminDetailResponse`
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de solicitação inválido.
+  Formato inválido da solicitação.
 - `404 not_found`
   A oferta do plano não existe.
 
 ## 6. Regras de domínio e erros comuns
 
-A API `Plans & Offers` impõe diversas regras de domínio além da validação básica de solicitação.
+A API `Plans & Offers` impõe várias regras de domínio além da validação básica das solicitações.
 
-### Regras de destino
+### Regras do alvo
 
 - uma oferta com escopo de produto não pode especificar `variant_id`
 - uma oferta com escopo de variante deve especificar `variant_id`
 - a variante deve pertencer ao produto selecionado
-- o produto alvo deve existir
+- o produto de destino deve existir
 
 ### Regras de frequência
 
 - `allowed_frequencies` não deve estar vazio
-- cada frequência deve usar um valor inteiro positivo
-- combinações `interval:value` duplicadas são rejeitadas
+- cada frequência deve ter um valor inteiro positivo
+- combinações duplicadas de `interval:value` são rejeitadas
 
 ### Regras de desconto
 
-- descontos só podem ser definidos para frequências permitidas
+- os descontos só podem ser definidos para frequências permitidas
 - descontos duplicados para a mesma frequência são rejeitados
-- os descontos percentuais devem ser maiores que `0` e no máximo `100`
-- descontos fixos devem ser maiores que `0`
+- os descontos percentuais devem ser maiores que `0` e, no máximo, `100`
+- os descontos fixos devem ser maiores que `0`
 
-### Semântica de objetos de regras
+### Semântica do objeto “Regras”
 
-- se `trial_enabled` for `false`, `trial_days` deve ser `null`
-- se `trial_enabled` for `true`, `trial_days` é obrigatório e deve ser um número inteiro positivo
+- se `trial_enabled` for igual a `false`, `trial_days` deve ser igual a `null`
+- se `trial_enabled` for igual a `true`, `trial_days` é obrigatório e deve ser um número inteiro positivo
 
-### Leia as regras do modelo
+### Leia o Regulamento do Modelo
 
 - campos de classificação não suportados são rejeitados
-- configuração eficaz usa semântica de fallback `variant > product`
-- ofertas desativadas não ganham resolução de configuração efetiva
+- a configuração efetiva utiliza a semântica de fallback de `variant > product`
+- ofertas desativadas não prevalecem na resolução da configuração efetiva
 
-## Documentos Relacionados
+## Documentos relacionados
 
-- [Visão geral dos documentos](../README.md)
-- [Arquitetura de Planos e Ofertas](../architecture/plan-offers.md)
-- [IU de administração de planos e ofertas](../admin/plan-offers.md)
-- [Teste de planos e ofertas](../testing/plan-offers.md)
+- [Visão geral da documentação](../README.md)
+- [Arquitetura de planos e ofertas](../architecture/plan-offers.md)
+- [Interface de usuário administrativa de planos e ofertas](../admin/plan-offers.md)
+- [Testes de planos e ofertas](../testing/plan-offers.md)
 - [Roteiro](../roadmap/implementation-plan.md)
