@@ -1,16 +1,16 @@
-# API de assinaturas de administrador
+# API de assinaturas do administrador
 
-Este documento descreve o contrato Admin API implementado para a área `Subscriptions` do plugin `Reorder`.
+Este documento descreve o contrato da API de administração implementado para a área `Subscriptions` do plug-in `Reorder`.
 
-Pretende ser a fonte atual de verdade para:
+Este documento pretende ser a fonte oficial de referência atual para:
 - parâmetros de solicitação
-- solicitar órgãos
-- formas de resposta
-- cenários de erro comuns
+- corpos de solicitação
+- formatos de resposta
+- cenários comuns de erro
 
-Todas as rotas descritas aqui são rotas administrativas personalizadas expostas pelo plugin e destinadas a usuários autenticados do Medusa Admin.
+Todas as rotas descritas aqui são rotas personalizadas do Admin expostas pelo plug-in e destinadas a usuários autenticados do Medusa Admin.
 
-## Caminho Básico
+## Caminho base
 
 Todas as rotas estão em:
 
@@ -18,15 +18,15 @@ Todas as rotas estão em:
 
 ## Autenticação
 
-Todas as rotas são rotas somente para administradores.
+Todas as rotas são exclusivas para administradores.
 
 Em termos de implementação:
-- as rotas usam `AuthenticatedMedusaRequest`
-- a validação da solicitação é feita por meio de middleware Medusa e esquemas Zod
+- as rotas utilizam `AuthenticatedMedusaRequest`
+- a validação das solicitações é feita por meio do middleware Medusa e dos esquemas Zod
 
 ## DTOs compartilhados
 
-As respostas da API são baseadas nos Admin DTOs definidos em:
+As respostas da API são baseadas nos DTOs de administração definidos em:
 
 - `src/admin/types/subscription.ts`
 
@@ -36,22 +36,22 @@ Principais tipos de resposta:
 
 ## Valores de status
 
-Status de assinatura suportados:
+Estados de assinatura suportados:
 - `active`
 - `paused`
 - `cancelled`
 - `past_due`
 
-## 1. Listar assinaturas
+## 1. Assinaturas da lista
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscriptions`
 
-### Propósito
+### Objetivo
 
-Retorna a lista paginada usada pelo DataTable de assinaturas de administrador.
+Retorna a lista paginada utilizada pela DataTable de assinaturas do Admin.
 
 ### Parâmetros de consulta
 
@@ -74,7 +74,7 @@ Filtros:
 - `is_trial?: boolean`
 - `skip_next_cycle?: boolean`
 
-### Campos de classificação suportados
+### Campos de classificação compatíveis
 
 Baseado em banco de dados:
 - `created_at`
@@ -95,7 +95,7 @@ Na memória:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -145,23 +145,23 @@ Forma:
 }
 ```
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Formato de parâmetro de consulta inválido ou valor de consulta incompatível.
+  Formato inválido do parâmetro de consulta ou valor de consulta não suportado.
 - `400 invalid_data`
   Campo de classificação não suportado.
 
-## 2. Obtenha detalhes da assinatura
+## 2. Obter detalhes da assinatura
 
 ### Ponto final
 
 - Método: `GET`
 - Caminho: `/admin/subscriptions/:id`
 
-### Propósito
+### Objetivo
 
-Retorna a carga completa de detalhes do administrador para uma única assinatura.
+Retorna a carga útil completa dos detalhes administrativos de uma única assinatura.
 
 ### Parâmetros de caminho
 
@@ -169,7 +169,7 @@ Retorna a carga completa de detalhes do administrador para uma única assinatura
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Forma:
@@ -239,11 +239,11 @@ Forma:
 ```
 
 Notas:
-- `next_renewal_at` continua sendo a âncora técnica de faturamento usada pelas renovações
-- `effective_next_renewal_at` é a próxima data de renovação projetada mostrada no Admin quando `skip_next_cycle` está ativado
-- Os campos de exibição de clientes e produtos são resolvidos ao vivo a partir de registros vinculados da Medusa, quando disponíveis, com fallback para instantâneos de assinatura persistentes quando os registros vinculados estão faltando
+- `next_renewal_at` continua sendo a referência técnica de cobrança utilizada nas renovações
+- `effective_next_renewal_at` é a data prevista para a próxima renovação exibida na seção Admin quando `skip_next_cycle` está habilitado
+- os campos de exibição de cliente e produto são preenchidos em tempo real a partir dos registros vinculados do Medusa, quando disponíveis, recorrendo a instantâneos de assinatura armazenados quando os registros vinculados estiverem ausentes
 
-### Erros Comuns
+### Erros comuns
 
 - `404 not_found`
   A assinatura não existe.
@@ -255,9 +255,9 @@ Notas:
 - Método: `GET`
 - Caminho: `/admin/orders/:id/subscription-summary`
 
-### Propósito
+### Objetivo
 
-Retorna o contexto de assinatura leve usado pelo widget `Subscription` personalizado na página de detalhes do pedido Medusa.
+Retorna o contexto de assinatura simplificado utilizado pelo widget personalizado `Subscription` na página de detalhes do pedido do Medusa.
 
 ### Parâmetros de caminho
 
@@ -265,10 +265,10 @@ Retorna o contexto de assinatura leve usado pelo widget `Subscription` personali
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
-Forma quando o pedido está vinculado a uma assinatura:
+Formato quando o pedido está vinculado a uma assinatura:
 
 ```json
 {
@@ -291,7 +291,7 @@ Forma quando o pedido está vinculado a uma assinatura:
 }
 ```
 
-Forma quando o pedido não está vinculado a uma assinatura:
+Formato quando o pedido não está vinculado a uma assinatura:
 
 ```json
 {
@@ -304,18 +304,18 @@ Forma quando o pedido não está vinculado a uma assinatura:
 
 Notas:
 - `discount` é derivado da assinatura `pricing_snapshot`
-- esta rota é somente leitura e intencionalmente menor que a resposta completa dos detalhes da assinatura
+- essa rota é somente para leitura e intencionalmente mais sucinta do que a resposta completa com os detalhes da assinatura
 
-## 3. Pausar assinatura
+## 3. Suspender a assinatura
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/pause`
 
-### Propósito
+### Objetivo
 
-Pausa uma assinatura ativa.
+Suspende uma assinatura ativa.
 
 ### Corpo da solicitação
 
@@ -334,29 +334,29 @@ Validação:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Resposta:
 - completo `SubscriptionAdminDetailResponse`
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Carga útil do corpo inválida.
+  Carga do corpo inválida.
 - `404 not_found`
   A assinatura não existe.
 - `409 conflict`
-  A assinatura não pode ser pausada em seu estado atual.
+  Não é possível pausar a assinatura a partir do seu estado atual.
 
-## 4. Retomar assinatura
+## 4. Retomar a assinatura
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/resume`
 
-### Propósito
+### Objetivo
 
 Retoma uma assinatura pausada.
 
@@ -377,29 +377,29 @@ Validação:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Resposta:
 - completo `SubscriptionAdminDetailResponse`
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Carga útil do corpo inválida.
+  Carga do corpo inválida.
 - `404 not_found`
   A assinatura não existe.
 - `409 conflict`
-  A assinatura não pode ser retomada do estado atual.
+  Não é possível retomar a assinatura a partir do estado atual.
 
-## 5. Cancelar assinatura
+## 5. Cancelar a assinatura
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/cancel`
 
-### Propósito
+### Objetivo
 
 Cancela uma assinatura.
 
@@ -420,31 +420,31 @@ Validação:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Resposta:
 - completo `SubscriptionAdminDetailResponse`
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Carga útil do corpo inválida.
+  Carga do corpo inválida.
 - `404 not_found`
   A assinatura não existe.
 - `409 conflict`
-  A assinatura não pode ser cancelada em seu estado atual.
+  A assinatura não pode ser cancelada no estado atual.
 
-## 6. Mudança de plano de cronograma
+## 6. Alteração do plano de programação
 
 ### Ponto final
 
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/schedule-plan-change`
 
-### Propósito
+### Objetivo
 
-Armazena um plano futuro ou atualização de cadência em `pending_update_data`.
+Armazena um plano futuro ou uma atualização de cadência em `pending_update_data`.
 
 ### Corpo da solicitação
 
@@ -465,17 +465,17 @@ Validação:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Resposta:
 - completo `SubscriptionAdminDetailResponse`
 
 Comportamento importante:
-- `pending_update_data` é retornado como parte da carga útil de detalhes da assinatura atualizada
-- `requested_by` é capturado internamente do ator administrador autenticado, mas não é exposto na resposta Admin DTO
+- `pending_update_data` é retornado como parte da carga útil dos detalhes da assinatura atualizada
+- `requested_by` é capturado internamente a partir do ator administrativo autenticado, mas não é exposto na resposta do DTO de administração
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
   Carga útil do corpo inválida.
@@ -491,9 +491,9 @@ Comportamento importante:
 - Método: `POST`
 - Caminho: `/admin/subscriptions/:id/update-shipping-address`
 
-### Propósito
+### Objetivo
 
-Atualiza o instantâneo do endereço de envio da assinatura usado pelo administrador e pelos fluxos operacionais futuros.
+Atualiza o registro do endereço de entrega da assinatura utilizado pelo Admin e pelos futuros fluxos operacionais.
 
 ### Corpo da solicitação
 
@@ -526,21 +526,21 @@ Validação:
 
 ### Resposta de sucesso
 
-Estado:
+Status:
 - `200 OK`
 
 Resposta:
 - completo `SubscriptionAdminDetailResponse`
 
-### Erros Comuns
+### Erros comuns
 
 - `400 invalid_data`
-  Carga útil do corpo inválida.
+  Carga do corpo inválida.
 - `404 not_found`
   A assinatura não existe.
 
-## Notas para Consumidores
+## Observações para os consumidores
 
-- As rotas de mutação sempre retornam a carga útil de detalhes da assinatura atualizada, em vez de um sinalizador de sucesso mínimo.
-- A UI Admin usa essas respostas diretamente para atualizar a visualização detalhada após mutações.
-- O ponto final da lista é a fonte da verdade para paginação, filtragem, classificação e pesquisa do DataTable.
+- As chamadas de mutação sempre retornam a carga útil com os detalhes atualizados da assinatura, em vez de apenas um indicador mínimo de sucesso.
+- A interface de usuário de administração utiliza essas respostas diretamente para atualizar a visualização detalhada após as mutações.
+- O endpoint de lista é a fonte de referência para a paginação, filtragem, ordenação e pesquisa na DataTable.
