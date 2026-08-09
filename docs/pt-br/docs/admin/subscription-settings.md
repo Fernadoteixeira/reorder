@@ -1,49 +1,49 @@
-# UI do administrador: configurações de assinatura
+# Interface do administrador: Configurações de assinatura
 
-Este documento descreve a UI Admin implementada para a área `Subscription Settings` no plugin `Reorder`.
+Este documento descreve a interface de usuário administrativa implementada para a área `Subscription Settings` no plug-in `Reorder`.
 
-Ele se concentra em:
+O foco está em:
 - posicionamento da página
-- comportamento de forma
-- salvar fluxo
-- mensagens de efeito de tempo de execução
-- limites atuais de UX
+- comportamento dos formulários
+- fluxo de salvamento
+- mensagens com efeito em tempo de execução
+- limites atuais da experiência do usuário
 
-## Propósito
+## Objetivo
 
-A página `Subscription Settings` oferece aos operadores um local para gerenciar padrões globais de comércio recorrente para:
-- testes
-- política de nova tentativa de cobrança
+A página `Subscription Settings` oferece aos operadores um único local para gerenciar as configurações padrão globais de comércio recorrente para:
+- períodos de teste
+- política de novas tentativas de cobrança
 - comportamento de renovação
-- padrões de cancelamento
+- configurações padrão de cancelamento
 
-A página tem como objetivo apoiar:
+A página tem como objetivo oferecer suporte a:
 - alterações seguras na configuração global
-- limpar feedback de salvamento
-- semântica previsível “somente operações futuras”
+- feedback claro sobre o salvamento
+- semântica previsível do tipo “apenas operações futuras”
 
-## Mapa de rotas
+## Mapa da rota
 
 Rota implementada:
 - `/app/settings/subscription-settings`
 
 Comportamento de navegação:
-- a página reside na área Medusa Admin `Settings`
-- é uma página de configuração dedicada, não um subpainel de detalhes de assinatura
+- a página está localizada na área `Settings` do Medusa Admin
+- trata-se de uma página de configuração dedicada, e não de um subpainel de detalhes da assinatura
 
 ## 1. Estrutura da página
 
 A página atual inclui:
 - cabeçalho e descrição da página
-- painel de informações para estado de configurações persistentes
+- painel de informações sobre o estado das configurações salvas
 - formulário de configurações
-- salvar área de ação
-- mensagens de aviso e ajuda
+- área de ação para salvar
+- mensagens de aviso e de ajuda
 
 O layout segue as convenções atuais do Medusa Admin:
-- `Container` seções
+- seções `Container`
 - estrutura compacta da página de configurações
-- nenhum fluxo primário orientado por modal
+- nenhum fluxo principal baseado em modais
 
 ## 2. Seções do formulário
 
@@ -53,7 +53,7 @@ O formulário atual está dividido em quatro seções:
 - `Renewals`
 - `Cancellation Defaults`
 
-### Julgamento
+### Versão de avaliação
 
 Campo atual:
 - `default_trial_days`
@@ -64,7 +64,7 @@ Campos atuais:
 - `dunning_retry_intervals`
 - `max_dunning_attempts`
 
-Os intervalos de novas tentativas são editados como uma lista ordenada de valores em minutos.
+Os intervalos de nova tentativa são editados como uma lista ordenada de valores em minutos.
 
 ### Renovações
 
@@ -86,82 +86,82 @@ Valores suportados:
 
 ## 3. Carregamento de dados
 
-A página segue o padrão de consulta de exibição do Medusa Admin.
+A página segue o padrão de exibição e consulta do Medusa Admin.
 
 Comportamento atual:
-- as configurações efetivas de carga útil na montagem
-- a página usa um auxiliar de consulta de configurações dedicado
-- save usa um auxiliar de mutação separado
+- a carga útil das configurações efetivas é carregada na montagem
+- a página utiliza um auxiliar de consulta dedicado para configurações
+- o salvamento utiliza um auxiliar de mutação separado
 - o salvamento bem-sucedido invalida a consulta de configurações
-- as leituras de exibição não estão vinculadas ao estado incidental da UI local
+- as leituras de exibição não estão vinculadas ao estado local incidental da interface do usuário
 
-A página atualmente não depende de:
-- estado modal
+Atualmente, a página não depende de:
+- estado do modal
 - estado da gaveta
-- sinalizadores condicionais `enabled` não relacionados à consulta de configurações em si
+- sinalizadores condicionais `enabled` não relacionados à própria consulta de configurações
 
-## 4. Salvar experiência do usuário
+## 4. Preservar a experiência do usuário
 
-A experiência de salvamento atual inclui:
+A experiência atual de salvamento inclui:
 - botão `Save` desativado quando não há alterações
-- carregamento e estado desativado enquanto o salvamento está em andamento
-- validação de formulário embutido
-- brinde ao sucesso e feedback de erros
-- painel de informações mostrando:
+- estado de carregamento e desativado enquanto o salvamento está em andamento
+- validação de formulário em linha
+- notificações de sucesso e erro em forma de toast
+- painel de informações exibindo:
   - `version`
   - `updated_at`
   - `updated_by`
 
-## 5. Mensagens de efeito de tempo de execução
+## 5. Mensagens com efeito em tempo de execução
 
-A página comunica intencionalmente o limite das configurações de forma clara.
+A página comunica de forma clara e intencional os limites da configuração.
 
 As mensagens atuais enfatizam:
-- alterações se aplicam a operações futuras
-- o estado do processo recém-criado usará a configuração salva
-- o estado ativo existente do processo de cobrança, cancelamento e renovação mantém sua configuração persistente
+- as alterações se aplicam a operações futuras
+- o estado do processo recém-criado utilizará a configuração salva
+- os estados ativos existentes dos processos de cobrança, cancelamento e renovação mantêm sua configuração persistida
 
 Isso está alinhado com a semântica de tempo de execução implementada:
-- `DunningCase` configurações de instantâneos quando criados
-- `CancellationCase` configurações de instantâneos quando criados
-- `RenewalCycle` usa configurações no momento da criação e mantém seu contexto de política persistente
+- `DunningCase` captura as configurações no momento da criação
+- `CancellationCase` captura as configurações no momento da criação
+- `RenewalCycle` utiliza as configurações no momento da criação e mantém seu contexto de política persistido
 
-## 6. Comportamento de aviso
+## 6. Comportamento de alerta
 
-A página mostra um resumo orientado a avisos para alterações impactantes pendentes.
+A página exibe um resumo com foco em alertas sobre alterações pendentes que podem causar impacto.
 
-A intenção é tornar as alterações globais mais explícitas quando o operador edita campos que afetam:
-- comportamento de cobrança
-- comportamento de renovação
-- padrões de cancelamento
+O objetivo é tornar as alterações globais mais explícitas quando o operador edita campos que afetam:
+- o comportamento de cobrança
+- o comportamento de renovação
+- as configurações padrão de cancelamento
 
-O UX atual mantém isso como um bloco de aviso embutido em vez de um modal de confirmação de bloqueio.
+A experiência do usuário (UX) atual apresenta isso como um bloco de aviso embutido, em vez de uma janela modal de confirmação que bloqueia a tela.
 
-## 7. Indicadores de estado persistentes
+## 7. Indicadores de estado persistente
 
-A página reflete se as configurações atuais são:
-- padrões de reserva
-- estado singleton persistente
+A página indica se as configurações atuais são:
+- padrões de fallback
+- estado persistido de singleton
 
-Principais indicadores visíveis para o operador:
+Principais indicadores visíveis ao operador:
 - `version`
 - `updated_at`
 - `updated_by`
 
 Esses valores ajudam a distinguir:
-- comportamento de inicialização pela primeira vez
-- configuração de tempo de execução já persistida
+- o comportamento do bootstrap na primeira inicialização
+- a configuração de tempo de execução já armazenada
 
-## 8. Limites atuais de UX
+## 8. Limites atuais da experiência do usuário
 
-A página Configurações atual intencionalmente não inclui:
-- ação de redefinição
-- configurações do navegador changelog
-- interface de comparação de duas versões
-- UI dedicada de gerenciamento de permissões
-- visualizações de tempo de execução inline para todos os módulos
+A página “Configurações” atual não inclui, intencionalmente:
+- ação de redefinição;
+- navegador do histórico de alterações das configurações;
+- interface de usuário para comparar duas versões;
+- interface de usuário dedicada ao gerenciamento de permissões;
+- visualizações em tempo de execução embutidas para todos os módulos
 
-As prioridades de UX implementadas são:
+As prioridades de experiência do usuário (UX) implementadas são:
 - consistência com as páginas de configurações do Medusa Admin
-- edições seguras de configuração global
-- comunicação clara de escopo e efeito
+- edições seguras na configuração global
+- comunicação clara do escopo e do efeito

@@ -1,47 +1,47 @@
-# UI do administrador: renovações
+# Interface do administrador: Renovações
 
-Este documento descreve a UI Admin implementada para a área `Renewals` no plugin `Reorder`.
+Este documento descreve a interface de usuário administrativa implementada para a área `Renewals` no plug-in `Reorder`.
 
-Ele se concentra no comportamento da tela, nos fluxos do usuário, nas ações e no tratamento do estado da IU.
+Ele se concentra no comportamento das telas, nos fluxos de usuários, nas ações e no gerenciamento do estado da interface do usuário.
 
-## Propósito
+## Objetivo
 
-A UI Admin `Renewals` oferece aos operadores um espaço de trabalho dedicado para:
-- navegue pelos ciclos de renovação programados e com falha
-- inspecionar o histórico de execução e registros vinculados
-- revisar alterações pendentes e estado de aprovação
-- forçar manualmente uma renovação
+A interface de usuário administrativa `Renewals` oferece aos operadores um espaço de trabalho dedicado para:
+- consultar ciclos de renovação programados e com falha;
+- verificar o histórico de execução e os registros vinculados;
+- analisar alterações pendentes e o status de aprovação;
+- forçar manualmente uma renovação;
 - aprovar ou rejeitar alterações pendentes antes da renovação
 
-A UI é implementada como rotas personalizadas do Medusa Admin e segue os padrões do painel Medusa o mais próximo possível.
+A interface do usuário foi implementada como rotas personalizadas do Medusa Admin e segue os padrões do painel do Medusa da forma mais fiel possível.
 
-## Mapa de rotas
+## Mapa da rota
 
 Rotas implementadas:
 - `/app/subscriptions/renewals`
 - `/app/subscriptions/renewals/:id`
 
 Comportamento de navegação:
-- a página de renovações está aninhada em `Subscriptions`
-- clicar em uma linha na fila de renovações navega para os detalhes do ciclo
-- a rota detalhada mostra a localização atual da fila de renovações
+- a página de renovações está aninhada sob `Subscriptions`
+- clicar em uma linha na fila de renovações leva à página de detalhes do ciclo
+- a rota de detalhes exibe uma trilha de navegação de volta à fila de renovações
 
 ## 1. Página da fila
 
-### Propósito
+### Objetivo
 
-A página da fila é a visão geral operacional dos ciclos de renovação.
+A página da fila apresenta uma visão geral operacional dos ciclos de renovação.
 
-É implementado com Medusa `DataTable`.
+É implementado com o Medusa `DataTable`.
 
 ### Principais elementos da interface do usuário
 
 A página inclui:
 - título da página e breve descrição
-- barra de ferramentas da lista
-- fila de renovação DataTable
+- barra de ferramentas de lista
+- DataTable da fila de renovações
 - paginação
-- entradas de data programada dedicadas
+- campos de entrada dedicados para datas programadas
 
 ### Colunas
 
@@ -52,70 +52,70 @@ A fila exibe atualmente:
 - `Approval`
 - `Last attempt`
 
-A renderização de colunas usa células compactas no estilo Medusa:
-- valor primário na primeira linha
-- valor de apoio em texto sutil na segunda linha, quando aplicável
+A exibição das colunas utiliza células compactas no estilo Medusa:
+- valor principal na primeira linha
+- valor complementar em texto discreto na segunda linha, quando aplicável
 
-### Procurar
+### Pesquisar
 
-A fila possui uma entrada de pesquisa na área superior direita da barra de ferramentas.
+A fila possui um campo de pesquisa na área superior direita da barra de ferramentas.
 
-A pesquisa destina-se a pesquisas amplas e atualmente abrange campos de exibição vinculados à renovação, como:
-- referência de assinatura
+A função de pesquisa destina-se a consultas gerais e, atualmente, abrange campos de exibição relacionados à renovação, tais como:
+- referência da assinatura
 - nome do cliente
 - título do produto
 - título da variante
--SKU
+- SKU
 
 ### Filtros
 
-A fila usa o padrão de interação Medusa `Add filter`.
+A fila utiliza o padrão de interação padrão do Medusa, `Add filter`.
 
 Filtros implementados:
 - `Status`
 - `Approval`
 - `Last attempt`
 
-A página também expõe entradas de data dedicadas para:
+A página também apresenta campos de entrada dedicados para datas:
 - `Scheduled from`
 - `Scheduled to`
 
-Estas entradas de data:
+Esses campos de entrada de data:
 - são aplicados como filtros de lista
-- são inicializados no carregamento da página para `now - 30 days 00:00` e `now + 30 days 00:00`
-- não são intencionalmente renderizados como chips de filtro da barra de ferramentas
+- são inicializados no carregamento da página com os valores `now - 30 days 00:00` e `now + 30 days 00:00`
+- não são exibidos intencionalmente como ícones de filtro na barra de ferramentas
 
-Os filtros sem data aplicados são mostrados como ícones na barra de ferramentas e podem ser removidos individualmente.
+Os filtros que não são de data aplicados são exibidos como ícones na barra de ferramentas e podem ser removidos individualmente.
 
 A lista também expõe `Clear all` quando qualquer filtro está ativo.
 
 ### Classificação
 
-A fila usa o menu de classificação padrão na barra de ferramentas.
+A fila utiliza o menu de classificação padrão da barra de ferramentas.
 
-Ele oferece suporte à classificação de campos expostos pela camada de consulta de back-end, incluindo:
+Ele oferece suporte à classificação por campos expostos pela camada de consulta do backend, incluindo:
 - `Scheduled`
 - `Subscription`
 - `Status`
 - `Approval`
 - `Last attempt`
 
-### Navegação de linha
+### Navegação por linhas
 
-Clicar em uma linha abre a página de detalhes desse ciclo de renovação.
+Ao clicar em uma linha, a página de detalhes desse ciclo de renovação é aberta.
 
-Não há menu de ação de linha separado na página da fila.
+Não há um menu de ações por linha na página da fila.
 
 ## 2. Página de detalhes
 
-### Propósito
+### Objetivo
 
 A página de detalhes é a tela operacional principal para um único ciclo de renovação.
 
-Combina:
-- visibilidade do estado de execução
-- visibilidade do estado de aprovação
-- dados vinculados somente leitura
+Ele combina:
+- visibilidade do status de execução
+- visibilidade do status de aprovação
+- dados vinculados somente para leitura
 - histórico de tentativas
 - ações operacionais
 
@@ -123,15 +123,15 @@ Combina:
 
 O cabeçalho de detalhes contém:
 - ID do ciclo de renovação
-- breve descrição
-- emblema de status
-- menu de ação
+- descrição resumida
+- indicador de status
+- menu de ações
 
-Isto segue o padrão Medusa de título à esquerda e status mais ações à direita.
+Isso segue o padrão Medusa, com o título à esquerda e o status e as ações à direita.
 
 ### Seções principais
 
-A página de detalhes renderiza atualmente:
+Atualmente, a página de detalhes exibe:
 - `Cycle overview`
 - `Approval summary`
 - `Subscription summary`
@@ -140,44 +140,44 @@ A página de detalhes renderiza atualmente:
 - `Attempt history`
 - `Technical metadata`
 
-Estas seções são orientadas para leitura e projetadas para inspeção rápida do operador.
+Essas seções são voltadas para a leitura e foram elaboradas para uma rápida inspeção pelo operador.
 
-Disposição:
+Layout:
 - a coluna da esquerda contém `Cycle overview`, `Approval summary`, `Pending changes`, `Attempt history` e `Technical metadata`
-- a coluna da direita contém `Subscription summary` e `Generated order summary` como cartas vinculadas no estilo Medusa
+- a coluna da direita contém `Subscription summary` e `Generated order summary` como cartas interligadas no estilo Medusa
 
 ## 3. Ações detalhadas
 
-### Menu de Ação
+### Menu de ações
 
-O menu de ação da página de detalhes inclui:
+O menu de ações da página de detalhes inclui:
 - `Force renewal`
 - `Approve changes`
 - `Reject changes`
 
-### Disponibilidade de ação
+### Disponibilidade da ação
 
-Regras de ação atuais na IU:
+Regras de ação atuais na interface do usuário:
 
 - `Force renewal`
   Disponível quando o status do ciclo é `scheduled` ou `failed`.
 - `Approve changes`
-  Disponível somente quando a aprovação é necessária e o status de aprovação é `pending`.
+  Disponível apenas quando a aprovação é necessária e o status da aprovação é `pending`.
 - `Reject changes`
-  Disponível somente quando a aprovação é necessária e o status de aprovação é `pending`.
+  Disponível apenas quando a aprovação é necessária e o status da aprovação é `pending`.
 
-As ações ficam desativadas enquanto uma mutação estiver pendente.
+As ações ficam desativadas enquanto houver uma mutação pendente.
 
-## 4. Gavetas e Fluxos de Confirmação
+## 4. Gavetas e fluxos de confirmação
 
-A página de detalhes usa Gavetas para decisões de aprovação e confirma solicitações de ações arriscadas.
+A página de detalhes utiliza menus deslizantes para decisões de aprovação e solicitações de confirmação para ações de risco.
 
-Isso segue o padrão Medusa de manter os fluxos de edição ou decisão em gavetas, em vez de inline.
+Isso segue o padrão Medusa, que consiste em manter os fluxos de edição ou decisão em “Drawers”, em vez de diretamente no código.
 
-### Aprovar gaveta de alterações
+### Gaveta “Aprovar alterações”
 
 Objetivo:
-- registrar a decisão de aprovação para alterações pendentes
+- registrar a decisão de aprovação das alterações pendentes
 
 Campos:
 - opcional `reason`
@@ -248,36 +248,36 @@ A página de detalhes apresenta:
 
 ### Seção “Estados vazios”
 
-A página de detalhes também fornece estados vazios explícitos para:
-- sem alterações pendentes
-- sem tentativas
-- sem metadados
+A página de detalhes também apresenta estados vazios explícitos para:
+- nenhuma alteração pendente
+- nenhuma tentativa
+- nenhum metadado
 - nenhum pedido gerado
 
-Isso evita lacunas vazias nas telas operacionais.
+Isso evita que apareçam espaços em branco nas telas operacionais.
 
-## 7. Notas de experiência do usuário
+## 7. Notas sobre a experiência do usuário
 
-A UI atual mantém intencionalmente `Renewals` como uma página operacional em `Subscriptions`, semelhante a `Plans & Offers`.
+A interface do usuário atual mantém intencionalmente o `Renewals` como uma página operacional sob o `Subscriptions`, da mesma forma que o `Plans & Offers`.
 
-Isso mantém a navegação do plugin estruturada em torno de:
-- assinaturas como área pai operacional
-- renovações como fila e subárea de revisão
+Isso mantém a navegação do plug-in estruturada em torno de:
+- assinaturas, como área principal operacional;
+- renovações, como uma subárea de fila e revisão
 
-Os padrões visuais implementados correspondem ao resto do plugin:
--Medusa`DataTable`
+Os padrões visuais implementados estão em consonância com o restante do plug-in:
+- Medusa `DataTable`
 - `StatusBadge`
-- detalhar seções `Container`
-- Gavetas para decisões
-- solicita ações arriscadas
+- seções detalhadas `Container`
+- menus suspensos para decisões
+- avisos para ações de risco
 
 Arquivos de rota implementados:
 - `src/admin/routes/subscriptions/renewals/page.tsx`
 - `src/admin/routes/subscriptions/renewals/[id]/page.tsx`
 
-## Documentos Relacionados
+## Documentos relacionados
 
 - [Arquitetura de renovações](../architecture/renewals.md)
-- [API de renovações de administrador](../api/admin-renewals.md)
-- [Teste de renovações](../testing/renewals.md)
+- [API de renovações para administradores](../api/admin-renewals.md)
+- [Testes de renovações](../testing/renewals.md)
 - [Especificações de renovações](../specs/renewals/admin-spec.md)

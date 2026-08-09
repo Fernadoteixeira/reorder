@@ -1,137 +1,137 @@
-# UI do administrador: cancelamento e retenção
+# Interface do usuário de administração: cancelamento e retenção
 
-Este documento descreve a UI Admin implementada para a área `Cancellation & Retention` no plugin `Reorder`.
+Este documento descreve a interface de usuário administrativa implementada para a área `Cancellation & Retention` no plug-in `Reorder`.
 
-Ele se concentra no comportamento da tela, nos fluxos do usuário, nas ações e no tratamento do estado da IU.
+Ele se concentra no comportamento das telas, nos fluxos de usuários, nas ações e no gerenciamento do estado da interface do usuário.
 
-## Propósito
+## Objetivo
 
-A UI Admin `Cancellation & Retention` oferece aos operadores um espaço de trabalho dedicado para:
-- navegue por casos de cancelamento ativos e históricos
-- inspecionar o contexto vinculado de assinatura, cobrança e renovação
-- revisar os motivos de rotatividade e os resultados de retenção
+A interface de usuário administrativa `Cancellation & Retention` oferece aos operadores um espaço de trabalho dedicado para:
+- consultar casos de cancelamento ativos e históricos
+- analisar o contexto relacionado a assinaturas, cobranças e renovações
+- examinar os motivos de cancelamento e os resultados de retenção
 - aplicar ofertas de retenção
 - finalizar o cancelamento
-- atualizar classificação do motivo da rotatividade
+- atualizar a classificação dos motivos de cancelamento
 
-A UI é implementada como rotas personalizadas do Medusa Admin e segue o mesmo padrão aninhado `Subscriptions` já usado por `Renewals` e `Dunning`.
+A interface do usuário é implementada como rotas personalizadas do Medusa Admin e segue o mesmo padrão aninhado `Subscriptions` já utilizado por `Renewals` e `Dunning`.
 
-## Mapa de rotas
+## Mapa da rota
 
 Rotas implementadas:
 - `/app/subscriptions/cancellations`
 - `/app/subscriptions/cancellations/:id`
 
 Comportamento de navegação:
-- a página de cancelamentos está aninhada em `Subscriptions`
-- clicar em uma linha na fila de cancelamento navega para os detalhes do caso
-- a rota detalhada mostra trilhas de volta à fila de cancelamento
+- a página de cancelamentos está aninhada sob `Subscriptions`
+- clicar em uma linha na fila de cancelamentos leva à página de detalhes do caso
+- a rota de detalhes exibe uma trilha de navegação de volta à fila de cancelamentos
 
 ## 1. Página da fila
 
-### Propósito
+### Objetivo
 
 A página da fila é a visão geral operacional dos casos de cancelamento.
 
-É implementado com Medusa `DataTable`.
+É implementado com o Medusa `DataTable`.
 
 ### Principais elementos da interface do usuário
 
 A página inclui:
 - título da página e breve descrição
-- barra de ferramentas da lista
-- fila de cancelamento DataTable
+- barra de ferramentas de lista
+- DataTable da fila de cancelamentos
 - paginação
-- entradas dedicadas de data de criação
+- campos de entrada dedicados para a data de criação
 
 ### Colunas
 
-A fila exibe atualmente:
+Atualmente, a fila exibe:
 - `Subscription`
 - `Reason category`
 - `Outcome`
 - `Created`
 
-A renderização de colunas usa células compactas no estilo Medusa:
-- valor primário na primeira linha
-- valor de apoio em texto sutil na segunda linha, quando aplicável
+A exibição das colunas utiliza células compactas no estilo Medusa:
+- valor principal na primeira linha
+- valor complementar em texto discreto na segunda linha, quando aplicável
 
-### Procurar
+### Pesquisar
 
-A fila possui uma entrada de pesquisa na barra de ferramentas.
+A fila possui um campo de pesquisa na barra de ferramentas.
 
-A pesquisa destina-se a pesquisas amplas e atualmente abrange campos de exibição vinculados ao cancelamento, como:
-- referência de assinatura
+A função de pesquisa destina-se a consultas gerais e, atualmente, abrange campos de exibição relacionados ao cancelamento, tais como:
+- referência da assinatura
 - nome do cliente
 - título do produto
 - título da variante
-- texto do motivo da rotatividade
+- texto do motivo do cancelamento
 
 ### Filtros
 
-A fila usa o padrão de interação Medusa `Add filter`.
+A fila utiliza o padrão de interação padrão do Medusa, `Add filter`.
 
 Filtros implementados:
 - `Reason category`
 - `Outcome`
 - `Offer type`
 
-A página também expõe entradas de data dedicadas para:
+A página também apresenta campos de entrada dedicados para datas:
 - `Created from`
 - `Created to`
 
-Estas entradas de data:
+Esses campos de entrada de data:
 - são aplicados como filtros de lista
-- são inicializados no carregamento da página para `now - 30 days` e `now + 30 days`
-- não são intencionalmente renderizados como chips de filtro da barra de ferramentas
+- são inicializados no carregamento da página com os valores `now - 30 days` e `now + 30 days`
+- não são exibidos intencionalmente como ícones de filtro na barra de ferramentas
 
-Os filtros sem data aplicados são mostrados como ícones na barra de ferramentas e podem ser removidos individualmente.
+Os filtros que não são de data aplicados são exibidos como ícones na barra de ferramentas e podem ser removidos individualmente.
 
-A lista também expõe `Clear all` quando qualquer filtro não padrão está ativo.
+A lista também exibe `Clear all` quando qualquer filtro que não seja o padrão estiver ativo.
 
 ### Classificação
 
-A fila usa o menu de classificação padrão na barra de ferramentas.
+A fila utiliza o menu de classificação padrão da barra de ferramentas.
 
-Ele oferece suporte à classificação de campos expostos pela camada de consulta de back-end, incluindo:
+Ele oferece suporte à classificação por campos expostos pela camada de consulta do backend, incluindo:
 - `Created`
 - `Status`
 - `Outcome`
 - `Reason category`
-- campos selecionados enriquecidos com exibição, como resumo da assinatura
+- campos selecionados com informações de exibição, como o resumo da assinatura
 
-### Navegação de linha
+### Navegação por linhas
 
-Clicar em uma linha abre a página de detalhes desse caso de cancelamento.
+Ao clicar em uma linha, a página de detalhes desse caso de cancelamento é aberta.
 
-Não há menu de ação de linha separado na página da fila.
+Não há um menu de ações por linha na página da fila.
 
 ## 2. Página de detalhes
 
-### Propósito
+### Objetivo
 
 A página de detalhes é a tela operacional principal para um caso de cancelamento.
 
-Combina:
-- visibilidade do estado de rotatividade e retenção
-- contexto operacional vinculado
-- visibilidade do resultado
-- oferecer histórico
+Ele combina:
+- visibilidade do status de rotatividade e retenção
+- contexto operacional associado
+- visibilidade dos resultados
+- histórico de ofertas
 - ações manuais
 
 ### Cabeçalho
 
-O cabeçalho de detalhes contém:
+O cabeçalho do detalhe contém:
 - ID do caso de cancelamento
-- breve descrição
-- emblema de status
-- menu de ação
+- descrição resumida
+- indicador de status
+- menu de ações
 
-Isto segue o padrão Medusa de título à esquerda e status mais ações à direita.
+Isso segue o padrão Medusa, com o título à esquerda e o status e as ações à direita.
 
 ### Seções principais
 
-A página de detalhes renderiza atualmente:
+Atualmente, a página de detalhes exibe:
 - `Case overview`
 - `Subscription summary`
 - `Dunning summary`
@@ -140,20 +140,20 @@ A página de detalhes renderiza atualmente:
 - `Offer history`
 - `Technical metadata`
 
-Estas seções são orientadas para leitura e projetadas para inspeção rápida do operador.
+Essas seções são voltadas para a leitura e foram elaboradas para uma rápida inspeção pelo operador.
 
 ## 3. Ações detalhadas
 
-### Menu de Ação
+### Menu de ações
 
-O menu de ação da página de detalhes inclui:
+O menu de ações da página de detalhes inclui:
 - `Apply retention offer`
 - `Update reason`
 - `Finalize cancellation`
 
-### Disponibilidade de ação
+### Disponibilidade da ação
 
-Regras de ação atuais na IU:
+Regras de ação atuais na interface do usuário:
 
 - `Apply retention offer`
   Disponível para casos ativos e não terminais.
@@ -162,40 +162,40 @@ Regras de ação atuais na IU:
 - `Finalize cancellation`
   Disponível para casos ativos e não terminais.
 
-Os status do terminal são tratados como somente leitura:
+Os status dos terminais são tratados como somente leitura:
 - `retained`
 - `paused`
 - `canceled`
 
 As ações ficam desativadas enquanto a mutação correspondente estiver pendente.
 
-## 4. Gavetas e Fluxos de Confirmação
+## 4. Gavetas e fluxos de confirmação
 
-A página de detalhes usa Gavetas para formulários de mutação e avisos de confirmação para ações arriscadas.
+A página de detalhes utiliza “Drawers” para formulários de alteração e avisos de confirmação para ações que envolvem risco.
 
-Isso segue o padrão Medusa de manter os fluxos de edição em gavetas em vez de inline.
+Isso segue o padrão do Medusa de manter os fluxos de edição em “Drawers”, em vez de inline.
 
-### Aplicar gaveta de ofertas
+### Aplicar a barra de ofertas
 
 Objetivo:
-- capturar a carga útil da ação de retenção concreta
+- capturar a carga útil da ação de retenção de concreto
 
-Os campos variam em `offer_type`.
+Os campos variam de acordo com `offer_type`.
 
-#### Pausar campos de oferta
+#### Campos da oferta de pausa
 - `pause_cycles`
 - `resume_at`
 - `decision_reason`
 - `note`
 
-#### Campos de oferta de desconto
+#### Campos da oferta de desconto
 - `discount_type`
 - `discount_value`
 - `duration_cycles`
 - `decision_reason`
 - `note`
 
-#### Campos de oferta de bônus
+#### Campos da oferta de bônus
 - `bonus_type`
 - `value`
 - `label`
@@ -204,15 +204,15 @@ Os campos variam em `offer_type`.
 - `note`
 
 Comportamento:
-- a gaveta usa uma consulta de formulário de ação dedicada
-- o formulário é pré-preenchido a partir do estado do caso atual, quando relevante
-- submit mostra um prompt de confirmação antes da mutação
-- `pause_offer` usa uma confirmação de aviso mais forte porque altera o estado do ciclo de vida da assinatura
+- a gaveta utiliza uma consulta dedicada do formulário de ação
+- o formulário é pré-preenchido com base no estado atual do caso, quando relevante
+- ao enviar, é exibida uma solicitação de confirmação antes da alteração
+- `pause_offer` utiliza uma confirmação com aviso mais rigoroso, pois altera o estado do ciclo de vida da assinatura
 
-### Atualizar gaveta de motivos
+### Atualizar a janela de motivos
 
 Objetivo:
-- atualizar motivo e classificação da rotatividade
+- atualizar o motivo e a classificação da cancelamento
 
 Campos:
 - `reason`
@@ -221,14 +221,14 @@ Campos:
 - `update_reason`
 
 Comportamento:
-- a gaveta usa uma consulta de formulário de ação dedicada
+- a gaveta utiliza uma consulta dedicada do formulário de ação
 - o formulário é pré-preenchido com os campos do caso atual
-- enviar salvamentos diretamente por meio da rota apoiada pelo fluxo de trabalho
+- ao enviar, o dado é salvo diretamente por meio da rota associada ao fluxo de trabalho
 
-### Finalizar gaveta de cancelamento
+### Finalizar a janela de cancelamento
 
 Objetivo:
-- feche o caso como `canceled`
+- encerrar o caso como `canceled`
 
 Campos:
 - `reason`
@@ -237,72 +237,72 @@ Campos:
 - `effective_at`
 
 Comportamento:
-- a gaveta usa uma consulta de formulário de ação dedicada
-- submit mostra um prompt de confirmação final
-- a confirmação explica o impacto do cancelamento da assinatura no ciclo de vida
+- a gaveta utiliza uma consulta dedicada do formulário de ação
+- ao enviar, é exibida uma mensagem final de confirmação
+- a mensagem de confirmação explica o impacto no ciclo de vida do cancelamento da assinatura
 
 ## 5. Carregamento de dados
 
-A UI Admin `Cancellation & Retention` segue o padrão de consulta de exibição Medusa.
+A interface de usuário administrativa `Cancellation & Retention` segue o padrão de exibição e consulta do Medusa.
 
 Comportamento implementado:
-- a consulta de exibição da fila é carregada na montagem
-- a consulta de exibição de detalhes é carregada na montagem
-- gavetas de ação usam sua própria consulta dedicada
-- mutações bem-sucedidas invalidam consultas de lista e detalhes
-- a consulta do formulário de ação também é invalidada após mutações
-- as chaves de consulta analítica preparadas são invalidadas mesmo que a IU analítica seja adiada
-- as consultas de exibição não dependem do estado da UI modal ou da gaveta
+- a consulta de exibição da fila é carregada no momento da montagem
+- a consulta de exibição de detalhes é carregada no momento da montagem
+- as gavetas de ação utilizam suas próprias consultas dedicadas
+- as mutações bem-sucedidas invalidam tanto as consultas de lista quanto as de detalhes
+- a consulta do formulário de ação também é invalidada após as mutações
+- as chaves das consultas de análise preparadas são invalidadas, mesmo que a interface de usuário de análise seja diferida
+- as consultas de exibição não dependem do estado da interface de usuário modal ou da gaveta
 
-Detalhe de implementação:
-- o carregamento de dados reside em `src/admin/routes/subscriptions/cancellations/data-loading.ts`
-- a invalidação compartilhada atualiza a fila, os detalhes, o formulário de ação e o estado da consulta analítica preparada
+Detalhes de implementação:
+- o carregamento de dados ocorre em `src/admin/routes/subscriptions/cancellations/data-loading.ts`
+- a invalidação compartilhada atualiza o estado da fila, do detalhe, do formulário de ação e da consulta analítica preparada
 
-## 6. Carregamento, erro e estados vazios
+## 6. Estados de carregamento, erro e vazio
 
 ### Página da fila
 
-A página da fila fornece:
-- Estado de carregamento do DataTable
-- Estado vazio do DataTable
-- alerta de erro no nível da página quando a consulta da fila falha
+A página da fila exibe:
+- Estado de carregamento da DataTable
+- Estado vazio da DataTable
+- Alerta de erro no nível da página quando a consulta da fila falha
 
 ### Página de detalhes
 
-A página de detalhes fornece:
+A página de detalhes apresenta:
 - estado de carregamento explícito
 - estado de erro explícito
-- estado de aviso de fallback se os dados detalhados não estiverem disponíveis
+- estado de aviso de alternativa, caso os dados detalhados não estejam disponíveis
 
-### Carregamento de gaveta e estados de erro
+### Carregamento da gaveta e estados de erro
 
-As gavetas de ação fornecem:
-- estado de carregamento local enquanto a consulta do formulário de ação está carregando
-- estado de erro de formulário embutido para mutações com falha
-- ações de envio desativadas enquanto as mutações estão pendentes
+As caixas de ação fornecem:
+- estado de carregamento local enquanto a consulta do formulário de ação está sendo carregada
+- estado de erro do formulário em linha para mutações com falha
+- ações de envio desativadas enquanto as mutações estiverem pendentes
 
-### Seção Estados Vazios
+### Seção “Estados vazios”
 
-A página de detalhes também fornece estados vazios explícitos para:
-- nenhum resumo de cobrança vinculado
-- nenhum resumo de renovação vinculado
-- nenhuma entrada no cronograma de decisão
-- sem histórico de ofertas
-- sem metadados
+A página de detalhes também apresenta estados vazios explícitos para:
+- ausência de resumo de cobrança vinculado
+- ausência de resumo de renovação vinculado
+- ausência de entradas no cronograma de decisões
+- ausência de histórico de ofertas
+- ausência de metadados
 
-Isso evita lacunas vazias nas telas operacionais.
+Isso evita que apareçam espaços em branco nas telas operacionais.
 
-## 7. Notas de experiência do usuário
+## 7. Notas sobre a experiência do usuário
 
-A IU atual mantém intencionalmente ações arriscadas na página de detalhes, e não na fila.
+A interface do usuário atual mantém, intencionalmente, as ações de risco na página de detalhes, em vez de na fila.
 
-Por quê:
-- as ações de retenção e cancelamento precisam de mais contexto do que uma ação de linha leve
-- a página de detalhes mostra recomendações, histórico de ofertas e contexto operacional vinculado antes da mutação
-- corresponde ao padrão Medusa já usado por `Renewals` e `Dunning`
+Por que:
+- as ações de retenção e cancelamento exigem mais contexto do que uma ação simples em uma linha
+- a página de detalhes exibe recomendações, histórico de ofertas e contexto operacional relacionado antes da alteração
+- isso se alinha ao padrão Medusa já utilizado por `Renewals` e `Dunning`
 
 Outra escolha intencional:
-- as entradas de data na fila não são renderizadas como chips de filtro
-- eles se comportam como entradas de data dedicadas na fila `Renewals`
+- os campos de data na fila não são exibidos como ícones de filtro
+- eles funcionam como os campos de data específicos da fila `Renewals`
 
-Isso mantém a barra de ferramentas compacta e evita duplicação confusa entre entradas de data e chips de filtro.
+Isso mantém a barra de ferramentas compacta e evita duplicações que possam causar confusão entre os campos de entrada de data e os botões de filtro.

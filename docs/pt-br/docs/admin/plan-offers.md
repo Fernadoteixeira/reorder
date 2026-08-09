@@ -1,51 +1,51 @@
-# UI do administrador: planos e ofertas
+# Interface do administrador: Planos e ofertas
 
-Este documento descreve a UI Admin implementada para a área `Plans & Offers` no plugin `Reorder`.
+Este documento descreve a interface de usuário administrativa implementada para a área `Plans & Offers` no plug-in `Reorder`.
 
-Ele se concentra no comportamento da tela, nos fluxos do usuário, nas ações, no carregamento de dados e no tratamento do estado da IU.
+Ele se concentra no comportamento das telas, nos fluxos de usuários, nas ações, no carregamento de dados e no gerenciamento do estado da interface do usuário.
 
-## Propósito
+## Objetivo
 
-A UI Admin `Plans & Offers` oferece aos operadores um espaço de trabalho dedicado para:
-- navegue nas configurações de oferta de assinatura existentes
-- inspecionar o comportamento eficaz da configuração
-- criar ofertas em nível de produto e em nível de variante
-- editar a configuração da oferta existente
+A interface de usuário administrativa `Plans & Offers` oferece aos operadores um espaço de trabalho dedicado para:
+- consultar as configurações existentes de ofertas de assinatura
+- verificar o comportamento efetivo das configurações
+- criar ofertas no nível do produto e no nível da variante
+- editar configurações de ofertas existentes
 - ativar ou desativar ofertas
 
-A UI é implementada como uma rota personalizada do Medusa Admin e segue os padrões do painel do Medusa o mais próximo possível.
+A interface do usuário foi implementada como uma rota personalizada do Medusa Admin e segue os padrões do painel do Medusa da forma mais fiel possível.
 
-## Mapa de rotas
+## Mapa da rota
 
 Rota implementada:
 - `/subscriptions/plans-offers`
 
 Comportamento de navegação:
-- a rota está registrada como uma página aninhada em `Subscriptions`
-- a página inclui uma ação secundária com link para `Subscriptions`
-- não existe uma rota detalhada separada para uma oferta
-- a edição acontece no local por meio de uma gaveta em vez da navegação para outra página
+- a rota é registrada como uma página aninhada em `Subscriptions`
+- a página inclui uma ação secundária que redireciona para `Subscriptions`
+- não há uma rota de detalhes separada para uma oferta
+- a edição é feita no próprio local, por meio de um Drawer, em vez de navegar para outra página
 
-## 1. Página da lista
+## 1. Página de lista
 
-### Propósito
+### Objetivo
 
-A página é a visualização operacional e de configuração das ofertas de assinatura.
+Esta página apresenta a visualização operacional e de configuração das ofertas de assinatura.
 
-É implementado com Medusa `DataTable`.
+É implementado com o Medusa `DataTable`.
 
 ### Principais elementos da interface do usuário
 
 A página inclui:
 - título da página e breve descrição
 - ações da barra de ferramentas
-- planeja e oferece DataTable
+- tabela de dados com planos e ofertas
 - paginação
 - modais de seleção de produtos e variantes
-- criar modais
-- editar gaveta
+- modal de criação
+- menu lateral de edição
 
-### Ações de cabeçalho
+### Ações do cabeçalho
 
 O cabeçalho da página inclui:
 - `View Subscriptions`
@@ -55,59 +55,59 @@ O cabeçalho da página inclui:
 
 `Create` abre o fluxo de criação em um `FocusModal`.
 
-## 2. Página da lista
+## 2. Página de lista
 
-### Finalidade da Tabela
+### Objetivo da tabela
 
-A tabela é a visão geral principal de todas as ofertas configuradas.
+A tabela apresenta uma visão geral de todas as ofertas configuradas.
 
 Destina-se a:
-- comparar ofertas em nível de produto e em nível de variante
-- encontrar configurações desabilitadas ou incompatíveis
-- abrindo fluxos de edição rapidamente
-- inspecionar qual registro de origem está atualmente em vigor
+- comparar ofertas no nível do produto e no nível da variante
+- identificar configurações desativadas ou incompatíveis
+- abrir fluxos de edição rapidamente
+- verificar qual registro de origem está em vigor no momento
 
 ### Colunas
 
-A tabela exibe atualmente:
+Atualmente, a tabela exibe:
 - `Name`
 - `Target`
 - `Status`
 - `Frequencies`
 - `Effective source`
 - `Updated`
-- menu de ação de linha
+- menu de ações da linha
 
-A renderização da coluna segue padrões compactos no estilo Medusa:
-- valor primário na primeira linha
-- apoiar o contexto em texto sutil na segunda linha, quando útil
+A apresentação das colunas segue padrões compactos no estilo Medusa:
+- valor principal na primeira linha
+- contexto complementar em texto discreto na segunda linha, quando for relevante
 
-### Coluna de origem efetiva
+### Coluna “Fonte efetiva”
 
-A coluna `Effective source` é um resumo orientado para leitura.
+A coluna `Effective source` é um resumo voltado para a leitura.
 
 Mostra se a configuração vencedora atual é:
 - `Product`
 - `Variant`
 - `Inactive`
 
-Isso é útil quando um registro de origem está desabilitado, mas ainda tem um substituto no nível do produto ou quando não existe nenhuma oferta ativa para o contexto de destino.
+Isso é útil quando um registro de origem está desativado, mas ainda possui uma opção alternativa no nível do produto, ou quando não há nenhuma oferta ativa para o contexto de destino.
 
-## 3. Pesquisa, filtros e classificação
+## 3. Pesquisa, filtros e ordenação
 
-### Procurar
+### Pesquisar
 
-A página inclui uma entrada de pesquisa DataTable no canto superior direito.
+A página inclui um campo de pesquisa do DataTable no canto superior direito.
 
-A pesquisa destina-se a pesquisas amplas e atualmente abrange:
+A função de pesquisa destina-se a pesquisas gerais e, atualmente, abrange:
 - nome da oferta
 - título do produto
 - título da variante
--SKU
+- SKU
 
 ### Filtros
 
-A lista usa o padrão de interação Medusa `Add filter`.
+A lista utiliza o padrão de interação padrão do Medusa, `Add filter`.
 
 Filtros implementados:
 - `Status`
@@ -117,33 +117,33 @@ Filtros implementados:
 - `Product`
 - `Variant`
 
-Os filtros aplicados são mostrados como chips de filtro removíveis na barra de ferramentas.
+Os filtros aplicados são exibidos como ícones de filtro removíveis na barra de ferramentas.
 
 A página também expõe `Clear all` quando qualquer filtro está ativo.
 
 ### Filtros de produtos e variantes
 
-Os filtros de produtos e variantes não usam correspondência de texto livre fraca.
+Os filtros de produtos e variantes não utilizam a correspondência fraca de texto livre.
 
 Em vez disso:
-- `Product` abre um modal seletor com pesquisa e paginação
-- `Variant` abre um seletor de variante com escopo para o produto selecionado
+- `Product` abre um modal de seleção com pesquisa e paginação
+- `Variant` abre um seletor de variantes restrito ao produto selecionado
 
-Isso segue o padrão Medusa de usar seleção estruturada para conjuntos de dados maiores.
+Isso segue o padrão do Medusa, que utiliza seleção estruturada para conjuntos de dados maiores.
 
 ### Classificação
 
-A lista usa o menu de classificação padrão do DataTable.
+A lista utiliza o menu padrão de classificação do DataTable.
 
-Ele oferece suporte à classificação de campos expostos pela camada de consulta de back-end, incluindo:
+Ele oferece suporte à classificação por campos expostos pela camada de consulta do backend, incluindo:
 - `Name`
 - `Status`
 - `Product`
 - `Updated`
 
-## 4. Ações de linha
+## 4. Ações na linha
 
-Cada linha expõe um menu de ação final.
+Cada linha exibe um menu de ações na parte inferior.
 
 Ações de linha implementadas:
 - `Edit`
@@ -216,9 +216,9 @@ A validação do lado do cliente garante a consistência das regras antes do env
 
 O modal de criação:
 - reinicializa o estado do formulário ao ser fechado
-- mantém a seleção do produto e da variante separada da consulta de exibição principal
+- mantém a seleção de produtos e variantes separada da consulta de exibição principal
 - desativa o envio enquanto a mutação estiver pendente
-- exibe mensagens de sucesso e erro por meio de notificações pop-up
+- exibe feedback de sucesso e erro por meio de mensagens pop-up
 
 ## 6. Fluxo de edição
 
@@ -228,7 +228,7 @@ Isso segue o padrão do Medusa para a edição de entidades existentes.
 
 ### Objetivo
 
-A guia “Drawer” é usada para atualizar um registro de origem existente sem sair da página de lista.
+A guia “Drawer” é usada para atualizar um registro de origem existente sem sair da página da lista.
 
 ### O que pode ser editado
 
@@ -239,111 +239,111 @@ O fluxo de edição oferece suporte a:
 - descontos
 - regras
 
-O destino em si é somente leitura na gaveta.
+O próprio destino é somente para leitura no Drawer.
 
-Isso significa:
+Isso significa que:
 - o contexto do produto e da variante é exibido
-- a retargeting de produto/variante não faz parte do fluxo de edição
+- o redirecionamento por produto/variante não faz parte do fluxo de edição
 
 ### Comportamento da gaveta
 
-A gaveta:
-- busca dados detalhados somente quando abertos
-- preenche previamente o formulário a partir do registro de origem atual
-- mostra o estado de carregamento embutido enquanto a consulta detalhada é resolvida
-- mostra o estado de erro embutido por meio de `Alert` se o carregamento de detalhes falhar
-- invalida as consultas de exibição e de detalhes após um salvamento bem-sucedido
+A Gaveta:
+- busca os dados detalhados somente quando aberta
+- preenche previamente o formulário com os dados do registro de origem atual
+- exibe o status de carregamento diretamente no formulário enquanto a consulta de detalhes é processada
+- exibe o status de erro diretamente no formulário por meio de `Alert` caso o carregamento dos detalhes falhe
+- invalida tanto a consulta de exibição quanto a de detalhes após um salvamento bem-sucedido
 
-## 7. UX de seleção de produtos e variantes
+## 7. Experiência do usuário na seleção de produtos e variantes
 
-A página usa fluxos de seleção dedicados em vez de entradas de texto de formato livre.
+A página utiliza fluxos de seleção específicos em vez de campos de texto de preenchimento livre.
 
 ### Seletor de produtos
 
 O seletor de produtos:
-- usa um `FocusModal`
-- exibe um DataTable selecionável
-- suporta pesquisa
-- suporta paginação
-- aplica um único produto selecionado de volta ao fluxo ativo
+- utiliza um `FocusModal`
+- exibe uma DataTable com opções selecionáveis
+- oferece suporte à pesquisa
+- oferece suporte à paginação
+- reincorpora o único produto selecionado ao fluxo ativo
 
 ### Seletor de variantes
 
 O seletor de variantes:
-- usa um `FocusModal`
+- utiliza um `FocusModal`
 - carrega variantes apenas para o produto selecionado
-- mostra um DataTable compacto
+- exibe uma DataTable compacta
 - permite a seleção de uma variante por vez
 
-### Por que a seleção estruturada é usada
+### Por que se utiliza a seleção estruturada
 
-Este padrão é preferido porque:
-- produtos e variantes não são pequenos conjuntos de opções estáticas
-- IDs e títulos devem vir de dados reais do administrador
-- a UX permanece alinhada com a abordagem da Medusa para selecionar entidades de conjuntos de dados maiores
+Esse padrão é preferível porque:
+- produtos e variantes não são pequenos conjuntos estáticos de opções
+- os IDs e títulos devem ser provenientes de dados reais do Admin
+- a experiência do usuário (UX) permanece alinhada com a abordagem do Medusa para a seleção de entidades a partir de conjuntos de dados maiores
 
-## 8. Estados de carregamento, vazio e erro
+## 8. Estados de carregamento, vazio e de erro
 
-A IU segue o tratamento de estado no estilo Medusa.
+A interface do usuário segue o modelo de gerenciamento de estados do Medusa.
 
-### Página da lista
+### Página de lista
 
 Comportamento da lista:
-- O carregamento do DataTable é orientado pela consulta de exibição
-- falhas de carregamento no nível da rota são renderizadas por meio de um `Alert` embutido
-- a tabela fornece dois estados vazios:
+- O carregamento da DataTable é controlado pela consulta de exibição
+- Falhas de carregamento no nível da rota são representadas por meio de um `Alert` embutido
+- A tabela oferece dois estados vazios:
 - `No plan offers yet`
 - `No matching plan offers`
 
-Isso mantém as mensagens vazias e vazias filtradas distintas, preservando o shell da página.
+Isso mantém a distinção entre mensagens vazias e mensagens filtradas como vazias, ao mesmo tempo em que preserva a estrutura da página.
 
-### Gavetas e modais
+### Gavetas e janelas modais
 
-Comportamento modal e de gaveta:
-- o modal de criação mantém seu próprio estado pendente e de validação
+Comportamento dos modais e das gavetas:
+- o modal de criação mantém seu próprio estado de pendência e validação
 - a gaveta de edição fornece um estado de carregamento local
 - a gaveta de edição fornece um estado de erro local
 
-Esses estados não bloqueiam a página da lista principal.
+Esses estados não bloqueiam a página principal da lista.
 
-## 9. Carregamento de dados e invalidação de consulta
+## 9. Carregamento de dados e invalidação de consultas
 
-A página segue o padrão de carregamento de dados do painel Medusa.
+A página segue o padrão de carregamento de dados do painel do Medusa.
 
 ### Exibir consulta
 
 A consulta de exibição da lista:
-- cargas na montagem
-- não está condicionalmente vinculado ao estado modal ou gaveta
-- usa `sdk.client.fetch()` na rota administrativa personalizada
-- usa `keepPreviousData` para paginação mais suave e alterações de filtragem
+- é carregada na montagem
+- não está vinculada condicionalmente ao estado do modal ou da gaveta
+- utiliza `sdk.client.fetch()` na rota personalizada do Admin
+- utiliza `keepPreviousData` para tornar as alterações de paginação e filtragem mais fluidas
 
 ### Consultas de interação
 
-Os dados modais e de gaveta são separados por responsabilidade:
-- a consulta de seleção de produtos é carregada somente quando o seletor de produtos está aberto
-- a consulta de seleção de variante é carregada somente quando o seletor de variante está aberto
-- a consulta detalhada é carregada somente quando a gaveta de edição está aberta
+Os dados dos modais e das gavetas são separados por função:
+- a consulta de seleção de produto é carregada somente quando o seletor de produtos está aberto
+- a consulta de seleção de variantes é carregada somente quando o seletor de variantes está aberto
+- a consulta de detalhes é carregada somente quando a gaveta de edição está aberta
 
-Essa separação evita o acoplamento da renderização da página principal a dados somente modais.
+Essa separação evita vincular a renderização da página principal a dados exclusivos do modal.
 
 ### Estratégia de invalidação
 
-Após criação, atualização ou alternância bem-sucedida:
-- a consulta da lista de planos e ofertas é invalidada
-- a consulta detalhada relevante é invalidada quando aplicável
+Após a criação, atualização ou alteração bem-sucedida:
+- a consulta à lista de planos e ofertas é invalidada
+- a consulta aos detalhes relevantes é invalidada, quando aplicável
 
-Isso garante:
-- a tabela é atualizada após mutações
-- a gaveta de edição permanece consistente após salvar
+Isso garante que:
+- a tabela seja atualizada após alterações;
+- a gaveta de edição permaneça consistente após o salvamento
 
-## 10. Convenções UI e UX
+## 10. Convenções de interface do usuário (UI) e experiência do usuário (UX)
 
-A página segue as convenções estabelecidas do painel Medusa.
+A página segue as convenções estabelecidas para o painel do Medusa.
 
 ### Componentes
 
-A implementação usa blocos de construção da UI Medusa, como:
+A implementação utiliza blocos de construção da interface do usuário do Medusa, tais como:
 - `Container`
 - `DataTable`
 - `FocusModal`
@@ -355,31 +355,31 @@ A implementação usa blocos de construção da UI Medusa, como:
 
 ### Modelo de interação
 
-A IU separa intencionalmente:
-- criar fluxos para novas entidades
-- editar fluxos para entidades existentes
-- exibir consultas de consultas somente modais
-- ações rápidas de edição baseada em formulário
+A interface do usuário separa intencionalmente:
+- fluxos de criação para novas entidades
+- fluxos de edição para entidades existentes
+- exibição de consultas em modais exclusivos
+- ações rápidas da edição baseada em formulário
 
-### Botões e padrões de status
+### Padrões de botões e status
 
-A página segue o tratamento de ação no estilo Medusa:
+A página segue o estilo de tratamento de ações do Medusa:
 - pequenos botões de ação
-- brindes semânticos de sucesso e erro
-- avisos de confirmação para ações arriscadas
-- status mostrado através de `StatusBadge`
+- notificações semânticas de sucesso e erro
+- avisos de confirmação para ações de risco
+- status exibido por meio de `StatusBadge`
 
 ### Estilo de layout
 
-A página segue a mesma abordagem prática de layout de administração da Medusa usada em outras partes do plugin:
-- cabeçalho e descrição no topo
+A página segue a mesma abordagem prática de layout de administração do Medusa utilizada em outras partes do plug-in:
+- cabeçalho e descrição na parte superior
 - barra de ferramentas com filtros, pesquisa e classificação
-- DataTable como principal superfície operacional
+- DataTable como a principal interface operacional
 
-## Documentos Relacionados
+## Documentos relacionados
 
-- [Visão geral dos documentos](../README.md)
-- [Arquitetura de Planos e Ofertas](../architecture/plan-offers.md)
+- [Visão geral da documentação](../README.md)
+- [Arquitetura de planos e ofertas](../architecture/plan-offers.md)
 - [API de administração de planos e ofertas](../api/admin-plan-offers.md)
-- [Teste de planos e ofertas](../testing/plan-offers.md)
+- [Testes de planos e ofertas](../testing/plan-offers.md)
 - [Roteiro](../roadmap/implementation-plan.md)
