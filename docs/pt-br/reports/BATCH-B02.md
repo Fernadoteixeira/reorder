@@ -13,12 +13,12 @@
 
 | Source | Target | Source Bytes | Target Bytes | Code Fences | Encoding | Status |
 | :--- | :--- | ---: | ---: | :---: | :---: | :---: |
-| `docs/README.md` | `docs/pt-br/docs/docs/README.md` | 10726 | 13130 | `false` | `UTF-8` | `validated` |
-| `docs/admin/activity-log.md` | `docs/pt-br/docs/docs/admin/activity-log.md` | 7275 | 9145 | `false` | `UTF-8` | `validated` |
-| `docs/admin/analytics.md` | `docs/pt-br/docs/docs/admin/analytics.md` | 5420 | 6993 | `false` | `UTF-8` | `validated` |
-| `docs/admin/cancellations.md` | `docs/pt-br/docs/docs/admin/cancellations.md` | 8154 | 10432 | `false` | `UTF-8` | `validated` |
-| `docs/admin/dunning.md` | `docs/pt-br/docs/docs/admin/dunning.md` | 7694 | 10161 | `false` | `UTF-8` | `validated` |
-| `docs/admin/plan-offers.md` | `docs/pt-br/docs/docs/admin/plan-offers.md` | 9861 | 11895 | `false` | `UTF-8` | `validated` |
-| `docs/admin/renewals.md` | `docs/pt-br/docs/docs/admin/renewals.md` | 7720 | 9445 | `false` | `UTF-8` | `validated` |
-| `docs/admin/subscription-settings.md` | `docs/pt-br/docs/docs/admin/subscription-settings.md` | 4363 | 5284 | `false` | `UTF-8` | `validated` |
-| `docs/admin/subscriptions.md` | `docs/pt-br/docs/docs/admin/subscriptions.md` | 10637 | 12499 | `false` | `UTF-8` | `validated` |
+| `docs/README.md` | `docs/pt-br/docs/README.md` | 10726 | 13379 | `true` | `UTF-8` | `validated` |
+| `docs/admin/activity-log.md` | `docs/pt-br/docs/admin/activity-log.md` | 7275 | 9272 | `true` | `UTF-8` | `validated` |
+| `docs/admin/analytics.md` | `docs/pt-br/docs/admin/analytics.md` | 5420 | 6960 | `true` | `UTF-8` | `validated` |
+| `docs/admin/cancellations.md` | `docs/pt-br/docs/admin/cancellations.md` | 8154 | 10253 | `true` | `UTF-8` | `validated` |
+| `docs/admin/dunning.md` | `docs/pt-br/docs/admin/dunning.md` | 7694 | 9796 | `true` | `UTF-8` | `validated` |
+| `docs/admin/plan-offers.md` | `docs/pt-br/docs/admin/plan-offers.md` | 9861 | 12210 | `true` | `UTF-8` | `validated` |
+| `docs/admin/renewals.md` | `docs/pt-br/docs/admin/renewals.md` | 7720 | 9659 | `true` | `UTF-8` | `validated` |
+| `docs/admin/subscription-settings.md` | `docs/pt-br/docs/admin/subscription-settings.md` | 4363 | 5718 | `true` | `UTF-8` | `validated` |
+| `docs/admin/subscriptions.md` | `docs/pt-br/docs/admin/subscriptions.md` | 10637 | 13279 | `true` | `UTF-8` | `validated` |

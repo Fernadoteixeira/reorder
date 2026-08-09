@@ -1,87 +1,87 @@
-# UI do administrador: assinaturas
+# Interface de usuário administrativa: Assinaturas
 
-Este documento descreve a UI Admin implementada para a área `Subscriptions` no plugin `Reorder`.
+Este documento descreve a interface de usuário administrativa implementada para a área `Subscriptions` no plug-in `Reorder`.
 
-Ele se concentra no comportamento da tela, nos fluxos do usuário, nas ações e no tratamento do estado da IU.
+Ele se concentra no comportamento das telas, nos fluxos de usuários, nas ações e no gerenciamento do estado da interface do usuário.
 
-## Propósito
+## Objetivo
 
-A UI Admin `Subscriptions` oferece aos operadores um espaço de trabalho dedicado para:
-- navegar por assinaturas
-- inspecionar detalhes da assinatura
-- executar ações do ciclo de vida operacional
-- agendar mudanças futuras no plano
-- edite o endereço de envio da assinatura
+A interface de usuário administrativa `Subscriptions` oferece aos operadores um espaço de trabalho dedicado para:
+- visualizar assinaturas;
+- verificar os detalhes das assinaturas;
+- realizar ações relacionadas ao ciclo de vida operacional;
+- programar alterações futuras nos planos;
+- editar o endereço de entrega da assinatura
 
-A UI é implementada como rotas personalizadas do Medusa Admin e segue os padrões do painel Medusa o mais próximo possível.
+A interface do usuário foi implementada como rotas personalizadas do Medusa Admin e segue os padrões do painel do Medusa da forma mais fiel possível.
 
-## Mapa de rotas
+## Mapa da rota
 
 Rotas implementadas:
 - `/app/subscriptions`
 - `/app/subscriptions/:id`
 
-Rotas de operações recorrentes relacionadas no mesmo grupo de navegação:
+Rotas relacionadas a operações recorrentes no mesmo grupo de navegação:
 - `/app/subscriptions/renewals`
 - `/app/subscriptions/dunning`
 - `/app/subscriptions/cancellations`
 
-Personalização integrada da página Admin relacionada:
-- `Order detail` mostra um widget `Subscription` deste plugin
+Personalização relacionada à página de administração integrada:
+- `Order detail` exibe um widget `Subscription` deste plugin
 
 Comportamento de navegação:
-- a rota da lista está disponível como uma página da barra lateral
-- clicar em uma linha na lista navega para a rota detalhada
-- a rota detalhada mostra a localização atual da lista
+- a rota da lista está disponível como uma página na barra lateral
+- clicar em uma linha da lista leva à rota de detalhes
+- a rota de detalhes exibe uma trilha de navegação de volta à lista
 
 Limitação atual:
-- em rotas de detalhes dinâmicos neste grupo de navegação personalizado, o estado ativo da barra lateral volta para `Subscriptions`
+- nas rotas detalhadas dinâmicas deste grupo de navegação personalizado, o estado ativo da barra lateral volta a ser `Subscriptions`
 
-## 1. Página da lista
+## 1. Página de lista
 
-### Propósito
+### Objetivo
 
 A página da lista é a visão geral operacional de todas as assinaturas.
 
-É implementado com Medusa `DataTable`.
+É implementado com o Medusa `DataTable`.
 
 ### Principais elementos da interface do usuário
 
 A página inclui:
 - título da página e breve descrição
-- barra de ferramentas da lista
-- assinaturas DataTable
+- barra de ferramentas de lista
+- DataTable de assinaturas
 - paginação
 
 ### Colunas
 
-A lista exibe atualmente:
+Atualmente, a lista exibe:
 - `Reference`
 - `Product`
 - `Status`
 - `Frequency`
 - `Next renewal`
-- menu de ação de linha
+- menu de ações da linha
 
-A renderização de colunas usa células compactas no estilo Medusa:
-- valor primário na primeira linha
-- valor de apoio em texto sutil na segunda linha, quando aplicável
+A exibição das colunas utiliza células compactas no estilo Medusa:
+- valor principal na primeira linha
+- valor complementar em texto discreto na segunda linha, quando aplicável
 
-### Procurar
+### Pesquisar
 
-A lista possui uma entrada de pesquisa na área superior direita da barra de ferramentas.
+A lista possui um campo de pesquisa na área superior direita da barra de ferramentas.
 
-A pesquisa destina-se a pesquisas amplas e atualmente abrange:
-- referência de assinatura
+A função de pesquisa destina-se a buscas gerais e, atualmente, abrange:
+- referência da assinatura
 - nome do cliente
 - e-mail do cliente
 - título do produto
 - título da variante
--SKU
+- SKU
 
 ### Filtros
 
-A lista usa o padrão de interação Medusa `Add filter`.
+A lista utiliza o padrão de interação padrão do Medusa, `Add filter`.
 
 Filtros implementados:
 - `Status`
@@ -89,65 +89,65 @@ Filtros implementados:
 - `Skip next cycle`
 - `Next renewal`
 
-Os filtros aplicados são mostrados como chips na barra de ferramentas e podem ser removidos individualmente.
+Os filtros aplicados são exibidos como ícones na barra de ferramentas e podem ser removidos individualmente.
 
 A lista também expõe `Clear all` quando qualquer filtro está ativo.
 
 ### Classificação
 
-A lista usa o menu de classificação padrão na barra de ferramentas.
+A lista utiliza o menu de classificação padrão da barra de ferramentas.
 
-Ele oferece suporte à classificação de campos expostos pela camada de consulta de back-end, incluindo:
+Ele suporta a classificação por campos expostos pela camada de consulta do backend, incluindo:
 - `Status`
 - `Product`
 - `Next renewal`
-- `Updated` como uma chave de classificação técnica de backend, mesmo que não seja mostrada como uma coluna visível
+- `Updated` como uma chave de classificação técnica do backend, mesmo que não seja exibida como uma coluna visível
 
-### Ações de linha
+### Ações na linha
 
-Cada linha expõe um menu de ação final.
+Cada linha exibe um menu de ações na parte inferior.
 
-Ações de lista implementadas:
+Ações da lista implementadas:
 - `Pause`
 - `Resume`
 - `Cancel`
 
-A disponibilidade da ação depende do status da assinatura:
+A disponibilidade das ações depende do status da assinatura:
 - `active` -> `Pause`, `Cancel`
 - `paused` -> `Resume`, `Cancel`
-- `cancelled` -> nenhuma outra ação de mutação do ciclo de vida
+- `cancelled` -> não há mais ações de mutação do ciclo de vida
 
-### Navegação de linha
+### Navegação por linhas
 
-Clicar em uma linha abre a página de detalhes dessa assinatura.
+Ao clicar em uma linha, a página de detalhes dessa assinatura é aberta.
 
-O menu de ação de linha não aciona a navegação.
+O menu de ações da linha não aciona a navegação.
 
 ## 2. Página de detalhes
 
-### Propósito
+### Objetivo
 
 A página de detalhes é a tela operacional principal de uma única assinatura.
 
-Combina:
+Ele combina:
 - visibilidade do status
 - ações do ciclo de vida
-- dados de assinatura somente leitura
-- editar gavetas para fluxos de mutação suportados
+- dados de assinatura somente para leitura
+- painéis de edição para fluxos de mutação compatíveis
 
 ### Cabeçalho
 
 O cabeçalho de detalhes contém:
-- referência de assinatura
+- referência da assinatura
 - breve descrição
-- emblema de status
-- menu de ação
+- indicador de status
+- menu de ações
 
-Isto segue o padrão Medusa de título à esquerda e status mais ações à direita.
+Isso segue o padrão Medusa, com o título à esquerda e o status e as ações à direita.
 
 ### Seções principais
 
-A página de detalhes renderiza atualmente:
+Atualmente, a página de detalhes exibe:
 - `Subscription`
 - `Customer`
 - `Product`
@@ -155,116 +155,116 @@ A página de detalhes renderiza atualmente:
 - `Pending plan change`
 - `Activity Log`
 
-Estas seções são orientadas para leitura e projetadas para inspeção rápida do operador.
+Essas seções são voltadas para a leitura e foram elaboradas para uma rápida inspeção pelo operador.
 
-A seção `Product` usa um cartão vinculado no estilo Medusa que abre a página de detalhes da variante padrão do produto.
+A seção `Product` utiliza um cartão vinculado no estilo Medusa que abre a página padrão de detalhes da variante do produto.
 `SKU` permanece visível como um campo auxiliar separado abaixo do cartão.
 
 Regra atual de resolução de dados:
-- Os dados de exibição de `Customer` e `Product` são resolvidos ao vivo a partir de registros Medusa vinculados, quando disponíveis
-- quando os registros vinculados não estão disponíveis, a IU recorre aos instantâneos de assinatura persistentes
+- Os dados exibidos em `Customer` e `Product` são resolvidos em tempo real a partir dos registros vinculados do Medusa, quando disponíveis
+- quando os registros vinculados não estiverem disponíveis, a interface do usuário recorre aos instantâneos de assinatura armazenados
 
 ### Widget de detalhes do pedido
 
-O plugin também estende a página padrão Medusa `Order detail`.
+O plugin também amplia a página padrão `Order detail` do Medusa.
 
-O widget `Subscription` mostra:
-- `Subscription order` com cartão de assinatura vinculado quando o pedido estiver vinculado a uma assinatura
-- rótulo de desconto de assinatura atual derivado de `pricing_snapshot`
-- próxima data de renovação projetada
-- `One-time order` quando não existe nenhum link `subscription_order`
+O widget `Subscription` exibe:
+- `Subscription order` com um cartão de assinatura vinculado quando o pedido estiver vinculado a uma assinatura
+- o valor do desconto da assinatura atual, derivado de `pricing_snapshot`
+- a data prevista para a próxima renovação
+- `One-time order` quando não houver nenhum link `subscription_order`
 
 ## 3. Ações detalhadas
 
-### Menu de Ação
+### Menu de ações
 
-O menu de ação da página de detalhes inclui:
+O menu de ações da página de detalhes inclui:
 - `Pause`
 - `Resume`
 - `Schedule plan change`
 - `Edit shipping address`
 - `Cancel`
 
-A disponibilidade da ação segue as mesmas regras estaduais da lista, quando relevante.
+A disponibilidade das ações segue as mesmas regras de estado da lista, quando aplicável.
 
-### Por que `Schedule plan change` vive apenas nos detalhes
+### Por que o `Schedule plan change` só aparece na seção “Detalhes”
 
-`Schedule plan change` é exposto intencionalmente na página de detalhes, não no menu da linha da lista.
+`Schedule plan change` é exibido intencionalmente na página de detalhes, e não no menu da linha da lista.
 
-Razão:
-- é um fluxo de edição com um formulário
-- requer mais contexto do que uma ação de linha leve
-- o padrão Medusa é manter os fluxos de estilo de edição nas páginas de detalhes e gavetas, em vez de colocá-los na lista quando não são ações realmente rápidas
+Motivo:
+- trata-se de um fluxo de edição com um formulário
+- requer mais contexto do que uma ação leve em uma linha
+- o padrão Medusa consiste em manter os fluxos do tipo edição nas páginas de detalhes e nos Drawers, em vez de inseri-los na lista quando não se trata de ações verdadeiramente rápidas
 
 ## 4. Gavetas
 
-A página de detalhes usa Gavetas para editar dados de assinatura existentes.
+A página de detalhes utiliza o recurso “Drawers” para editar os dados das assinaturas existentes.
 
 Isso segue o padrão Medusa para fluxos de edição.
 
-### Gaveta de alteração de plano de cronograma
+### Gaveta de alteração do plano de programação
 
 Objetivo:
-- agende um plano futuro ou atualização de cadência
+- agendar um plano futuro ou uma atualização de cadência
 
 Campos:
 - variante
 - intervalo de frequência
 - valor de frequência
-- eficaz em
+- em vigor a partir de
 
 Comportamento:
 - as variantes são carregadas somente quando a gaveta é aberta
-- o formulário é pré-preenchido com valores de assinatura atuais ou dados de plano pendentes
-- o salvamento é desativado durante o carregamento ou quando os dados da variante necessária não estão disponíveis
+- o formulário é pré-preenchido com os valores da assinatura atual ou com os dados do plano pendente
+- a opção “Salvar” fica desativada durante o carregamento ou quando os dados necessários das variantes não estão disponíveis
 
-### Editar gaveta de endereço de entrega
+### Painel “Editar endereço de entrega”
 
 Objetivo:
-- atualizar o instantâneo do endereço de entrega atribuído à assinatura
+- atualizar o registro do endereço de entrega atribuído à assinatura
 
 Campos:
-- primeiro nome
+- nome
 - sobrenome
 - empresa
-- linha de endereço 1
-- linha de endereço 2
+- endereço, linha 1
+- endereço, linha 2
 - cidade
-- código postal
-- província/estado
+- CEP
+- província / estado
 - código do país
 - telefone
 
 Comportamento:
-- a gaveta é pré-preenchida com o endereço de envio da assinatura atual
-- o formulário valida os campos obrigatórios antes de enviar
-- a ação de salvar é mostrada no formato de rodapé padrão da Medusa Drawer
-- o evento de log de atividades resultante armazena diferenças de endereços legíveis, como `Address: old -> new`
+- o menu lateral é preenchido automaticamente com o endereço de entrega da assinatura atual
+- o formulário valida os campos obrigatórios antes do envio
+- a ação de salvar é exibida no formulário padrão do rodapé do Medusa Drawer
+- o evento resultante no registro de atividades armazena diferenças de endereço legíveis, como `Address: old -> new`
 
-## 5. Seção de registro de atividades
+## 5. Seção de Registro de Atividades
 
-A página de detalhes inclui uma seção `Activity Log` dedicada para uma assinatura.
+A página de detalhes inclui uma seção específica, `Activity Log`, para uma assinatura.
 
-Ele é implementado como uma visualização de auditoria baseada em tabela e segue o mesmo padrão de lista estilo Medusa usado no plugin:
+Ela é implementada como uma visualização de auditoria baseada em tabela e segue o mesmo padrão de lista no estilo Medusa utilizado em todo o plug-in:
 - linhas compactas da tabela
 - classificação
 - filtragem
 - paginação
-- detalhe do evento baseado em gaveta
+- detalhes do evento exibidos em uma gaveta
 
-A seção atualmente:
-- não expõe uma entrada de pesquisa
-- suporta classificação através do menu de classificação
-- suporta `Add filter` para filtros de domínio, ator e data opcional
-- mostra as entradas `Created from` e `Created to` somente depois que esses filtros são adicionados no menu
+Atualmente, a seção:
+- não exibe um campo de pesquisa
+- permite a classificação por meio do menu de classificação
+- suporta `Add filter` para filtros de domínio, agente e data opcional
+- exibe os campos de entrada `Created from` e `Created to` somente após esses filtros serem adicionados pelo menu
 - abre a gaveta de eventos quando uma linha é clicada
-- renderiza `Actor` como o valor de exibição resolvido, normalmente e-mail do administrador
-- renderiza `Event` sem legenda de domínio secundário na célula da tabela
-- renderiza `Summary` usando rótulos voltados para o operador em vez de nomes de campos internos brutos, como `pending_update_data`
+- exibe `Actor` como o valor de exibição resolvido, normalmente o e-mail do administrador
+- exibe `Event` sem um subtítulo de domínio secundário na célula da tabela
+- exibe `Summary` usando rótulos voltados para o operador, em vez de nomes de campos internos brutos, como `pending_update_data`
 
 ## 6. Regras de ação por status
 
-Regras atuais do ciclo de vida na IU:
+Regras atuais do ciclo de vida na interface do usuário:
 
 - `active`
   - pode pausar
@@ -279,100 +279,100 @@ Regras atuais do ciclo de vida na IU:
   - pode editar o endereço de entrega
 
 - `past_due`
-  - pode agendar uma mudança de plano
-  - pode editar o endereço de entrega
-  - o cancelamento permanece disponível em detalhes quando suportado pelas regras de back-end
+  - é possível agendar uma alteração no plano
+  - é possível editar o endereço de entrega
+  - o cancelamento continua disponível na página de detalhes, desde que permitido pelas regras do backend
 
 - `cancelled`
-  - não há mais transições do ciclo de vida
-  - a visualização de detalhes somente leitura permanece disponível
+  - não há outras transições no ciclo de vida
+  - a visualização de detalhes somente para leitura continua disponível
 
-## 7. Estados de carregamento, vazio e erro
+## 7. Estados de carregamento, vazio e de erro
 
-A IU segue o tratamento de estado no estilo Medusa.
+A interface do usuário segue o modelo de gerenciamento de estados do Medusa.
 
-### Página da lista
+### Página de lista
 
 Comportamento da lista:
-- O carregamento do DataTable é orientado pela consulta de exibição
-- estados vazios filtrados são renderizados pela tabela
-- falhas de carregamento no nível da rota são renderizadas como `Alert` inline
+- O carregamento da DataTable é controlado pela consulta de exibição
+- Os estados vazios filtrados são exibidos pela tabela
+- Falhas de carregamento no nível da rota são exibidas como `Alert` embutido
 
 ### Página de detalhes
 
-Comportamento detalhado:
-- o carregamento no nível da página usa `Spinner` e texto de carregamento sutil
-- erros no nível da página são renderizados in-line por meio de `Alert`
-- existe um estado de alerta defensivo se os dados detalhados não estiverem disponíveis
+Comportamento dos detalhes:
+- o carregamento no nível da página utiliza `Spinner` e um texto sutil indicando carregamento
+- os erros no nível da página são exibidos inline por meio de `Alert`
+- existe um estado de aviso preventivo caso os dados detalhados não estejam disponíveis
 
 ### Gavetas
 
 Comportamento da gaveta:
-- a gaveta de alteração de plano mostra um botão giratório ao carregar variantes
-- erros específicos de gaveta são mostrados em linha como `Alert`
-- quando nenhuma variante estiver disponível, o usuário verá um estado claro e vazio e não poderá salvar
+- a gaveta de alteração de plano exibe um indicador de carregamento enquanto carrega as variantes
+- erros específicos da gaveta são exibidos diretamente no texto como `Alert`
+- quando não há variantes disponíveis, o usuário vê um estado vazio e claro e não pode salvar
 
-## 8. Feedback de mutação
+## 8. Retroalimentação de mutações
 
-A IU fornece feedback imediato após as mutações.
+A interface do usuário fornece feedback imediato após as alterações.
 
 Comportamento implementado:
-- confirmar avisos para ações destrutivas do ciclo de vida
-- ações desabilitadas enquanto uma mutação está pendente
-- brindes de sucesso após mutação bem-sucedida
-- brindes de erro quando uma mutação falha
-- invalidação de consulta para visualizações de lista e detalhes após sucesso da mutação
+- solicitações de confirmação para ações destrutivas do ciclo de vida
+- ações desativadas enquanto uma mutação estiver pendente
+- notificações de sucesso após uma mutação bem-sucedida
+- notificações de erro quando uma mutação falha
+- invalidação da consulta tanto para a visualização em lista quanto para a visualização detalhada após o sucesso da mutação
 
 ## 9. Decisões de experiência do usuário
 
-### Listar vs Detalhe Responsabilidades
+### Responsabilidades gerais vs. responsabilidades específicas
 
 A lista foi projetada para:
 - descoberta
-- pesquisar
+- pesquisa
 - filtragem
 - classificação
-- ações rápidas do ciclo de vida
+- ações rápidas relacionadas ao ciclo de vida
 
 A página de detalhes foi projetada para:
 - inspeção
-- edições baseadas em formulário
-- ações de contexto pesado
+- edições por meio de formulários
+- ações com forte contexto
 
-### Por que cliente e produto ainda não são seletores `Add filter` separados
+### Por que os seletores “Cliente” e “Produto” ainda não são seletores separados `Add filter`
 
-A lista atualmente depende da pesquisa de clientes e produtos, em vez de filtros seletores dedicados.
+Atualmente, a lista utiliza a função de pesquisa para localizar clientes e produtos, em vez de filtros de seleção específicos.
 
-Razão:
-- o contrato de back-end atual espera `customer_id` e `product_id`
-- adicionar pseudofiltros baseados em texto criaria uma UX fraca
-- uma implementação adequada no estilo Medusa exigiria seletores de entidades dedicados
+Motivo:
+- o contrato de backend atual espera `customer_id` e `product_id`
+- adicionar pseudo-filtros baseados em texto prejudicaria a experiência do usuário (UX)
+- uma implementação adequada no estilo Medusa exigiria seletores de entidade dedicados
 
-## 10. Fluxos de usuário testados
+## 10. Fluxos de usuários testados
 
-A UI implementada é suportada pela cobertura de integração para o fluxo administrativo subjacente:
+A interface do usuário implementada é suportada pela cobertura de integração do fluxo de administração subjacente:
 - listar assinaturas
-- detalhe aberto
-- pausa
-- currículo
-- mudança de plano de cronograma
+- abrir detalhes
+- pausar
+- retomar
+- agendar alteração de plano
 - editar endereço de entrega
 - cancelar
 
-A interface do navegador em si não é atualmente coberta pelo Playwright.
+Atualmente, a interface do usuário do navegador em si não é suportada pelo Playwright.
 
-O projeto atual depende de testes de integração HTTP suportados pela Medusa para validação de fluxo de backend ponta a ponta.
+O projeto atual conta com testes de integração HTTP baseados no Medusa para a validação do fluxo de back-end de ponta a ponta.
 
 ## 11. Limite com cancelamento e retenção
 
-A área administrativa `Subscriptions` ainda possui ações diretas do ciclo de vida, como:
-- pausa
-- currículo
+A área de administração `Subscriptions` ainda possui ações diretas relacionadas ao ciclo de vida, tais como:
+- pausar
+- retomar
 - cancelar
 
-Ao mesmo tempo, o tratamento de rotatividade agora tem seu próprio espaço de trabalho dedicado em `Subscriptions`:
+Ao mesmo tempo, o gerenciamento de cancelamentos agora conta com seu próprio espaço de trabalho dedicado em `Subscriptions`:
 - `Cancellation & Retention`
 
-Isso significa:
-- as operações diretas do ciclo de vida da assinatura permanecem disponíveis nos detalhes da assinatura
-- recomendações de retenção, ofertas de retenção, análise de casos de cancelamento e fluxos de operadores específicos de rotatividade agora estão disponíveis no espaço de trabalho de cancelamento dedicado
+Isso significa que:
+- as operações diretas do ciclo de vida da assinatura continuam disponíveis na página de detalhes da assinatura
+- as recomendações de retenção, as ofertas de retenção, a análise de casos de cancelamento e os fluxos de operadores específicos para casos de cancelamento agora estão no espaço de trabalho dedicado ao cancelamento
