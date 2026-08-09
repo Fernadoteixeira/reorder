@@ -5,9 +5,9 @@ This document describes how to run and develop the `@reorderjs/reorder` plugin i
 ## Overview
 
 The Docker development setup spins up:
-- **PostgreSQL 16**: Relational database (mapped to host port `5433` to prevent collision with local instances).
-- **Redis 7**: Key-value store and message broker (mapped to host port `6380`).
-- **Medusa Server (`reorder-medusa`)**: Node.js 20 container executing the Medusa v2 development server with the Reorder plugin loaded, hot reloading, automated database migrations, link synchronization, and Admin dashboard UI.
+- **PostgreSQL 16**: Relational database (mapped to host port `5433:5432` to prevent collision with local instances).
+- **Redis 7**: Key-value store and message broker (mapped to host port `6380:6379`).
+- **Medusa Server (`reorder-medusa`)**: Node.js 20 container executing the Medusa v2 development server with the Reorder plugin loaded, hot reloading, automated database migrations, link synchronization, and Admin dashboard UI (mapped to host port `9005:9000`).
 
 ## Quick Start
 
@@ -27,13 +27,13 @@ This will:
 5. Provision the default admin user:
    - **Email**: `admin@reorder.local`
    - **Password**: `supersecret`
-6. Start the Medusa development server on port `9000`.
+6. Start the Medusa development server on host port `9005` (container port `9000`).
 
 ### 2. Access the Application
 
-- **Medusa Admin UI**: [http://localhost:9000/app](http://localhost:9000/app)
-- **Health Check API**: [http://localhost:9000/health](http://localhost:9000/health)
-- **Store & Admin API**: [http://localhost:9000/admin/...](http://localhost:9000/admin) / [http://localhost:9000/store/...](http://localhost:9000/store)
+- **Medusa Admin UI**: [http://localhost:9005/app](http://localhost:9005/app)
+- **Health Check API**: [http://localhost:9005/health](http://localhost:9005/health)
+- **Store & Admin API**: [http://localhost:9005/admin/...](http://localhost:9005/admin) / [http://localhost:9005/store/...](http://localhost:9005/store)
 
 ### 3. View Logs
 
