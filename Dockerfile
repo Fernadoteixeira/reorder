@@ -20,8 +20,8 @@ RUN corepack enable && corepack prepare yarn@4.4.1 --activate
 # Copy package management files
 COPY package.json .yarnrc.yml yarn.lock ./
 
-# Install dependencies in non-immutable mode for Linux
-RUN YARN_ENABLE_TELEMETRY=0 corepack yarn install --mode=skip-build
+# Install dependencies in non-immutable mode
+RUN CI=1 YARN_ENABLE_TELEMETRY=0 YARN_ENABLE_IMMUTABLE_INSTALLS=false corepack yarn install --mode=skip-build
 
 # Copy application source code and configuration
 COPY . .
