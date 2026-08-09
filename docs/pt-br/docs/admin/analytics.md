@@ -1,58 +1,58 @@
-# Admin UI: Análise de Dados e Métricas
+# Interface do usuário de administração: Análises
 
-This document describes the implemented Admin UI for the `Analytics` area in the `Reorder` plugin.
+Este documento descreve a interface de usuário administrativa implementada para a área `Analytics` no plug-in `Reorder`.
 
-It focuses on:
-- screen behavior
-- filters and read flows
-- export behavior
-- loading and error states
-- cache invalidation boundaries
+O foco está em:
+- comportamento da tela
+- filtros e fluxos de leitura
+- comportamento de exportação
+- estados de carregamento e de erro
+- limites de invalidação do cache
 
-## Purpose
+## Objetivo
 
-The `Analytics` Admin UI gives operators a reporting-oriented dashboard for recurring-commerce KPIs and trends.
+A interface de usuário de administração do `Analytics` oferece aos operadores um painel voltado para relatórios sobre KPIs e tendências do comércio recorrente.
 
-It is intended to support:
-- quick KPI review
-- trend inspection over time
-- daily inspection of subscription creation volume
-- filtered reporting by status, product, and cadence
-- export of the currently visible reporting slice
+O objetivo é oferecer suporte a:
+- análise rápida de KPIs
+- análise de tendências ao longo do tempo
+- análise diária do volume de criação de assinaturas
+- relatórios filtrados por status, produto e periodicidade
+- exportação da parte do relatório atualmente visível
 
-The UI is implemented as a Medusa Admin custom page nested under `Subscriptions`.
+A interface do usuário foi implementada como uma página personalizada do Medusa Admin, aninhada na seção `Assinaturas`.
 
-## Route Map
+## Mapa da rota
 
-Implemented route:
+Rota implementada:
 - `/app/subscriptions/analytics`
 
-Navigation behavior:
-- the page is grouped under the `Subscriptions` Admin area
-- it is a dedicated page, not a drawer or detail subpanel
+Comportamento de navegação:
+- a página está agrupada na área administrativa `Assinaturas`
+- trata-se de uma página dedicada, não de uma gaveta nem de um subpainel de detalhes
 
-## 1. Page Structure
+## 1. Estrutura da página
 
-### Main UI Elements
+### Principais elementos da interface do usuário
 
-The page includes:
-- page header and description
-- filter bar
-- KPI cards
-- trend chart
-- export action
+A página inclui:
+- cabeçalho e descrição da página
+- barra de filtros
+- cartões de KPI
+- gráfico de tendências
+- ação de exportação
 
-The current layout follows the same Medusa Admin conventions as the other plugin pages:
-- compact header
-- content grouped in `Container` sections
-- simple control density
-- clear empty and error states
+O layout atual segue as mesmas convenções do Medusa Admin, assim como as outras páginas de plug-ins:
+- cabeçalho compacto
+- conteúdo agrupado em seções `Container`
+- densidade simples de controles
+- estados de vazio e de erro bem definidos
 
-## 2. Filters
+## 2. Filtros
 
-### Implemented Filters
+### Filtros implementados
 
-The page currently supports:
+Atualmente, a página suporta:
 - `date_from`
 - `date_to`
 - `status`
@@ -60,125 +60,125 @@ The page currently supports:
 - `frequency`
 - `group_by`
 
-### Filter Semantics
+### Semântica dos filtros
 
-Current runtime behavior:
-- filters drive both KPI and trend queries
-- changing filters refreshes the displayed analytics data
-- export uses the currently active filters
-- `group_by` defaults to `day`
-- timezone semantics are fixed to `UTC` in MVP
+Comportamento atual em tempo de execução:
+- os filtros afetam tanto as consultas de KPI quanto as de tendências
+- a alteração dos filtros atualiza os dados analíticos exibidos
+- a exportação utiliza os filtros ativos no momento
+- `group_by` tem como padrão `dia`
+- a semântica do fuso horário está fixada em `UTC` na versão MVP
 
-Implemented chart exception:
-- the `Created` trend tab only uses `date_from` and `date_to`
-- the `Created` trend ignores `status`, `product_id`, `frequency`, and `group_by`
-- the `group_by` control is disabled while `Created` is selected
+Exceção implementada no gráfico:
+- a guia de tendência `Created` utiliza apenas `date_from` e `date_to`
+- a tendência `Created` ignora `status`, `product_id`, `frequency` e `group_by`
+- o controle `group_by` fica desativado enquanto `Created` estiver selecionado
 
-Frequency filters are represented as cadence tokens such as:
-- `week:1`
-- `month:1`
-- `year:1`
+Os filtros de frequência são representados como tokens de cadência, tais como:
+- `semana:1`
+- `mês:1`
+- `ano:1`
 
-## 3. KPI Cards
+## 3. Cartões de KPI
 
-The page currently displays four KPI cards:
+Atualmente, a página exibe quatro cartões de KPI:
 - `MRR`
-- `Churn Rate`
+- `Taxa de cancelamento`
 - `LTV`
-- `Active Subscriptions`
+- `Assinaturas ativas`
 
-### Presentation Rules
+### Regras de apresentação
 
-- currency KPIs show currency-aware formatting when a valid single-currency dataset exists
-- `MRR` and `LTV` may render as empty or fallback text when the selected dataset is mixed-currency or does not have a valid revenue basis
-- count metrics use integer formatting
-- percentage metrics use the configured KPI precision from the response payload
+- Os KPIs de moeda exibem formatação específica para moeda quando existe um conjunto de dados válido com uma única moeda
+- `MRR` e `LTV` podem ser exibidos como texto vazio ou de substituição quando o conjunto de dados selecionado contém moedas diferentes ou não possui uma base de receita válida
+- As métricas de contagem utilizam formatação de números inteiros
+- As métricas percentuais utilizam a precisão do KPI configurada na carga útil da resposta
 
-## 4. Trend Chart
+## 4. Gráfico de tendências
 
-The page displays a simple trend visualization sourced from the analytics trends endpoint.
+A página exibe uma visualização simples de tendências, obtida a partir do endpoint de tendências de análise.
 
-Current behavior:
-- the chart is driven by display queries loaded on mount
-- metric selection changes which series is emphasized
-- `MRR`, `Churn`, and `LTV` follow the selected `group_by`
-- the `Created` tab renders a dedicated daily bar chart
-- the `Created` chart uses one UTC bar per day
-- `day`, `week`, and `month` buckets all use `UTC`
+Comportamento atual:
+- o gráfico é gerado a partir de consultas de exibição carregadas no momento da montagem
+- a seleção de métricas determina qual série é destacada
+- `MRR`, `Churn` e `LTV` seguem o `group_by` selecionado
+- a guia `Criado` exibe um gráfico de barras diário dedicado
+- o gráfico `Criado` usa uma barra UTC por dia
+- os intervalos `dia`, `semana` e `mês` usam `UTC`
 
-The current UI intentionally keeps the chart lightweight and aligned with the existing Admin visual language.
+A interface do usuário atual mantém, intencionalmente, o gráfico simples e alinhado com a identidade visual existente do Admin.
 
-## 5. Export
+## 5. Exportar
 
-The Análise de Dados e Métricas page exposes an `Export` action with:
+A página “Análises” apresenta uma ação `Exportar` com as seguintes opções:
 - `CSV`
 - `JSON`
 
-Current behavior:
-- export is synchronous in MVP
-- export is on demand and not preloaded
-- export always uses the currently active filters
-- the downloaded content uses the backend-provided deterministic column order and payload semantics
+Comportamento atual:
+- a exportação é síncrona no MVP
+- a exportação é feita sob demanda e não é pré-carregada
+- a exportação sempre utiliza os filtros ativos no momento
+- o conteúdo baixado utiliza a ordem determinística das colunas e a semântica da carga útil fornecidas pelo backend
 
-Export does not invalidate or reload the display queries by itself.
+A exportação, por si só, não invalida nem recarrega as consultas de exibição.
 
-## 6. Data Loading
+## 6. Carregamento de dados
 
-The page follows the Medusa Admin display-query pattern.
+A página segue o padrão de exibição e consulta do Medusa Admin.
 
-Current behavior:
-- KPI data loads on mount
-- trend data loads on mount
-- export is a separate on-demand request
-- display queries are keyed only by the resolved analytics filters
-- display queries are not tied to unrelated local UI state
+Comportamento atual:
+- Os dados de KPI são carregados no momento da montagem
+- Os dados de tendência são carregados no momento da montagem
+- A exportação é uma solicitação separada, feita sob demanda
+- As consultas de exibição são baseadas apenas nos filtros de análise resolvidos
+- As consultas de exibição não estão vinculadas a um estado da interface do usuário local não relacionado
 
-Implementation detail:
-- page-level loading helpers live in `src/admin/routes/subscriptions/analytics/data-loading.ts`
+Detalhes de implementação:
+- os auxiliares de carregamento no nível da página estão localizados em `src/admin/routes/subscriptions/analytics/data-loading.ts`
 
-## 7. Cache Invalidation
+## 7. Invalidação do cache
 
-The Admin UI includes explicit analytics cache invalidation for mutations that can affect reporting.
+A interface de usuário administrativa inclui a invalidação explícita do cache de análises para alterações que possam afetar os relatórios.
 
-Current invalidation integration exists for:
-- subscription mutations
-- renewal mutations
-- cancellation mutations
-- dunning mutations
+Atualmente, a integração de invalidação está disponível para:
+- alterações em assinaturas
+- alterações em renovações
+- alterações em cancelamentos
+- alterações em cobranças de atraso
 
-This keeps the analytics dashboard aligned with the rest of the Admin surfaces after relevant changes.
+Isso mantém o painel de análises alinhado com o restante das interfaces de administração após as alterações relevantes.
 
-## 8. UI States
+## 8. Estados da interface do usuário
 
-### Loading
+### Carregando
 
-The page shows a loading state while KPI and trend queries are in flight.
+A página exibe um indicador de carregamento enquanto as consultas de KPIs e tendências estão em andamento.
 
-### Empty
+### Vazio
 
-The page shows an explicit empty state when the selected filters produce no analytics data.
+A página exibe explicitamente um estado vazio quando os filtros selecionados não geram dados analíticos.
 
-This is treated as a valid reporting outcome, not as an error.
+Isso é considerado um resultado válido do relatório, e não um erro.
 
-The `Created` tab is an exception:
-- it renders a daily bar chart for the requested range even when all returned values are `0`
+A guia `Criado` é uma exceção:
+- ela exibe um gráfico de barras diário para o intervalo solicitado, mesmo quando todos os valores retornados são `0`
 
-### Error
+### Erro
 
-The page shows an error state when KPI or trend queries fail.
+A página exibe uma mensagem de erro quando as consultas de KPI ou de tendências falham.
 
-Export errors are handled separately and do not replace the main dashboard state.
+Os erros de exportação são tratados separadamente e não alteram o estado do painel principal.
 
-## 9. Current UX Boundaries
+## 9. Limites atuais da experiência do usuário
 
-The current Análise de Dados e Métricas page intentionally does not include:
-- compare-period UI
-- saved views
-- async export queueing
-- anomaly annotations in the chart
-- browser-based drill-down into individual snapshot rows
+A página atual do Analytics não inclui, intencionalmente:
+- interface de usuário para comparação entre períodos
+- visualizações salvas
+- fila de exportação assíncrona
+- anotações de anomalias no gráfico
+- detalhamento, no navegador, de linhas individuais do instantâneo
 
-The implemented UX priorities are:
-- consistency with existing Medusa Admin pages
-- predictable filtered reporting
-- fast access to KPI, trends, and export from one screen
+As prioridades de experiência do usuário (UX) implementadas são:
+- consistência com as páginas existentes do Medusa Admin
+- relatórios filtrados previsíveis
+- acesso rápido a KPIs, tendências e exportação a partir de uma única tela

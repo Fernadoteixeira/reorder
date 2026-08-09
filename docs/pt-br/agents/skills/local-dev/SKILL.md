@@ -3,40 +3,40 @@ name: local-dev
 description: Guidelines for local development and testing of the reorder plugin in an external Medusa backend project. Use this skill only when the task involves deploying, syncing, or locally running the plugin with a backend.
 ---
 
-# Local development in Medusa backend
+# Desenvolvimento local no backend do Medusa
 
-This skill describes how to sync local changes in the `reorder` plugin with an external Medusa backend during local development.
+Esta habilidade descreve como sincronizar alterações locais no plugin `reorder` com um backend externo do Medusa durante o desenvolvimento local.
 
-## Prerequisites
+## Pré-requisitos
 
-In the Medusa backend's `package.json` file, declare the plugin dependency using a local file path:
+No arquivo `package.json` do backend do Medusa, declare a dependência do plug-in usando um caminho local do arquivo:
 ```json
 "@reorderjs/reorder": "file:../reorder"
 ```
-Ensure you run `yarn install` in the Medusa backend project after adding or updating this path.
+Certifique-se de executar o comando `yarn install` no projeto do backend do Medusa após adicionar ou atualizar esse caminho.
 
-## Synchronization Workflow
+## Fluxo de trabalho de sincronização
 
-When you modify code in this repository (`reorder`) and want the external Medusa backend to import the newest changes:
+Quando você modifica o código neste repositório (`reorder`) e deseja que o backend externo do Medusa importe as alterações mais recentes:
 
-1. In the `reorder` repository, run:
+1. No repositório `reorder`, execute:
    ```bash
    yarn medusa plugin:publish
    ```
-2. In the Medusa backend project directory, run:
+2. No diretório do projeto de backend do Medusa, execute:
    ```bash
    yarn medusa db:migrate
    ```
-3. In the Medusa backend project directory, reinstall the package from the filesystem:
+3. No diretório do projeto de backend do Medusa, reinstale o pacote a partir do sistema de arquivos:
    ```bash
    yarn install
    ```
 
-> [!IMPORTANT]
-> Do not assume the Medusa backend is using the newest local plugin code until this entire command sequence has successfully completed.
+> [!IMPORTANTE]
+> Não presuma que o backend do Medusa esteja utilizando o código mais recente do plug-in local até que toda essa sequência de comandos tenha sido concluída com sucesso.
 
-## Useful Plugin Commands
+## Comandos úteis do plugin
 
-In the `reorder` directory, you can run:
-- `yarn dev` – Runs the process in development mode.
-- `yarn build` – Builds the plugin files for production.
+No diretório `reorder`, você pode executar:
+- `yarn dev` – Executa o processo no modo de desenvolvimento.
+- `yarn build` – Compila os arquivos do plug-in para produção.

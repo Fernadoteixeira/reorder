@@ -1,42 +1,42 @@
-# Reorder agent guidelines
+# Reordenar diretrizes do agente
 
-This file defines how coding agents should work in the official `reorder` repository.
+Este arquivo define como os agentes de codificação devem funcionar no repositório oficial `reorder`.
 
-## Always
+## Sempre
 
-- Write all code, comments, specs, markdown files, lessons, and commit messages in English only, regardless of the language used in the chat.
-- **Before proposing a commit or git push, present a commit message in the Conventional Commits format `type(scope): description` (e.g., `feat(ai): add create-spec skill`, `fix(dunning): resolve retry loop`) and wait for explicit user approval.**
-- Identify which Reorder area you are changing and check the Task Router below before starting.
-- Read the relevant runtime documentation in `docs/` before reading implementation files.
-- Refer to `docs/README.md` for plugin overview, current scope, and implemented domains.
-- Enter plan mode for non-trivial tasks (3+ steps or architectural decisions) and use the `create-spec` skill to draft a specification in `.agents/specs/` before writing code.
-- Check `.agents/lessons.md` at the start of the session to avoid repeating past mistakes.
-- After fixing any bug or resolving a complex issue, update `.agents/lessons.md` with the lesson learned and a rule to prevent it in the future.
-- Use Medusa agentic skills whenever they fit the task.
-- Keep changes minimal and local to the affected area.
-- Follow Medusa conventions (file-based routing with `route.ts`, Awilix resolve, custom modules under `src/modules/<domain>/`, models in `models/`, migrations in `migrations/`, workflows in `src/workflows/`, jobs in `src/jobs/`).
-- Write integration tests for new features (preferring HTTP integration tests in `integration-tests/http/`). Keep them self-contained.
-- If behavior changes, update the matching runtime documentation in `docs/`.
+- Escreva todos os códigos, comentários, especificações, arquivos markdown, lições e mensagens de commit somente em inglês, independentemente do idioma usado no chat.
+- **Antes de propor um commit ou git push, apresente uma mensagem de commit no formato de commits convencionais `type(scope): description` (por exemplo, `feat(ai): add create-spec skill`, `fix(dunning): resolve retry loop`) e aguarde a aprovação explícita do usuário.**
+- Identifique qual área de Reordenação você está alterando e verifique o Roteador de Tarefas abaixo antes de iniciar.
+- Leia a documentação relevante do tempo de execução em `docs/` antes de ler os arquivos de implementação.
+- Consulte `docs/README.md` para visão geral do plugin, escopo atual e domínios implementados.
+- Entre no modo de planejamento para tarefas não triviais (mais de 3 etapas ou decisões arquitetônicas) e use a habilidade `create-spec` para elaborar uma especificação em `.agents/specs/` antes de escrever o código.
+- Verifique `.agents/lessons.md` no início da sessão para evitar repetir erros anteriores.
+- Após corrigir qualquer bug ou resolver um problema complexo, atualize `.agents/lessons.md` com a lição aprendida e uma regra para evitá-lo no futuro.
+- Use as habilidades de agente da Medusa sempre que forem adequadas à tarefa.
+- Mantenha as alterações mínimas e locais na área afetada.
+- Siga as convenções da Medusa (roteamento baseado em arquivo com `route.ts`, resolução Awilix, módulos personalizados em `src/modules/<domain>/`, modelos em `models/`, migrações em `migrations/`, fluxos de trabalho em `src/workflows/`, jobs em `src/jobs/`).
+- Escreva testes de integração para novos recursos (preferindo testes de integração HTTP em `integration-tests/http/`). Mantenha-os independentes.
+- Se o comportamento mudar, atualize a documentação de tempo de execução correspondente em `docs/`.
 
-## Ask First
+## Pergunte primeiro
 
-- Ask before changing branch/PR automation, pipeline labels, QA flows, or release behaviors.
-- Ask before making changes that span multiple domains or modules without an existing spec.
-- Ask before adding new external dependencies to `package.json`.
-- Ask before modifying database models or introducing complex schema migrations.
+- Pergunte antes de alterar a automação de filiais/PR, rótulos de pipeline, fluxos de controle de qualidade ou comportamentos de liberação.
+- Pergunte antes de fazer alterações que abranjam vários domínios ou módulos sem uma especificação existente.
+- Pergunte antes de adicionar novas dependências externas ao `package.json`.
+- Pergunte antes de modificar modelos de banco de dados ou introduzir migrações de esquema complexas.
 
-## Never
+## Nunca
 
-- Never use `any` in TypeScript code. Prefer descriptive, strict domain types.
-- Never write business rules directly in route handlers or React components; keep them in workflows or service layers.
-- Never bypass mutation guards or domain boundaries (do not introduce unnecessary cross-domain coupling).
-- Never modify generated files by hand.
-- Never refactor unrelated files while fixing a local issue.
-- Never document intended future behavior; only document stable, implemented behavior.
+- Nunca use `any` no código TypeScript. Prefira tipos de domínio descritivos e estritos.
+- Nunca escreva regras de negócios diretamente em manipuladores de rotas ou componentes React; mantenha-os em fluxos de trabalho ou camadas de serviço.
+- Nunca ignore guardas de mutação ou limites de domínio (não introduza acoplamento desnecessário entre domínios).
+- Nunca modifique os arquivos gerados manualmente.
+- Nunca refatore arquivos não relacionados enquanto corrige um problema local.
+- Nunca documente o comportamento futuro pretendido; documente apenas comportamento estável e implementado.
 
-## Validation Commands
+## Comandos de validação
 
-Run the smallest relevant validation command for your changes:
+Execute o menor comando de validação relevante para suas alterações:
 
 ```bash
 yarn build
@@ -44,104 +44,104 @@ yarn test:integration:http
 yarn test:integration:modules
 ```
 
-## Task router
+## Roteador de tarefas
 
-Match the task to all relevant rows before researching or coding.
+Combine a tarefa com todas as linhas relevantes antes de pesquisar ou codificar.
 
-| Task | Read first / Action |
+| Tarefa | Leia primeiro / Ação |
 |------|------------|
-| Plugin overview, current scope, implemented domains | `docs/README.md` |
-| Assinatura domain changes | `docs/architecture/subscriptions.md`, `docs/api/admin-subscriptions.md`, `docs/testing/subscriptions.md` |
-| Plan and offer changes | `docs/architecture/plan-offers.md`, `docs/api/admin-plan-offers.md`, `docs/testing/plan-offers.md` |
-| Renovação changes | `docs/architecture/renewals.md`, `docs/api/admin-renewals.md`, `docs/testing/renewals.md` |
-| Dunning (Cobrança) changes | `docs/architecture/dunning.md`, `docs/api/admin-dunning.md`, `docs/testing/dunning.md` |
-| Cancelamento and retention changes | `docs/architecture/cancellation.md`, `docs/api/admin-cancellations.md`, `docs/testing/cancellations.md` |
-| Activity log changes | `docs/architecture/activity-log.md`, `docs/api/admin-activity-log.md`, `docs/testing/activity-log.md` |
-| Análise de Dados e Métricas changes | `docs/architecture/analytics.md`, `docs/api/admin-analytics.md`, `docs/testing/analytics.md` |
-| Assinatura settings changes | `docs/architecture/settings.md`, `docs/api/admin-subscription-settings.md`, `docs/testing/subscription-settings.md` |
-| Storefront and customer account subscription APIs | `docs/api/store-subscription-checkout.md`, `docs/api/store-subscription-offers.md`, `docs/api/store-customer-cancellations.md`, `docs/architecture/subscriptions.md` |
-| Admin UI routes and widgets | matching files in `docs/admin/`, then `src/admin/README.md` |
-| Admin or store API route implementation | `src/api/README.md`, then matching `docs/api/*.md` |
-| Workflow-backed mutations | `src/workflows/README.md`, then matching architecture and API docs |
-| Module or model changes | `src/modules/README.md`, then matching architecture doc |
-| Jobs and scheduled processing | matching architecture doc and matching testing doc |
-| Running tests and integration validation | Use `run-tests` skill (`.agents/skills/run-tests/SKILL.md`) |
-| Local testing and syncing with Medusa backend | Use `local-dev` skill (`.agents/skills/local-dev/SKILL.md`) |
-| Writing design specifications before coding | Use `create-spec` skill (`.agents/skills/create-spec/SKILL.md`) |
+| Visão geral do plugin, escopo atual, domínios implementados | `docs/README.md` |
+| Mudanças no domínio da assinatura | `docs/architecture/subscriptions.md`, `docs/api/admin-subscriptions.md`, `docs/testing/subscriptions.md` |
+| Planejar e oferecer mudanças | `docs/architecture/plan-offers.md`, `docs/api/admin-plan-offers.md`, `docs/testing/plan-offers.md` |
+| Mudanças de renovação | `docs/architecture/renewals.md`, `docs/api/admin-renewals.md`, `docs/testing/renewals.md` |
+| Alterações na cobrança | `docs/architecture/dunning.md`, `docs/api/admin-dunning.md`, `docs/testing/dunning.md` |
+| Alterações de cancelamento e retenção | `docs/architecture/cancellation.md`, `docs/api/admin-cancellations.md`, `docs/testing/cancellations.md` |
+| Alterações no log de atividades | `docs/architecture/activity-log.md`, `docs/api/admin-activity-log.md`, `docs/testing/activity-log.md` |
+| Mudanças analíticas | `docs/architecture/analytics.md`, `docs/api/admin-analytics.md`, `docs/testing/analytics.md` |
+| Alterações nas configurações de assinatura | `docs/architecture/settings.md`, `docs/api/admin-subscription-settings.md`, `docs/testing/subscription-settings.md` |
+| APIs de assinatura de vitrine e conta de cliente | `docs/api/store-subscription-checkout.md`, `docs/api/store-subscription-offers.md`, `docs/api/store-customer-cancellations.md`, `docs/architecture/subscriptions.md` |
+| Rotas e widgets da UI do administrador | arquivos correspondentes em `docs/admin/`, então `src/admin/README.md` |
+| Implementação de rota de API de administrador ou loja | `src/api/README.md`, então correspondente `docs/api/*.md` |
+| Mutações apoiadas por fluxo de trabalho | `src/workflows/README.md` e, em seguida, combinando arquitetura e documentos de API |
+| Mudanças de módulo ou modelo | `src/modules/README.md`, então documento de arquitetura correspondente |
+| Jobs e processamento programado | documento de arquitetura correspondente e documento de teste correspondente |
+| Executando testes e validação de integração | Use a habilidade `run-tests` (`.agents/skills/run-tests/SKILL.md`) |
+| Teste local e sincronização com backend Medusa | Use a habilidade `local-dev` (`.agents/skills/local-dev/SKILL.md`) |
+| Escrever especificações de design antes da codificação | Use a habilidade `create-spec` (`.agents/skills/create-spec/SKILL.md`) |
 
-## Repository map
+## Mapa do repositório
 
-Important areas:
+Áreas importantes:
 
-- `src/modules/` domain modules and persistence
-- `src/workflows/` business mutations and orchestration
-- `src/api/admin/` Admin API routes
-- `src/api/store/` Store API routes
-- `src/admin/` Admin dashboard routes, widgets, types, and client helpers
-- `src/jobs/` scheduled processing
-- `src/links/` Medusa entity links
-- `integration-tests/` integration coverage
-- `docs/` runtime documentation
+- módulos de domínio `src/modules/` e persistência
+- `src/workflows/` mutações e orquestração de negócios
+- `src/api/admin/` Rotas da API Admin
+- `src/api/store/` Armazena rotas de API
+- `src/admin/` Rotas, widgets, tipos e auxiliares de cliente do painel de administração
+- `src/jobs/` processamento agendado
+- `src/links/` Links de entidade Medusa
+- `integration-tests/` cobertura de integração
+- documentação de tempo de execução `docs/`
 
-## Arquitetura rules
+## Regras de arquitetura
 
-- Keep business rules in workflows or module services, not in route handlers or React components.
-- Route handlers should validate input, resolve dependencies from `req.scope`, call workflows or services, and return DTOs.
-- Keep domain ownership clear:
-  - `subscription`
-  - `plan-offer`
-  - `renewal`
-  - `dunning`
-  - `cancellation`
-  - `activity-log`
-  - `analytics`
-  - `settings`
-- Reuse existing workflow patterns for state-changing operations.
-- Preserve snapshot-based read models where the docs describe them.
-- Keep store responses separate from Admin DTOs.
-- Do not introduce unnecessary cross-domain coupling when an existing workflow or link boundary already exists.
+- Mantenha as regras de negócios em fluxos de trabalho ou serviços de módulo, não em manipuladores de rotas ou componentes React.
+- Os manipuladores de rotas devem validar a entrada, resolver dependências de `req.scope`, chamar fluxos de trabalho ou serviços e retornar DTOs.
+- Mantenha a propriedade do domínio clara:
+  - `assinatura`
+  - `plano-oferta`
+  - `renovação`
+  - `cobrança`
+  - `cancelamento`
+  - `log de atividades`
+  - `análise`
+  - `configurações`
+- Reutilize padrões de fluxo de trabalho existentes para operações de mudança de estado.
+- Preservar modelos de leitura baseados em instantâneos onde os documentos os descrevem.
+- Mantenha as respostas da loja separadas dos DTOs administrativos.
+- Não introduza acoplamento desnecessário entre domínios quando já existir um fluxo de trabalho ou limite de link existente.
 
-## Medusa conventions
+## Convenções da Medusa
 
-- File-based routes must use `route.ts`.
-- Use `req.scope.resolve(...)` for Medusa services and registered resources.
-- Keep custom modules under `src/modules/<domain>/`.
-- Put module models under `models/`, migrations under `migrations/`, and shared helpers under `utils/` or `types/`.
-- Keep workflows in `src/workflows/` and steps in `src/workflows/steps/`.
-- Agendado jobs belong in `src/jobs/`.
-- Admin extensions belong in `src/admin/`.
+- Rotas baseadas em arquivo devem usar `route.ts`.
+- Use `req.scope.resolve(...)` para serviços Medusa e recursos registrados.
+- Mantenha os módulos personalizados em `src/modules/<domain>/`.
+- Coloque modelos de módulos em `models/`, migrações em `migrations/` e auxiliares compartilhados em `utils/` ou `types/`.
+- Mantenha os fluxos de trabalho em `src/workflows/` e as etapas em `src/workflows/steps/`.
+- Os trabalhos agendados pertencem a `src/jobs/`.
+- As extensões de administrador pertencem a `src/admin/`.
 
-## Coding rules
+## Regras de codificação
 
-- Prefer existing domain types and validators.
-- Avoid `any`.
-- Keep naming consistent with existing domains, DTOs, and route names.
-- Use explicit, descriptive names.
-- Prefer small helpers over deeply nested inline logic.
-- Follow existing response shapes for each area.
-- Do not refactor unrelated files while fixing a local issue.
+- Prefira tipos de domínio e validadores existentes.
+- Evite `qualquer`.
+- Mantenha a nomenclatura consistente com domínios, DTOs e nomes de rotas existentes.
+- Use nomes explícitos e descritivos.
+- Prefira pequenos ajudantes em vez de lógica inline profundamente aninhada.
+- Siga os formatos de resposta existentes para cada área.
+- Não refatore arquivos não relacionados ao corrigir um problema local.
 
-## Documentation rules
+## Regras de documentação
 
-- If behavior changes, update the matching runtime docs in `docs/`.
-- Document implemented behavior, not intended future behavior.
-- Use repository terminology consistently:
-  - `subscription`
-  - `plan`
-  - `offer`
-  - `renewal cycle`
-  - `dunning case`
-  - `cancellation case`
-  - `activity log`
+- Se o comportamento mudar, atualize os documentos de tempo de execução correspondentes em `docs/`.
+- Documente o comportamento implementado, e não o comportamento futuro pretendido.
+- Use a terminologia do repositório de forma consistente:
+  - `assinatura`
+  - `planejar`
+  - `oferta`
+  - `ciclo de renovação`
+  - `caso de cobrança`
+  - `caso de cancelamento`
+  - `log de atividades`
 
-## Testes rules
+## Regras de teste
 
-- Run focused tests for the area you changed whenever possible.
-- Prefer existing integration test patterns in `integration-tests/http/`.
-- Add or update tests when changing:
-  - API contracts
-  - workflow behavior
-  - scheduler logic
-  - cross-domain state transitions
-- Keep tests self-contained. Do not depend on pre-seeded data.
-- If you change documented behavior, verify implementation and docs remain aligned.
+- Execute testes focados na área que você alterou sempre que possível.
+- Prefira padrões de teste de integração existentes em `integration-tests/http/`.
+- Adicionar ou atualizar testes ao alterar:
+  - Contratos de API
+  - comportamento do fluxo de trabalho
+  - lógica do agendador
+  - transições de estado entre domínios
+- Mantenha os testes independentes. Não dependa de dados pré-projetados.
+- Se você alterar o comportamento documentado, verifique se a implementação e os documentos permanecem alinhados.

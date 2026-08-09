@@ -1,239 +1,243 @@
-# Documentação do Reorder
+# Reorganizar documentos
 
-`Reorder` is a Medusa.js plugin for recurring commerce flows managed from the Admin.
+O `Reorder` é um plug-in do Medusa.js para fluxos de comércio recorrentes gerenciados pelo Painel de Administração.
 
-Ele agora também disponibiliza rotas da Store API voltadas ao cliente para checkout de assinatura, ações na conta do assinante e resolução de ofertas de assinatura na PDP.
+Agora, ela também disponibiliza rotas da API da Loja voltadas para o cliente para finalização de compra de assinaturas, ações relacionadas à conta de assinatura e resolução de ofertas de assinatura na página de detalhes do produto (PDP).
 
 No momento, as seguintes áreas estão implementadas e testadas:
-- `Subscriptions`
-- `Plans & Offers`
-- `Renewals`
-- `Dunning`
-- `Cancellation & Retention`
-- `Activity Log`
-- `Analytics`
+- `Assinaturas`
+- `Planos e ofertas`
+- `Renovações`
+- `Cobranças em atraso`
+- `Cancelamento e retenção`
+- `Registro de atividades`
+- `Análises`
 
-## Status Atual
+## Situação atual
 
 Concluído:
-- `Subscriptions` domain model
-- `Subscriptions` admin API routes
-- `Subscriptions` Admin UI: list, details, actions, plan change, shipping address edit, and order-detail subscription widget
-- `Subscriptions` backend integration tests
-- `Subscriptions` admin flow integration test
-- `Plans & Offers` domain model
-- `Plans & Offers` admin API routes
-- `Plans & Offers` Admin UI: list, create, edit, toggle, filtering, sorting, and selection flows
-- `Plans & Offers` backend integration tests
-- `Plans & Offers` admin flow integration coverage
-- smoke-level integration between `Plans & Offers` and `Subscriptions`
-- `Renewals` domain model
-- `Renewals` admin API routes
-- `Renewals` Admin UI: queue, detail, approval, reject, and force flows
-- `Renewals` backend integration tests
-- `Renewals` admin flow integration coverage
-- smoke-level integration between `Renewals`, `Subscriptions`, and `Plans & Offers`
-- `Renewals` operational hardening for scheduler and manual execution flows
-- `Dunning` domain model
-- `Dunning` admin API routes
-- `Dunning` Admin UI: queue, detail, retry-now, mark recovered, mark unrecovered, and retry schedule override
-- `Dunning` backend integration tests
-- `Dunning` admin flow integration coverage
-- smoke-level integration between `Dunning`, `Renewals`, and `Subscriptions`
-- `Dunning` operational hardening for scheduler and manual retry flows
-- `Cancellation & Retention` domain model
-- `Cancellation & Retention` admin API routes
-- `Cancellation & Retention` Admin UI: queue, detail, apply-offer, finalize, and reason-update flows
-- `Cancellation & Retention` backend integration tests
-- `Cancellation & Retention` admin flow integration coverage
-- smoke-level integration between `Cancellation & Retention`, `Subscriptions`, `Renewals`, and `Dunning`
-- `Cancellation & Retention` operational hardening for audit trail, structured logging, and scheduler summary metrics
-- `Activity Log` domain model and storage
-- `Activity Log` workflow-backed event creation across `Subscriptions`, store subscription checkout, `Renewals`, `Dunning`, and `Cancellation & Retention`
-- `Activity Log` admin API routes
-- `Activity Log` Admin UI: global list, event detail, and per-subscription timeline
-- `Activity Log` backend integration tests and admin flow integration coverage
-- `Activity Log` operational documentation for retention, monitoring, and roadmap boundaries
-- `Analytics` domain model and daily snapshot storage
-- `Analytics` admin API routes for KPI, trends, export, and rebuild flows
-- `Analytics` Admin UI: dedicated analytics page with filters, KPI cards, trend visualization, and export actions
-- `Analytics` backend integration tests and admin flow integration coverage
-- `Analytics` cache invalidation integration with `Subscriptions`, `Renewals`, `Dunning`, and `Cancellation & Retention`
+- Modelo de domínio `Assinaturas`
+- Rotas da API de administração de `Assinaturas`
+- Interface de usuário de administração de `Assinaturas`: lista, detalhes, ações, alteração de plano, edição de endereço de entrega e widget de assinatura nos detalhes do pedido
+- Testes de integração do back-end de `Assinaturas`
+- Teste de integração do fluxo de administração de `Assinaturas`
+- Modelo de domínio `Planos e Ofertas`
+- Rotas da API de administração de `Planos e Ofertas`
+- Interface de usuário de administração de `Planos e Ofertas`: lista, criação, edição, ativação/desativação, filtragem, classificação e fluxos de seleção
+- Testes de integração de back-end de `Planos e Ofertas`
+- Cobertura de integração do fluxo de administração de `Planos e Ofertas`
+- Integração de nível básico entre `Planos e Ofertas` e `Assinaturas`
+- Modelo de domínio `Renovações`
+- Rotas da API administrativa de `Renovações`
+- Interface do usuário administrativa de `Renovações`: fluxos de fila, detalhes, aprovação, rejeição e forçamento
+- Testes de integração do back-end de `Renovações`
+- Cobertura de integração do fluxo administrativo de `Renovações`
+- Integração de nível básico entre `Renovações`, `Assinaturas` e `Planos e Ofertas`
+- Fortalecimento operacional de `Renovações` para fluxos de agendamento e execução manual
+- Modelo de domínio `Cobranças`
+- Rotas da API de administração de `Cobranças`
+- Interface de usuário de administração de `Cobranças`: fila, detalhes, tentar novamente agora, marcar como recuperado, marcar como não recuperado e substituir agendamento de nova tentativa
+- Testes de integração do backend de `Dunning`
+- Cobertura de integração do fluxo administrativo de `Dunning`
+- Integração de nível básico entre `Dunning`, `Renewals` e `Subscriptions`
+- Fortalecimento operacional de `Dunning` para os fluxos do agendador e de repetição manual de tentativas
+- Modelo de domínio de `Cancellation & Retention`
+- Rotas da API administrativa de `Cancellation & Retention`
+- Interface de usuário administrativa de `Cancelamento e Retenção`: fluxos de fila, detalhes, aplicação de oferta, finalização e atualização do motivo
+- Testes de integração do backend de `Cancelamento e Retenção`
+- Cobertura de integração dos fluxos administrativos de `Cancelamento e Retenção`
+- Integração de nível básico entre `Cancelamento e Retenção`, `Assinaturas`, `Renovações` e `Cobrança`
+- Fortalecimento operacional de `Cancelamento e Retenção` para trilha de auditoria, registro estruturado e métricas de resumo do agendador
+- Modelo de domínio e armazenamento do `Registro de Atividades`
+- Criação de eventos baseada em fluxo de trabalho do `Registro de Atividades` em `Assinaturas`, finalização de compra de assinatura na loja, `Renovações`, `Cobranças em atraso` e `Cancelamento e Retenção`
+- Rotas da API de administração do `Registro de Atividades`
+- Interface de usuário de administração do `Registro de Atividades`: lista global, detalhes do evento e linha do tempo por assinatura
+- Testes de integração do back-end do `Registro de Atividades` e cobertura de integração do fluxo de administração
+- Documentação operacional do `Registro de Atividades` para retenção, monitoramento e limites do roteiro de desenvolvimento
+- Modelo de domínio do `Analytics` e armazenamento de instantâneos diários
+- Rotas da API de administração do `Analytics` para fluxos de KPIs, tendências, exportação e reconstrução
+- Interface de usuário de administração do `Analytics`: página dedicada à análise com filtros, cartões de KPIs, visualização de tendências e ações de exportação
+- Testes de integração do back-end do `Analytics` e cobertura de integração dos fluxos de administração
+- Integração da invalidação de cache de `Analytics` com `Assinaturas`, `Renovações`, `Cobranças em atraso` e `Cancelamento e retenção`
 
 Em andamento:
-- dedicated analytics page and reporting views for `Cancellation & Retention`
-- future operational extensions for `Activity Log` such as archival or export
+- página dedicada à análise e visualizações de relatórios para `Cancelamento e Retenção`
+- futuras extensões operacionais para o `Registro de Atividades`, como arquivamento ou exportação
 
-## Mapa da Documentação
+## Mapa da documentação
 
-Utilize estes documentos dependendo da sua necessidade:
+Utilize esses documentos de acordo com a sua necessidade:
 
 - `specs/`
-  Early design and planning documents created before or during implementation.
+  Documentos iniciais de projeto e planejamento criados antes ou durante a implementação.
 - `architecture/`
-  Technical documentation describing how each domain area is structured.
+  Documentação técnica que descreve como cada área de domínio está estruturada.
 - `api/`
-  Current API contracts used by the Admin and other consumers.
+  Contratos de API atuais utilizados pelo Admin e outros usuários.
 - `admin/`
-  Admin UI behavior, screens, actions, filters, and UX conventions.
+  Comportamento da interface do usuário do Admin, telas, ações, filtros e convenções de experiência do usuário.
 - `testing/`
-  How tests are structured, what is covered, and how to run them.
+  Como os testes são estruturados, o que é coberto e como executá-los.
 
-Runtime source-of-truth documents currently exist for:
+Atualmente, existem documentos de referência oficial de tempo de execução para:
 
-- `Subscriptions`
+- `Assinaturas`
   - `architecture/subscriptions.md`
   - `api/admin-subscriptions.md`
   - `admin/subscriptions.md`
   - `testing/subscriptions.md`
-- `Plans & Offers`
+- `Planos e ofertas`
   - `architecture/plan-offers.md`
   - `api/admin-plan-offers.md`
   - `admin/plan-offers.md`
   - `testing/plan-offers.md`
-- `Renewals`
+- `Renovações`
   - `architecture/renewals.md`
   - `api/admin-renewals.md`
   - `admin/renewals.md`
   - `testing/renewals.md`
-- `Dunning`
+- `Cobrança de atrasados`
   - `architecture/dunning.md`
   - `api/admin-dunning.md`
   - `admin/dunning.md`
   - `testing/dunning.md`
-- `Cancellation & Retention`
+- `Cancelamento e retenção`
   - `architecture/cancellation.md`
   - `api/admin-cancellations.md`
   - `admin/cancellations.md`
   - `testing/cancellations.md`
-- `Activity Log`
+- `Registro de atividades`
   - `architecture/activity-log.md`
   - `api/admin-activity-log.md`
   - `admin/activity-log.md`
   - `testing/activity-log.md`
   - `roadmap/activity-log.md`
-- `Analytics`
+- `Análises`
   - `architecture/analytics.md`
   - `api/admin-analytics.md`
   - `admin/analytics.md`
   - `testing/analytics.md`
 
-## Ordem de Leitura Recomendada
+## Ordem de leitura recomendada
 
-Para um novo desenvolvedor ingressando no projeto:
-1. Read this file.
-2. Read the architecture document for the area you work on.
-3. Read the API document for that area.
-4. Read the Admin UI document if you touch dashboard flows.
-5. Read the testing document before changing behavior.
+Para um novo desenvolvedor que esteja ingressando no projeto:
+1. Leia este arquivo.
+2. Leia o documento de arquitetura referente à área em que você trabalha.
+3. Leia o documento da API referente a essa área.
+4. Leia o documento da interface de usuário administrativa caso você trabalhe com fluxos do painel de controle.
+5. Leia o documento de testes antes de alterar qualquer comportamento.
 
-## Desenvolvimento Local
+## Desenvolvimento local
 
-To use the local `reorder` plugin in a Medusa backend during development:
+Para um desenvolvimento rápido em contêineres usando o Docker:
+- Consulte `docs/development/docker.md` ou execute `docker compose up -d --build` para iniciar o PostgreSQL, o Redis e o servidor de desenvolvimento do Medusa com o plug-in Reorder e a interface de usuário administrativa pré-configurados.
 
-- add this dependency in the Medusa backend `package.json`:
+Para usar o plugin local `reorder` em um backend externo do Medusa durante o desenvolvimento:
+
+- adicione esta dependência ao arquivo `package.json` do backend do Medusa:
   - `"@reorderjs/reorder": "file:../reorder"`
-- run `yarn install` in the Medusa backend after adding or updating that dependency
+- execute `yarn install` no backend do Medusa após adicionar ou atualizar essa dependência
 
-When you make changes in this `reorder` repository and want the Medusa backend to use the newest local version, use this sequence:
+Quando você fizer alterações neste repositório `reorder` e quiser que o backend do Medusa utilize a versão local mais recente, siga esta sequência:
 
-1. In `reorder`, run `yarn medusa plugin:publish`
-2. In the Medusa backend, run `yarn medusa db:migrate`
-3. In the Medusa backend, run `yarn install`
+1. No `reorder`, execute `yarn medusa plugin:publish`
+2. No backend do Medusa, execute `yarn medusa db:migrate`
+3. No backend do Medusa, execute `yarn install`
 
-Não assuma que o backend Medusa está utilizando o código local mais recente até que essa sequência tenha sido concluída.
+Não presuma que o backend do Medusa esteja utilizando o código mais recente do plug-in local até que essa sequência tenha sido concluída.
 
-## Áreas Implementadas
 
-The currently implemented areas are `Subscriptions`, `Plans & Offers`, `Renewals`, `Dunning`, `Cancellation & Retention`, `Activity Log`, and `Analytics`.
+## Áreas implementadas
 
-`Activity Log` is now implemented end-to-end as a business audit trail with Admin read APIs, a dedicated Admin page, and a subscription-level timeline.
+As áreas atualmente implementadas são `Assinaturas`, `Planos e ofertas`, `Renovações`, `Cobranças em atraso`, `Cancelamento e retenção`, `Registro de atividades` e `Análises`.
+
+O `Registro de Atividades` agora está implementado de ponta a ponta como uma trilha de auditoria de negócios, com APIs de leitura para administradores, uma página dedicada aos administradores e uma linha do tempo por nível de assinatura.
 
 ### Assinaturas
 
 Esta área inclui:
-- subscription list in Admin
-- subscription details page
-- order-detail subscription widget on the standard Medusa order page
-- pause, resume, and cancel actions
-- schedule plan change
-- edit shipping address
-- filters, sorting, pagination, and loading/error states
+- lista de assinaturas na seção Admin
+- página de detalhes da assinatura
+- widget de detalhes da assinatura na página padrão de pedidos do Medusa
+- ações para pausar, retomar e cancelar
+- agendar alteração do plano
+- editar endereço de entrega
+- filtros, ordenação, paginação e estados de carregamento/erro
 
-### Planos e Ofertas
+### Planos e ofertas
 
 Esta área inclui:
-- product-level and variant-level subscription offer configuration
-- allowed frequencies and per-frequency discounts
-- offer rules such as minimum cycles, trial settings, and stacking policy
-- Admin management page with create, edit, filter, sort, and toggle flows
-- effective config resolution with `variant > product` semantics
-- integration with `Subscriptions` plan-change validation
+- configuração de ofertas de assinatura no nível do produto e no nível da variante
+- frequências permitidas e descontos por frequência
+- regras de oferta, como ciclos mínimos, configurações de período de teste e política de acumulação de descontos
+- página de gerenciamento administrativo com funções para criar, editar, filtrar, classificar e ativar/desativar fluxos
+- resolução eficaz da configuração com a semântica `variante > produto`
+- integração com a validação de alteração de plano do módulo `Subscriptions`
 
 ### Renovações
 
 Esta área inclui:
-- renewal cycle queue in Admin
-- renewal cycle detail page
-- approve and reject flows for pending changes
-- force renewal flow
-- scheduler-backed and manual renewal execution
-- attempt history and linked subscription/order summaries
-- integration with `Subscriptions` eligibility and pending changes
-- integration with `Plans & Offers` policy validation at execution time
-- automatic `Dunning` case creation for payment-qualified renewal failures
-- operational hardening through workflow locking, correlation IDs, structured logs, and scheduler summary metrics
+- fila do ciclo de renovação na Administração
+- página de detalhes do ciclo de renovação
+- fluxos de aprovação e rejeição para alterações pendentes
+- fluxo de renovação forçada
+- execução de renovações por meio do agendador e manualmente
+- histórico de tentativas e resumos de assinaturas/pedidos vinculados
+- integração com a elegibilidade de `Assinaturas` e alterações pendentes
+- integração com a validação de políticas de `Planos e Ofertas` no momento da execução
+- criação automática de casos de `Cobrança` para falhas de renovação com pagamento qualificado
+- fortalecimento operacional por meio de bloqueio de fluxos de trabalho, IDs de correlação, logs estruturados e métricas de resumo do agendador
 
-### Dunning (Cobrança)
-
-Esta área inclui:
-- dunning case list in Admin
-- dunning case detail page
-- retry-now action
-- mark recovered and mark unrecovered actions
-- retry schedule override
-- scheduler-backed retry execution
-- attempt history and linked subscription, renewal, and order summaries
-- integration with `Renewals` payment-qualified failures
-- integration with `Subscriptions` lifecycle state through `past_due` and recovery back to `active`
-- operational hardening through workflow locking, correlation IDs, structured logs, and scheduler summary metrics
-
-### Cancelamento e Retenção
+### Cobrança
 
 Esta área inclui:
-- cancellation case list in Admin
-- cancellation case detail page
-- apply retention offer flow for `pause`, `discount`, and `bonus`
-- update reason flow
-- finalize cancellation flow
-- offer history and final outcome timeline
-- integration with `Subscriptions` lifecycle state
-- integration with `Renewals` through renewal summary and renewal eligibility effects
-- integration with `Dunning` through active-case coexistence and linked dunning summary
-- operational hardening through audit trail, structured logs, and scheduler summary metrics
+- lista de casos de cobrança em Admin
+- página de detalhes do caso de cobrança
+- ação “repetir agora”
+- ações “marcar como recuperado” e “marcar como não recuperado”
+- substituição da programação de novas tentativas;
+- execução de novas tentativas por meio do agendador;
+- histórico de tentativas e resumos vinculados de assinaturas, renovações e pedidos;
+- integração com falhas qualificadas para pagamento em `Renovações`;
+- integração com o estado do ciclo de vida em `Assinaturas` por meio de `past_due` e recuperação para o estado `ativo`;
+- fortalecimento operacional por meio de bloqueio de fluxo de trabalho, IDs de correlação, logs estruturados e métricas de resumo do agendador
 
-### Registro de Atividades
-
-Esta área inclui:
-- append-only `subscription_log` storage and workflow-backed event creation
-- cross-domain business audit coverage for `Subscriptions`, `Renewals`, `Dunning`, and `Cancellation & Retention`
-- Admin list page with filtering, sorting, pagination, and event detail
-- per-subscription timeline on the subscription detail page
-- snapshot-first read model and Admin read API routes
-- backend coverage for normalization, event creation, API contracts, and admin flow integration
-
-### Análise de Dados e Métricas
+### Cancelamento e retenção
 
 Esta área inclui:
-- daily analytics snapshot storage and rebuild workflow support
-- KPI reporting for `MRR`, `Churn Rate`, `LTV`, and `Active Subscriptions`
-- trends reporting grouped by `day`, `week`, and `month`
-- Admin analytics page with filters, KPI cards, trend visualization, and export actions
-- Admin API routes for KPI, trends, export, and rebuild flows
-- backend coverage for analytics formulas, read models, API contracts, and admin reporting flows
+- lista de casos de cancelamento na Administração
+- página de detalhes do caso de cancelamento
+- fluxo de aplicação de ofertas de retenção para `pausa`, `desconto` e `bônus`
+- fluxo de atualização do motivo;
+- fluxo de finalização do cancelamento;
+- histórico de ofertas e linha do tempo do resultado final;
+- integração com o estado do ciclo de vida de `Assinaturas`;
+- integração com `Renovações` por meio do resumo de renovações e dos efeitos de elegibilidade para renovação;
+- integração com `Cobranças` por meio da coexistência de casos ativos e do resumo de cobranças vinculado;
+- fortalecimento operacional por meio de trilha de auditoria, logs estruturados e métricas de resumo do agendador
 
-## Observações
+### Registro de atividades
 
-- The documents under `specs/` are design-time documents. They are useful for context, but they should not be treated as the final source of truth once implementation evolves.
-- The documents in `architecture/`, `api/`, `admin/`, and `testing/` are the runtime source of truth for implemented behavior.
-- The implementation plan remains the roadmap for future work, while the runtime documentation should describe the current state of the plugin.
+Esta área inclui:
+- armazenamento `subscription_log` somente para adição e criação de eventos com suporte de fluxo de trabalho
+- cobertura de auditoria de negócios entre domínios para `Assinaturas`, `Renovações`, `Cobranças em atraso` e `Cancelamento e Retenção`
+- página de lista de administradores com filtragem, classificação, paginação e detalhes de eventos
+- linha do tempo por assinatura na página de detalhes da assinatura
+- modelo de leitura “snapshot-first” e rotas da API de leitura para administradores
+- cobertura de back-end para normalização, criação de eventos, contratos de API e integração do fluxo administrativo
+
+### Análises
+
+Esta área inclui:
+- armazenamento de instantâneos diários de análises e suporte ao fluxo de trabalho de reconstrução;
+- relatórios de KPIs para `MRR`, `Taxa de cancelamento`, `LTV` e `Assinaturas ativas`;
+- relatórios de tendências agrupados por `dia`, `semana` e `mês`;
+- página de análises de administração com filtros, cartões de KPIs, visualização de tendências e ações de exportação;
+- rotas da API de administração para KPIs, tendências, exportação e fluxos de reconstrução;
+- cobertura de back-end para fórmulas de análise, modelos de leitura, contratos de API e fluxos de relatórios de administração
+
+## Notas
+
+- Os documentos na pasta `specs/` são documentos de fase de projeto. Eles são úteis para contextualização, mas não devem ser considerados como a fonte definitiva de informação à medida que a implementação evolui.
+- Os documentos nas pastas `architecture/`, `api/`, `admin/` e `testing/` constituem a fonte definitiva de informação em tempo de execução para o comportamento implementado.
+- O plano de implementação continua sendo o roteiro para trabalhos futuros, enquanto a documentação de tempo de execução deve descrever o estado atual do plug-in.

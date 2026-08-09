@@ -1,268 +1,268 @@
-# Admin UI: Registro de Atividades
+# Interface do usuário de administração: Registro de atividades
 
-This document describes the implemented Admin UI for the `Activity Log` area in the `Reorder` plugin.
+Este documento descreve a interface de usuário administrativa implementada para a área `Registro de atividades` no plug-in `Reorder`.
 
-It focuses on:
-- screen behavior
-- user flows
-- data loading
-- UI state handling
-- UX boundaries
+O foco está em:
+- comportamento da tela
+- fluxos de usuários
+- carregamento de dados
+- gerenciamento do estado da interface do usuário (UI)
+- limites da experiência do usuário (UX)
 
-## Purpose
+## Objetivo
 
-The `Activity Log` Admin UI gives operators a read-oriented audit surface for subscription lifecycle events across:
-- `Subscriptions`
-- `Renewals`
-- `Dunning`
-- `Cancellation & Retention`
+A interface de usuário de administração do `Registro de Atividades` oferece aos operadores uma área de auditoria voltada para a leitura dos eventos do ciclo de vida das assinaturas nas seguintes categorias:
+- `Assinaturas`
+- `Renovações`
+- `Cobranças em atraso`
+- `Cancelamento e retenção`
 
-It is meant to help operators:
-- review what changed
-- understand who or what caused the change
-- move from a global audit view to one subscription timeline
+O objetivo é ajudar os operadores a:
+- analisar o que mudou;
+- entender quem ou o que causou a mudança;
+- passar de uma visão geral da auditoria para uma linha do tempo específica de uma assinatura
 
-The UI is implemented as Medusa Admin custom routes and follows the same dashboard patterns already used by other plugin areas.
+A interface do usuário é implementada como rotas personalizadas do Medusa Admin e segue os mesmos padrões de painel já utilizados por outras áreas do plugin.
 
-## Route Map
+## Mapa da rota
 
-Implemented routes and surfaces:
+Rotas e superfícies implementadas:
 - `/app/subscriptions/activity-log`
-- `Activity Log` section inside `/app/subscriptions/:id`
+- Seção `Activity Log` dentro de `/app/subscriptions/:id`
 
-Navigation behavior:
-- the global page is nested under `Subscriptions`
-- clicking a row in the global page opens event detail in a drawer
-- the subscription detail page exposes a dedicated `Activity Log` section for per-subscription review
+Comportamento de navegação:
+- a página global está aninhada na seção `Assinaturas`
+- clicar em uma linha na página global abre os detalhes do evento em uma gaveta
+- a página de detalhes da assinatura apresenta uma seção dedicada chamada `Registro de atividades` para análise por assinatura
 
-## 1. Global Registro de Atividades Page
+## 1. Página de Registro de Atividades Globais
 
-### Purpose
+### Objetivo
 
-The global page is the cross-subscription audit queue for operators.
+A página global é a fila de auditoria entre assinaturas destinada aos operadores.
 
-It is implemented with Medusa `DataTable`.
+É implementado com o `DataTable` do Medusa.
 
-### Main UI Elements
+### Principais elementos da interface do usuário
 
-The page includes:
-- page title and short description
-- list toolbar
-- activity log DataTable
-- pagination
-- event detail drawer
+A página inclui:
+- título da página e breve descrição
+- barra de ferramentas da lista
+- DataTable do registro de atividades
+- paginação
+- painel de detalhes do evento
 
-### Columns
+### Colunas
 
-The table currently displays:
-- `Subscription`
-- `Created`
-- `Actor`
-- `Event`
-- `Reason`
+Atualmente, a tabela exibe:
+- `Assinatura`
+- `Criada`
+- `Ator`
+- `Evento`
+- `Motivo`
 
-Column rendering follows the same compact Medusa-style pattern used in the other Admin list pages:
-- primary value on the first line
-- supporting value in subtle text on the second line where helpful
+A exibição das colunas segue o mesmo padrão compacto no estilo Medusa usado nas outras páginas de lista do Admin:
+- valor principal na primeira linha
+- valor complementar em texto discreto na segunda linha, quando for relevante
 
-### Search
+### Pesquisar
 
-The page has a search input in the top-right area of the toolbar.
+A página possui um campo de pesquisa na área superior direita da barra de ferramentas.
 
-Search is intended for broad lookup and currently covers:
-- subscription reference
-- customer name
-- reason
+A função de pesquisa destina-se a buscas gerais e, atualmente, abrange:
+- referência da assinatura
+- nome do cliente
+- motivo
 
-### Filters
+### Filtros
 
-The page uses the same `Add filter` interaction pattern as the existing Admin list pages.
+A página utiliza o mesmo padrão de interação “Adicionar filtro” das páginas de lista do Admin já existentes.
 
-Implemented filters:
-- `Event`
-- `Actor`
+Filtros implementados:
+- `Evento`
+- `Ator`
 
-The page also exposes dedicated date inputs for:
-- `Created from`
-- `Created to`
+A página também apresenta campos de data específicos para:
+- `Criado a partir de`
+- `Criado até`
 
-These date inputs:
-- are applied as list filters
-- are shown inline in the toolbar area
-- are intentionally not rendered as segmented chips
+Essas entradas de data:
+- são aplicadas como filtros de lista
+- são exibidas diretamente na área da barra de ferramentas
+- não são exibidas como chips segmentados, de forma intencional
 
-Applied non-date filters are rendered as segmented filter chips, consistent with `Cancellation & Retention`.
+Os filtros não relacionados à data aplicados são representados como fichas de filtro segmentadas, de acordo com o princípio de `Cancelamento e Retenção`.
 
-The `Actor` presentation prefers the resolved display value from the read model:
-- for admin users, this is typically the admin email
-- if no display enrichment is available, the UI falls back to `actor_id`
+A apresentação `Actor` dá preferência ao valor de exibição resolvido a partir do modelo de leitura:
+- para usuários administradores, esse valor é normalmente o e-mail de administrador
+- se não houver nenhum enriquecimento de exibição disponível, a interface do usuário recorre ao `actor_id`
 
-The `Event` cell renders only the event badge in the table view.
+A célula `Event` exibe apenas o ícone do evento na visualização em tabela.
 
-The domain label is not shown as a secondary line in the table cell.
+O rótulo do domínio não é exibido como uma linha secundária na célula da tabela.
 
-The toolbar also exposes:
-- `Add filter`
-- `Clear all`
-- sorting menu
+A barra de ferramentas também apresenta:
+- `Adicionar filtro`
+- `Limpar tudo`
+- menu de classificação
 
-### Quick Presets
+### Predefinições rápidas
 
-The page supports quick event presets for:
-- `Subscriptions`
-- `Renewals`
-- `Dunning`
-- `Cancellation`
+A página oferece predefinições rápidas de eventos para:
+- `Assinaturas`
+- `Renovações`
+- `Cobranças pendentes`
+- `Cancelamentos`
 
-These presets are implemented as grouped `event_type` selections and rendered like the other active filters.
+Essas predefinições são implementadas como seleções agrupadas de `event_type` e exibidas da mesma forma que os outros filtros ativos.
 
-### Sorting
+### Classificação
 
-The page uses the standard sorting menu in the toolbar.
+A página utiliza o menu de classificação padrão na barra de ferramentas.
 
-The default list sort is:
-- `Created desc`
+A ordenação padrão da lista é:
+- `Criado (descendente)`
 
-### Detail Drill-Down
+### Detalhamento
 
-Clicking a row opens a drawer for the selected event.
+Ao clicar em uma linha, abre-se uma janela deslizante com o evento selecionado.
 
-The drawer shows:
-- event overview
-- subscription snapshot
+A janela exibe:
+- visão geral do evento
+- instantâneo da assinatura
 - `changed_fields`
 - `previous_state`
 - `new_state`
 - `metadata`
 
-Shipping-address events prefer readable address values in `changed_fields` instead of only technical boolean flags.
+Os eventos relacionados ao endereço de entrega preferem valores de endereço legíveis em `changed_fields`, em vez de apenas indicadores booleanos técnicos.
 
-The drawer uses a dedicated detail query and does not reload the entire list by itself.
+A gaveta utiliza uma consulta de detalhes específica e não recarrega a lista inteira por conta própria.
 
-## 2. Assinatura Detail Timeline
+## 2. Cronograma de detalhes da assinatura
 
-### Purpose
+### Objetivo
 
-The subscription detail page includes an `Activity Log` section to show the audit history for one subscription in place.
+A página de detalhes da assinatura inclui uma seção chamada `Registro de atividades`, que exibe o histórico de auditoria de uma determinada assinatura.
 
-This gives operators local audit context without leaving the subscription detail view.
+Isso proporciona aos operadores um contexto de auditoria local sem que precisem sair da visualização dos detalhes da assinatura.
 
-### Main UI Elements
+### Principais elementos da interface do usuário
 
-The section includes:
-- table-based timeline
-- filter toolbar
-- sorting menu
-- pagination
-- loading state
-- empty state
-- inline error alert
-- event detail drawer
+A seção inclui:
+- linha do tempo baseada em tabela
+- barra de ferramentas de filtro
+- menu de classificação
+- paginação
+- estado de carregamento
+- estado vazio
+- alerta de erro embutido
+- painel de detalhes do evento
 
-### Timeline Content
+### Conteúdo da linha do tempo
 
-The subscription detail timeline now uses a compact table layout rather than a card list.
+A linha do tempo com os detalhes da assinatura agora usa um layout de tabela compacta, em vez de uma lista de cartões.
 
-The table currently shows:
-- `Created`
-- `Event`
-- `Actor`
-- `Summary`
+Atualmente, a tabela exibe:
+- `Criado`
+- `Evento`
+- `Responsável`
+- `Resumo`
 
-Entries are ordered by:
+Os registros são ordenados por:
 - `created_at desc`
 
-### Actor Presentation
+### Apresentação do ator
 
-The timeline distinguishes:
+A linha do tempo distingue:
 - `admin`
 - `system`
 - `scheduler`
 
-It uses the same status-badge language and color semantics as the global `Activity Log` page.
+Ela utiliza a mesma linguagem de ícones de status e a mesma semântica de cores da página global `Registro de Atividades`.
 
-The actor cell prefers the resolved display value:
-- admin email when available
-- `actor_id` only as a fallback
+A célula do ator dá preferência ao valor de exibição resolvido:
+- e-mail de administrador, quando disponível
+- `actor_id` apenas como alternativa
 
-The event cell shows only the event badge.
+A célula do evento exibe apenas o ícone do evento.
 
-The summary cell is operator-facing:
-- it prefers a readable summary over raw internal field names
-- technical keys such as `pending_update_data` are translated before rendering
-- the secondary line is shown only when an explicit `reason` exists
-- shipping-address diffs are shown in a readable `old -> new` form
-- next-delivery-skip events show the `skip_next_cycle` transition in a readable form
+A célula de resumo é voltada para o operador:
+- ela prioriza um resumo legível em vez de nomes de campos internos brutos
+- chaves técnicas, como `pending_update_data`, são traduzidas antes da exibição
+- a linha secundária é exibida apenas quando existe um `motivo` explícito
+- as diferenças no endereço de entrega são mostradas no formato legível `antigo -> novo`
+- eventos de “pular próxima entrega” mostram a transição `skip_next_cycle` de forma legível
 
-### Timeline Filters
+### Filtros da linha do tempo
 
-The subscription timeline intentionally does not expose a search input.
+A linha do tempo da assinatura não exibe, intencionalmente, um campo de pesquisa.
 
-It supports:
-- domain filter
-- actor filter
-- `Created from`
-- `Created to`
+Suporta:
+- filtro de domínio
+- filtro de ator
+- `Criado a partir de`
+- `Criado para`
 
-The date filters are not always visible.
+Os filtros de data nem sempre ficam visíveis.
 
-Instead:
-- they are added through `Add filter`
-- once added, the corresponding datetime input is rendered below the toolbar
-- if removed, the input disappears again
+Em vez disso:
+- eles são adicionados por meio de `Adicionar filtro`
+- uma vez adicionados, o campo de data e hora correspondente é exibido abaixo da barra de ferramentas
+- se removidos, o campo desaparece novamente
 
-### Detail Drill-Down
+### Detalhamento
 
-Clicking a timeline entry opens an event drawer with:
+Ao clicar em uma entrada da linha do tempo, é exibida uma janela de eventos com:
 - `previous_state`
 - `new_state`
 - `changed_fields`
 - `metadata`
 
-This uses a dedicated detail query and keeps the base timeline compact.
+Isso utiliza uma consulta detalhada específica e mantém a linha do tempo básica compacta.
 
-## 3. Data Loading
+## 3. Carregamento de dados
 
-The `Activity Log` Admin UI follows the Medusa display-query pattern.
+A interface de usuário de administração do `Registro de Atividades` segue o padrão de exibição e consulta Medusa.
 
-Implemented behavior:
-- the global list loads on mount
-- the subscription timeline loads on mount with the subscription detail page
-- event detail uses a separate query on demand
-- successful Admin mutations invalidate the global list and the relevant subscription timeline
+Comportamento implementado:
+- a lista global é carregada no momento da montagem;
+- a linha do tempo da assinatura é carregada no momento da montagem, juntamente com a página de detalhes da assinatura;
+- os detalhes do evento utilizam uma consulta separada sob demanda;
+- as mutações administrativas bem-sucedidas invalidam a lista global e a linha do tempo da assinatura relevante
 
-Implementation detail:
-- global list data-loading lives in `src/admin/routes/subscriptions/activity-log/data-loading.ts`
-- subscription timeline data-loading lives in `src/admin/routes/subscriptions/data-loading.ts`
+Detalhes de implementação:
+- o carregamento de dados da lista global está em `src/admin/routes/subscriptions/activity-log/data-loading.ts`
+- o carregamento de dados da linha do tempo de assinaturas está em `src/admin/routes/subscriptions/data-loading.ts`
 
-## 4. UX Boundaries
+## 4. Limites da experiência do usuário
 
-The implemented UI is intentionally read-oriented.
+A interface de usuário implementada foi projetada, de forma intencional, para facilitar a leitura.
 
-It does not currently provide:
-- edit actions from the log itself
-- event export
-- saved filters
-- personalized views
-- grouped or collapsed domain sections
+Atualmente, ele não oferece:
+- ações de edição diretamente no próprio registro;
+- exportação de eventos;
+- filtros salvos;
+- visualizações personalizadas;
+- seções de domínios agrupadas ou recolhidas
 
-The current UX priorities are:
-- consistency with existing Admin pages
-- fast drill-down into one event
-- stable snapshot-first rendering
+As prioridades atuais de experiência do usuário (UX) são:
+- consistência com as páginas de administração existentes
+- acesso rápido a detalhes de um evento específico
+- renderização estável com prioridade no snapshot
 
-## 5. Snapshot-First Decision
+## 5. Decisão com prioridade no instantâneo
 
-The UI renders primarily from the stored `subscription_log` snapshots.
+A interface do usuário é renderizada principalmente a partir dos instantâneos `subscription_log` armazenados.
 
-This means:
-- the global list does not depend on live linked queries from other modules
-- the subscription timeline does not depend on live linked queries from other modules
-- the event drawer reflects the stored business audit payload
+Isso significa que:
+- a lista global não depende de consultas vinculadas em tempo real de outros módulos
+- a linha do tempo da assinatura não depende de consultas vinculadas em tempo real de outros módulos
+- a gaveta de eventos reflete a carga útil de auditoria de negócios armazenada
 
-This is intentional.
+Isso é proposital.
 
-It makes the audit trail:
-- historically stable
-- predictable to operate
-- cheaper to read than a heavily enriched cross-module UI
+Isso torna a trilha de auditoria:
+- historicamente estável
+- previsível em termos de operação
+- mais econômica de ser analisada do que uma interface de usuário entre módulos com muitos recursos

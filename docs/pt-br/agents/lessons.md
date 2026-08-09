@@ -1,29 +1,29 @@
-# Lessons Learned
+# Lições aprendidas
 
-In this file, we record recurring patterns, encountered issues, and mistakes to avoid when working with the Reorder plugin.
-It should be reviewed at the start of a session and updated after fixing any bug or resolving a complex issue.
+Neste arquivo, registramos padrões recorrentes, problemas encontrados e erros a serem evitados ao trabalhar com o plugin Reorder.
+Deve ser revisado no início de uma sessão e atualizado após a correção de qualquer bug ou resolução de um problema complexo.
 
-## Rules for AI Agents
+## Regras para Agentes de IA
 
-### Repository Language Constraint
+### Restrição de idioma do repositório
 
-- **Rule**: All files, code comments, documentation, specs, lessons, and commit messages added or modified in the repository on GitHub MUST be written in English. Even if the user interacts with you in another language (e.g., Polish), do not write Polish code comments, skill files, specs, or repository files.
-- **Context**: The repository codebase and its meta-configuration (like AI agents instructions) must maintain a unified English language standard.
+- **Regra**: Todos os arquivos, comentários de código, documentação, especificações, lições e mensagens de commit adicionados ou modificados no repositório no GitHub DEVEM ser escritos em inglês. Mesmo que o usuário interaja com você em outro idioma (por exemplo, polonês), não escreva comentários de código, arquivos de habilidades, especificações ou arquivos de repositório em polonês.
+- **Contexto**: A base de código do repositório e sua metaconfiguração (como instruções dos agentes de IA) devem manter um padrão unificado de idioma inglês.
 
-### Git Commits and Push Approval
+### Commits do Git e aprovação push
 
-- **Rule**: Before proposing a commit or git push to GitHub, always construct a Conventional Commits message format: `type(scope): description` and present it to the user. Wait for the user's explicit approval before proceeding with the commit and push.
-- **Context**: Helps the user audit and accept individual changes, ensuring only well-formed commits with correct scopes are pushed.
+- **Regra**: Antes de propor um commit ou git push ao GitHub, sempre construa um formato de mensagem de Commits Convencionais: `type(scope): description` e apresente-o ao usuário. Aguarde a aprovação explícita do usuário antes de prosseguir com o commit e o push.
+- **Contexto**: ajuda o usuário a auditar e aceitar alterações individuais, garantindo que apenas commits bem formados com escopos corretos sejam enviados.
 
-## General Lessons
+## Lições Gerais
 
-### Package Installation with Yarn 4 on Windows
+### Instalação de pacote com Yarn 4 no Windows
 
-- **Lesson**: When installing dependencies using Yarn Berry (v4) with `nodeLinker: node-modules`, built-in TypeScript compatibility patches can trigger hunk conflicts on certain platforms.
-- **Rule**: Use `corepack yarn install --mode=skip-build` to bypass conflicting lifecycle patches and ensure clean linking into `node_modules`.
+- **Lição**: Ao instalar dependências usando Yarn Berry (v4) com `nodeLinker: node-modules`, patches de compatibilidade TypeScript integrados podem desencadear conflitos de blocos em determinadas plataformas.
+- **Regra**: Use `corepack yarn install --mode=skip-build` para ignorar patches de ciclo de vida conflitantes e garantir links limpos em `node_modules`.
 
-### Customer Authentication in Store Integration Tests
+### Autenticação de Cliente em Testes de Integração de Loja
 
-- **Lesson**: Customer-authenticated store routes (`/store/customers/me/subscriptions/*`) require JWT tokens signed with `actor_type: "customer"` and `auth_identity_id` linked to the customer entity.
-- **Rule**: Always use the shared `createCustomerAuthHeaders(container, customerId)` fixture helper to generate standard bearer authentication for customer storefront integration testing.
+- **Lição**: Rotas de loja autenticadas pelo cliente (`/store/customers/me/subscriptions/*`) requerem tokens JWT assinados com `actor_type: "customer"` e `auth_identity_id` vinculados à entidade do cliente.
+- **Regra**: Sempre use o auxiliar de fixação `createCustomerAuthHeaders(container, customerId)` compartilhado para gerar autenticação de portador padrão para testes de integração de vitrine do cliente.
 

@@ -1,94 +1,94 @@
-<div align="center">
+<div alinhar="centro">
   <a href="https://www.reorderjs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/f3420397-bfb7-4358-be41-aa2d9d22623c">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/60cebea7-3f45-40cb-8382-301b52376e82">
-    <img alt="Reorder logo" src="https://github.com/user-attachments/assets/f3420397-bfb7-4358-be41-aa2d9d22623c">
-  </picture>
+  <imagem>
+    <source media="(prefere esquema de cores: escuro)" srcset="https://github.com/user-attachments/assets/f3420397-bfb7-4358-be41-aa2d9d22623c">
+    <source media="(prefere esquema de cores: claro)" srcset="https://github.com/user-attachments/assets/60cebea7-3f45-40cb-8382-301b52376e82">
+    <img alt="Reordenar logotipo" src="https://github.com/user-attachments/assets/f3420397-bfb7-4358-be41-aa2d9d22623c">
+  </imagem>
   </a>
-  <h1> Open Source Assinatura Medusa Plugin </h1> 
+  <h1> Plug-in Medusa de assinatura de código aberto </h1> 
   <a href="https://github.com/reorder-js/reorder?tab=MIT-1-ov-file">
     <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   </a>
   <a href="https://github.com/reorder-js/reorder/issues">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="RPs bem-vindos!" />
   <a href="https://www.reorderjs.com/contact">
     <img alt="Support" src="https://img.shields.io/badge/support-contact%20author-blue.svg" />
   </a>
 </div>
 
-<h4 align="center">
-  <a href="https://www.reorderjs.com">Website</a> | 
-  <a href="https://docs.reorderjs.com">Documentation</a>
-  
-  &nbsp;
-  
-  <img width="800" height="600" alt="subscriptions-page-crop" src="https://github.com/user-attachments/assets/a7817f86-7524-4ccf-90f2-9beca34b50c4" />
+<h4 alinhar="centro">
+  <a href="https://www.reorderjs.com">Site</a> | 
+  <a href="https://docs.reorderjs.com">Documentação</a>
+
+ 
+
+<img width="800" height="600" alt="subscriptions-page-crop" src="https://github.com/user-attachments/assets/a7817f86-7524-4ccf-90f2-9beca34b50c4" />
 </h4>
 
-&nbsp;
+ 
 
-## What is Reorder?
+## O que é reordenar?
 
-`Reorder` is an open source Medusa subscription plugin.
+`Reorder` é um plugin de assinatura Medusa de código aberto.
 
-It adds recurring commerce capabilities to a Medusa store, including subscriptions, plans and offers, renewals, dunning, cancellation and retention flows, activity logs, and analytics.
+Ele adiciona recursos de comércio recorrente a uma loja Medusa, incluindo assinaturas, planos e ofertas, renovações, cobrança, cancelamento e fluxos de retenção, registros de atividades e análises.
 
-`Reorder` is built as a Medusa plugin with Medusa modules, workflow-backed mutations, Admin API routes, scheduled jobs, and Admin UI extensions.
+`Reorder` é construído como um plugin Medusa com módulos Medusa, mutações baseadas em fluxo de trabalho, rotas de API de administração, trabalhos agendados e extensões de UI de administração.
 
-&nbsp;
+ 
 
-## What it includes
+## O que inclui
 
-- `Subscriptions`
-- `Plans & Offers`
-- `Renewals`
-- `Dunning`
-- `Cancellation & Retention`
-- `Activity Log`
-- `Analytics`
+- `Assinaturas`
+- `Planos e Ofertas`
+- `Renovações`
+- `Cobrança`
+- `Cancelamento e Retenção`
+- `Registro de atividades`
+- `Analítica`
 
-&nbsp;
+ 
 
-## Current scope
+## Escopo atual
 
-`Reorder` currently focuses on recurring commerce operations managed from the Medusa Admin.
+`Reorder` atualmente se concentra em operações comerciais recorrentes gerenciadas pelo Medusa Admin.
 
-Today, the plugin provides strong Admin coverage across the implemented domains. Customer self-service flows will be introduced in the near future as a `Reorder Subscription Starter`.
+Hoje, o plugin oferece forte cobertura administrativa em todos os domínios implementados. Os fluxos de autoatendimento do cliente serão introduzidos em um futuro próximo como um `Reorder Subscription Starter`.
 
-&nbsp;
+ 
 
-## Feature highlights
+## Destaques dos recursos
 
-- Assinatura lifecycle management
-- Configurable plans and offers
-- Renovação orchestration
-- Dunning (Cobrança) retries and recovery tooling
-- Cancelamento flows with retention offers
-- Operational activity logs
-- Assinatura analytics and reporting
+- Gerenciamento do ciclo de vida da assinatura
+- Planos e ofertas configuráveis
+- Orquestração de renovação
+- Novas tentativas de cobrança e ferramentas de recuperação
+- Fluxos de cancelamento com ofertas de retenção
+- Registros de atividades operacionais
+- Análise e relatórios de assinaturas
 
-&nbsp;
+ 
 
-## Installation
+## Instalação
 
-`Reorder` is meant to be installed into an existing Medusa project.
+`Reorder` deve ser instalado em um projeto Medusa existente.
 
-### 1. Install the plugin
+### 1. Instale o plugin
 
-With `npm`:
+Com `npm`:
 
 ```bash
 npm install @reorderjs/reorder
 ```
 
-With `yarn`:
+Com `fio`:
 
 ```bash
 yarn add @reorderjs/reorder
 ```
 
-### 2. Add the plugin to `medusa-config.ts`
+### 2. Adicione o plugin em `medusa-config.ts`
 
 ```ts
 plugins: [
@@ -100,54 +100,54 @@ plugins: [
 ]
 ```
 
-### 3. Run Migrations
+### 3. Execute migrações
 
-With `npm`:
+Com `npm`:
 
 ```bash npm
 npx medusa db:migrate
 ```
 
-With `yarn`:
+Com `fio`:
 
 ```bash yarn
 yarn medusa db:migrate
 ```
 
-### 4. Start your Medusa app
+### 4. Inicie seu aplicativo Medusa
 
-After adding the plugin, run your normal Medusa setup flow in your store project.
+Depois de adicionar o plugin, execute o fluxo normal de configuração do Medusa no projeto da sua loja.
 
-## Local development
+## Desenvolvimento local
 
-If you want to work on the plugin itself locally:
+Se você quiser trabalhar no próprio plugin localmente:
 
-### 1. Clone the repository
+### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/reorder-js/reorder.git
 cd reorder
 ```
 
-### 2. Install dependencies
+### 2. Instale dependências
 
 ```bash
 yarn install
 ```
 
-### 3. Publish the local plugin
+### 3. Publique o plugin local
 
 ```bash
 yarn medusa plugin:publish
 ```
 
-### 4. Add the plugin in your Medusa store
+### 4. Adicione o plugin em sua loja Medusa
 
 ```bash
 yarn medusa plugin:add reorder
 ```
 
-### 5. Add the plugin configuration to `medusa-config.ts`
+### 5. Adicione a configuração do plugin em `medusa-config.ts`
 
 ```ts
 plugins: [
@@ -159,60 +159,60 @@ plugins: [
 ]
 ```
 
-### 6. Install store dependencies
+### 6. Instale dependências de loja
 
 ```bash
 yarn install
 ```
 
-### 7. Start your Medusa store
+### 7. Comece sua loja Medusa
 
 ```bash
 yarn dev
 ```
 
-&nbsp;
+ 
 
-## Requirements
+## Requisitos
 
-- Minimum: Medusa `2.3+`
-- Recommended: compatible with `@medusajs/medusa >= 2.4.0`
+- Mínimo: Medusa `2.3+`
+- Recomendado: compatível com `@medusajs/medusa >= 2.4.0`
 
-&nbsp;
+ 
 
 ## Arquitetura
 
-`Reorder` is organized around Medusa-native building blocks:
+`Reordenar` é organizado em torno de blocos de construção nativos da Medusa:
 
-- domain modules for subscription data and operational records
-- workflows for business mutations and orchestration
-- Admin API routes for plugin operations
-- Admin UI extensions for management flows
-- scheduled jobs for renewals, dunning, and analytics processing
+- módulos de domínio para dados de assinatura e registros operacionais
+- fluxos de trabalho para mutações e orquestração de negócios
+- Rotas da API Admin para operações de plugins
+- Extensões de interface de administração para fluxos de gerenciamento
+- trabalhos agendados para renovações, cobranças e processamento de análises
 
-&nbsp;
+ 
 
-## Documentation
+## Documentação
 
-Project documentation lives in `docs/`.
+A documentação do projeto reside em `docs/`.
 
-Useful starting points:
+Pontos de partida úteis:
 
 - `docs/README.md`
-- `docs/architecture/`
+- `docs/arquitetura/`
 - `docs/api/`
 - `docs/admin/`
-- `docs/testing/`
+- `docs/testes/`
 - `docs/roadmap/implementation-plan.md`
 
-&nbsp;
+ 
 
-## Contributing
+## Contribuindo
 
-Issues and pull requests are welcome.
+Problemas e solicitações pull são bem-vindos.
 
-Before changing behavior:
+Antes de mudar o comportamento:
 
-- read the runtime docs in `docs/`
-- keep implementation aligned with documented behavior
-- follow Medusa best practices for modules, workflows, routes, and Admin UI extensions
+- leia a documentação do tempo de execução em `docs/`
+- manter a implementação alinhada com o comportamento documentado
+- siga as práticas recomendadas da Medusa para módulos, fluxos de trabalho, rotas e extensões de interface de administração

@@ -1,65 +1,65 @@
-# Spec: 360-Degree End-to-End Coverage, Performance & Architectural Hardening
+# Especificações: Cobertura completa de 360 graus, desempenho e fortalecimento da arquitetura
 
-## TLDR & Overview
+## Resumo e visão geral
 
-The `Reorder` plugin currently implements 7 core domain modules (`Subscriptions`, `Plans & Offers`, `Renewals`, `Dunning`, `Cancellation & Retention`, `Activity Log`, and `Analytics`) as well as Storefront API endpoints for subscription checkout, customer portal actions, and PDP offer resolution.
+O plug-in `Reorder` implementa, atualmente, sete módulos principais do domínio (`Assinaturas`, `Planos e Ofertas`, `Renovações`, `Cobranças em atraso`, `Cancelamento e Retenção`, `Registro de atividades` e `Análises`), além de pontos de extremidade da API da loja virtual para finalização de compra de assinaturas, ações no portal do cliente e resolução de ofertas na página de detalhes do produto (PDP).
 
-While unit and individual admin route integration tests exist, there are notable coverage and architectural gaps in:
-1. **Storefront End-to-End Integration Testing**: No automated integration tests currently validate customer-facing `/store/customers/me/subscriptions/*`, `/store/products/:id/subscription-offer`, or `/store/carts/:id/subscribe` routes.
-2. **Concurrency & Race-Condition Guards**: Concurrent mutations (e.g. renewal cycle charging vs. customer cancellation / plan change) require explicit isolation and lock verification.
-3. **Agendado Job Automation & Reliability**: Background jobs (`src/jobs/`) need dedicated operational testing for edge conditions (lock timeouts, batch limits, failure recovery).
-4. **Performance & Query Optimization**: Database indexing and N+1 query elimination across link resolvers and snapshot analytics.
+Embora existam testes de integração de rotas de administração individuais e por unidade, há lacunas notáveis de cobertura e arquitetura em:
+1. **Testes de integração de ponta a ponta da loja virtual**: Atualmente, não há testes de integração automatizados que validem as rotas voltadas para o cliente, como `/store/customers/me/subscriptions/*`, `/store/products/:id/subscription-offer` ou `/store/carts/:id/subscribe`.
+2. **Proteções contra concorrência e condições de corrida**: alterações simultâneas (por exemplo, cobrança do ciclo de renovação versus cancelamento pelo cliente ou mudança de plano) exigem isolamento explícito e verificação de bloqueio.
+3. **Automação e confiabilidade de tarefas agendadas**: As tarefas em segundo plano (`src/jobs/`) precisam de testes operacionais dedicados para condições extremas (tempos limite de bloqueio, limites de lote, recuperação de falhas).
+4. **Desempenho e otimização de consultas**: Indexação do banco de dados e eliminação de consultas N+1 em resolvedores de links e análises de instantâneos.
 
-This specification outlines a phased, systematic engineering execution to bring the entire codebase to 360-degree E2E test coverage with peak performance and high reliability.
-
----
-
-## Proposed Architecture & Coverage Structure
-
-### 1. Storefront HTTP Integration Test Suite
-Location: `integration-tests/http/`
-- `store-subscription-routes.spec.ts`: Validates customer authentication, subscription retrieval, pause, resume, change-address, change-frequency, skip-next-delivery, and swap-product.
-- `store-subscription-checkout.spec.ts`: Validates pricing normalization (`sync-subscription-pricing`), discount calculation, cart completion, order-to-subscription linkage, and mixed-cart validation.
-- `store-product-offers.spec.ts`: Validates PDP offer resolution, variant overrides, frequency tiers, and discount rules.
-- `store-customer-cancellations.spec.ts`: Validates customer-initiated cancellation, retention offer recommendations, acceptance of retention offers, and final churn recording.
-
-### 2. Agendado Jobs & Concurrency Integration Suite
-Location: `integration-tests/http/`
-- `scheduled-jobs-resilience.spec.ts`: Validates scheduled execution of `process-renewal-cycles`, `process-dunning-retries`, `process-analytics-daily-snapshots`, and `process-cancellation-operational-metrics`.
-- `concurrency-guards.spec.ts`: Validates optimistic/pessimistic lock semantics when simultaneous mutations occur.
-
-### 3. Performance & Read Model Hardening
-- Audit database composite indexes across domain tables (`subscription`, `renewal_cycle`, `dunning_case`, `cancellation_case`, `subscription_log`, `subscription_metrics_daily`).
-- Validate query execution plans and ensure zero N+1 entity resolutions across Medusa links.
+Esta especificação descreve uma execução de engenharia sistemática e em fases para levar toda a base de código a uma cobertura de teste E2E de 360 graus, com desempenho máximo e alta confiabilidade.
 
 ---
 
-## Step-by-Step Implementation Plan
+## Arquitetura proposta e estrutura de cobertura
 
-### Phase 1: Storefront E2E Integration Coverage
-- [x] Implement `integration-tests/http/store-subscriptions-routes.spec.ts`
-- [x] Implement `integration-tests/http/store-subscription-checkout.spec.ts`
-- [x] Implement `integration-tests/http/store-product-offers.spec.ts`
-- [x] Implement `integration-tests/http/store-customer-cancellations.spec.ts`
+### 1. Conjunto de testes de integração HTTP da Storefront
+Localização: `integration-tests/http/`
+- `store-subscription-routes.spec.ts`: Valida a autenticação do cliente, a recuperação da assinatura, a pausa, a retomada, a alteração de endereço, a alteração de frequência, o salto da próxima entrega e a troca de produto.
+- `store-subscription-checkout.spec.ts`: Valida a normalização de preços (`sync-subscription-pricing`), o cálculo de descontos, a finalização do carrinho, a vinculação entre pedido e assinatura e a validação de carrinhos mistos.
+- `store-product-offers.spec.ts`: Valida a resolução de ofertas na página de detalhes do produto (PDP), substituições de variantes, níveis de frequência e regras de desconto.
+- `store-customer-cancellations.spec.ts`: Valida o cancelamento iniciado pelo cliente, recomendações de ofertas de retenção, aceitação de ofertas de retenção e registro final de cancelamento.
 
-### Phase 2: Orchestration, Agendado Jobs & Concurrency Testing
-- [x] Implement `integration-tests/http/scheduled-jobs-resilience.spec.ts`
-- [x] Implement `integration-tests/http/concurrency-guards.spec.ts`
+### 2. Conjunto de testes de integração para tarefas agendadas e concorrência
+Localização: `integration-tests/http/`
+- `scheduled-jobs-resilience.spec.ts`: Valida a execução agendada de `process-renewal-cycles`, `process-dunning-retries`, `process-analytics-daily-snapshots` e `process-cancellation-operational-metrics`.
+- `concurrency-guards.spec.ts`: Valida a semântica de bloqueio otimista/pessimista quando ocorrem mutações simultâneas.
 
-### Phase 3: Performance, Anti-N+1 & Read Model Verification
-- [x] Audit module database models and Medusa entity link resolvers
-- [x] Ensure pagination, filtering, and snapshot indexing are optimal
-
-### Phase 4: Full Validation & Lessons Learned
-- [x] Type check validation (`npx tsc --noEmit` passes 100%)
-- [x] Production build verification (`yarn build` passes 100%)
-- [x] Update runtime documentation in `docs/` and `.agents/lessons.md`
+### 3. Desempenho e fortalecimento do modelo de leitura
+- Auditar os índices compostos do banco de dados nas tabelas de domínio (`subscription`, `renewal_cycle`, `dunning_case`, `cancellation_case`, `subscription_log`, `subscription_metrics_daily`).
+- Validar os planos de execução das consultas e garantir que não haja nenhuma resolução de entidade N+1 nos links do Medusa.
 
 ---
 
-## Verificação e Testes
-All phases are strictly verified through Medusa v2 integration tests using Jest and `@medusajs/test-utils`.
-Commands:
+## Plano de implementação passo a passo
+
+### Fase 1: Cobertura de integração de ponta a ponta da loja virtual
+- [x] Implementar `integration-tests/http/store-subscriptions-routes.spec.ts`
+- [x] Implementar `integration-tests/http/store-subscription-checkout.spec.ts`
+- [x] Implementar `integration-tests/http/store-product-offers.spec.ts`
+- [x] Implementar `integration-tests/http/store-customer-cancellations.spec.ts`
+
+### Fase 2: Orquestração, tarefas agendadas e testes de concorrência
+- [x] Implementar `integration-tests/http/scheduled-jobs-resilience.spec.ts`
+- [x] Implementar `integration-tests/http/concurrency-guards.spec.ts`
+
+### Fase 3: Desempenho, Anti-N+1 e Verificação do Modelo de Leitura
+- [x] Auditar os modelos de banco de dados dos módulos e os resolvedores de links de entidades do Medusa
+- [x] Garantir que a paginação, a filtragem e a indexação de instantâneos estejam otimizadas
+
+### Fase 4: Validação completa e lições aprendidas
+- [x] Validação da verificação de tipos (`npx tsc --noEmit` é aprovado em 100%)
+- [x] Verificação da compilação para produção (`yarn build` é aprovado em 100%)
+- [x] Atualização da documentação de tempo de execução em `docs/` e `.agents/lessons.md`
+
+---
+
+## Verificação e testes
+Todas as fases são rigorosamente verificadas por meio de testes de integração do Medusa v2, utilizando o Jest e o `@medusajs/test-utils`.
+Comandos:
 ```bash
 yarn build
 yarn test:integration:http

@@ -3,40 +3,40 @@ name: run-tests
 description: Instructions for running and writing unit and integration tests for the reorder plugin. Use this skill when your task requires code validation, writing new tests, or diagnosing test errors.
 ---
 
-# Testing instructions for Reorder
+# Instruções de teste para o Reorder
 
-This skill helps the AI agent effectively write, run, and verify tests for the `reorder` project.
+Essa habilidade ajuda o agente de IA a escrever, executar e verificar testes de forma eficaz para o projeto `reorder`.
 
-## Core Testing Rules
+## Regras básicas para testes
 
-1. **Run focused tests** for the area you modified whenever possible.
-2. **Prefer integration HTTP tests** located in the `integration-tests/http/` directory.
-3. **Always add or update tests** if you introduce changes to:
-   - API contracts (route handlers)
-   - Workflow behaviors (workflows)
-   - Job scheduling logic (scheduler jobs)
-   - State transitions between different domains
-4. **Self-contained tests**: Tests must not depend on pre-seeded data in the database or on the results of other tests. Prepare all necessary fixtures in the `beforeAll` / `beforeEach` block and clean up afterwards.
-5. **Documentation alignment**: If you modify plugin behavior described in the documentation (`docs/`), ensure the tests reflect these changes.
+1. **Execute testes específicos** para a área que você modificou, sempre que possível.
+2. **Dê preferência aos testes de integração HTTP** localizados no diretório `integration-tests/http/`.
+3. **Sempre adicione ou atualize os testes** caso introduza alterações em:
+   - Contratos de API (manipuladores de rota)
+   - Comportamentos de fluxo de trabalho (fluxos de trabalho)
+   - Lógica de agendamento de tarefas (tarefas do agendador)
+   - Transições de estado entre diferentes domínios
+4. **Testes autônomos**: os testes não devem depender de dados pré-inseridos no banco de dados nem dos resultados de outros testes. Prepare todos os fixtures necessários no bloco `beforeAll` / `beforeEach` e limpe tudo depois.
+5. **Alinhamento com a documentação**: se você modificar o comportamento de um plugin descrito na documentação (`docs/`), certifique-se de que os testes reflitam essas alterações.
 
-## Commands for Running Tests
+## Comandos para executar testes
 
-Use the following scripts from `package.json` in the `reorder` directory:
+Use os seguintes scripts do arquivo `package.json`, localizado no diretório `reorder`:
 
-- Run integration HTTP tests:
+- Executar testes de integração HTTP:
   ```bash
   yarn test:integration:http
   ```
-- Run integration modules tests:
+- Executar testes dos módulos de integração:
   ```bash
   yarn test:integration:modules
   ```
-- Run all tests:
+- Executar todos os testes:
   ```bash
   yarn test
   ```
 
-To run a single test file, use Jest with the file path, for example:
+Para executar um único arquivo de teste, use o Jest com o caminho do arquivo, por exemplo:
 ```bash
 yarn jest integration-tests/http/subscriptions.spec.ts
 ```

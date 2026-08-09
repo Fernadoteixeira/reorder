@@ -1,6 +1,6 @@
 FROM node:20-bookworm-slim
 
-# Install system dependencies needed for native builds and database health checks
+# Install system dependencies needed for native builds, git/patch, and database health checks
 RUN apt-get update && apt-get install -y --no-install-recommends \
     postgresql-client \
     python3 \
@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     g++ \
     curl \
     ca-certificates \
+    git \
+    patch \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -19,7 +21,7 @@ RUN corepack enable && corepack prepare yarn@4.4.1 --activate
 COPY package.json .yarnrc.yml yarn.lock ./
 
 # Install dependencies in non-immutable mode for Linux
-RUN YARN_ENABLE_TELEMETRY=0 corepack yarn install --mode=skip-build --inline-builds
+RUN YARN_ENABLE_TELEMETRY=0 corepack yarn install --mode=skip-build
 
 # Copy application source code and configuration
 COPY . .
