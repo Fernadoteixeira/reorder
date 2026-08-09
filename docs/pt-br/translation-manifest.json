@@ -22719,7 +22719,7 @@
     "batch": "B04",
     "source_sha256": "d076af143b4492dfed100af71a16fe5d24cf1bd626e66f3cc6fa2f39c2fb6661",
     "target_sha256": "",
-    "status": "failed",
+    "status": "pending",
     "source_bytes": 11597,
     "target_bytes": 0,
     "headings_source": 20,
@@ -22737,10 +22737,7 @@
     "encoding_valid": false,
     "token_loss_count": 0,
     "code_fence_exact": false,
-    "validation": [
-      "code fences mismatch: src=0, tgt=1",
-      "code fence count mismatch: src=0, tgt=1"
-    ],
+    "validation": [],
     "translated_at": "",
     "source_commit": "a87afceca4dffe1b863f575a692ad81ac88ae5e9"
   },
